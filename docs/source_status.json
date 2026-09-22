@@ -1,3 +1,31 @@
 {
-  "updated_at": ""
+  "updated_at": "",
+  "ehentai": {
+    "status": "ok",
+    "discovered": 25,
+    "accepted_raw": 25,
+    "message": "",
+    "last_attempt": "2026-09-22T09:37:36+00:00",
+    "accepted": 24,
+    "blocked": 1,
+    "last_success": "2026-09-22T09:37:36+00:00"
+  },
+  "hitomi": {
+    "status": "error",
+    "discovered": 0,
+    "accepted_raw": 0,
+    "message": "HTTPSConnectionPool(host='ltn.hitomi.la', port=443): Max retries exceeded with url: /index-japanese.nozomi (Caused by NameResolutionError(\"HTTPSConnection(host='ltn.hitomi.la', port=443): Failed to resolve 'ltn.hitomi.la' ([Errno -5] No address associated with hostname)\"))",
+    "last_attempt": "2026-09-22T09:37:36+00:00",
+    "accepted": 0,
+    "blocked": 0
+  },
+  "nhentai": {
+    "status": "error",
+    "discovered": 40,
+    "accepted_raw": 0,
+    "message": "nHentai detail 683124 failed: 404 Client Error: Not Found for url: https://nhentai.net/api/v2/gallery/683124 | nHentai detail 683123 failed: 404 Client Error: Not Found for url: https://nhentai.net/api/v2/gallery/683123 | nHentai detail 683120 failed: 404 Client Error: Not Found for url: https://nhentai.net/api/v2/gallery/683120",
+    "last_attempt": "2026-09-22T09:37:36+00:00",
+    "accepted": 0,
+    "blocked": 0
+  }
 }
