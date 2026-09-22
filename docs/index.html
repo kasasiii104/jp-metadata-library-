@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Japanese Metadata Library</title>
+<style>
+:root{color-scheme:dark;--bg:#0f0f0f;--panel:#181818;--panel2:#222;--text:#f5f5f5;--muted:#aaa;--line:#2d2d2d;--accent:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+button,input,select{font:inherit}header{position:sticky;top:0;z-index:20;background:rgba(15,15,15,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:calc(10px + env(safe-area-inset-top)) 12px 10px}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:10px}.brand{font-weight:800;white-space:nowrap}.status{font-size:11px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-left:auto}
+.search{display:flex;gap:8px}.search input{flex:1;min-width:0;border:1px solid #333;border-radius:20px;background:#151515;color:#fff;padding:11px 14px;font-size:16px;outline:none}.btn{border:0;background:var(--panel2);color:#fff;border-radius:10px;min-height:42px;padding:0 13px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-top:10px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}.chip{white-space:nowrap;border:0;background:#282828;color:#fff;border-radius:9px;padding:8px 12px}.chip.on{background:#eee;color:#111}
+main{padding:14px 12px calc(90px + env(safe-area-inset-bottom))}.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.toolbar select{background:#1d1d1d;color:#fff;border:1px solid #333;border-radius:9px;padding:9px}.count{color:var(--muted);font-size:13px;margin-left:auto}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 10px}@media(min-width:720px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(min-width:1000px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}main{max-width:1500px;margin:auto}}@media(min-width:1400px){.grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.card{min-width:0}.thumb{position:relative;display:block;width:100%;aspect-ratio:3/4;background:#191919;border-radius:10px;overflow:hidden;border:0;padding:0}.thumb img{width:100%;height:100%;object-fit:cover;display:block}.ph{display:flex;align-items:center;justify-content:center;width:100%;height:100%;color:#777;font-size:12px}.source{position:absolute;left:6px;top:6px;background:rgba(0,0,0,.75);padding:3px 6px;border-radius:5px;font-size:10px;text-transform:uppercase}.favmark{position:absolute;right:6px;top:6px;background:rgba(0,0,0,.75);padding:3px 6px;border-radius:5px;font-size:12px}.body{position:relative;padding:8px 32px 0 2px}.title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:#fff;text-decoration:none;font-size:14px;font-weight:650;line-height:1.35}.meta{margin:4px 0 0;color:var(--muted);font-size:11px;line-height:1.4}.more{position:absolute;right:0;top:0;width:34px;height:34px;border:0;background:transparent;color:#aaa;font-size:20px}.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:50px 0}
+.sheet-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:50}.sheet-bg.on{display:block}.sheet{display:none;position:fixed;left:0;right:0;bottom:0;z-index:60;background:#202020;border-radius:16px 16px 0 0;padding:12px 14px calc(18px + env(safe-area-inset-bottom));max-height:75vh;overflow:auto}.sheet.on{display:block}.sheet:before{content:"";display:block;width:36px;height:4px;border-radius:5px;background:#555;margin:0 auto 12px}.sheet button,.sheet a{display:block;width:100%;min-height:48px;padding:12px;border:0;background:transparent;color:#fff;text-align:left;text-decoration:none;border-bottom:1px solid #2d2d2d}.source-status{font-size:12px;color:#bbb;line-height:1.5;margin-top:8px}.load{display:block;margin:20px auto 0;border:0;background:#2a2a2a;color:#fff;padding:12px 18px;border-radius:10px}
+</style>
+</head>
+<body>
+<header>
+  <div class="top"><div class="brand">日本語メタデータ</div><div id="status" class="status">読み込み中…</div></div>
+  <div class="search"><input id="q" type="search" placeholder="タイトル・作者・原作・タグで検索" autocomplete="off"><button id="favBtn" class="btn" type="button">★</button></div>
+  <div id="sourceChips" class="chips">
+    <button class="chip on" data-source="all">すべて</button>
+    <button class="chip" data-source="ehentai">E-Hentai</button>
+    <button class="chip" data-source="hitomi">Hitomi</button>
+    <button class="chip" data-source="nhentai">nHentai</button>
+  </div>
+</header>
+<main>
+  <div class="toolbar">
+    <select id="sort"><option value="new">新着順</option><option value="rating">評価順</option><option value="pages">ページ数順</option><option value="pop">人気指標順</option></select>
+    <select id="category"><option value="">全カテゴリ</option></select>
+    <select id="pages"><option value="0">ページ数すべて</option><option value="20">20ページ以上</option><option value="40">40ページ以上</option><option value="80">80ページ以上</option></select>
+    <span id="count" class="count"></span>
+  </div>
+  <div id="grid" class="grid"></div>
+  <button id="loadMore" class="load" type="button" hidden>もっと見る</button>
+  <div id="sourceStatus" class="source-status"></div>
+</main>
+<div id="sheetBg" class="sheet-bg"></div><div id="sheet" class="sheet"></div>
+<script>
+const INITIAL=40, STEP=40;
+const state={items:[],filtered:[],shown:INITIAL,source:'all',favoritesOnly:false};
+const favs=new Set(JSON.parse(localStorage.getItem('meta_favorites')||'[]'));
+const hidden=new Set(JSON.parse(localStorage.getItem('meta_hidden')||'[]'));
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function safeUrl(u){try{const x=new URL(String(u||''),location.href);return /^https?:$/.test(x.protocol)?x.href:''}catch{return''}}
+function saveSet(k,s){localStorage.setItem(k,JSON.stringify([...s]))}
+function titleOf(x){return x.title_jp||x.title||`${x.source}:${x.source_id}`}
+function searchable(x){return [x.title,x.title_jp,x.category,...(x.artists||[]),...(x.groups||[]),...(x.parodies||[]),...(x.characters||[]),...(x.tags||[])].join(' ').toLowerCase()}
+function dateScore(x){const v=x.posted_at||x.first_seen||'';const n=Date.parse(v);return Number.isFinite(n)?n:0}
+function sourceLabel(s){return ({ehentai:'E-Hentai',hitomi:'Hitomi',nhentai:'nHentai'})[s]||s}
+function relative(v){const t=Date.parse(v||'');if(!Number.isFinite(t))return'';const d=Math.max(0,Date.now()-t),days=Math.floor(d/86400000);if(days<1)return'今日';if(days<7)return`${days}日前`;return new Date(t).toLocaleDateString('ja-JP')}
+function metaLine(x){const a=[];if(x.rating!=null&&Number(x.rating)>0)a.push(`★${Number(x.rating).toFixed(2).replace(/0+$/,'').replace(/\.$/,'')}`);if(x.popularity!=null&&Number(x.popularity)>0)a.push(`人気 ${Number(x.popularity).toLocaleString()}`);if(x.pages)a.push(`${x.pages}p`);if(x.posted_at)a.push(relative(x.posted_at));return a.join(' ・ ')}
+function card(x){const thumb=safeUrl(x.thumbnail),url=safeUrl(x.source_url);return `<article class="card" data-uid="${esc(x.uid)}"><a class="thumb" href="${esc(url||'#')}" target="_blank" rel="noopener noreferrer">${thumb?`<img src="${esc(thumb)}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',textContent:'サムネイルなし'}))">`:`<div class="ph">サムネイルなし</div>`}<span class="source">${esc(sourceLabel(x.source))}</span>${favs.has(x.uid)?'<span class="favmark">★</span>':''}</a><div class="body"><a class="title" href="${esc(url||'#')}" target="_blank" rel="noopener noreferrer">${esc(titleOf(x))}</a><p class="meta">${esc((x.artists||[]).slice(0,2).join(' / ')||x.category||'')}</p><p class="meta">${esc(metaLine(x))}</p><button class="more" type="button" data-more="${esc(x.uid)}">⋮</button></div></article>`}
+function apply(){const q=$('#q').value.trim().toLowerCase(),cat=$('#category').value,minPages=Number($('#pages').value||0),sort=$('#sort').value;let arr=state.items.filter(x=>!hidden.has(x.uid));if(state.source!=='all')arr=arr.filter(x=>x.source===state.source);if(state.favoritesOnly)arr=arr.filter(x=>favs.has(x.uid));if(q)arr=arr.filter(x=>searchable(x).includes(q));if(cat)arr=arr.filter(x=>x.category===cat);if(minPages)arr=arr.filter(x=>Number(x.pages||0)>=minPages);arr.sort((a,b)=>sort==='rating'?(Number(b.rating||-1)-Number(a.rating||-1))||dateScore(b)-dateScore(a):sort==='pages'?(Number(b.pages||0)-Number(a.pages||0))||dateScore(b)-dateScore(a):sort==='pop'?(Number(b.popularity||-1)-Number(a.popularity||-1))||dateScore(b)-dateScore(a):dateScore(b)-dateScore(a));state.filtered=arr;state.shown=INITIAL;render()}
+function render(){const list=state.filtered.slice(0,state.shown);$('#grid').innerHTML=list.length?list.map(card).join(''):'<div class="empty">該当作品がありません</div>';$('#count').textContent=`${state.filtered.length.toLocaleString()}件`;$('#loadMore').hidden=state.shown>=state.filtered.length}
+function menu(uid){const x=state.items.find(i=>i.uid===uid);if(!x)return;const sheet=$('#sheet');sheet.innerHTML=`<button data-act="fav">${favs.has(uid)?'お気に入りから外す':'お気に入りに追加'}</button><button data-act="hide">この作品を非表示</button><a href="${esc(safeUrl(x.source_url)||'#')}" target="_blank" rel="noopener noreferrer">元サイトで見る</a>`;$('#sheetBg').classList.add('on');sheet.classList.add('on');sheet.querySelector('[data-act="fav"]').onclick=()=>{favs.has(uid)?favs.delete(uid):favs.add(uid);saveSet('meta_favorites',favs);closeSheet();apply()};sheet.querySelector('[data-act="hide"]').onclick=()=>{hidden.add(uid);saveSet('meta_hidden',hidden);closeSheet();apply()}}
+function closeSheet(){$('#sheetBg').classList.remove('on');$('#sheet').classList.remove('on')}
+async function init(){try{const [data,status]=await Promise.all([fetch('data.json',{cache:'no-store'}).then(r=>r.json()),fetch('source_status.json',{cache:'no-store'}).then(r=>r.ok?r.json():{}).catch(()=>({}))]);state.items=Array.isArray(data.items)?data.items:[];$('#status').textContent=`更新 ${new Date(data.updated_at).toLocaleString('ja-JP')} ・ ${state.items.length.toLocaleString()}件`;const cats=[...new Set(state.items.map(x=>x.category).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ja'));for(const c of cats){const o=document.createElement('option');o.value=c;o.textContent=c;$('#category').appendChild(o)}const parts=['ehentai','hitomi','nhentai'].map(k=>{const s=status[k]||{};return `${sourceLabel(k)}: ${s.status||'不明'}${s.accepted!=null?` ${s.accepted}件`:''}`});$('#sourceStatus').textContent=parts.join(' / ');apply()}catch(e){$('#status').textContent='データ読み込み失敗';$('#grid').innerHTML='<div class="empty">data.jsonを読み込めませんでした。</div>'}}
+$('#q').addEventListener('input',apply);$('#sort').addEventListener('change',apply);$('#category').addEventListener('change',apply);$('#pages').addEventListener('change',apply);$('#loadMore').onclick=()=>{state.shown+=STEP;render()};$('#favBtn').onclick=()=>{state.favoritesOnly=!state.favoritesOnly;$('#favBtn').textContent=state.favoritesOnly?'★のみ':'★';apply()};$$('[data-source]').forEach(b=>b.onclick=()=>{$$('[data-source]').forEach(x=>x.classList.remove('on'));b.classList.add('on');state.source=b.dataset.source;apply()});document.addEventListener('click',e=>{const b=e.target.closest('[data-more]');if(b){e.preventDefault();menu(b.dataset.more)}});$('#sheetBg').onclick=closeSheet;init();
+</script>
+</body>
+</html>
