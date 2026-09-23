@@ -17,7 +17,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 50
+    timeout-minutes: 55
 
     steps:
       - uses: actions/checkout@v4
@@ -37,7 +37,31 @@ jobs:
       - name: Install Hitomi thumbnail resolver
         run: npm install --no-save node-hitomi@9.2.0
 
+      - name: Start local Jandapress for 3Hentai
+        continue-on-error: true
+        run: |
+          docker pull ghcr.io/sinkaroid/jandapress:latest
+          docker rm -f jandapress 2>/dev/null || true
+          docker run -d --name jandapress -p 3000:3000 \
+            -e USER_AGENT="Japanese-Metadata-Library/1.7 GitHub-Actions" \
+            ghcr.io/sinkaroid/jandapress:latest
+
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:3000/ >/dev/null 2>&1; then
+              echo "Jandapress is ready"
+              exit 0
+            fi
+            sleep 2
+          done
+
+          echo "Jandapress did not become ready"
+          docker logs --tail 80 jandapress || true
+          exit 0
+
       - name: Update metadata
+        env:
+          JANDAPRESS_URL: "http://127.0.0.1:3000"
+          HENTAI3_SEARCH_KEY: "language:japanese"
         run: python crawler.py
 
       - name: Cache Hitomi thumbnails locally
@@ -45,6 +69,12 @@ jobs:
           HITOMI_THUMB_LIMIT: "110"
           HITOMI_THUMB_DELAY_MS: "120"
         run: node tools/cache_hitomi_thumbs.mjs
+
+      - name: Show Jandapress diagnostics
+        if: always()
+        run: |
+          echo "--- Jandapress logs ---"
+          docker logs --tail 100 jandapress 2>/dev/null || true
 
       - name: Commit site data
         run: |
