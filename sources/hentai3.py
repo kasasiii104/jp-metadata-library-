@@ -105,14 +105,82 @@ def _find_payload_object(obj: Any) -> dict:
 def _pick_url(obj: dict, *keys: str) -> str:
     for k in keys:
         v = obj.get(k)
-        if isinstance(v, str) and v.startswith(("http://", "https://", "/")):
+        if isinstance(v, str) and v.startswith(("http://", "https://", "//", "/")):
             return urljoin(SOURCE_BASE, v)
         if isinstance(v, dict):
             for kk in ("url", "src", "source", "original", "thumbnail", "cover"):
                 vv = v.get(kk)
-                if isinstance(vv, str) and vv.startswith(("http://", "https://", "/")):
+                if isinstance(vv, str) and vv.startswith(("http://", "https://", "//", "/")):
                     return urljoin(SOURCE_BASE, vv)
     return ""
+
+
+def _image_candidates(value: Any, path: str = "") -> list[tuple[int, str]]:
+    """Collect likely representative image URLs from nested Jandapress payloads.
+
+    3Hentai responses have changed shape over time and image data may live in
+    arrays such as images/pages/files rather than a top-level thumbnail field.
+    This deliberately prefers thumbnail/cover-like fields and only then falls
+    back to a representative page image.
+    """
+    out: list[tuple[int, str]] = []
+    image_ext = (".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif")
+
+    def add(raw: str, context: str):
+        raw = _clean(raw)
+        if not raw or not raw.startswith(("http://", "https://", "//", "/")):
+            return
+        url = urljoin(SOURCE_BASE, raw)
+        low_url = url.lower().split("?", 1)[0]
+        ctx = context.lower()
+        score = 0
+        if "thumbnail" in ctx or "thumb" in ctx:
+            score += 120
+        if "cover" in ctx:
+            score += 110
+        if "preview" in ctx:
+            score += 90
+        if any(k in ctx for k in ("image", "images", "picture", "poster")):
+            score += 75
+        if any(k in ctx for k in ("page", "pages", "file", "files", "media")):
+            score += 35
+        if low_url.endswith(image_ext):
+            score += 50
+        if "3hentai" in low_url:
+            score += 5
+        # Page URLs are not useful as thumbnails unless the context explicitly
+        # identifies them as an image.
+        if score >= 50:
+            out.append((score, url))
+
+    def walk(v: Any, context: str):
+        if isinstance(v, str):
+            add(v, context)
+        elif isinstance(v, dict):
+            for k, vv in v.items():
+                walk(vv, f"{context}.{k}" if context else str(k))
+        elif isinstance(v, (list, tuple, set)):
+            for i, vv in enumerate(v):
+                walk(vv, f"{context}[{i}]")
+
+    walk(value, path)
+    # Stable order, highest confidence first, de-duplicate URLs.
+    seen = set()
+    result = []
+    for score, url in sorted(out, key=lambda x: x[0], reverse=True):
+        if url in seen:
+            continue
+        seen.add(url)
+        result.append((score, url))
+    return result
+
+
+def _best_thumbnail_url(raw: dict) -> str:
+    direct = _pick_url(raw, "thumbnail", "thumb", "cover", "poster", "image")
+    if direct:
+        return direct
+    candidates = _image_candidates(raw)
+    return candidates[0][1] if candidates else ""
 
 
 def _normalize(raw: dict, *, assumed_japanese: bool = False) -> dict | None:
@@ -160,7 +228,7 @@ def _normalize(raw: dict, *, assumed_japanese: bool = False) -> dict | None:
     posted = _clean(_first(raw, "posted_at", "posted", "date", "uploaded_at", "created_at") or "")
 
     source_url = _pick_url(raw, "url", "link", "source_url", "href")
-    thumbnail = _pick_url(raw, "thumbnail", "thumb", "cover", "image", "images")
+    thumbnail = _best_thumbnail_url(raw)
 
     category = _clean(_first(raw, "category", "type") or "")
 

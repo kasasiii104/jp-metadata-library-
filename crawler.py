@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
+import hashlib
 import json
+import re
 import sys
 import unicodedata
 from datetime import datetime, timezone
@@ -127,6 +129,118 @@ def sort_key(item: dict[str, Any]):
     )
 
 
+def _dedupe_text(value: str, *, loose: bool = False) -> str:
+    text = unicodedata.normalize("NFKC", str(value or "")).lower().strip()
+    # Translation/language suffixes differ across mirrors and should not split
+    # an otherwise identical Japanese work. Keep ordinary title brackets.
+    text = re.sub(r"\[[^\]]*(?:english|chinese|japanese|translated|translation|digital|英語|中国語|日本語)[^\]]*\]", " ", text, flags=re.I)
+    text = re.sub(r"\([^)]*(?:english|chinese|japanese|translated|translation|英語|中国語|日本語)[^)]*\)", " ", text, flags=re.I)
+    if loose:
+        text = re.sub(r"^(?:\([^)]{1,60}\)|\[[^\]]{1,60}\])\s*", "", text)
+    return "".join(ch for ch in text if ch.isalnum())
+
+
+def _creator_keys(item: dict[str, Any]) -> set[str]:
+    vals = list(item.get("artists") or []) + list(item.get("groups") or [])
+    return {_dedupe_text(v) for v in vals if len(_dedupe_text(v)) >= 2}
+
+
+def _same_work(a: dict[str, Any], b: dict[str, Any]) -> bool:
+    if a.get("source") == b.get("source"):
+        return False
+    ta = _dedupe_text(a.get("title_jp") or a.get("title") or "")
+    tb = _dedupe_text(b.get("title_jp") or b.get("title") or "")
+    la = _dedupe_text(a.get("title_jp") or a.get("title") or "", loose=True)
+    lb = _dedupe_text(b.get("title_jp") or b.get("title") or "", loose=True)
+    has_jp = bool(re.search(r"[ぁ-んァ-ン一-龯々〆ヵヶ]", str(a.get("title_jp") or a.get("title") or "") + str(b.get("title_jp") or b.get("title") or "")))
+    exact_min = 4 if has_jp else 8
+    loose_min = 6 if has_jp else 14
+    exact = bool(ta and ta == tb and len(ta) >= exact_min)
+    loose = bool(la and la == lb and len(la) >= loose_min)
+    if not (exact or loose):
+        return False
+
+    creators_overlap = bool(_creator_keys(a) & _creator_keys(b))
+    pa, pb = int(a.get("pages") or 0), int(b.get("pages") or 0)
+    pages_close = bool(pa and pb and abs(pa - pb) <= 2)
+    # Long exact titles are already a strong signal; shorter/common titles need
+    # creator or page corroboration to avoid false merges.
+    strong_exact = exact and len(ta) >= (10 if has_jp else 22)
+    return creators_overlap or pages_close or strong_exact
+
+
+def apply_duplicate_groups(items: list[dict[str, Any]]) -> int:
+    """Annotate cross-source duplicates without destructively merging rows.
+
+    The raw records remain intact. The frontend can collapse members into one
+    card and still expose every original source link.
+    """
+    for item in items:
+        for k in ("duplicate_group", "duplicate_count", "duplicate_sources", "duplicate_uids"):
+            item.pop(k, None)
+
+    n = len(items)
+    parent = list(range(n))
+
+    def find(x: int) -> int:
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    def union(a: int, b: int) -> None:
+        ra, rb = find(a), find(b)
+        if ra != rb:
+            parent[rb] = ra
+
+    # Compare only inside exact/loose normalized title buckets, avoiding O(n^2)
+    # across the full library.
+    buckets: dict[str, list[int]] = {}
+    for i, item in enumerate(items):
+        title = item.get("title_jp") or item.get("title") or ""
+        for prefix, key in (("s:", _dedupe_text(title)), ("l:", _dedupe_text(title, loose=True))):
+            min_len = 4 if re.search(r"[ぁ-んァ-ン一-龯々〆ヵヶ]", str(title)) else 8
+            if len(key) >= min_len:
+                buckets.setdefault(prefix + key, []).append(i)
+
+    for ids in buckets.values():
+        if len(ids) < 2:
+            continue
+        # Buckets are normally tiny; cap pathological generic-title buckets.
+        ids = ids[:40]
+        for pos, a in enumerate(ids):
+            for b in ids[pos + 1:]:
+                if _same_work(items[a], items[b]):
+                    union(a, b)
+
+    groups: dict[int, list[int]] = {}
+    for i in range(n):
+        groups.setdefault(find(i), []).append(i)
+
+    duplicate_groups = 0
+    for member_ids in groups.values():
+        if len(member_ids) < 2:
+            continue
+        # Only call it a duplicate group if at least two different sources exist.
+        sources = sorted({str(items[i].get("source") or "") for i in member_ids if items[i].get("source")})
+        if len(sources) < 2:
+            continue
+        duplicate_groups += 1
+        members = [items[i] for i in member_ids]
+        title_key = _dedupe_text(members[0].get("title_jp") or members[0].get("title") or "")
+        creator_pool = sorted(set().union(*(_creator_keys(x) for x in members)))
+        nonzero_pages = sorted(int(x.get("pages") or 0) for x in members if int(x.get("pages") or 0) > 0)
+        discriminator = creator_pool[0] if creator_pool else (f"p{nonzero_pages[0]}" if nonzero_pages else "")
+        gid = "dup:" + hashlib.sha1(f"{title_key}|{discriminator}".encode("utf-8")).hexdigest()[:16]
+        uids = sorted(str(x.get("uid") or "") for x in members if x.get("uid"))
+        for item in members:
+            item["duplicate_group"] = gid
+            item["duplicate_count"] = len(members)
+            item["duplicate_sources"] = sources
+            item["duplicate_uids"] = uids
+    return duplicate_groups
+
+
 def main() -> int:
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
     stamp = now_iso()
@@ -204,11 +318,20 @@ def main() -> int:
     if KEEP_ITEMS > 0:
         items = items[:KEEP_ITEMS]
 
-    save_json(DATA_FILE, {"updated_at": stamp, "item_count": len(items), "items": items})
+    duplicate_group_count = apply_duplicate_groups(items)
+    duplicate_item_count = sum(1 for x in items if x.get("duplicate_group"))
+
+    save_json(DATA_FILE, {
+        "updated_at": stamp,
+        "item_count": len(items),
+        "duplicate_group_count": duplicate_group_count,
+        "duplicate_item_count": duplicate_item_count,
+        "items": items,
+    })
     save_json(STATE_FILE, state)
     save_json(STATUS_FILE, {**status_store, "updated_at": stamp})
 
-    print(f"done: raw={total_raw}, accepted={total_accepted}, total={len(items)}")
+    print(f"done: raw={total_raw}, accepted={total_accepted}, total={len(items)}, duplicate_groups={duplicate_group_count}")
     if successful_sources == 0 and not items:
         print("All sources failed and there is no retained dataset.", file=sys.stderr)
         return 1
