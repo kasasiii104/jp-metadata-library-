@@ -27,18 +27,31 @@ jobs:
           python-version: "3.12"
           cache: pip
 
-      - name: Install dependencies
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Python dependencies
         run: pip install -r requirements.txt
+
+      - name: Install Hitomi thumbnail resolver
+        run: npm install --no-save node-hitomi@9.2.0
 
       - name: Update metadata
         run: python crawler.py
 
-      - name: Commit data
+      - name: Cache Hitomi thumbnails locally
+        env:
+          HITOMI_THUMB_LIMIT: "110"
+          HITOMI_THUMB_DELAY_MS: "120"
+        run: node tools/cache_hitomi_thumbs.mjs
+
+      - name: Commit site data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add docs/data.json docs/crawl_state.json docs/source_status.json
+          git add docs
 
           if git diff --cached --quiet; then
             echo "No data changes"
