@@ -1,11 +1,9 @@
-import json
-import re
+import os
 import time
 from typing import Any
-from urllib.parse import quote_plus, urljoin, urlparse
+from urllib.parse import urljoin
 
 import requests
-from bs4 import BeautifulSoup, Tag
 
 from config import (
     HENTAI3_BACKFILL_PAGES,
@@ -13,398 +11,308 @@ from config import (
     HENTAI3_LATEST_PAGES,
     HENTAI3_MAX_GALLERIES_PER_RUN,
 )
-from sources.common import safe_get, unique_strings
+from sources.common import unique_strings
 
-BASE = "https://3hentai.net"
-JP_RE = re.compile(r"[\u3040-\u30ff\u3400-\u9fff]")
-
-# 3Hentai is a multi-language source. Current public clients document normal
-# search/get support and recent/popular sorting; site routes can change, so the
-# collector deliberately keeps several ordinary public URL fallbacks and logs
-# which one worked. No anti-bot bypass is attempted.
-SEARCH_PATTERNS = [
-    ("jp-search-query", "/search?query={query}&sort=recent&page={page}"),
-    ("jp-search-q", "/search?q={query}&sort=recent&page={page}"),
-    ("jp-search-key", "/search?key={query}&sort=recent&page={page}"),
-]
-BROWSE_PATTERNS = [
-    ("browse-query-page", "/?page={page}"),
-    ("browse-page-path", "/page/{page}"),
-    ("browse-recent", "/search?sort=recent&page={page}"),
-]
-
-GALLERY_PATH_RE = re.compile(
-    r"/(?:g|gallery|doujinshi|book|manga|read|view)/(?P<id>\d{3,10})(?:[/?#]|$)", re.I
-)
-PLAIN_ID_PATH_RE = re.compile(r"^/(?P<id>\d{4,10})(?:[/?#]|$)")
-LANG_MAP = {
-    "japanese": "japanese",
-    "日本語": "japanese",
-    "ja": "japanese",
-    "english": "english",
-    "英語": "english",
-    "chinese": "chinese",
-    "中文": "chinese",
-    "korean": "korean",
-    "한국어": "korean",
-}
+API_BASE = os.environ.get("JANDAPRESS_URL", "http://127.0.0.1:3000").rstrip("/")
+SOURCE_BASE = "https://3hentai.net"
+SEARCH_KEY = os.environ.get("HENTAI3_SEARCH_KEY", "language:japanese")
+TIMEOUT = 30
 
 
-def _clean(text: str) -> str:
-    return re.sub(r"\s+", " ", str(text or "")).strip()
+def _clean(v: Any) -> str:
+    return " ".join(str(v or "").split()).strip()
 
 
-def _norm_lang(value: str) -> str:
-    text = _clean(value).lower()
-    for key, val in LANG_MAP.items():
-        if text == key.lower() or re.search(rf"(?:^|[^a-z]){re.escape(key.lower())}(?:[^a-z]|$)", text):
-            return val
-    return ""
-
-
-def _url_for(mode: str, pattern: str, page: int) -> str:
-    query = quote_plus("language:japanese")
-    return urljoin(BASE, pattern.format(query=query, page=page))
-
-
-def _extract_gid(href: str) -> str:
+def _num(v: Any):
+    if isinstance(v, bool):
+        return None
+    if isinstance(v, (int, float)):
+        return v
+    s = _clean(v).replace(",", "")
     try:
-        path = urlparse(href).path
+        return float(s) if "." in s else int(s)
     except Exception:
-        path = href
-    m = GALLERY_PATH_RE.search(path)
-    if m:
-        return m.group("id")
-    m = PLAIN_ID_PATH_RE.search(path)
-    return m.group("id") if m else ""
+        return None
 
 
-def _thumbnail_from_node(node: Tag | None) -> str:
-    if not isinstance(node, Tag):
-        return ""
-    img = node.find("img")
-    if not isinstance(img, Tag):
-        return ""
-    for attr in ("data-src", "data-lazy-src", "data-original", "src"):
-        raw = str(img.get(attr) or "").strip()
-        if raw and not raw.startswith("data:"):
-            return urljoin(BASE, raw)
-    return ""
+def _first(d: dict, *keys: str):
+    for k in keys:
+        if k in d and d[k] not in (None, "", [], {}):
+            return d[k]
+    return None
 
 
-def _extract_refs(soup: BeautifulSoup) -> list[dict[str, str]]:
-    refs: list[dict[str, str]] = []
-    seen = set()
-    for a in soup.find_all("a", href=True):
-        href = str(a.get("href") or "").strip()
-        gid = _extract_gid(href)
-        if not gid or gid in seen:
-            continue
-        # Avoid obvious pagination/account/navigation false positives.
-        low = href.lower()
-        if any(x in low for x in ("/page/", "login", "register", "random", "favorite")):
-            continue
-        seen.add(gid)
-        card = a
-        for parent in a.parents:
-            if not isinstance(parent, Tag):
+def _flatten_tags(value: Any) -> list[str]:
+    out: list[str] = []
+    if value is None:
+        return out
+    if isinstance(value, str):
+        s = _clean(value)
+        if s:
+            out.append(s)
+        return out
+    if isinstance(value, dict):
+        name = _first(value, "name", "tag", "value", "label", "title")
+        namespace = _first(value, "namespace", "type", "category")
+        if name:
+            name = _clean(name)
+            if namespace and ":" not in name:
+                out.append(f"{_clean(namespace)}:{name}")
+            else:
+                out.append(name)
+        for k, v in value.items():
+            if k in {"name", "tag", "value", "label", "title", "namespace", "type", "category"}:
                 continue
-            classes = " ".join(parent.get("class") or []).lower()
-            if parent.name in {"article", "li"} or any(x in classes for x in ("card", "gallery", "item", "book", "thumb")):
-                card = parent
-                break
-        title = _clean(a.get("title") or a.get_text(" ", strip=True))
-        if not title and isinstance(card, Tag):
-            img = card.find("img")
-            title = _clean((img.get("alt") if isinstance(img, Tag) else "") or "")
-        refs.append({
-            "gid": gid,
-            "url": urljoin(BASE, href),
-            "title_hint": title,
-            "thumb_hint": _thumbnail_from_node(card if isinstance(card, Tag) else a),
-        })
-    return refs
+            if isinstance(v, (list, tuple, set, dict)):
+                out.extend(_flatten_tags(v))
+        return unique_strings(out)
+    if isinstance(value, (list, tuple, set)):
+        for x in value:
+            out.extend(_flatten_tags(x))
+    return unique_strings(out)
 
 
-def _fetch_discovery_page(session: requests.Session, page: int, preferred: str = ""):
-    candidates = SEARCH_PATTERNS + BROWSE_PATTERNS
-    if preferred:
-        candidates.sort(key=lambda x: 0 if x[0] == preferred else 1)
-    errors = []
-    for mode, pattern in candidates:
-        url = _url_for(mode, pattern, page)
-        try:
-            res = safe_get(session, url)
-            soup = BeautifulSoup(res.text, "html.parser")
-            refs = _extract_refs(soup)
-            title = _clean(soup.title.get_text(" ", strip=True) if soup.title else "")
-            if refs:
-                return refs, mode, url, title, errors
-            errors.append(f"{mode}: 200 but no gallery refs")
-        except Exception as e:
-            errors.append(f"{mode}: {e}")
-    return [], preferred, "", "", errors
+def _find_candidate_dicts(obj: Any) -> list[dict]:
+    """Recursively collect objects that look like gallery/search results."""
+    found: list[dict] = []
+    if isinstance(obj, dict):
+        ident = _first(obj, "id", "gallery_id", "galleryId", "book", "source_id", "gid")
+        title = _first(obj, "title", "name", "pretty", "english", "japanese")
+        if ident is not None and title:
+            found.append(obj)
+        for v in obj.values():
+            if isinstance(v, (dict, list)):
+                found.extend(_find_candidate_dicts(v))
+    elif isinstance(obj, list):
+        for v in obj:
+            found.extend(_find_candidate_dicts(v))
+    return found
 
 
-def _all_text_links(soup: BeautifulSoup, fragments: tuple[str, ...]) -> list[str]:
-    vals = []
-    for a in soup.find_all("a", href=True):
-        href = str(a.get("href") or "").lower()
-        if any(f in href for f in fragments):
-            text = _clean(a.get_text(" ", strip=True))
-            if text:
-                vals.append(text)
-    return unique_strings(vals)
+def _find_payload_object(obj: Any) -> dict:
+    """Find the richest single gallery object in a get response."""
+    candidates = _find_candidate_dicts(obj)
+    if not candidates:
+        if isinstance(obj, dict):
+            data = obj.get("data")
+            if isinstance(data, dict):
+                return data
+            return obj
+        return {}
+    return max(candidates, key=lambda x: len(x))
 
 
-def _detect_language(soup: BeautifulSoup, *, from_jp_search: bool) -> tuple[str, str]:
-    # Strong explicit metadata first.
-    for node in soup.select("[data-language],[data-lang],[itemprop='inLanguage']"):
-        for raw in (node.get("data-language"), node.get("data-lang"), node.get("content"), node.get_text(" ", strip=True)):
-            lang = _norm_lang(str(raw or ""))
-            if lang:
-                return lang, "structured"
-
-    for a in soup.find_all("a", href=True):
-        href = str(a.get("href") or "").lower()
-        text = _clean(a.get_text(" ", strip=True))
-        if any(x in href for x in ("language", "/lang/", "lang=")):
-            lang = _norm_lang(text + " " + href)
-            if lang:
-                return lang, "language-link"
-
-    whole = _clean(soup.get_text(" ", strip=True))
-    m = re.search(r"(?:Language|Languages|言語)\s*[:：-]?\s*(Japanese|日本語|English|Chinese|Korean|中文|한국어)", whole, re.I)
-    if m:
-        lang = _norm_lang(m.group(1))
-        if lang:
-            return lang, "page-text"
-
-    # If the site accepted an explicit language:japanese search query and did
-    # not expose a contradictory language marker, treat it as Japanese.
-    if from_jp_search:
-        return "japanese", "japanese-search"
-    return "", "missing"
-
-
-def _title(soup: BeautifulSoup, hint: str) -> str:
-    for selector in ("h1", ".title", ".gallery-title", "meta[property='og:title']", "meta[name='twitter:title']"):
-        node = soup.select_one(selector)
-        if not node:
-            continue
-        value = _clean(node.get("content") if node.name == "meta" else node.get_text(" ", strip=True))
-        if value:
-            return value
-    return _clean(hint)
-
-
-def _thumbnail(soup: BeautifulSoup, hint: str) -> str:
-    for selector in ("meta[property='og:image']", "meta[name='twitter:image']"):
-        node = soup.select_one(selector)
-        if node and node.get("content"):
-            return urljoin(BASE, str(node.get("content")).strip())
-    if hint:
-        return hint
-    for selector in (".cover img", ".gallery img", "main img", "article img"):
-        node = soup.select_one(selector)
-        if isinstance(node, Tag):
-            for attr in ("data-src", "data-lazy-src", "data-original", "src"):
-                raw = str(node.get(attr) or "").strip()
-                if raw and not raw.startswith("data:"):
-                    return urljoin(BASE, raw)
+def _pick_url(obj: dict, *keys: str) -> str:
+    for k in keys:
+        v = obj.get(k)
+        if isinstance(v, str) and v.startswith(("http://", "https://", "/")):
+            return urljoin(SOURCE_BASE, v)
+        if isinstance(v, dict):
+            for kk in ("url", "src", "source", "original", "thumbnail", "cover"):
+                vv = v.get(kk)
+                if isinstance(vv, str) and vv.startswith(("http://", "https://", "/")):
+                    return urljoin(SOURCE_BASE, vv)
     return ""
 
 
-def _number(text: str) -> int:
-    m = re.search(r"([\d,]+)", str(text or ""))
-    return int(m.group(1).replace(",", "")) if m else 0
+def _normalize(raw: dict, *, assumed_japanese: bool = False) -> dict | None:
+    ident = _first(raw, "id", "gallery_id", "galleryId", "book", "source_id", "gid")
+    title = _first(raw, "title", "name", "pretty", "english", "japanese")
+    if ident is None or not title:
+        return None
 
+    sid = _clean(ident)
+    title = _clean(title)
+    title_jp = _clean(_first(raw, "title_jp", "title_jpn", "japanese", "jp_title") or "")
 
-def _rating(soup: BeautifulSoup) -> float | None:
-    for selector in ("[itemprop='ratingValue']", "meta[itemprop='ratingValue']"):
-        node = soup.select_one(selector)
-        if node:
-            raw = str(node.get("content") or node.get_text(" ", strip=True) or "")
-            m = re.search(r"([0-5](?:\.\d+)?)", raw)
-            if m:
-                return float(m.group(1))
-    whole = _clean(soup.get_text(" ", strip=True))
-    m = re.search(r"(?:Rating|Score|評価)\s*[:：-]?\s*([0-5](?:\.\d+)?)", whole, re.I)
-    return float(m.group(1)) if m else None
+    tags = []
+    for k in ("tags", "tag", "artists", "artist", "groups", "group", "parodies", "parody", "characters", "character", "languages", "language"):
+        if k in raw:
+            tags.extend(_flatten_tags(raw.get(k)))
+    tags = unique_strings(tags)
 
-
-def _pages(soup: BeautifulSoup) -> int:
-    whole = _clean(soup.get_text(" ", strip=True))
-    for pat in (r"(?:Pages?|Page count|ページ)\s*[:：-]?\s*([\d,]+)", r"([\d,]+)\s*(?:pages|ページ)\b"):
-        m = re.search(pat, whole, re.I)
-        if m:
-            return int(m.group(1).replace(",", ""))
-    return 0
-
-
-def _posted_at(soup: BeautifulSoup) -> str:
-    node = soup.find("time")
-    if isinstance(node, Tag):
-        raw = str(node.get("datetime") or node.get_text(" ", strip=True) or "").strip()
-        if raw:
-            return raw
-    for script in soup.find_all("script", attrs={"type": "application/ld+json"}):
-        try:
-            data = json.loads(script.string or script.get_text() or "{}")
-            objs = data if isinstance(data, list) else [data]
-            for obj in objs:
-                if isinstance(obj, dict):
-                    for key in ("datePublished", "dateCreated", "uploadDate"):
-                        if obj.get(key):
-                            return str(obj[key])
-        except Exception:
-            pass
-    return ""
-
-
-def _normalize_detail(ref: dict[str, str], soup: BeautifulSoup, *, from_jp_search: bool) -> tuple[dict[str, Any], str]:
-    title = _title(soup, ref.get("title_hint") or "")
-    language, evidence = _detect_language(soup, from_jp_search=from_jp_search)
-    title_jp = title if language == "japanese" and JP_RE.search(title) else ""
-
-    artists = _all_text_links(soup, ("/artist/", "/artists/"))
-    groups = _all_text_links(soup, ("/group/", "/groups/", "/circle/", "/circles/"))
-    parodies = _all_text_links(soup, ("/parody/", "/parodies/", "/series/"))
-    characters = _all_text_links(soup, ("/character/", "/characters/"))
-    generic_tags = _all_text_links(soup, ("/tag/", "/tags/"))
-
-    tags = list(generic_tags)
-    if language:
-        tags.append(f"language:{language}")
-
-    category = ""
-    cats = _all_text_links(soup, ("/category/", "/categories/", "/type/"))
-    if cats:
-        category = cats[0]
-
-    popularity = None
-    whole = _clean(soup.get_text(" ", strip=True))
-    for pat in (
-        r"(?:Views?|閲覧数)\s*[:：-]?\s*([\d,]+)",
-        r"(?:Favorites?|Favourites?|お気に入り)\s*[:：-]?\s*([\d,]+)",
-    ):
-        m = re.search(pat, whole, re.I)
-        if m:
-            popularity = int(m.group(1).replace(",", ""))
+    lang = ""
+    for t in tags:
+        low = t.lower()
+        if low in {"japanese", "language:japanese", "lang:japanese", "日本語"} or low.endswith(":japanese"):
+            lang = "japanese"
             break
+        if low in {"english", "language:english", "chinese", "language:chinese", "korean", "language:korean"}:
+            lang = low.split(":")[-1]
+            break
+    raw_lang = _clean(_first(raw, "language", "lang") or "").lower()
+    if raw_lang in {"japanese", "ja", "日本語"}:
+        lang = "japanese"
+    elif raw_lang and not lang:
+        lang = raw_lang
+    if not lang and assumed_japanese:
+        lang = "japanese"
+        tags.append("language:japanese")
 
-    item = {
-        "uid": f"3hentai:{ref['gid']}",
+    artists = unique_strings(_flatten_tags(_first(raw, "artists", "artist") or []))
+    groups = unique_strings(_flatten_tags(_first(raw, "groups", "group", "circles", "circle") or []))
+    parodies = unique_strings(_flatten_tags(_first(raw, "parodies", "parody", "series") or []))
+    characters = unique_strings(_flatten_tags(_first(raw, "characters", "character") or []))
+
+    pages = _num(_first(raw, "pages", "page_count", "pageCount", "total", "num_pages")) or 0
+    rating = _num(_first(raw, "rating", "score"))
+    popularity = _num(_first(raw, "views", "favorites", "favourites", "popularity", "likes"))
+    posted = _clean(_first(raw, "posted_at", "posted", "date", "uploaded_at", "created_at") or "")
+
+    source_url = _pick_url(raw, "url", "link", "source_url", "href")
+    thumbnail = _pick_url(raw, "thumbnail", "thumb", "cover", "image", "images")
+
+    category = _clean(_first(raw, "category", "type") or "")
+
+    return {
+        "uid": f"3hentai:{sid}",
         "source": "3hentai",
-        "source_id": str(ref["gid"]),
-        "source_url": ref["url"],
+        "source_id": sid,
+        "source_url": source_url,
         "title": title,
-        "title_jp": title_jp,
-        "language": language,
+        "title_jp": title_jp or (title if lang == "japanese" else ""),
+        "language": lang,
         "category": category,
         "artists": artists,
         "groups": groups,
         "parodies": parodies,
         "characters": characters,
         "tags": unique_strings(tags),
-        "pages": _pages(soup),
-        "rating": _rating(soup),
-        "popularity": popularity,
-        "posted_at": _posted_at(soup),
-        "thumbnail": _thumbnail(soup, ref.get("thumb_hint") or ""),
+        "pages": int(pages) if isinstance(pages, (int, float)) else 0,
+        "rating": float(rating) if isinstance(rating, (int, float)) else None,
+        "popularity": int(popularity) if isinstance(popularity, (int, float)) else None,
+        "posted_at": posted,
+        "thumbnail": thumbnail,
     }
-    return item, evidence
+
+
+def _get_json(session: requests.Session, path: str, params: dict | None = None):
+    url = f"{API_BASE}{path}"
+    r = session.get(url, params=params or {}, timeout=TIMEOUT)
+    r.raise_for_status()
+    return r.json(), r.url
+
+
+def _detail(session: requests.Session, sid: str) -> tuple[dict | None, str]:
+    try:
+        payload, url = _get_json(session, "/3hentai/get", {"book": sid})
+        obj = _find_payload_object(payload)
+        return _normalize(obj, assumed_japanese=True), url
+    except Exception as e:
+        return None, str(e)
 
 
 def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     state = dict(state or {})
     backfill_page = max(1, int(state.get("backfill_page") or 1))
-    preferred_mode = str(state.get("browse_mode") or "")
     session = requests.Session()
 
-    pages = []
-    for p in list(range(1, 1 + HENTAI3_LATEST_PAGES)) + list(range(backfill_page, backfill_page + HENTAI3_BACKFILL_PAGES)):
+    # First verify the locally self-hosted Jandapress service.
+    try:
+        root = session.get(f"{API_BASE}/", timeout=10)
+        service_status = root.status_code
+    except Exception as e:
+        return [], state, {
+            "status": "error",
+            "discovered": 0,
+            "accepted_raw": 0,
+            "api_base": API_BASE,
+            "message": f"Jandapress unavailable: {e}",
+        }
+
+    pages: list[int] = []
+    for p in list(range(1, HENTAI3_LATEST_PAGES + 1)) + list(range(backfill_page, backfill_page + HENTAI3_BACKFILL_PAGES)):
         if p not in pages:
             pages.append(p)
 
-    refs: list[dict[str, str]] = []
-    discovery_debug = []
-    discovery_errors = []
-    mode_used = preferred_mode
-    mode_is_jp_search = preferred_mode.startswith("jp-search")
+    candidates: dict[str, dict] = {}
+    search_debug: list[str] = []
+    errors: list[str] = []
 
     for page in pages:
-        found, mode, url, title, errs = _fetch_discovery_page(session, page, preferred=mode_used)
-        if found:
-            mode_used = mode
-            mode_is_jp_search = mode.startswith("jp-search")
-            refs.extend(found)
-            discovery_debug.append(f"page={page} mode={mode} found={len(found)} title={title!r}")
-        else:
-            discovery_errors.extend(errs[-3:])
-        if len(refs) >= HENTAI3_MAX_GALLERIES_PER_RUN * 2:
+        try:
+            payload, final_url = _get_json(session, "/3hentai/search", {
+                "key": SEARCH_KEY,
+                "page": page,
+                "sort": "recent",
+            })
+            found = _find_candidate_dicts(payload)
+            search_debug.append(f"page={page} candidates={len(found)} url={final_url}")
+            for obj in found:
+                normalized = _normalize(obj, assumed_japanese=True)
+                if not normalized:
+                    continue
+                candidates[normalized["source_id"]] = normalized
+                if len(candidates) >= HENTAI3_MAX_GALLERIES_PER_RUN:
+                    break
+        except Exception as e:
+            errors.append(f"page={page}: {e}")
+        if len(candidates) >= HENTAI3_MAX_GALLERIES_PER_RUN:
             break
-        time.sleep(0.6)
+        time.sleep(0.4)
 
-    unique_refs = []
-    seen = set()
-    for ref in refs:
-        gid = ref.get("gid")
-        if not gid or gid in seen:
-            continue
-        seen.add(gid)
-        unique_refs.append(ref)
-        if len(unique_refs) >= HENTAI3_MAX_GALLERIES_PER_RUN:
-            break
+    # If tag-query search unexpectedly yields no results, try a plain Japanese
+    # keyword as a normal public search fallback. This does not bypass any access control.
+    if not candidates:
+        for fallback_key in ("japanese", "日本語"):
+            try:
+                payload, final_url = _get_json(session, "/3hentai/search", {
+                    "key": fallback_key,
+                    "page": 1,
+                    "sort": "recent",
+                })
+                found = _find_candidate_dicts(payload)
+                search_debug.append(f"fallback={fallback_key!r} candidates={len(found)} url={final_url}")
+                for obj in found:
+                    normalized = _normalize(obj, assumed_japanese=False)
+                    if normalized:
+                        candidates[normalized["source_id"]] = normalized
+                        if len(candidates) >= HENTAI3_MAX_GALLERIES_PER_RUN:
+                            break
+                if candidates:
+                    break
+            except Exception as e:
+                errors.append(f"fallback={fallback_key}: {e}")
 
     items: list[dict] = []
     detail_errors = 0
-    error_samples: list[str] = []
-    language_counts: dict[str, int] = {}
-    language_evidence: dict[str, int] = {}
-    language_samples: list[str] = []
-    thumb_found = 0
-    thumb_missing = 0
+    detail_samples: list[str] = []
+    languages: dict[str, int] = {}
+    thumbs_found = 0
+    thumbs_missing = 0
 
-    for ref in unique_refs:
-        try:
-            res = safe_get(session, ref["url"])
-            soup = BeautifulSoup(res.text, "html.parser")
-            item, evidence = _normalize_detail(ref, soup, from_jp_search=mode_is_jp_search)
-            lang = item.get("language") or "missing"
-            language_counts[lang] = language_counts.get(lang, 0) + 1
-            language_evidence[evidence] = language_evidence.get(evidence, 0) + 1
-            if len(language_samples) < 5:
-                language_samples.append(f"{ref['gid']} lang={lang!r} via={evidence!r} title={item.get('title','')[:80]!r}")
-            if item.get("thumbnail"):
-                thumb_found += 1
-            else:
-                thumb_missing += 1
-            items.append(item)
-        except Exception as e:
+    for sid, base_item in list(candidates.items())[:HENTAI3_MAX_GALLERIES_PER_RUN]:
+        detail, detail_info = _detail(session, sid)
+        item = detail or base_item
+        if detail is None:
             detail_errors += 1
-            if len(error_samples) < 5:
-                error_samples.append(f"{ref.get('gid')}: {e}")
+            if len(detail_samples) < 5:
+                detail_samples.append(f"{sid}: {detail_info}")
+        lang = item.get("language") or "missing"
+        languages[lang] = languages.get(lang, 0) + 1
+        if item.get("thumbnail"):
+            thumbs_found += 1
+        else:
+            thumbs_missing += 1
+        items.append(item)
         time.sleep(HENTAI3_DETAIL_SLEEP_SEC)
 
     new_state = dict(state)
-    if mode_used:
-        new_state["browse_mode"] = mode_used
-    if items or unique_refs:
+    if items or candidates:
         new_state["backfill_page"] = backfill_page + HENTAI3_BACKFILL_PAGES
 
     status = {
-        "status": "ok" if items else ("error" if discovery_errors or detail_errors else "empty"),
-        "discovered": len(unique_refs),
+        "status": "ok" if items else "error",
+        "discovered": len(candidates),
         "accepted_raw": len(items),
-        "browse_mode": mode_used,
+        "api_base": API_BASE,
+        "jandapress_http": service_status,
+        "search_key": SEARCH_KEY,
         "detail_errors": detail_errors,
-        "languages_detected": language_counts,
-        "language_evidence": language_evidence,
-        "language_samples": language_samples,
-        "thumbnails_found": thumb_found,
-        "thumbnails_missing": thumb_missing,
-        "debug": " | ".join(discovery_debug[:5]),
-        "message": " | ".join((discovery_errors + error_samples)[:5]),
+        "languages_detected": languages,
+        "thumbnails_found": thumbs_found,
+        "thumbnails_missing": thumbs_missing,
+        "debug": " | ".join(search_debug[:8]),
+        "message": " | ".join((errors + detail_samples)[:8]),
     }
     return items, new_state, status
