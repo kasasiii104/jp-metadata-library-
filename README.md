@@ -60,3 +60,12 @@ GitHub Pages は `Settings > Pages > Source: GitHub Actions` に設定してく�
 ```
 
 取得先が403/429等を返した場合は、そのソースだけ失敗扱いにし、他ソースと既存データは維持します。
+
+
+## Revision 3 fixes
+
+- Hitomi resource host updated to `ltn.gold-usergeneratedcontent.net`, with the legacy `ltn.hitomi.la` kept only as fallback.
+- Hitomi remembers the working resource host in `crawl_state.json`.
+- Pururin language detection now checks structured metadata, exact language links, label/value layouts, scripts/JSON-LD, page text, and Japanese-script titles.
+- `source_status.json` now records `blocked_reasons`; Pururin also records `languages_detected`, `language_evidence`, and a few sample detections for debugging.
+- Existing `docs/data.json`, `docs/crawl_state.json`, and `docs/source_status.json` should be preserved when upgrading an existing repository.

@@ -7,13 +7,27 @@ from bs4 import BeautifulSoup
 from config import HITOMI_BACKFILL_LIMIT, HITOMI_LATEST_LIMIT
 from sources.common import absolute_url, parse_json_wrapped_js, safe_get, unique_strings
 
-# Current Hitomi language index lives under /n/.
-INDEX_URL = "https://ltn.hitomi.la/n/index-japanese.nozomi"
-GALLERY_JS = "https://ltn.hitomi.la/galleries/{gid}.js"
-GALLERY_BLOCKS = [
-    "https://ltn.hitomi.la/galleryblock/{gid}.html",
-    "https://hitomi.la/galleryblock/{gid}.html",
+# Hitomi moved resource delivery from ltn.hitomi.la to
+# ltn.gold-usergeneratedcontent.net. Keep the old host as a fallback only.
+RESOURCE_BASES = [
+    "https://ltn.gold-usergeneratedcontent.net",
+    "https://ltn.hitomi.la",
 ]
+FRONT_BASE = "https://hitomi.la"
+INDEX_PATH = "/n/index-japanese.nozomi"
+GALLERY_JS_PATH = "/galleries/{gid}.js"
+GALLERY_BLOCK_URLS = [
+    FRONT_BASE + "/galleryblock/{gid}.html",
+]
+RESOURCE_HEADERS = {
+    "Accept": "application/octet-stream,*/*",
+    "Accept-Encoding": "identity",
+    "Referer": FRONT_BASE + "/",
+}
+JS_HEADERS = {
+    "Accept": "application/javascript,text/javascript,*/*;q=0.8",
+    "Referer": FRONT_BASE + "/",
+}
 
 
 def _ids_from_nozomi(data: bytes) -> list[int]:
@@ -22,23 +36,22 @@ def _ids_from_nozomi(data: bytes) -> list[int]:
     return [int.from_bytes(data[i : i + 4], "big") for i in range(0, len(data), 4)]
 
 
-def _range_ids(session: requests.Session, start_index: int, count: int) -> tuple[list[int], int | None]:
+def _fetch_range_from_base(
+    session: requests.Session,
+    base: str,
+    start_index: int,
+    count: int,
+) -> tuple[list[int], int | None]:
     if count <= 0:
         return [], None
     start_byte = max(0, start_index) * 4
     end_byte = start_byte + count * 4 - 1
-    res = safe_get(
-        session,
-        INDEX_URL,
-        headers={
-            "Accept": "application/octet-stream,*/*",
-            "Accept-Encoding": "identity",
-            "Range": f"bytes={start_byte}-{end_byte}",
-        },
-    )
+    headers = dict(RESOURCE_HEADERS)
+    headers["Range"] = f"bytes={start_byte}-{end_byte}"
+    url = base + INDEX_PATH
+    res = safe_get(session, url, headers=headers)
 
     data = res.content
-    # Some servers may ignore Range and return the full file. Slice defensively.
     if res.status_code == 200 and len(data) > count * 4:
         data = data[start_byte : end_byte + 1]
 
@@ -52,6 +65,27 @@ def _range_ids(session: requests.Session, start_index: int, count: int) -> tuple
             total_items = None
 
     return _ids_from_nozomi(data), total_items
+
+
+def _range_ids(
+    session: requests.Session,
+    start_index: int,
+    count: int,
+    preferred_base: str | None = None,
+) -> tuple[list[int], int | None, str]:
+    bases = list(RESOURCE_BASES)
+    if preferred_base and preferred_base in bases:
+        bases.remove(preferred_base)
+        bases.insert(0, preferred_base)
+
+    errors: list[str] = []
+    for base in bases:
+        try:
+            ids, total = _fetch_range_from_base(session, base, start_index, count)
+            return ids, total, base
+        except Exception as e:
+            errors.append(f"{base}: {e}")
+    raise RuntimeError("all Hitomi resource hosts failed: " + " | ".join(errors))
 
 
 def _list_values(raw: Any, preferred_keys: tuple[str, ...]) -> list[str]:
@@ -116,9 +150,9 @@ def _thumbnail(session: requests.Session, gid: int, raw: dict[str, Any]) -> str:
     direct = _thumbnail_from_raw(raw)
     if direct:
         return direct
-    for template in GALLERY_BLOCKS:
+    for template in GALLERY_BLOCK_URLS:
         try:
-            res = safe_get(session, template.format(gid=gid))
+            res = safe_get(session, template.format(gid=gid), headers={"Referer": FRONT_BASE + "/"})
             soup = BeautifulSoup(res.text, "html.parser")
             img = soup.select_one("img")
             if not img:
@@ -151,7 +185,7 @@ def _normalize(gid: int, raw: dict[str, Any], thumbnail: str) -> dict[str, Any] 
         "uid": f"hitomi:{gid}",
         "source": "hitomi",
         "source_id": str(gid),
-        "source_url": f"https://hitomi.la/galleries/{gid}.html",
+        "source_url": f"{FRONT_BASE}/galleries/{gid}.html",
         "title": title,
         "title_jp": title_jp,
         "language": language_norm,
@@ -169,26 +203,43 @@ def _normalize(gid: int, raw: dict[str, Any], thumbnail: str) -> dict[str, Any] 
     }
 
 
-def _fetch_one(session: requests.Session, gid: int) -> dict[str, Any] | None:
-    res = safe_get(
-        session,
-        GALLERY_JS.format(gid=gid),
-        headers={"Accept": "application/javascript,text/javascript,*/*;q=0.8"},
-    )
-    raw = parse_json_wrapped_js(res.text)
+def _fetch_gallery_js(session: requests.Session, gid: int, preferred_base: str | None) -> tuple[dict[str, Any], str]:
+    bases = list(RESOURCE_BASES)
+    if preferred_base and preferred_base in bases:
+        bases.remove(preferred_base)
+        bases.insert(0, preferred_base)
+    errors: list[str] = []
+    for base in bases:
+        try:
+            res = safe_get(session, base + GALLERY_JS_PATH.format(gid=gid), headers=JS_HEADERS)
+            return parse_json_wrapped_js(res.text), base
+        except Exception as e:
+            errors.append(f"{base}: {e}")
+    raise RuntimeError("gallery metadata hosts failed: " + " | ".join(errors))
+
+
+def _fetch_one(session: requests.Session, gid: int, preferred_base: str | None) -> tuple[dict[str, Any] | None, str | None]:
+    raw, used_base = _fetch_gallery_js(session, gid, preferred_base)
     thumb = _thumbnail(session, gid, raw)
-    return _normalize(gid, raw, thumb)
+    return _normalize(gid, raw, thumb), used_base
 
 
 def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     state = dict(state or {})
     backfill_offset = int(state.get("backfill_offset") or HITOMI_LATEST_LIMIT)
+    preferred_base = str(state.get("resource_base") or "") or None
     session = requests.Session()
     errors: list[str] = []
 
     try:
-        latest_ids, latest_total = _range_ids(session, 0, HITOMI_LATEST_LIMIT)
-        backfill_ids, backfill_total = _range_ids(session, backfill_offset, HITOMI_BACKFILL_LIMIT)
+        latest_ids, latest_total, latest_base = _range_ids(session, 0, HITOMI_LATEST_LIMIT, preferred_base)
+        backfill_ids, backfill_total, backfill_base = _range_ids(
+            session,
+            backfill_offset,
+            HITOMI_BACKFILL_LIMIT,
+            latest_base,
+        )
+        preferred_base = latest_base or backfill_base
         total_index = latest_total if latest_total is not None else backfill_total
     except Exception as e:
         return [], state, {
@@ -196,7 +247,8 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
             "discovered": 0,
             "accepted_raw": 0,
             "message": str(e),
-            "index_url": INDEX_URL,
+            "resource_hosts": RESOURCE_BASES,
+            "index_path": INDEX_PATH,
         }
 
     ids: list[int] = []
@@ -207,15 +259,22 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
             ids.append(gid)
 
     items: list[dict] = []
+    used_hosts: dict[str, int] = {}
     for gid in ids:
         try:
-            item = _fetch_one(session, gid)
+            item, used_base = _fetch_one(session, gid, preferred_base)
+            if used_base:
+                preferred_base = used_base
+                used_hosts[used_base] = used_hosts.get(used_base, 0) + 1
             if item:
                 items.append(item)
         except Exception as e:
-            errors.append(f"{gid}: {e}")
+            if len(errors) < 6:
+                errors.append(f"{gid}: {e}")
 
     new_state = dict(state)
+    if preferred_base:
+        new_state["resource_base"] = preferred_base
     if backfill_ids:
         new_state["backfill_offset"] = backfill_offset + len(backfill_ids)
         if total_index is not None:
@@ -228,7 +287,9 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         "latest_ids": len(latest_ids),
         "backfill_ids": len(backfill_ids),
         "total_index": total_index,
-        "index_url": INDEX_URL,
+        "resource_base": preferred_base or "",
+        "used_hosts": used_hosts,
+        "index_url": (preferred_base or RESOURCE_BASES[0]) + INDEX_PATH,
         "message": " | ".join(errors[:3]),
     }
     return items, new_state, status

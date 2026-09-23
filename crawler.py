@@ -161,6 +161,7 @@ def main() -> int:
         total_raw += len(raw_items)
         accepted = 0
         blocked = 0
+        blocked_reasons: dict[str, int] = {}
 
         for raw in raw_items:
             if not raw.get("uid"):
@@ -168,6 +169,7 @@ def main() -> int:
             reason = blocked_reason(raw)
             if reason:
                 blocked += 1
+                blocked_reasons[reason] = blocked_reasons.get(reason, 0) + 1
                 continue
             uid = raw["uid"]
             existing[uid] = merge_item(existing.get(uid), raw, stamp)
@@ -184,6 +186,7 @@ def main() -> int:
             "last_attempt": stamp,
             "accepted": accepted,
             "blocked": blocked,
+            "blocked_reasons": blocked_reasons,
         }
         if result.get("status") == "ok":
             status_store[name]["last_success"] = stamp
