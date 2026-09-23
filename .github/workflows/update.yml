@@ -64,6 +64,12 @@ jobs:
           HENTAI3_SEARCH_KEY: "language:japanese"
         run: python crawler.py
 
+      - name: Cache 3Hentai thumbnails locally
+        env:
+          JANDAPRESS_URL: "http://127.0.0.1:3000"
+          HENTAI3_THUMB_LIMIT: "80"
+        run: python tools/cache_3hentai_thumbs.py
+
       - name: Cache Hitomi thumbnails locally
         env:
           HITOMI_THUMB_LIMIT: "110"
