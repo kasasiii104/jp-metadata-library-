@@ -16,7 +16,8 @@ RESOURCE_BASES = [
 FRONT_BASE = "https://hitomi.la"
 INDEX_PATH = "/n/index-japanese.nozomi"
 GALLERY_JS_PATH = "/galleries/{gid}.js"
-GALLERY_BLOCK_URLS = [
+GALLERY_PAGE_URLS = [
+    FRONT_BASE + "/galleries/{gid}.html",
     FRONT_BASE + "/galleryblock/{gid}.html",
 ]
 RESOURCE_HEADERS = {
@@ -146,24 +147,83 @@ def _thumbnail_from_raw(raw: dict[str, Any]) -> str:
     return ""
 
 
+def _extract_thumbnail_from_soup(soup: BeautifulSoup) -> str:
+    # Prefer explicit social/preview metadata first. These are much more stable
+    # than grabbing the first <img> on the page (which may be a logo/icon).
+    for selector in (
+        "meta[property='og:image']",
+        "meta[name='twitter:image']",
+        "meta[property='twitter:image']",
+    ):
+        node = soup.select_one(selector)
+        if node and node.get("content"):
+            value = str(node.get("content") or "").strip()
+            if value and not value.startswith("data:"):
+                return absolute_url(value)
+
+    selectors = (
+        ".dj-img1 img",
+        "img[src*='bigtn']",
+        "img[data-src*='bigtn']",
+        "img[data-original*='bigtn']",
+        ".galleryblock img",
+        ".gallery-block img",
+        ".cover img",
+    )
+    for selector in selectors:
+        node = soup.select_one(selector)
+        if not node:
+            continue
+        for attr in ("data-src", "data-original", "data-lazy-src", "src"):
+            value = str(node.get(attr) or "").strip()
+            if value and not value.startswith("data:"):
+                return absolute_url(value)
+        srcset = str(node.get("srcset") or "").strip()
+        if srcset:
+            value = srcset.split(",")[0].strip().split(" ")[0]
+            if value:
+                return absolute_url(value)
+    return ""
+
+
+def _thumbnail_from_first_file(raw: dict[str, Any]) -> str:
+    # galleryinfo usually contains image hashes but no dedicated thumbnail field.
+    # Hitomi's public gallery pages use tn.hitomi.la/bigtn/<hash path>.jpg.
+    files = raw.get("files")
+    if not isinstance(files, list) or not files:
+        return ""
+    first = files[0] if isinstance(files[0], dict) else {}
+    image_hash = str(first.get("hash") or "").strip().lower()
+    if len(image_hash) < 3 or not re.fullmatch(r"[0-9a-f]+", image_hash):
+        return ""
+    path = f"{image_hash[-1]}/{image_hash[-3:-1]}/{image_hash}"
+    return f"https://tn.hitomi.la/bigtn/{path}.jpg"
+
+
 def _thumbnail(session: requests.Session, gid: int, raw: dict[str, Any]) -> str:
     direct = _thumbnail_from_raw(raw)
     if direct:
         return direct
-    for template in GALLERY_BLOCK_URLS:
+
+    # Fetch the lightweight/public gallery HTML and use the actual thumbnail URL
+    # emitted by Hitomi. This avoids guessing image host/subdomain algorithms.
+    for template in GALLERY_PAGE_URLS:
         try:
-            res = safe_get(session, template.format(gid=gid), headers={"Referer": FRONT_BASE + "/"})
+            res = safe_get(
+                session,
+                template.format(gid=gid),
+                headers={"Referer": FRONT_BASE + "/", "Accept": "text/html,*/*;q=0.8"},
+            )
             soup = BeautifulSoup(res.text, "html.parser")
-            img = soup.select_one("img")
-            if not img:
-                continue
-            for attr in ("data-src", "data-original", "src"):
-                url = str(img.get(attr) or "").strip()
-                if url:
-                    return absolute_url(url)
+            thumb = _extract_thumbnail_from_soup(soup)
+            if thumb:
+                return thumb
         except Exception:
             continue
-    return ""
+
+    # Final metadata-only fallback. The browser may still reject this URL; the UI
+    # will replace failed images with its normal placeholder.
+    return _thumbnail_from_first_file(raw)
 
 
 def _normalize(gid: int, raw: dict[str, Any], thumbnail: str) -> dict[str, Any] | None:
@@ -260,6 +320,8 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
 
     items: list[dict] = []
     used_hosts: dict[str, int] = {}
+    thumbnails_found = 0
+    thumbnail_samples: list[str] = []
     for gid in ids:
         try:
             item, used_base = _fetch_one(session, gid, preferred_base)
@@ -268,6 +330,10 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
                 used_hosts[used_base] = used_hosts.get(used_base, 0) + 1
             if item:
                 items.append(item)
+                if item.get("thumbnail"):
+                    thumbnails_found += 1
+                    if len(thumbnail_samples) < 3:
+                        thumbnail_samples.append(f"{gid}: {item.get('thumbnail')}")
         except Exception as e:
             if len(errors) < 6:
                 errors.append(f"{gid}: {e}")
@@ -289,6 +355,9 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         "total_index": total_index,
         "resource_base": preferred_base or "",
         "used_hosts": used_hosts,
+        "thumbnails_found": thumbnails_found,
+        "thumbnails_missing": max(0, len(items) - thumbnails_found),
+        "thumbnail_samples": thumbnail_samples,
         "index_url": (preferred_base or RESOURCE_BASES[0]) + INDEX_PATH,
         "message": " | ".join(errors[:3]),
     }

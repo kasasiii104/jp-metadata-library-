@@ -139,6 +139,8 @@ def main() -> int:
 
     state = load_json(STATE_FILE, {})
     status_store = load_json(STATUS_FILE, {})
+    if isinstance(status_store, dict):
+        status_store.pop("updated_at", None)
 
     # Remove retired source state/status; existing old records are kept unless the user
     # removes them from data.json manually. New crawling no longer uses NH Archive.
@@ -203,7 +205,7 @@ def main() -> int:
 
     save_json(DATA_FILE, {"updated_at": stamp, "item_count": len(items), "items": items})
     save_json(STATE_FILE, state)
-    save_json(STATUS_FILE, {"updated_at": stamp, **status_store})
+    save_json(STATUS_FILE, {**status_store, "updated_at": stamp})
 
     print(f"done: raw={total_raw}, accepted={total_accepted}, total={len(items)}")
     if successful_sources == 0 and not items:
