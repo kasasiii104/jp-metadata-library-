@@ -1,13 +1,14 @@
 {
   "ehentai": {
-    "backfill_page": 25
+    "backfill_page": 29
   },
   "hitomi": {
     "resource_base": "https://ltn.gold-usergeneratedcontent.net",
-    "backfill_offset": 390,
+    "backfill_offset": 450,
     "backfill_complete": false
   },
-  "pururin": {
-    "backfill_page": 15
+  "3hentai": {
+    "browse_mode": "browse-query-page",
+    "backfill_page": 4
   }
 }
