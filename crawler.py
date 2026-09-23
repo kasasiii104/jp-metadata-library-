@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import json
-import re
 import sys
 import unicodedata
 from datetime import datetime, timezone
@@ -17,14 +16,18 @@ from config import (
     STATE_FILE,
     STATUS_FILE,
 )
-from sources import ehentai, hitomi, nhentai
+from sources import ehentai, hitomi, pururin
 from sources.common import normalize_full_tag, normalize_tag, unique_strings
 
 SOURCES = {
     "ehentai": ehentai.collect,
     "hitomi": hitomi.collect,
-    "nhentai": nhentai.collect,
+    "pururin": pururin.collect,
 }
+
+NORMALIZED_BLOCK_TAGS = {normalize_tag(x) for x in BLOCK_TAGS}
+NORMALIZED_BLOCK_FULL_TAGS = {normalize_full_tag(x) for x in BLOCK_FULL_TAGS}
+ALLOWED_LANGUAGE_SET = {str(x).lower() for x in ALLOWED_LANGUAGES}
 
 
 def now_iso() -> str:
@@ -52,7 +55,7 @@ def save_json(path: Path, payload) -> None:
 
 def normalized_language(value: str) -> str:
     v = unicodedata.normalize("NFKC", str(value or "")).strip().lower()
-    return "japanese" if v in {x.lower() for x in ALLOWED_LANGUAGES} else v
+    return "japanese" if v in ALLOWED_LANGUAGE_SET else v
 
 
 def blocked_reason(item: dict[str, Any]) -> str:
@@ -67,9 +70,9 @@ def blocked_reason(item: dict[str, Any]) -> str:
     for raw in candidates:
         full = normalize_full_tag(raw)
         base = normalize_tag(full.split(":", 1)[-1])
-        if full in {normalize_full_tag(x) for x in BLOCK_FULL_TAGS}:
+        if full in NORMALIZED_BLOCK_FULL_TAGS:
             return f"blocked:{full}"
-        if base in {normalize_tag(x) for x in BLOCK_TAGS}:
+        if base in NORMALIZED_BLOCK_TAGS:
             return f"blocked:{base}"
     return ""
 
@@ -116,7 +119,11 @@ def merge_item(old: dict[str, Any] | None, new: dict[str, Any], stamp: str) -> d
 
 
 def sort_key(item: dict[str, Any]):
-    return (str(item.get("posted_at") or ""), str(item.get("first_seen") or ""), str(item.get("uid") or ""))
+    return (
+        str(item.get("posted_at") or ""),
+        str(item.get("first_seen") or ""),
+        str(item.get("uid") or ""),
+    )
 
 
 def main() -> int:
@@ -124,11 +131,19 @@ def main() -> int:
     stamp = now_iso()
 
     data = load_json(DATA_FILE, {"items": []})
-    existing_items = [x for x in data.get("items", []) if isinstance(x, dict) and x.get("uid")]
+    existing_items = [
+        x for x in data.get("items", [])
+        if isinstance(x, dict) and x.get("uid") and x.get("source") != "nharchive"
+    ]
     existing = {x["uid"]: x for x in existing_items}
 
     state = load_json(STATE_FILE, {})
     status_store = load_json(STATUS_FILE, {})
+
+    # Remove retired source state/status; existing old records are kept unless the user
+    # removes them from data.json manually. New crawling no longer uses NH Archive.
+    state.pop("nharchive", None)
+    status_store.pop("nharchive", None)
 
     total_raw = 0
     total_accepted = 0
@@ -172,22 +187,20 @@ def main() -> int:
         }
         if result.get("status") == "ok":
             status_store[name]["last_success"] = stamp
-        print(f"[{name}] raw={len(raw_items)} accepted={accepted} blocked={blocked} status={result.get('status')}")
+
+        msg = str(result.get("message") or "").strip()
+        print(
+            f"[{name}] raw={len(raw_items)} accepted={accepted} blocked={blocked} "
+            f"status={result.get('status')}" + (f" message={msg}" if msg else "")
+        )
 
     items = sorted(existing.values(), key=sort_key, reverse=True)
     if KEEP_ITEMS > 0:
         items = items[:KEEP_ITEMS]
 
-    save_json(DATA_FILE, {
-        "updated_at": stamp,
-        "item_count": len(items),
-        "items": items,
-    })
+    save_json(DATA_FILE, {"updated_at": stamp, "item_count": len(items), "items": items})
     save_json(STATE_FILE, state)
-    save_json(STATUS_FILE, {
-        "updated_at": stamp,
-        **status_store,
-    })
+    save_json(STATUS_FILE, {"updated_at": stamp, **status_store})
 
     print(f"done: raw={total_raw}, accepted={total_accepted}, total={len(items)}")
     if successful_sources == 0 and not items:

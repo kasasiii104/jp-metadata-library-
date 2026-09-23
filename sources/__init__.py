@@ -1,1 +1,1 @@
-"""Source adapters for the Japanese metadata library."""
+"""Source adapters for the metadata library."""

@@ -1,58 +1,62 @@
-# Japanese Metadata Library
+# Japanese Metadata Library — Complete Hourly Build
 
-日本語作品だけを集約する **メタデータ型** の静的ライブラリです。本文画像・ギャラリー全ページ・ZIP・動画は保存しません。
+このZIPは、以下を1つにまとめた完全版です。
 
-## 収集元
+- E-Hentai
+- Hitomi（`/n/index-japanese.nozomi` + Range取得対応）
+- Pururin
+- 日本語作品のみ採用
+- BL / Yaoi / グロ系タグを保存前に除外
+- サムネイル表示
+- 最新作品取得 + 過去バックフィル
+- 1時間ごとのGitHub Actions自動更新
+- スマホ向け検索・絞り込み・お気に入り・非表示
 
-- **E-Hentai**: 日本語検索ページから `gid/token` を発見し、公式 Gallery Metadata API (`gdata`) でメタデータ取得。
-- **Hitomi**: `index-japanese.nozomi` から日本語ギャラリーIDを取得し、公開 `galleries/{id}.js` からメタデータ取得。サムネイルは公開 gallery block から取得できた場合のみ使用。
-- **nHentai**: 公開JSON APIの日本語検索を利用。現行v2を先に試し、旧APIへフォールバック。
+## 高速バックフィル設定
 
-アクセス制御、Cloudflare Challenge、CAPTCHA 等を回避する処理は入れていません。取得できないソースはその回だけ失敗扱いになり、他ソースと既存データは維持されます。
+- E-Hentai: 最新2ページ + 過去4ページ / 実行、最大100件
+- Hitomi: 最新30件 + 過去60件 / 実行
+- Pururin: 最新2ページ + 過去2ページ / 実行、最大50件
+- GitHub Actions: 毎時17分
 
-## 自動収集
+## GitHubへ配置
 
-各GitHub Actions実行で同時に行います。
+ZIPを展開し、このフォルダの「中身」をリポジトリ直下へ配置してください。
 
-1. **Latest crawl**: 最新作品を再確認。
-2. **Historical backfill**: `docs/crawl_state.json` の続きから過去作品を少しずつ収集。
-3. 日本語判定。
-4. BL / Yaoi / グロ系の設定タグを除外。
-5. 既存作品とmergeし、`docs/data.json` を更新。
+正しい構成:
 
-バックフィル量は `config.py` の各 `*_BACKFILL_*` で調整できます。
-
-## 除外タグ
-
-`config.py` の `BLOCK_TAGS` / `BLOCK_FULL_TAGS` を編集してください。判定はタイトルではなく、原則として各ソースのタグ・カテゴリ単位で行います。
-
-## サムネイル
-
-公開メタデータ・公開サムネイルURLだけを利用します。Hotlink拒否や取得失敗時はプレースホルダー表示です。
-
-## ローカル実行
-
-```bash
-python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\\Scripts\\activate
-pip install -r requirements.txt
-python crawler.py
-python -m http.server 8000 -d docs
+```text
+.github/workflows/update.yml
+docs/index.html
+docs/data.json
+docs/crawl_state.json
+docs/source_status.json
+sources/ehentai.py
+sources/hitomi.py
+sources/pururin.py
+crawler.py
+config.py
+requirements.txt
 ```
 
-ブラウザで `http://localhost:8000` を開きます。
+GitHub Pages は `Settings > Pages > Source: GitHub Actions` に設定してください。
 
-## GitHub Pages
+## 既存データを残したい場合
 
-1. このプロジェクトをGitHubリポジトリへ配置。
-2. リポジトリ Settings → Pages → Source を **GitHub Actions** に設定。
-3. `main` へpush。
-4. `.github/workflows/update.yml` が6時間ごとに更新・デプロイします。
+すでに `docs/data.json` / `docs/crawl_state.json` / `docs/source_status.json` に収集済みデータがある場合、これら3ファイルは上書きしないでください。
 
-## データ
+それ以外のファイルを上書きすれば、既存データを保持したまま完全版へ更新できます。
 
-- `docs/data.json`: 採用済み作品メタデータ
-- `docs/crawl_state.json`: 各ソースの過去バックフィル位置
-- `docs/source_status.json`: 各ソースの最終成功・失敗状況
+## 実行
 
-同じ作品が複数ソースにある場合も、初期版では誤統合を避けるため `ehentai:ID` / `hitomi:ID` / `nhentai:ID` として別レコードで保持します。
+`Actions > Japanese Metadata Library > Run workflow`
+
+ログ例:
+
+```text
+[ehentai] ... status=ok
+[hitomi] ... status=ok
+[pururin] ... status=ok
+```
+
+取得先が403/429等を返した場合は、そのソースだけ失敗扱いにし、他ソースと既存データは維持します。

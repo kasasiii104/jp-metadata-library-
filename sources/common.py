@@ -59,12 +59,33 @@ def absolute_url(url: str, scheme: str = "https:") -> str:
     return url
 
 
+def _response_title(res: requests.Response) -> str:
+    content_type = (res.headers.get("content-type") or "").lower()
+    if "html" not in content_type:
+        return ""
+    try:
+        soup = BeautifulSoup(res.text[:200000], "html.parser")
+        if soup.title:
+            return soup.title.get_text(" ", strip=True)[:160]
+    except Exception:
+        pass
+    return ""
+
+
 def safe_get(session: requests.Session, url: str, *, params=None, headers=None, timeout=None) -> requests.Response:
     merged = dict(HEADERS)
     if headers:
         merged.update(headers)
-    res = session.get(url, params=params, headers=merged, timeout=timeout or REQUEST_TIMEOUT)
-    res.raise_for_status()
+    try:
+        res = session.get(url, params=params, headers=merged, timeout=timeout or REQUEST_TIMEOUT)
+    except Exception as e:
+        raise RuntimeError(f"request failed url={url}: {e}") from e
+    if not res.ok:
+        title = _response_title(res)
+        raise RuntimeError(
+            f"HTTP {res.status_code} url={url} final={res.url} size={len(res.content)}"
+            + (f" title={title!r}" if title else "")
+        )
     return res
 
 
@@ -73,13 +94,21 @@ def safe_post_json(session: requests.Session, url: str, payload: dict, *, header
     merged["Content-Type"] = "application/json"
     if headers:
         merged.update(headers)
-    res = session.post(url, json=payload, headers=merged, timeout=timeout or REQUEST_TIMEOUT)
-    res.raise_for_status()
+    try:
+        res = session.post(url, json=payload, headers=merged, timeout=timeout or REQUEST_TIMEOUT)
+    except Exception as e:
+        raise RuntimeError(f"request failed url={url}: {e}") from e
+    if not res.ok:
+        title = _response_title(res)
+        raise RuntimeError(
+            f"HTTP {res.status_code} url={url} final={res.url} size={len(res.content)}"
+            + (f" title={title!r}" if title else "")
+        )
     return res.json()
 
 
 def parse_json_wrapped_js(text: str) -> dict:
-    """Parse JS files such as `var galleryinfo = {...};` defensively."""
+    """Parse JavaScript payloads such as `var galleryinfo = {...};`."""
     start = text.find("{")
     end = text.rfind("}")
     if start < 0 or end < start:

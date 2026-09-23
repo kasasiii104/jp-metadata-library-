@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -7,19 +8,22 @@ STATE_FILE = DOCS_DIR / "crawl_state.json"
 STATUS_FILE = DOCS_DIR / "source_status.json"
 
 REQUEST_TIMEOUT = 30
-USER_AGENT = "Japanese-Metadata-Library/1.0 (+GitHub Actions; metadata-only)"
+USER_AGENT = "Japanese-Metadata-Library/1.2 (+GitHub Actions; metadata-only)"
 
-# Per-run collection budgets. Tune upward only after verifying source stability.
-EH_LATEST_PAGES = 1
-EH_BACKFILL_PAGES = 1
-EH_MAX_GALLERIES_PER_RUN = 50
+# E-Hentai collection budgets.
+EH_LATEST_PAGES = int(os.environ.get("EH_LATEST_PAGES", "2"))
+EH_BACKFILL_PAGES = int(os.environ.get("EH_BACKFILL_PAGES", "4"))
+EH_MAX_GALLERIES_PER_RUN = int(os.environ.get("EH_MAX_GALLERIES_PER_RUN", "100"))
 
-HITOMI_LATEST_LIMIT = 16
-HITOMI_BACKFILL_LIMIT = 16
+# Hitomi uses a binary Nozomi index. Only required byte ranges are fetched.
+HITOMI_LATEST_LIMIT = int(os.environ.get("HITOMI_LATEST_LIMIT", "30"))
+HITOMI_BACKFILL_LIMIT = int(os.environ.get("HITOMI_BACKFILL_LIMIT", "60"))
 
-NH_LATEST_PAGES = 1
-NH_BACKFILL_PAGES = 1
-NH_MAX_DETAILS_PER_RUN = 40
+# Pururin: latest page is checked every run and historical pages are backfilled.
+PURURIN_LATEST_PAGES = int(os.environ.get("PURURIN_LATEST_PAGES", "2"))
+PURURIN_BACKFILL_PAGES = int(os.environ.get("PURURIN_BACKFILL_PAGES", "2"))
+PURURIN_MAX_GALLERIES_PER_RUN = int(os.environ.get("PURURIN_MAX_GALLERIES_PER_RUN", "50"))
+PURURIN_DETAIL_SLEEP_SEC = float(os.environ.get("PURURIN_DETAIL_SLEEP_SEC", "1.0"))
 
 # Items are retained indefinitely unless manually removed.
 KEEP_ITEMS = 0
@@ -39,7 +43,6 @@ BLOCK_TAGS = {
     "corpse",
 }
 
-# Namespace-qualified tags are also checked against this set.
 BLOCK_FULL_TAGS = {
     "male:yaoi",
     "male:boys love",
@@ -53,6 +56,5 @@ BLOCK_FULL_TAGS = {
 
 ALLOWED_LANGUAGES = {"japanese", "ja", "日本語"}
 
-# Home-page rendering settings.
 INITIAL_RENDER_COUNT = 40
 LOAD_MORE_COUNT = 40
