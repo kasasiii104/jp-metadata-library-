@@ -8,27 +8,27 @@ STATE_FILE = DOCS_DIR / "crawl_state.json"
 STATUS_FILE = DOCS_DIR / "source_status.json"
 
 REQUEST_TIMEOUT = 30
-USER_AGENT = "Japanese-Metadata-Library/1.2 (+GitHub Actions; metadata-only)"
+USER_AGENT = "Japanese-Metadata-Library/1.6 (+GitHub Actions; metadata-only)"
 
-# E-Hentai collection budgets.
+# E-Hentai: latest + historical backfill every run.
 EH_LATEST_PAGES = int(os.environ.get("EH_LATEST_PAGES", "2"))
 EH_BACKFILL_PAGES = int(os.environ.get("EH_BACKFILL_PAGES", "4"))
 EH_MAX_GALLERIES_PER_RUN = int(os.environ.get("EH_MAX_GALLERIES_PER_RUN", "100"))
 
-# Hitomi uses a binary Nozomi index. Only required byte ranges are fetched.
+# Hitomi: binary Japanese Nozomi index, fetched by byte range.
 HITOMI_LATEST_LIMIT = int(os.environ.get("HITOMI_LATEST_LIMIT", "30"))
 HITOMI_BACKFILL_LIMIT = int(os.environ.get("HITOMI_BACKFILL_LIMIT", "60"))
 
-# Pururin: latest page is checked every run and historical pages are backfilled.
-PURURIN_LATEST_PAGES = int(os.environ.get("PURURIN_LATEST_PAGES", "2"))
-PURURIN_BACKFILL_PAGES = int(os.environ.get("PURURIN_BACKFILL_PAGES", "2"))
-PURURIN_MAX_GALLERIES_PER_RUN = int(os.environ.get("PURURIN_MAX_GALLERIES_PER_RUN", "50"))
-PURURIN_DETAIL_SLEEP_SEC = float(os.environ.get("PURURIN_DETAIL_SLEEP_SEC", "1.0"))
+# 3Hentai: latest pages + historical backfill every run.
+HENTAI3_LATEST_PAGES = int(os.environ.get("HENTAI3_LATEST_PAGES", "2"))
+HENTAI3_BACKFILL_PAGES = int(os.environ.get("HENTAI3_BACKFILL_PAGES", "3"))
+HENTAI3_MAX_GALLERIES_PER_RUN = int(os.environ.get("HENTAI3_MAX_GALLERIES_PER_RUN", "60"))
+HENTAI3_DETAIL_SLEEP_SEC = float(os.environ.get("HENTAI3_DETAIL_SLEEP_SEC", "0.8"))
 
-# Items are retained indefinitely unless manually removed.
+# Items are retained indefinitely unless explicitly retired/filtered.
 KEEP_ITEMS = 0
 
-# Exact normalized tag names to exclude. Keep this list conservative.
+# Conservative exclusion set requested by the user.
 BLOCK_TAGS = {
     "yaoi",
     "boys love",

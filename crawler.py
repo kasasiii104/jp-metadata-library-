@@ -16,14 +16,15 @@ from config import (
     STATE_FILE,
     STATUS_FILE,
 )
-from sources import ehentai, hitomi, pururin
+from sources import ehentai, hitomi, hentai3
 from sources.common import normalize_full_tag, normalize_tag, unique_strings
 
 SOURCES = {
     "ehentai": ehentai.collect,
     "hitomi": hitomi.collect,
-    "pururin": pururin.collect,
+    "3hentai": hentai3.collect,
 }
+RETIRED_SOURCES = {"pururin", "nharchive", "nhentai"}
 
 NORMALIZED_BLOCK_TAGS = {normalize_tag(x) for x in BLOCK_TAGS}
 NORMALIZED_BLOCK_FULL_TAGS = {normalize_full_tag(x) for x in BLOCK_FULL_TAGS}
@@ -133,19 +134,19 @@ def main() -> int:
     data = load_json(DATA_FILE, {"items": []})
     existing_items = [
         x for x in data.get("items", [])
-        if isinstance(x, dict) and x.get("uid") and x.get("source") != "nharchive"
+        if isinstance(x, dict) and x.get("uid") and x.get("source") not in RETIRED_SOURCES
     ]
     existing = {x["uid"]: x for x in existing_items}
 
     state = load_json(STATE_FILE, {})
     status_store = load_json(STATUS_FILE, {})
-    if isinstance(status_store, dict):
-        status_store.pop("updated_at", None)
+    if not isinstance(status_store, dict):
+        status_store = {}
+    status_store.pop("updated_at", None)
 
-    # Remove retired source state/status; existing old records are kept unless the user
-    # removes them from data.json manually. New crawling no longer uses NH Archive.
-    state.pop("nharchive", None)
-    status_store.pop("nharchive", None)
+    for retired in RETIRED_SOURCES:
+        state.pop(retired, None)
+        status_store.pop(retired, None)
 
     total_raw = 0
     total_accepted = 0
