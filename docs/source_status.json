@@ -4,13 +4,13 @@
     "discovered": 25,
     "accepted_raw": 25,
     "message": "",
-    "last_attempt": "2026-09-23T12:29:20+00:00",
+    "last_attempt": "2026-09-23T13:26:04+00:00",
     "accepted": 24,
     "blocked": 1,
     "blocked_reasons": {
       "blocked:male:yaoi": 1
     },
-    "last_success": "2026-09-23T12:29:20+00:00"
+    "last_success": "2026-09-23T13:26:04+00:00"
   },
   "hitomi": {
     "status": "ok",
@@ -18,34 +18,34 @@
     "accepted_raw": 90,
     "latest_ids": 30,
     "backfill_ids": 60,
-    "total_index": 553469,
+    "total_index": 553475,
     "resource_base": "https://ltn.gold-usergeneratedcontent.net",
     "used_hosts": {
       "https://ltn.gold-usergeneratedcontent.net": 90
     },
     "index_url": "https://ltn.gold-usergeneratedcontent.net/n/index-japanese.nozomi",
     "message": "",
-    "last_attempt": "2026-09-23T12:29:20+00:00",
-    "accepted": 63,
-    "blocked": 27,
+    "last_attempt": "2026-09-23T13:26:04+00:00",
+    "accepted": 75,
+    "blocked": 15,
     "blocked_reasons": {
-      "blocked:male:yaoi": 24,
-      "blocked:female:guro": 1,
+      "blocked:male:yaoi": 12,
       "blocked:ryona": 1,
-      "blocked:male:guro": 1
+      "blocked:male:guro": 1,
+      "blocked:amputee": 1
     },
-    "last_success": "2026-09-23T12:29:20+00:00",
+    "last_success": "2026-09-23T13:26:04+00:00",
     "thumbnails_found": 90,
     "thumbnails_missing": 0,
     "thumbnail_samples": [
-      "4207501: https://tn.hitomi.la/bigtn/6/80/86941560e4289170a954e70f5af91fe84bf9657b2293c8c03f5ba5a04ace3806.jpg",
-      "4207489: https://tn.hitomi.la/bigtn/0/f4/1c271af2f0404cfca04edcf6b2dfd7585dc94133ec5f180a40ae1fdeeaabcf40.jpg",
-      "4207488: https://tn.hitomi.la/bigtn/4/99/535bb4a6c5bdaf144516e1d16533c2abcd261dd7fdde3069cee44301735fe994.jpg"
+      "4207605: https://tn.hitomi.la/bigtn/1/66/03407182b3ba71400a90346848979d2bfae3676dfd768894a0df315302c1d661.jpg",
+      "4207603: https://tn.hitomi.la/bigtn/2/a1/6917b28573c251d02d80c624ff362d15e88d8004741a75cc2872604fb01bfa12.jpg",
+      "4207574: https://tn.hitomi.la/bigtn/e/f0/d64e39c4e7c5fd778100bcd57fb179182fcf192830f9fae20d8bd3caa6c7ff0e.jpg"
     ],
     "thumbnail_cache": {
-      "attempted": 76,
-      "cached": 76,
-      "reused": 550,
+      "attempted": 56,
+      "cached": 56,
+      "reused": 626,
       "failed": 0,
       "pending": 0,
       "failures": []
@@ -69,13 +69,13 @@
     ],
     "thumbnails_found": 0,
     "thumbnails_missing": 60,
-    "debug": "page=1 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=1&sort=recent | page=2 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=2&sort=recent | page=13 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=13&sort=recent",
+    "debug": "page=1 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=1&sort=recent | page=2 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=2&sort=recent | page=16 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=16&sort=recent",
     "message": "3746644: 400 Client Error: Bad Request for url: http://127.0.0.1:3000/3hentai/get?book=3746644 | 3746499: 400 Client Error: Bad Request for url: http://127.0.0.1:3000/3hentai/get?book=3746499 | 3746469: 400 Client Error: Bad Request for url: http://127.0.0.1:3000/3hentai/get?book=3746469 | 3746459: 400 Client Error: Bad Request for url: http://127.0.0.1:3000/3hentai/get?book=3746459 | 3746454: 400 Client Error: Bad Request for url: http://127.0.0.1:3000/3hentai/get?book=3746454",
-    "last_attempt": "2026-09-23T12:29:20+00:00",
+    "last_attempt": "2026-09-23T13:26:04+00:00",
     "accepted": 60,
     "blocked": 0,
     "blocked_reasons": {},
-    "last_success": "2026-09-23T12:29:20+00:00",
+    "last_success": "2026-09-23T13:26:04+00:00",
     "api_base": "http://127.0.0.1:3000",
     "jandapress_http": 200,
     "search_key": "language:japanese",
@@ -84,19 +84,19 @@
       "cached": 0,
       "reused": 0,
       "failed": 80,
-      "pending": 90,
+      "pending": 100,
       "samples": [],
       "failures": [
-        "3739554 api: 429 Client Error: Too Many Requests for url: http://127.0.0.1:3000/3hentai/get?book=3739554",
-        "3739554: no image candidate",
-        "3738574 api: 429 Client Error: Too Many Requests for url: http://127.0.0.1:3000/3hentai/get?book=3738574",
-        "3738574: no image candidate",
-        "3738569 api: 429 Client Error: Too Many Requests for url: http://127.0.0.1:3000/3hentai/get?book=3738569",
-        "3738569: no image candidate",
-        "3738559 api: 429 Client Error: Too Many Requests for url: http://127.0.0.1:3000/3hentai/get?book=3738559",
-        "3738559: no image candidate"
+        "3736904 api: 429 Client Error: Too Many Requests for url: http://127.0.0.1:3000/3hentai/get?book=3736904",
+        "3736904: no image candidate",
+        "3736894 api: 429 Client Error: Too Many Requests for url: http://127.0.0.1:3000/3hentai/get?book=3736894",
+        "3736894: no image candidate",
+        "3736869 api: 429 Client Error: Too Many Requests for url: http://127.0.0.1:3000/3hentai/get?book=3736869",
+        "3736869: no image candidate",
+        "3736854 api: 429 Client Error: Too Many Requests for url: http://127.0.0.1:3000/3hentai/get?book=3736854",
+        "3736854: no image candidate"
       ]
     }
   },
-  "updated_at": "2026-09-23T12:29:20+00:00"
+  "updated_at": "2026-09-23T13:26:04+00:00"
 }
