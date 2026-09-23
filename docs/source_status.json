@@ -1,17 +1,16 @@
 {
-  "updated_at": "",
   "ehentai": {
     "status": "ok",
     "discovered": 25,
     "accepted_raw": 25,
     "message": "",
-    "last_attempt": "2026-09-23T09:02:36+00:00",
+    "last_attempt": "2026-09-23T09:14:39+00:00",
     "accepted": 24,
     "blocked": 1,
     "blocked_reasons": {
       "blocked:male:yaoi": 1
     },
-    "last_success": "2026-09-23T09:02:36+00:00"
+    "last_success": "2026-09-23T09:14:39+00:00"
   },
   "hitomi": {
     "status": "ok",
@@ -26,14 +25,22 @@
     },
     "index_url": "https://ltn.gold-usergeneratedcontent.net/n/index-japanese.nozomi",
     "message": "",
-    "last_attempt": "2026-09-23T09:02:36+00:00",
-    "accepted": 88,
-    "blocked": 2,
+    "last_attempt": "2026-09-23T09:14:39+00:00",
+    "accepted": 87,
+    "blocked": 3,
     "blocked_reasons": {
+      "blocked:male:yaoi": 1,
       "blocked:ryona": 1,
-      "blocked:male:yaoi": 1
+      "blocked:corpse": 1
     },
-    "last_success": "2026-09-23T09:02:36+00:00"
+    "last_success": "2026-09-23T09:14:39+00:00",
+    "thumbnails_found": 90,
+    "thumbnails_missing": 0,
+    "thumbnail_samples": [
+      "4207187: https://tn.hitomi.la/bigtn/f/19/5f1596a58c9cbd42042eeafa93e9645aaeffedaf7f6fa817e99eaf74673ad19f.jpg",
+      "4207186: https://tn.hitomi.la/bigtn/6/ad/4c9bc999fc3d5770d651cc0534a22cedb78023a1fee75825652c4885f4c96ad6.jpg",
+      "4207185: https://tn.hitomi.la/bigtn/3/aa/198e7b78fe5c768deed22d46c6e21a193b547272f8bb91688376ca4a7e403aa3.jpg"
+    ]
   },
   "pururin": {
     "status": "ok",
@@ -54,14 +61,15 @@
       "17602 lang='english' via='language-link' title='FF Naburu Rape / FF嬲 麗婦'",
       "68073 lang='english' via='language-link' title='Metroid XXX / メト○イドXXX'"
     ],
-    "debug": "page=1 found=29 title='Pururin - Free Online Hentai Manga and Doujinshi Reader' | page=2 found=30 title='Hentai Manga and Doujinshi by Newest Page 2 - Pururin, Free Online Hentai Manga and Doujinshi Reader' | page=7 found=34 title='Hentai Manga and Doujinshi by Newest Page 7 - Pururin, Free Online Hentai Manga and Doujinshi Reader'",
+    "debug": "page=1 found=29 title='Pururin - Free Online Hentai Manga and Doujinshi Reader' | page=2 found=30 title='Hentai Manga and Doujinshi by Newest Page 2 - Pururin, Free Online Hentai Manga and Doujinshi Reader' | page=9 found=34 title='Hentai Manga and Doujinshi by Newest Page 9 - Pururin, Free Online Hentai Manga and Doujinshi Reader'",
     "message": "",
-    "last_attempt": "2026-09-23T09:02:36+00:00",
+    "last_attempt": "2026-09-23T09:14:39+00:00",
     "accepted": 0,
     "blocked": 50,
     "blocked_reasons": {
       "language": 50
     },
-    "last_success": "2026-09-23T09:02:36+00:00"
-  }
+    "last_success": "2026-09-23T09:14:39+00:00"
+  },
+  "updated_at": "2026-09-23T09:14:39+00:00"
 }
