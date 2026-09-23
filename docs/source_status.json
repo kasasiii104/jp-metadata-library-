@@ -4,13 +4,13 @@
     "discovered": 25,
     "accepted_raw": 25,
     "message": "",
-    "last_attempt": "2026-09-23T09:48:07+00:00",
+    "last_attempt": "2026-09-23T09:58:09+00:00",
     "accepted": 24,
     "blocked": 1,
     "blocked_reasons": {
       "blocked:male:yaoi": 1
     },
-    "last_success": "2026-09-23T09:48:07+00:00"
+    "last_success": "2026-09-23T09:58:09+00:00"
   },
   "hitomi": {
     "status": "ok",
@@ -25,17 +25,15 @@
     },
     "index_url": "https://ltn.gold-usergeneratedcontent.net/n/index-japanese.nozomi",
     "message": "",
-    "last_attempt": "2026-09-23T09:48:07+00:00",
+    "last_attempt": "2026-09-23T09:58:09+00:00",
     "accepted": 80,
     "blocked": 10,
     "blocked_reasons": {
-      "blocked:male:yaoi": 6,
-      "blocked:ryona": 1,
-      "blocked:amputee": 1,
-      "blocked:corpse": 1,
-      "blocked:torture": 1
+      "blocked:male:yaoi": 7,
+      "blocked:ryona": 2,
+      "blocked:female:guro": 1
     },
-    "last_success": "2026-09-23T09:48:07+00:00",
+    "last_success": "2026-09-23T09:58:09+00:00",
     "thumbnails_found": 90,
     "thumbnails_missing": 0,
     "thumbnail_samples": [
@@ -46,20 +44,20 @@
     "thumbnail_cache": {
       "attempted": 110,
       "cached": 110,
-      "reused": 110,
+      "reused": 220,
       "failed": 0,
-      "pending": 203,
+      "pending": 150,
       "failures": []
     }
   },
   "3hentai": {
     "status": "ok",
-    "discovered": 2,
-    "accepted_raw": 2,
+    "discovered": 60,
+    "accepted_raw": 60,
     "browse_mode": "browse-query-page",
-    "detail_errors": 0,
+    "detail_errors": 60,
     "languages_detected": {
-      "missing": 2
+      "japanese": 60
     },
     "language_evidence": {
       "missing": 2
@@ -68,17 +66,18 @@
       "10160 lang='missing' via='missing' title='Newest hentai - 10160'",
       "10161 lang='missing' via='missing' title='Newest hentai - 10161'"
     ],
-    "thumbnails_found": 2,
-    "thumbnails_missing": 0,
-    "debug": "page=1 mode=browse-query-page found=2 title='3Hentai - Free Hentai Manga & Doujins XXX' | page=2 mode=browse-query-page found=2 title='3Hentai - Free Hentai Manga & Doujins XXX' | page=3 mode=browse-query-page found=2 title='3Hentai - Free Hentai Manga & Doujins XXX'",
-    "message": "",
-    "last_attempt": "2026-09-23T09:48:07+00:00",
-    "accepted": 0,
-    "blocked": 2,
-    "blocked_reasons": {
-      "language": 2
-    },
-    "last_success": "2026-09-23T09:48:07+00:00"
+    "thumbnails_found": 0,
+    "thumbnails_missing": 60,
+    "debug": "page=1 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=1&sort=recent | page=2 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=2&sort=recent | page=4 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=4&sort=recent",
+    "message": "3746644: 400 Client Error: Bad Request for url: http://127.0.0.1:3000/3hentai/get?book=3746644 | 3746499: 400 Client Error: Bad Request for url: http://127.0.0.1:3000/3hentai/get?book=3746499 | 3746469: 400 Client Error: Bad Request for url: http://127.0.0.1:3000/3hentai/get?book=3746469 | 3746459: 400 Client Error: Bad Request for url: http://127.0.0.1:3000/3hentai/get?book=3746459 | 3746454: 400 Client Error: Bad Request for url: http://127.0.0.1:3000/3hentai/get?book=3746454",
+    "last_attempt": "2026-09-23T09:58:09+00:00",
+    "accepted": 60,
+    "blocked": 0,
+    "blocked_reasons": {},
+    "last_success": "2026-09-23T09:58:09+00:00",
+    "api_base": "http://127.0.0.1:3000",
+    "jandapress_http": 200,
+    "search_key": "language:japanese"
   },
-  "updated_at": "2026-09-23T09:48:07+00:00"
+  "updated_at": "2026-09-23T09:58:09+00:00"
 }
