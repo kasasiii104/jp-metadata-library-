@@ -4,14 +4,14 @@
     "discovered": 25,
     "accepted_raw": 25,
     "message": "",
-    "last_attempt": "2026-09-24T04:24:56+00:00",
+    "last_attempt": "2026-09-24T05:23:40+00:00",
     "accepted": 22,
     "blocked": 3,
     "blocked_reasons": {
       "blocked:male:yaoi": 2,
       "blocked:torture": 1
     },
-    "last_success": "2026-09-24T04:24:56+00:00",
+    "last_success": "2026-09-24T05:23:40+00:00",
     "artists_found": 14,
     "groups_found": 3,
     "works_found": 22,
@@ -24,44 +24,43 @@
     "accepted_raw": 90,
     "latest_ids": 30,
     "backfill_ids": 60,
-    "total_index": 553576,
+    "total_index": 553580,
     "resource_base": "https://ltn.gold-usergeneratedcontent.net",
     "used_hosts": {
       "https://ltn.gold-usergeneratedcontent.net": 90
     },
     "index_url": "https://ltn.gold-usergeneratedcontent.net/n/index-japanese.nozomi",
     "message": "",
-    "last_attempt": "2026-09-24T04:24:56+00:00",
-    "accepted": 77,
-    "blocked": 13,
+    "last_attempt": "2026-09-24T05:23:40+00:00",
+    "accepted": 78,
+    "blocked": 12,
     "blocked_reasons": {
-      "blocked:male:yaoi": 6,
-      "blocked:insect:insect": 1,
-      "blocked:amputee": 1,
-      "blocked:female:guro": 1,
-      "blocked:corpse": 4
+      "blocked:torture": 2,
+      "blocked:male:yaoi": 7,
+      "blocked:amputee": 2,
+      "blocked:insect:parasite": 1
     },
-    "last_success": "2026-09-24T04:24:56+00:00",
+    "last_success": "2026-09-24T05:23:40+00:00",
     "thumbnails_found": 90,
     "thumbnails_missing": 0,
     "thumbnail_samples": [
-      "4209017: https://tn.hitomi.la/bigtn/3/e3/1478116f1d516b18ff30afe7ed83a6f84870a17186fbbfd8cc8cc66c73542e33.jpg",
-      "4209005: https://tn.hitomi.la/bigtn/3/04/d5acfc713dbf9e4a1b9d96763e9327212a169e2c902eac6cf35395e35f321043.jpg",
-      "4208991: https://tn.hitomi.la/bigtn/e/ac/e4698adcd3a082c4ad00f6639b727eaa864f3254b64e789a53a0594274deface.jpg"
+      "4209069: https://tn.hitomi.la/bigtn/d/9c/99b3c8603e90b64cd0feb4a2ffb12d51766afa2149a782b38f493af12caee9cd.jpg",
+      "4209062: https://tn.hitomi.la/bigtn/3/b6/f90ef7b9b37061ad6bb140363e9f119dbe26ec9ff9343e7f17f11a4c5ebe6b63.jpg",
+      "4209050: https://tn.hitomi.la/bigtn/1/2e/afd06cdd1730cee2a8de07d50a26fddde9714209556988df270e6014477232e1.jpg"
     ],
     "thumbnail_cache": {
-      "attempted": 51,
-      "cached": 51,
-      "reused": 1476,
+      "attempted": 53,
+      "cached": 53,
+      "reused": 1527,
       "failed": 0,
       "pending": 0,
       "failures": []
     },
-    "artists_found": 64,
-    "groups_found": 17,
-    "works_found": 76,
-    "characters_found": 42,
-    "tagged_items": 81
+    "artists_found": 54,
+    "groups_found": 24,
+    "works_found": 72,
+    "characters_found": 40,
+    "tagged_items": 84
   },
   "3hentai": {
     "status": "ok",
@@ -81,13 +80,13 @@
     ],
     "thumbnails_found": 0,
     "thumbnails_missing": 60,
-    "debug": "page=1 candidates=22 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=1&sort=recent | page=2 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=2&sort=recent | page=64 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=64&sort=recent",
+    "debug": "page=1 candidates=22 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=1&sort=recent | page=2 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=2&sort=recent | page=67 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=67&sort=recent",
     "message": "",
-    "last_attempt": "2026-09-24T04:24:56+00:00",
+    "last_attempt": "2026-09-24T05:23:40+00:00",
     "accepted": 60,
     "blocked": 0,
     "blocked_reasons": {},
-    "last_success": "2026-09-24T04:24:56+00:00",
+    "last_success": "2026-09-24T05:23:40+00:00",
     "api_base": "http://127.0.0.1:3000",
     "jandapress_http": 200,
     "search_key": "language:japanese",
@@ -97,18 +96,18 @@
       "cached": 0,
       "reused": 0,
       "failed": 12,
-      "pending": 335,
+      "pending": 348,
       "rate_limited": false,
       "samples": [],
       "failures": [
-        "3717191: no image candidate",
-        "3717186: no image candidate",
-        "3717183: no image candidate",
-        "3717180: no image candidate",
-        "3717177: no image candidate",
-        "3717174: no image candidate",
-        "3716919: no image candidate",
-        "3716913: no image candidate"
+        "3716650: no image candidate",
+        "3716648: no image candidate",
+        "3716638: no image candidate",
+        "3716637: no image candidate",
+        "3716633: no image candidate",
+        "3716628: no image candidate",
+        "3716625: no image candidate",
+        "3716624: no image candidate"
       ]
     },
     "detail_mode": "search-only",
@@ -128,5 +127,5 @@
     "insect_terms": 55,
     "purged_existing_insect": 0
   },
-  "updated_at": "2026-09-24T04:24:56+00:00"
+  "updated_at": "2026-09-24T05:23:40+00:00"
 }
