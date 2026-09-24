@@ -24,6 +24,8 @@ HENTAI3_LATEST_PAGES = int(os.environ.get("HENTAI3_LATEST_PAGES", "2"))
 HENTAI3_BACKFILL_PAGES = int(os.environ.get("HENTAI3_BACKFILL_PAGES", "3"))
 HENTAI3_MAX_GALLERIES_PER_RUN = int(os.environ.get("HENTAI3_MAX_GALLERIES_PER_RUN", "60"))
 HENTAI3_DETAIL_SLEEP_SEC = float(os.environ.get("HENTAI3_DETAIL_SLEEP_SEC", "0.8"))
+HENTAI3_GET_DEBUG_LIMIT = int(os.environ.get("HENTAI3_GET_DEBUG_LIMIT", "3"))
+HENTAI3_GET_DEBUG_DELAY_SEC = float(os.environ.get("HENTAI3_GET_DEBUG_DELAY_SEC", "1.5"))
 
 # Items are retained indefinitely unless explicitly retired/filtered.
 KEEP_ITEMS = 0

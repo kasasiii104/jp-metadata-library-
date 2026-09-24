@@ -9,6 +9,8 @@ import requests
 from config import (
     HENTAI3_BACKFILL_PAGES,
     HENTAI3_DETAIL_SLEEP_SEC,
+    HENTAI3_GET_DEBUG_DELAY_SEC,
+    HENTAI3_GET_DEBUG_LIMIT,
     HENTAI3_LATEST_PAGES,
     HENTAI3_MAX_GALLERIES_PER_RUN,
 )
@@ -378,6 +380,136 @@ def _detail(session: requests.Session, sid: str) -> tuple[dict | None, str]:
         return None, str(e)
 
 
+def _debug_generic_payload(value: Any) -> dict:
+    """Compact diagnostics for a Jandapress detail response.
+
+    Only keys/URLs and short string values are retained.  The full upstream
+    response is deliberately not written to source_status.json.
+    """
+    urls: list[str] = []
+    image_like_values: list[str] = []
+    all_keys: list[str] = []
+    seen_keys: set[str] = set()
+    image_words = ("thumb", "thumbnail", "cover", "image", "img", "preview", "poster", "picture", "media", "page", "file")
+    image_exts = (".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif")
+
+    def add_unique(target: list[str], value: str, limit: int) -> None:
+        value = _clean(value)
+        if value and value not in target and len(target) < limit:
+            target.append(value[:1000])
+
+    def walk(v: Any, path: str = "") -> None:
+        if isinstance(v, dict):
+            for k, vv in v.items():
+                key_path = f"{path}.{k}" if path else str(k)
+                if key_path not in seen_keys and len(all_keys) < 120:
+                    seen_keys.add(key_path)
+                    all_keys.append(key_path)
+                if isinstance(vv, str):
+                    sv = _clean(vv)
+                    if sv.startswith(("http://", "https://", "//", "/")):
+                        add_unique(urls, f"{key_path}={sv}", 40)
+                    low = sv.lower().split("?", 1)[0]
+                    if any(word in str(k).lower() for word in image_words) or low.endswith(image_exts):
+                        add_unique(image_like_values, f"{key_path}={sv}", 40)
+                if isinstance(vv, (dict, list, tuple)):
+                    walk(vv, key_path)
+        elif isinstance(v, (list, tuple)):
+            for i, vv in enumerate(v[:40]):
+                walk(vv, f"{path}[{i}]")
+
+    walk(value)
+    richest = _find_payload_object(value) if isinstance(value, (dict, list)) else {}
+    normalized = _normalize(richest, assumed_japanese=True) if richest else None
+    return {
+        "response_type": type(value).__name__,
+        "top_level_keys": list(value.keys())[:80] if isinstance(value, dict) else [],
+        "all_keys": all_keys[:120],
+        "raw_urls": urls[:40],
+        "image_like_values": image_like_values[:40],
+        "real_gallery_url": _find_real_gallery_url(value),
+        "best_thumbnail_url": _best_thumbnail_url(richest) if richest else "",
+        "candidate_objects": len(_find_candidate_dicts(value)) if isinstance(value, (dict, list)) else 0,
+        "normalized_source_id": (normalized or {}).get("source_id", ""),
+        "normalized_source_url_kind": (normalized or {}).get("source_url_kind", ""),
+        "normalized_source_url": (normalized or {}).get("source_url", ""),
+    }
+
+
+def _probe_get_endpoint(session: requests.Session, sid: str) -> tuple[dict, dict | None]:
+    """Probe /3hentai/get for a tiny sample without raising on 4xx/5xx.
+
+    This is diagnostic only.  It is intentionally limited by config so a bad
+    upstream does not create dozens of failing requests or trigger rate limits.
+    """
+    url = f"{API_BASE}/3hentai/get"
+    try:
+        r = session.get(url, params={"book": sid}, timeout=TIMEOUT)
+        preview = " ".join((r.text or "").split())[:1200]
+        result = {
+            "id": sid,
+            "http_status": r.status_code,
+            "url": r.url,
+            "content_type": r.headers.get("content-type", ""),
+            "response_preview": preview,
+            "response_keys": [],
+            "raw_urls": [],
+            "image_like_values": [],
+            "real_gallery_url": "",
+            "best_thumbnail_url": "",
+        }
+        try:
+            payload = r.json()
+        except Exception:
+            payload = None
+        detail_item = None
+        if payload is not None:
+            summary = _debug_generic_payload(payload)
+            result.update(summary)
+            result["response_keys"] = summary.get("top_level_keys", [])
+            if r.status_code == 200:
+                obj = _find_payload_object(payload)
+                if obj:
+                    detail_item = _normalize(obj, assumed_japanese=True)
+        return result, detail_item
+    except Exception as e:
+        return {
+            "id": sid,
+            "http_status": 0,
+            "url": url,
+            "content_type": "",
+            "response_preview": f"request error: {e}"[:1200],
+            "response_keys": [],
+            "raw_urls": [],
+            "image_like_values": [],
+            "real_gallery_url": "",
+            "best_thumbnail_url": "",
+        }, None
+
+
+def _merge_probe_detail(base: dict, detail: dict) -> bool:
+    """Use successful sample detail data conservatively without changing UID."""
+    changed = False
+    if detail.get("source_url_kind") == "direct" and detail.get("source_url"):
+        if base.get("source_url") != detail.get("source_url") or base.get("source_url_kind") != "direct":
+            base["source_url"] = detail["source_url"]
+            base["source_url_kind"] = "direct"
+            changed = True
+    if detail.get("thumbnail") and not base.get("thumbnail"):
+        base["thumbnail"] = detail["thumbnail"]
+        changed = True
+    for key in ("title_jp", "language", "category", "pages", "rating", "popularity", "posted_at"):
+        if detail.get(key) not in (None, "", 0, [], {}) and base.get(key) in (None, "", 0, [], {}):
+            base[key] = detail[key]
+            changed = True
+    for key in ("artists", "groups", "parodies", "characters", "tags"):
+        merged = unique_strings(list(base.get(key) or []) + list(detail.get(key) or []))
+        if merged != list(base.get(key) or []):
+            base[key] = merged
+            changed = True
+    return changed
+
+
 def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     state = dict(state or {})
     backfill_page = max(1, int(state.get("backfill_page") or 1))
@@ -455,6 +587,25 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
             except Exception as e:
                 errors.append(f"fallback={fallback_key}: {e}")
 
+    # Probe only a tiny sample of the documented Jandapress detail endpoint.
+    # We need the actual 400/200 response body to determine why search IDs do
+    # not currently resolve to public gallery/image metadata.
+    get_debug: list[dict] = []
+    get_probe_enriched = 0
+    get_probe_rate_limited = False
+    probe_ids = list(candidates.keys())[:max(0, HENTAI3_GET_DEBUG_LIMIT)]
+    for idx, sid in enumerate(probe_ids):
+        dbg, detail_item = _probe_get_endpoint(session, sid)
+        get_debug.append(dbg)
+        if detail_item and sid in candidates:
+            if _merge_probe_detail(candidates[sid], detail_item):
+                get_probe_enriched += 1
+        if dbg.get("http_status") in {403, 429}:
+            get_probe_rate_limited = dbg.get("http_status") == 429
+            break
+        if idx + 1 < len(probe_ids):
+            time.sleep(max(0.0, HENTAI3_GET_DEBUG_DELAY_SEC))
+
     items: list[dict] = []
     detail_errors = 0
     detail_samples: list[str] = []
@@ -498,6 +649,13 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         "thumbnails_missing": thumbs_missing,
         "3hentai_debug_samples": [_debug_search_object(x) for x in debug_raw_objects[:3]],
         "debug_sample_count": min(3, len(debug_raw_objects)),
+        "get_probe_mode": "sample-only",
+        "3hentai_get_debug": get_debug,
+        "get_debug_count": len(get_debug),
+        "get_debug_successes": sum(1 for x in get_debug if x.get("http_status") == 200),
+        "get_debug_http_statuses": [x.get("http_status") for x in get_debug],
+        "get_debug_rate_limited": get_probe_rate_limited,
+        "get_probe_enriched_items": get_probe_enriched,
         "debug": " | ".join(search_debug[:8]),
         "message": " | ".join((errors + detail_samples)[:8]),
     }
