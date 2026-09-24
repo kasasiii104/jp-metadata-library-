@@ -47,6 +47,7 @@ BLOCK_TAGS = {
     "amputee",
     "decapitation",
     "corpse",
+    "farting",
 }
 
 # Insect / bug-like content requested to be excluded from the library.
