@@ -48,6 +48,9 @@ BLOCK_TAGS = {
     "decapitation",
     "corpse",
     "farting",
+    "miniguy",
+    "vore",
+    "scat",
 }
 
 # Insect / bug-like content requested to be excluded from the library.
@@ -75,6 +78,11 @@ BLOCK_FULL_TAGS = {
     "other:guro",
     "other:snuff",
     "other:ryona",
+    "male:miniguy",
+    "male:vore",
+    "female:scat",
+    "male:scat",
+    "other:scat",
 }
 
 ALLOWED_LANGUAGES = {"japanese", "ja", "日本語"}
