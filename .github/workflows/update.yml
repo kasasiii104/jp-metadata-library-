@@ -66,8 +66,8 @@ jobs:
 
       - name: Cache 3Hentai thumbnails locally
         env:
-          JANDAPRESS_URL: "http://127.0.0.1:3000"
-          HENTAI3_THUMB_LIMIT: "80"
+          HENTAI3_THUMB_LIMIT: "12"
+          HENTAI3_THUMB_DELAY_SEC: "2.0"
         run: python tools/cache_3hentai_thumbs.py
 
       - name: Cache Hitomi thumbnails locally
