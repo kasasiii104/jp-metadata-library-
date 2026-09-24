@@ -1,22 +1,107 @@
 {
   "ehentai": {
     "status": "ok",
-    "discovered": 25,
-    "accepted_raw": 25,
+    "discovered": 150,
+    "accepted_raw": 150,
     "message": "",
-    "last_attempt": "2026-09-24T08:26:39+00:00",
-    "accepted": 23,
-    "blocked": 2,
+    "last_attempt": "2026-09-24T08:55:41+00:00",
+    "accepted": 136,
+    "blocked": 14,
     "blocked_reasons": {
-      "blocked:torture": 1,
-      "blocked:male:yaoi": 1
+      "blocked:torture": 2,
+      "blocked:male:yaoi": 4,
+      "blocked:amputee": 1,
+      "blocked:snuff": 1,
+      "blocked:corpse": 1,
+      "blocked:ryona": 4,
+      "blocked:insect:parasite": 1
     },
-    "last_success": "2026-09-24T08:26:39+00:00",
-    "artists_found": 14,
-    "groups_found": 3,
-    "works_found": 21,
-    "characters_found": 17,
-    "tagged_items": 25
+    "last_success": "2026-09-24T08:55:41+00:00",
+    "artists_found": 76,
+    "groups_found": 4,
+    "works_found": 133,
+    "characters_found": 108,
+    "tagged_items": 150,
+    "pagination_mode": "next-cursor",
+    "latest_pages_fetched": 2,
+    "backfill_pages_requested": 4,
+    "backfill_pages_fetched": 4,
+    "backfill_cursor_before": "4185215",
+    "backfill_cursor_after": "4164074",
+    "legacy_backfill_page_ignored": 129,
+    "repeated_page_detected": false,
+    "page_debug": [
+      {
+        "stage": "latest:1",
+        "requested_cursor": "<latest>",
+        "final_url": "https://e-hentai.org/?f_search=language%3Ajapanese%24",
+        "found_count": 25,
+        "first_gid": "4208461",
+        "last_gid": "4191826",
+        "next_cursor": "4191826",
+        "unique_new_count": 25,
+        "repeated_page": false
+      },
+      {
+        "stage": "latest:2",
+        "requested_cursor": "4191826",
+        "final_url": "https://e-hentai.org/?f_search=language%3Ajapanese%24&next=4191826",
+        "found_count": 25,
+        "first_gid": "4191106",
+        "last_gid": "4185215",
+        "next_cursor": "4185215",
+        "unique_new_count": 25,
+        "repeated_page": false
+      },
+      {
+        "stage": "backfill:1",
+        "requested_cursor": "4185215",
+        "final_url": "https://e-hentai.org/?f_search=language%3Ajapanese%24&next=4185215",
+        "found_count": 25,
+        "first_gid": "4185213",
+        "last_gid": "4177370",
+        "next_cursor": "4177370",
+        "unique_new_count": 25,
+        "repeated_page": false,
+        "cap_blocked_page": false
+      },
+      {
+        "stage": "backfill:2",
+        "requested_cursor": "4177370",
+        "final_url": "https://e-hentai.org/?f_search=language%3Ajapanese%24&next=4177370",
+        "found_count": 25,
+        "first_gid": "4177367",
+        "last_gid": "4177136",
+        "next_cursor": "4177136",
+        "unique_new_count": 25,
+        "repeated_page": false,
+        "cap_blocked_page": false
+      },
+      {
+        "stage": "backfill:3",
+        "requested_cursor": "4177136",
+        "final_url": "https://e-hentai.org/?f_search=language%3Ajapanese%24&next=4177136",
+        "found_count": 25,
+        "first_gid": "4177109",
+        "last_gid": "4166996",
+        "next_cursor": "4166996",
+        "unique_new_count": 25,
+        "repeated_page": false,
+        "cap_blocked_page": false
+      },
+      {
+        "stage": "backfill:4",
+        "requested_cursor": "4166996",
+        "final_url": "https://e-hentai.org/?f_search=language%3Ajapanese%24&next=4166996",
+        "found_count": 25,
+        "first_gid": "4166950",
+        "last_gid": "4164074",
+        "next_cursor": "4164074",
+        "unique_new_count": 25,
+        "repeated_page": false,
+        "cap_blocked_page": false
+      }
+    ]
   },
   "hitomi": {
     "status": "ok",
@@ -24,44 +109,43 @@
     "accepted_raw": 90,
     "latest_ids": 30,
     "backfill_ids": 60,
-    "total_index": 553582,
+    "total_index": 553583,
     "resource_base": "https://ltn.gold-usergeneratedcontent.net",
     "used_hosts": {
       "https://ltn.gold-usergeneratedcontent.net": 90
     },
     "index_url": "https://ltn.gold-usergeneratedcontent.net/n/index-japanese.nozomi",
     "message": "",
-    "last_attempt": "2026-09-24T08:26:39+00:00",
-    "accepted": 79,
-    "blocked": 11,
+    "last_attempt": "2026-09-24T08:55:41+00:00",
+    "accepted": 80,
+    "blocked": 10,
     "blocked_reasons": {
       "blocked:torture": 1,
-      "blocked:male:yaoi": 6,
-      "blocked:insect:parasite": 1,
-      "blocked:female:guro": 2,
-      "blocked:amputee": 1
+      "blocked:male:yaoi": 7,
+      "blocked:snuff": 1,
+      "blocked:female:guro": 1
     },
-    "last_success": "2026-09-24T08:26:39+00:00",
+    "last_success": "2026-09-24T08:55:41+00:00",
     "thumbnails_found": 90,
     "thumbnails_missing": 0,
     "thumbnail_samples": [
-      "4209243: https://tn.hitomi.la/bigtn/6/42/6e4a56ec13c27a521c532aad292d151ac247a54ee22b58174369ffe29a703426.jpg",
-      "4209219: https://tn.hitomi.la/bigtn/d/df/d42bcf9dd3bf4893a9c85d08d08164a3407df7f79330beb8583dd1e0dc6e1dfd.jpg",
-      "4209217: https://tn.hitomi.la/bigtn/6/fe/9966e072a5e73023632dc8bd7228a439ca4b76d036886e12d3e8a506dc99cfe6.jpg"
+      "4209273: https://tn.hitomi.la/bigtn/0/ad/4bba1e3a819d2f62a0ece7494d4a0b421eb4d726725b3ab33fa0cba045461ad0.jpg",
+      "4209269: https://tn.hitomi.la/bigtn/1/0a/74f7ccea7fbbc2757cfee7ad44597cfc44dde6da4dc66f1003cdef38bf85f0a1.jpg",
+      "4209243: https://tn.hitomi.la/bigtn/6/42/6e4a56ec13c27a521c532aad292d151ac247a54ee22b58174369ffe29a703426.jpg"
     ],
     "thumbnail_cache": {
       "attempted": 53,
       "cached": 53,
-      "reused": 1696,
+      "reused": 1749,
       "failed": 0,
       "pending": 0,
       "failures": []
     },
-    "artists_found": 63,
-    "groups_found": 14,
-    "works_found": 74,
-    "characters_found": 49,
-    "tagged_items": 86
+    "artists_found": 38,
+    "groups_found": 33,
+    "works_found": 82,
+    "characters_found": 33,
+    "tagged_items": 85
   },
   "3hentai": {
     "status": "ok",
@@ -81,13 +165,13 @@
     ],
     "thumbnails_found": 0,
     "thumbnails_missing": 60,
-    "debug": "page=1 candidates=22 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=1&sort=recent | page=2 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=2&sort=recent | page=76 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=76&sort=recent",
+    "debug": "page=1 candidates=22 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=1&sort=recent | page=2 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=2&sort=recent | page=79 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=79&sort=recent",
     "message": "",
-    "last_attempt": "2026-09-24T08:26:39+00:00",
+    "last_attempt": "2026-09-24T08:55:41+00:00",
     "accepted": 60,
     "blocked": 0,
     "blocked_reasons": {},
-    "last_success": "2026-09-24T08:26:39+00:00",
+    "last_success": "2026-09-24T08:55:41+00:00",
     "api_base": "http://127.0.0.1:3000",
     "jandapress_http": 200,
     "search_key": "language:japanese",
@@ -97,18 +181,18 @@
       "cached": 0,
       "reused": 0,
       "failed": 12,
-      "pending": 387,
+      "pending": 400,
       "rate_limited": false,
       "samples": [],
       "failures": [
-        "3714764: no image candidate",
-        "3714760: no image candidate",
-        "3714757: no image candidate",
-        "3714752: no image candidate",
-        "3714746: no image candidate",
-        "3714737: no image candidate",
-        "3714735: no image candidate",
-        "3714723: no image candidate"
+        "3713860: no image candidate",
+        "3713846: no image candidate",
+        "3713839: no image candidate",
+        "3713816: no image candidate",
+        "3713806: no image candidate",
+        "3713797: no image candidate",
+        "3713787: no image candidate",
+        "3713777: no image candidate"
       ]
     },
     "detail_mode": "search-only",
@@ -121,12 +205,72 @@
       "3747989 [search]: https://3hentai.net/search?q=%28Kansai+Kemoket+11%29+%5BOnkou+Hakushiki+Otoko+Tokubetsu+Hogo-ku+%28Neocerapaima%29%5D+Puku+Tamago+Sanran+%28Dragon+Quest+X%29",
       "3747984 [search]: https://3hentai.net/search?q=%28Kansai+Kemoket+11%29+%5Bmadwakx+%28madwak%29%5D+Shochou+no+Nyuuin+Soudou+%28Zootopia+2%29",
       "3747979 [search]: https://3hentai.net/search?q=%28Kansai+Kamoket+11%29+%5BAmaterasu+%28Shiron%29%5D+Dengurigaeshi+%28Paw+Patrol%29"
-    ]
+    ],
+    "3hentai_debug_samples": [
+      {
+        "id_guess": "3748004",
+        "title_guess": "[Kobayashi Takumi] Reijin na Hito",
+        "top_level_keys": [
+          "title",
+          "id"
+        ],
+        "all_keys": [
+          "title",
+          "id"
+        ],
+        "raw_urls": [],
+        "image_like_values": [],
+        "real_gallery_url": "",
+        "best_thumbnail_url": "",
+        "normalized_source_id": "3748004",
+        "normalized_source_url_kind": "search",
+        "normalized_source_url": "https://3hentai.net/search?q=%5BKobayashi+Takumi%5D+Reijin+na+Hito"
+      },
+      {
+        "id_guess": "3747994",
+        "title_guess": "(Kansai Kemoket 11) [Shishamo Manjuu (Various)] Himitsu no Madousho (Super Mario Bros.)",
+        "top_level_keys": [
+          "title",
+          "id"
+        ],
+        "all_keys": [
+          "title",
+          "id"
+        ],
+        "raw_urls": [],
+        "image_like_values": [],
+        "real_gallery_url": "",
+        "best_thumbnail_url": "",
+        "normalized_source_id": "3747994",
+        "normalized_source_url_kind": "search",
+        "normalized_source_url": "https://3hentai.net/search?q=%28Kansai+Kemoket+11%29+%5BShishamo+Manjuu+%28Various%29%5D+Himitsu+no+Madousho+%28Super+Mario+Bros.%29"
+      },
+      {
+        "id_guess": "3747989",
+        "title_guess": "(Kansai Kemoket 11) [Onkou Hakushiki Otoko Tokubetsu Hogo-ku (Neocerapaima)] Puku Tamago Sanran (Dragon Quest X)",
+        "top_level_keys": [
+          "title",
+          "id"
+        ],
+        "all_keys": [
+          "title",
+          "id"
+        ],
+        "raw_urls": [],
+        "image_like_values": [],
+        "real_gallery_url": "",
+        "best_thumbnail_url": "",
+        "normalized_source_id": "3747989",
+        "normalized_source_url_kind": "search",
+        "normalized_source_url": "https://3hentai.net/search?q=%28Kansai+Kemoket+11%29+%5BOnkou+Hakushiki+Otoko+Tokubetsu+Hogo-ku+%28Neocerapaima%29%5D+Puku+Tamago+Sanran+%28Dragon+Quest+X%29"
+      }
+    ],
+    "debug_sample_count": 3
   },
   "filters": {
     "insect_filter": "enabled",
     "insect_terms": 55,
     "purged_existing_insect": 0
   },
-  "updated_at": "2026-09-24T08:26:39+00:00"
+  "updated_at": "2026-09-24T08:55:41+00:00"
 }
