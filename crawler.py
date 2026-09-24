@@ -139,6 +139,10 @@ def clean_item(item: dict[str, Any], stamp: str) -> dict[str, Any]:
         "source_id": str(item.get("source_id") or ""),
         "source_token": str(item.get("source_token") or ""),
         "source_url": str(item.get("source_url") or ""),
+        "source_url_kind": str(item.get("source_url_kind") or ""),
+        "resolved_gallery_id": str(item.get("resolved_gallery_id") or ""),
+        "filter_metadata_checked": str(item.get("filter_metadata_checked") or ""),
+        "filter_metadata_checked_at": str(item.get("filter_metadata_checked_at") or ""),
         "title": str(item.get("title") or "").strip(),
         "title_jp": str(item.get("title_jp") or "").strip(),
         "language": normalized_language(item.get("language", "")),
@@ -323,14 +327,43 @@ def main() -> int:
         upgrade_item_schema(x) for x in data.get("items", [])
         if isinstance(x, dict) and x.get("uid") and x.get("source") not in RETIRED_SOURCES
     ]
-    # New exclusion rules also apply to retained data, so old insect/bug rows
-    # disappear on the first run after this revision rather than waiting until
-    # they happen to be rediscovered.
+    # Revision 19: 3Hentai historically had little/no tag metadata, so old
+    # visible rows could not be evaluated by the common BL/guro/ryona/insect
+    # filters.  Audit a bounded number of saved 3Hentai galleries every run,
+    # then apply the same common filter to *all* retained rows.  This gradually
+    # cleans the existing site without a one-off destructive reset.
+    try:
+        h3_existing_audit = hentai3.enrich_existing_for_filter(existing_items)
+    except Exception as e:
+        h3_existing_audit = {
+            "existing_filter_audit_mode": "public-gallery-metadata",
+            "existing_filter_audit_attempted": 0,
+            "existing_filter_audit_enriched": 0,
+            "existing_filter_audit_resolved_search": 0,
+            "existing_filter_audit_failed": 0,
+            "existing_filter_audit_pending": sum(1 for x in existing_items if x.get("source") == "3hentai"),
+            "existing_filter_audit_stopped": True,
+            "existing_filter_audit_samples": [],
+            "existing_filter_audit_failures": [str(e)[:500]],
+        }
+
     retained_items: list[dict[str, Any]] = []
+    purged_existing_blocked = 0
+    purged_existing_reasons: dict[str, int] = {}
+    purged_existing_by_source: dict[str, int] = {}
     purged_existing_insect = 0
+    purged_existing_3hentai = 0
     for item in existing_items:
-        if insect_block_reason(item):
-            purged_existing_insect += 1
+        reason = blocked_reason(item)
+        if reason:
+            purged_existing_blocked += 1
+            purged_existing_reasons[reason] = purged_existing_reasons.get(reason, 0) + 1
+            src = str(item.get("source") or "unknown")
+            purged_existing_by_source[src] = purged_existing_by_source.get(src, 0) + 1
+            if reason.startswith("blocked:insect:"):
+                purged_existing_insect += 1
+            if src == "3hentai":
+                purged_existing_3hentai += 1
             continue
         retained_items.append(item)
     existing = {x["uid"]: x for x in retained_items}
@@ -366,7 +399,13 @@ def main() -> int:
         for raw in raw_items:
             if not raw.get("uid"):
                 continue
-            reason = blocked_reason(raw)
+            # 3Hentai is fail-closed for newly discovered rows: if the public
+            # gallery page did not yield filter-relevant metadata, do not add
+            # the item yet. It can be discovered again on a later healthy run.
+            if name == "3hentai" and raw.get("filter_metadata_checked") != "3hentai-gallery-v1":
+                reason = "metadata_unverified"
+            else:
+                reason = blocked_reason(raw)
             if reason:
                 blocked += 1
                 blocked_reasons[reason] = blocked_reasons.get(reason, 0) + 1
@@ -397,6 +436,10 @@ def main() -> int:
             f"status={result.get('status')}" + (f" message={msg}" if msg else "")
         )
 
+    if isinstance(status_store.get("3hentai"), dict):
+        status_store["3hentai"].update(h3_existing_audit)
+        status_store["3hentai"]["purged_existing_this_run"] = purged_existing_3hentai
+
     items = sorted(existing.values(), key=sort_key, reverse=True)
     if KEEP_ITEMS > 0:
         items = items[:KEEP_ITEMS]
@@ -410,13 +453,23 @@ def main() -> int:
         "duplicate_group_count": duplicate_group_count,
         "duplicate_item_count": duplicate_item_count,
         "purged_existing_insect": purged_existing_insect,
+        "purged_existing_blocked": purged_existing_blocked,
+        "purged_existing_reasons": purged_existing_reasons,
+        "purged_existing_by_source": purged_existing_by_source,
+        "purged_existing_3hentai": purged_existing_3hentai,
         "items": items,
     })
     save_json(STATE_FILE, state)
     status_store["filters"] = {
+        "content_filters": "enabled",
         "insect_filter": "enabled",
         "insect_terms": len(NORMALIZED_INSECT_TAGS),
+        "purged_existing_blocked": purged_existing_blocked,
         "purged_existing_insect": purged_existing_insect,
+        "purged_existing_3hentai": purged_existing_3hentai,
+        "purged_existing_reasons": purged_existing_reasons,
+        "purged_existing_by_source": purged_existing_by_source,
+        "3hentai_existing_audit": h3_existing_audit,
     }
     save_json(STATUS_FILE, {**status_store, "updated_at": stamp})
 

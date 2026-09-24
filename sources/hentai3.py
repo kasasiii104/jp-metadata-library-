@@ -2,8 +2,9 @@ import os
 import re
 import time
 import unicodedata
+from datetime import datetime, timezone
 from typing import Any
-from urllib.parse import quote_plus, urljoin
+from urllib.parse import parse_qs, quote_plus, unquote, urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup
@@ -11,6 +12,10 @@ from bs4 import BeautifulSoup
 from config import (
     HENTAI3_BACKFILL_PAGES,
     HENTAI3_DETAIL_SLEEP_SEC,
+    HENTAI3_EXISTING_FILTER_AUDIT_DELAY_SEC,
+    HENTAI3_EXISTING_FILTER_AUDIT_LIMIT,
+    HENTAI3_GALLERY_METADATA_DELAY_SEC,
+    HENTAI3_GALLERY_METADATA_LIMIT,
     HENTAI3_GET_DEBUG_DELAY_SEC,
     HENTAI3_GET_DEBUG_LIMIT,
     HENTAI3_LATEST_PAGES,
@@ -382,6 +387,332 @@ def _direct_search_cards(session: requests.Session, key: str, page: int, sort: s
     return cards, info
 
 
+
+
+def _stamp_now() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+
+def _href_namespace(href: str) -> tuple[str, str]:
+    """Infer a metadata namespace/value from a public 3Hentai tag link."""
+    href = _clean(href)
+    if not href:
+        return "", ""
+    parsed = urlparse(urljoin(SOURCE_BASE, href))
+    path = unquote(parsed.path or "")
+    low = path.lower()
+    path_map = (
+        ("/artist/", "artist"), ("/artists/", "artist"),
+        ("/group/", "group"), ("/groups/", "group"), ("/circle/", "group"),
+        ("/parody/", "parody"), ("/parodies/", "parody"), ("/series/", "parody"),
+        ("/character/", "character"), ("/characters/", "character"),
+        ("/language/", "language"), ("/languages/", "language"),
+        ("/category/", "category"), ("/categories/", "category"),
+        ("/tag/", "tag"), ("/tags/", "tag"),
+    )
+    for token, ns in path_map:
+        if token in low:
+            value = path.split(token, 1)[1].strip("/")
+            value = unquote(value).replace("-", " ").replace("_", " ")
+            return ns, _clean(value)
+
+    q = parse_qs(parsed.query or "")
+    for key in ("q", "key", "tag"):
+        for raw in q.get(key, []):
+            val = unquote(str(raw or "")).strip()
+            m = re.match(r"^(artist|group|circle|parody|series|character|language|category|tag|male|female|other)\s*:\s*(.+)$", val, re.I)
+            if m:
+                ns = m.group(1).lower()
+                if ns == "circle":
+                    ns = "group"
+                if ns == "series":
+                    ns = "parody"
+                if ns in {"male", "female", "other"}:
+                    return "tag", f"{ns}:{_clean(m.group(2))}"
+                return ns, _clean(m.group(2))
+    return "", ""
+
+
+def _gallery_metadata_from_html(html: str, page_url: str) -> dict:
+    """Extract only public gallery metadata used by the library/filters.
+
+    No reader/page images are fetched here.  The parser intentionally accepts
+    multiple common 3Hentai markup shapes so small HTML changes do not disable
+    the exclusion rules.
+    """
+    soup = BeautifulSoup(html, "html.parser")
+    artists: list[str] = []
+    groups: list[str] = []
+    parodies: list[str] = []
+    characters: list[str] = []
+    tags: list[str] = []
+    languages: list[str] = []
+    categories: list[str] = []
+
+    def add(ns: str, value: str, display: str = "") -> None:
+        value = _clean(display or value)
+        if not value:
+            return
+        low = value.casefold()
+        if low in {"artists", "artist", "groups", "group", "parodies", "parody", "characters", "character", "tags", "tag", "languages", "language", "categories", "category"}:
+            return
+        if ns == "artist":
+            artists.append(value)
+        elif ns == "group":
+            groups.append(value)
+        elif ns == "parody":
+            parodies.append(value)
+        elif ns == "character":
+            characters.append(value)
+        elif ns == "language":
+            languages.append(value)
+            tags.append(f"language:{value}")
+        elif ns == "category":
+            categories.append(value)
+        elif ns == "tag":
+            tags.append(value)
+
+    # Path/query-based tag links are the most reliable source.
+    for a in soup.select("a[href]"):
+        href = _clean(a.get("href") or "")
+        ns, slug_value = _href_namespace(href)
+        if not ns:
+            continue
+        display = _clean(a.get_text(" ", strip=True) or a.get("title") or "")
+        add(ns, slug_value, display)
+
+    # Fallback for label/value blocks where the links themselves are generic.
+    label_map = {
+        "artist": "artist", "artists": "artist", "group": "group", "groups": "group", "circle": "group", "circles": "group",
+        "parody": "parody", "parodies": "parody", "series": "parody", "character": "character", "characters": "character",
+        "tag": "tag", "tags": "tag", "language": "language", "languages": "language", "category": "category", "categories": "category",
+    }
+    for node in soup.find_all(["div", "li", "p", "section", "tr"], limit=500):
+        text = _clean(node.get_text(" ", strip=True))
+        if not text or len(text) > 1200:
+            continue
+        m = re.match(r"^(Artists?|Groups?|Circles?|Parod(?:y|ies)|Series|Characters?|Tags?|Languages?|Categories?)\s*[:：]", text, re.I)
+        if not m:
+            continue
+        key = m.group(1).lower()
+        ns = label_map.get(key) or label_map.get(key.rstrip("s"))
+        if not ns:
+            continue
+        anchors = node.select("a")
+        if anchors:
+            for a in anchors:
+                val = _clean(a.get_text(" ", strip=True) or a.get("title") or "")
+                if val:
+                    add(ns, val, val)
+        else:
+            remainder = re.sub(r"^[^:：]+[:：]\s*", "", text).strip()
+            for val in re.split(r"\s{2,}|[,、]", remainder):
+                add(ns, val, val)
+
+    # Some pages expose namespace-prefixed text in badges.
+    for node in soup.select(".tag, .tags a, .badge, [data-tag], [data-name]")[:300]:
+        text = _clean(node.get("data-tag") or node.get("data-name") or node.get_text(" ", strip=True))
+        m = re.match(r"^(artist|group|circle|parody|series|character|language|category|tag|male|female|other)\s*:\s*(.+)$", text, re.I)
+        if not m:
+            continue
+        ns = m.group(1).lower()
+        value = _clean(m.group(2))
+        if ns in {"male", "female", "other"}:
+            tags.append(f"{ns}:{value}")
+        else:
+            if ns == "circle": ns = "group"
+            if ns == "series": ns = "parody"
+            add(ns, value, value)
+
+    artists = unique_strings(artists)
+    groups = unique_strings(groups)
+    parodies = unique_strings(parodies)
+    characters = unique_strings(characters)
+    tags = unique_strings(tags)
+    languages = unique_strings(languages)
+    categories = unique_strings(categories)
+
+    language = ""
+    for value in languages + tags:
+        low = _clean(value).casefold()
+        if "japanese" in low or low in {"日本語", "ja", "language:日本語"}:
+            language = "japanese"
+            break
+        if "english" in low:
+            language = "english"
+            break
+        if "chinese" in low:
+            language = "chinese"
+            break
+        if "korean" in low:
+            language = "korean"
+            break
+
+    category = categories[0] if categories else ""
+    evidence_count = len(artists) + len(groups) + len(parodies) + len(characters) + len(tags) + len(languages) + len(categories)
+    filter_evidence_count = len(tags) + len(languages) + len(categories)
+    return {
+        "artists": artists,
+        "groups": groups,
+        "parodies": parodies,
+        "characters": characters,
+        "tags": tags,
+        "language": language,
+        "category": category,
+        "evidence_count": evidence_count,
+        "filter_evidence_count": filter_evidence_count,
+        "metadata_url": page_url,
+    }
+
+
+def _fetch_gallery_metadata(session: requests.Session, page_url: str) -> tuple[dict | None, dict]:
+    info = {"url": page_url, "http_status": 0, "evidence_count": 0, "error": ""}
+    try:
+        r = session.get(
+            page_url,
+            timeout=TIMEOUT,
+            headers={
+                "User-Agent": "Mozilla/5.0 (compatible; Japanese-Metadata-Library/2.1; metadata-only)",
+                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                "Accept-Language": "ja,en;q=0.8",
+            },
+        )
+        info["http_status"] = r.status_code
+        info["url"] = r.url
+        if r.status_code in {403, 429, 502, 503, 504}:
+            info["error"] = f"HTTP {r.status_code}"
+            return None, info
+        r.raise_for_status()
+        meta = _gallery_metadata_from_html(r.text, r.url)
+        info["evidence_count"] = int(meta.get("evidence_count") or 0)
+        return meta, info
+    except Exception as e:
+        info["error"] = str(e)[:500]
+        return None, info
+
+
+def _merge_gallery_metadata(item: dict, meta: dict, *, mark_checked: bool = True) -> bool:
+    changed = False
+    for key in ("artists", "groups", "parodies", "characters", "tags"):
+        merged = unique_strings(list(item.get(key) or []) + list(meta.get(key) or []))
+        if merged != list(item.get(key) or []):
+            item[key] = merged
+            changed = True
+    if meta.get("language") and item.get("language") != meta.get("language"):
+        item["language"] = meta["language"]
+        changed = True
+    if meta.get("category") and not item.get("category"):
+        item["category"] = meta["category"]
+        changed = True
+    if mark_checked and int(meta.get("filter_evidence_count") or 0) > 0:
+        if item.get("filter_metadata_checked") != "3hentai-gallery-v1":
+            item["filter_metadata_checked"] = "3hentai-gallery-v1"
+            changed = True
+        item["filter_metadata_checked_at"] = _stamp_now()
+    return changed
+
+
+def _resolve_public_search_exact(session: requests.Session, search_url: str, expected_title: str) -> tuple[dict | None, str, bool]:
+    """Resolve a legacy title-search URL using one exact normalized-title match."""
+    try:
+        r = session.get(search_url, timeout=TIMEOUT, headers={"User-Agent": "Mozilla/5.0 (compatible; Japanese-Metadata-Library/2.1; metadata-only)"})
+        if r.status_code in {403, 429, 502, 503, 504}:
+            return None, f"HTTP {r.status_code}", True
+        r.raise_for_status()
+        soup = BeautifulSoup(r.text, "html.parser")
+        cards = []
+        for a in soup.select("a[href*='/d/']"):
+            if a.select_one("img") is None:
+                continue
+            href = urljoin(r.url, _clean(a.get("href") or ""))
+            m = re.search(r"/d/(\d+)(?:/|$|[?#])", href, re.I)
+            if not m:
+                continue
+            img = a.select_one("img")
+            title = _clean((img.get("alt") if img else "") or (img.get("title") if img else "") or a.get("title") or a.get_text(" ", strip=True))
+            cards.append({"gallery_id": m.group(1), "title": title, "source_url": href})
+        wanted = _title_key(expected_title)
+        exact = [c for c in cards if _title_key(c.get("title")) == wanted]
+        if len(exact) == 1:
+            return exact[0], "", False
+        return None, f"exact-title matches={len(exact)}", False
+    except Exception as e:
+        return None, str(e)[:500], False
+
+
+def enrich_existing_for_filter(items: list[dict], limit: int | None = None) -> dict:
+    """Gradually audit already-saved 3Hentai rows for exclusion metadata.
+
+    The caller applies the common block filter immediately after this returns,
+    so already-visible BL/guro/ryona/insect rows disappear in the same run once
+    their public gallery metadata has been audited.
+    """
+    limit = HENTAI3_EXISTING_FILTER_AUDIT_LIMIT if limit is None else max(0, int(limit))
+    session = requests.Session()
+    attempted = enriched = resolved = failed = 0
+    stopped = False
+    samples: list[str] = []
+    failures: list[str] = []
+
+    targets = [
+        x for x in items
+        if isinstance(x, dict)
+        and x.get("source") == "3hentai"
+        and x.get("filter_metadata_checked") != "3hentai-gallery-v1"
+    ]
+
+    for item in targets[:limit]:
+        attempted += 1
+        page_url = _clean(item.get("source_url") or "")
+        if "/search" in page_url:
+            card, err, stop = _resolve_public_search_exact(session, page_url, _clean(item.get("title") or ""))
+            if stop:
+                stopped = True
+                if len(failures) < 8: failures.append(f"{item.get('source_id')}: {err}")
+                break
+            if card:
+                page_url = _clean(card.get("source_url") or "")
+                item["source_url"] = page_url
+                item["source_url_kind"] = "direct"
+                item["resolved_gallery_id"] = _clean(card.get("gallery_id") or "")
+                resolved += 1
+            elif err and len(failures) < 8:
+                failures.append(f"{item.get('source_id')}: search {err}")
+        if not re.search(r"/d/\d+(?:/|$|[?#])", page_url, re.I):
+            failed += 1
+            continue
+
+        meta, info = _fetch_gallery_metadata(session, page_url)
+        if info.get("http_status") in {403, 429, 502, 503, 504}:
+            stopped = True
+            if len(failures) < 8: failures.append(f"{item.get('source_id')}: {info.get('error')}")
+            break
+        if meta and int(meta.get("filter_evidence_count") or 0) > 0:
+            _merge_gallery_metadata(item, meta, mark_checked=True)
+            enriched += 1
+            if len(samples) < 5:
+                samples.append(f"{item.get('source_id')}: tags={len(item.get('tags') or [])} artists={len(item.get('artists') or [])}")
+        else:
+            failed += 1
+            if len(failures) < 8:
+                failures.append(f"{item.get('source_id')}: metadata evidence=0 {info.get('error') or ''}".strip())
+        if attempted < limit:
+            time.sleep(max(0.0, HENTAI3_EXISTING_FILTER_AUDIT_DELAY_SEC))
+
+    remaining = max(0, len(targets) - attempted)
+    return {
+        "existing_filter_audit_mode": "public-gallery-metadata",
+        "existing_filter_audit_attempted": attempted,
+        "existing_filter_audit_enriched": enriched,
+        "existing_filter_audit_resolved_search": resolved,
+        "existing_filter_audit_failed": failed,
+        "existing_filter_audit_pending": remaining,
+        "existing_filter_audit_stopped": stopped,
+        "existing_filter_audit_samples": samples,
+        "existing_filter_audit_failures": failures,
+    }
+
+
 def _enrich_from_direct_card(item: dict, card: dict) -> bool:
     """Attach verified public gallery/thumbnail metadata without changing UID."""
     changed = False
@@ -745,6 +1076,40 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         if idx + 1 < len(probe_ids):
             time.sleep(max(0.0, HENTAI3_GET_DEBUG_DELAY_SEC))
 
+    # Fetch public gallery metadata for the current batch so the shared
+    # BL/guro/ryona/insect filters have real tag evidence before save.
+    gallery_metadata_attempted = 0
+    gallery_metadata_enriched = 0
+    gallery_metadata_failed = 0
+    gallery_metadata_stopped = False
+    gallery_metadata_samples: list[str] = []
+    gallery_metadata_failures: list[str] = []
+    for sid, item in list(candidates.items())[:max(0, HENTAI3_GALLERY_METADATA_LIMIT)]:
+        page_url = _clean(item.get("source_url") or "")
+        if not re.search(r"/d/\d+(?:/|$|[?#])", page_url, re.I):
+            continue
+        gallery_metadata_attempted += 1
+        meta, info = _fetch_gallery_metadata(session, page_url)
+        if info.get("http_status") in {403, 429, 502, 503, 504}:
+            gallery_metadata_stopped = True
+            if len(gallery_metadata_failures) < 8:
+                gallery_metadata_failures.append(f"{sid}: {info.get('error')}")
+            break
+        if meta and int(meta.get("filter_evidence_count") or 0) > 0:
+            _merge_gallery_metadata(item, meta, mark_checked=True)
+            gallery_metadata_enriched += 1
+            if len(gallery_metadata_samples) < 5:
+                gallery_metadata_samples.append(
+                    f"{sid}: tags={len(item.get('tags') or [])} artists={len(item.get('artists') or [])} "
+                    f"groups={len(item.get('groups') or [])} category={item.get('category') or ''}"
+                )
+        else:
+            gallery_metadata_failed += 1
+            if len(gallery_metadata_failures) < 8:
+                gallery_metadata_failures.append(f"{sid}: metadata evidence=0 {info.get('error') or ''}".strip())
+        if gallery_metadata_attempted < HENTAI3_GALLERY_METADATA_LIMIT:
+            time.sleep(max(0.0, HENTAI3_GALLERY_METADATA_DELAY_SEC))
+
     items: list[dict] = []
     detail_errors = 0
     detail_samples: list[str] = []
@@ -792,6 +1157,13 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         "direct_html_cards": direct_html_cards_total,
         "direct_html_enriched": direct_html_enriched,
         "direct_html_pages": direct_html_debug[:8],
+        "gallery_metadata_mode": "public-gallery-tags",
+        "gallery_metadata_attempted": gallery_metadata_attempted,
+        "gallery_metadata_enriched": gallery_metadata_enriched,
+        "gallery_metadata_failed": gallery_metadata_failed,
+        "gallery_metadata_stopped": gallery_metadata_stopped,
+        "gallery_metadata_samples": gallery_metadata_samples,
+        "gallery_metadata_failures": gallery_metadata_failures,
         "get_probe_mode": "sample-only" if HENTAI3_GET_DEBUG_LIMIT > 0 else "disabled",
         "3hentai_get_debug": get_debug,
         "get_debug_count": len(get_debug),

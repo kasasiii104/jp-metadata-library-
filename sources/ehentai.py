@@ -41,15 +41,9 @@ def _cursor_from_href(href: str) -> str:
 
 
 def _extract_next_cursor(html: str) -> str:
-    """Extract E-Hentai's current keyset/cursor pagination token.
-
-    Modern E-Hentai list/search pagination uses a `next=<gallery id>` cursor.
-    Prefer the explicit Next controls and only then fall back to a text-labelled
-    next link. Do not use the old numeric `page=N` assumption for backfill.
-    """
+    """Extract E-Hentai's current keyset/cursor pagination token."""
     soup = BeautifulSoup(html or "", "html.parser")
 
-    # Known E-Hentai pager ids / shapes. Different layouts can expose either.
     for selector in ("#dnext[href]", "#unext[href]", "a#dnext[href]", "a#unext[href]"):
         el = soup.select_one(selector)
         if el:
@@ -57,7 +51,6 @@ def _extract_next_cursor(html: str) -> str:
             if cur:
                 return cur
 
-    # Some layouts wrap the anchor in a cell/div with the id.
     for selector in ("#dnext a[href]", "#unext a[href]"):
         el = soup.select_one(selector)
         if el:
@@ -65,8 +58,6 @@ def _extract_next_cursor(html: str) -> str:
             if cur:
                 return cur
 
-    # Conservative fallback: require next-like label/id/class so a `prev=` or
-    # unrelated cursor link is never mistaken for forward pagination.
     for a in soup.find_all("a", href=True):
         href = a.get("href") or ""
         if "next=" not in href and "next%3D" not in href.lower():
@@ -87,8 +78,20 @@ def _extract_next_cursor(html: str) -> str:
     return ""
 
 
-def _discover(session: requests.Session, cursor: str = "", stage: str = "") -> tuple[list[tuple[int, str]], str, dict]:
-    params = {"f_search": SEARCH_QUERY}
+def _discover(
+    session: requests.Session,
+    cursor: str = "",
+    stage: str = "",
+    search_query: str | None = SEARCH_QUERY,
+) -> tuple[list[tuple[int, str]], str, dict]:
+    """Read one public E-Hentai listing page.
+
+    `search_query=None` means the unfiltered global newest feed. Historical
+    backfill continues to use the Japanese search so old crawling stays fast.
+    """
+    params: dict[str, str] = {}
+    if search_query:
+        params["f_search"] = search_query
     if cursor:
         params["next"] = cursor
 
@@ -97,6 +100,7 @@ def _discover(session: requests.Session, cursor: str = "", stage: str = "") -> t
     next_cursor = _extract_next_cursor(res.text)
     debug = {
         "stage": stage,
+        "query_mode": "japanese-search" if search_query else "global-latest",
         "requested_cursor": cursor or "<latest>",
         "final_url": str(getattr(res, "url", "") or ""),
         "found_count": len(found),
@@ -163,7 +167,6 @@ def _metadata(session: requests.Session, refs: list[tuple[int, str]]) -> list[di
             item = _normalize(raw)
             if item:
                 out.append(item)
-        # Avoid hammering the metadata API during a larger backfill.
         if idx and idx % 100 == 0:
             time.sleep(5.0)
     return out
@@ -189,125 +192,148 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     seen_refs: set[tuple[int, str]] = set()
     errors: list[str] = []
     page_debug: list[dict] = []
-    page_signatures: set[tuple[int, ...]] = set()
     repeated_page_detected = False
 
-    # Old revisions stored a numeric page counter. E-Hentai now paginates list
-    # searches by `next=<gid>` cursor, so that integer cannot be safely mapped to
-    # a current cursor. We restart cursor backfill safely; UID merge prevents
-    # duplicates in data.json and, unlike the old logic, we do not skip pages.
     legacy_backfill_page = state.get("backfill_page")
 
-    # 1) Latest chain: always start from the live first page and follow the
-    # site's own `next` cursor for EH_LATEST_PAGES pages.
+    # 1) Fast new-item path: scan the unfiltered global newest feed instead of
+    # waiting for E-Hentai's language search index. gdata is authoritative for
+    # the language tag; only Japanese rows are returned to the crawler below.
     latest_cursor = ""
     latest_pages_fetched = 0
-    latest_tail_cursor = ""
+    latest_gid_set: set[str] = set()
+    latest_page_signatures: set[tuple[int, ...]] = set()
 
     for i in range(max(0, EH_LATEST_PAGES)):
         try:
-            page_refs, next_cursor, dbg = _discover(session, latest_cursor, f"latest:{i + 1}")
+            page_refs, next_cursor, dbg = _discover(
+                session,
+                latest_cursor,
+                f"latest-global:{i + 1}",
+                search_query=None,
+            )
             sig = tuple(gid for gid, _ in page_refs)
             dbg["unique_new_count"] = 0
-            if sig and sig in page_signatures:
+            if sig and sig in latest_page_signatures:
                 dbg["repeated_page"] = True
                 repeated_page_detected = True
                 page_debug.append(dbg)
                 break
             if sig:
-                page_signatures.add(sig)
+                latest_page_signatures.add(sig)
+
+            before = len(refs)
             added = _append_unique_refs(refs, page_refs, seen_refs, EH_MAX_GALLERIES_PER_RUN)
             dbg["unique_new_count"] = added
             dbg["repeated_page"] = False
             page_debug.append(dbg)
+            for gid, _ in refs[before:]:
+                latest_gid_set.add(str(gid))
+
             latest_pages_fetched += 1
-            latest_tail_cursor = next_cursor
             if not next_cursor or next_cursor == latest_cursor or len(refs) >= EH_MAX_GALLERIES_PER_RUN:
                 break
             latest_cursor = next_cursor
         except Exception as e:
-            errors.append(f"latest {i + 1}: {e}")
+            errors.append(f"latest-global {i + 1}: {e}")
             break
         if i < EH_LATEST_PAGES - 1:
             time.sleep(3.2)
 
-    # 2) Historical cursor. On the first run after migration, start immediately
-    # after the latest chain. On later runs continue exactly where the previous
-    # successful backfill stopped.
+    # 2) Historical path remains the Japanese search + next cursor. Existing
+    # state continues exactly where it stopped. On a fresh install, the first
+    # backfill page is the live Japanese search page, so no Japanese rows are
+    # skipped just because the global newest feed is a different ordering.
     saved_backfill_cursor = str(state.get("backfill_next") or "")
-    backfill_cursor = saved_backfill_cursor or latest_tail_cursor
-    backfill_cursor_before = backfill_cursor
+    already_exhausted = bool(state.get("backfill_exhausted"))
+    backfill_cursor = saved_backfill_cursor
+    backfill_cursor_before = saved_backfill_cursor or ("<latest-japanese>" if not already_exhausted else "<exhausted>")
     backfill_pages_fetched = 0
     backfill_advance_cursor = saved_backfill_cursor
     backfill_failed = False
+    backfill_gid_set: set[str] = set()
+    backfill_page_signatures: set[tuple[int, ...]] = set()
 
-    for i in range(max(0, EH_BACKFILL_PAGES)):
-        if not backfill_cursor or len(refs) >= EH_MAX_GALLERIES_PER_RUN:
-            break
-        try:
-            page_refs, next_cursor, dbg = _discover(session, backfill_cursor, f"backfill:{i + 1}")
-            sig = tuple(gid for gid, _ in page_refs)
-            dbg["unique_new_count"] = 0
-            if sig and sig in page_signatures:
-                dbg["repeated_page"] = True
-                repeated_page_detected = True
-                page_debug.append(dbg)
-                backfill_failed = True
+    if not already_exhausted:
+        for i in range(max(0, EH_BACKFILL_PAGES)):
+            if len(refs) >= EH_MAX_GALLERIES_PER_RUN:
                 break
-            if sig:
-                page_signatures.add(sig)
+            try:
+                page_refs, next_cursor, dbg = _discover(
+                    session,
+                    backfill_cursor,
+                    f"backfill-japanese:{i + 1}",
+                    search_query=SEARCH_QUERY,
+                )
+                sig = tuple(gid for gid, _ in page_refs)
+                dbg["unique_new_count"] = 0
+                if sig and sig in backfill_page_signatures:
+                    dbg["repeated_page"] = True
+                    repeated_page_detected = True
+                    page_debug.append(dbg)
+                    backfill_failed = True
+                    break
+                if sig:
+                    backfill_page_signatures.add(sig)
 
-            # Never advance past a page we did not actually include because of
-            # the per-run cap. This avoids silently skipping historical items.
-            remaining = max(0, EH_MAX_GALLERIES_PER_RUN - len(refs))
-            unique_page_refs = [r for r in page_refs if r not in seen_refs]
-            if unique_page_refs and len(unique_page_refs) > remaining:
-                dbg["cap_blocked_page"] = True
+                remaining = max(0, EH_MAX_GALLERIES_PER_RUN - len(refs))
+                unique_page_refs = [r for r in page_refs if r not in seen_refs]
+                if unique_page_refs and len(unique_page_refs) > remaining:
+                    dbg["cap_blocked_page"] = True
+                    dbg["repeated_page"] = False
+                    page_debug.append(dbg)
+                    break
+
+                before = len(refs)
+                added = _append_unique_refs(refs, page_refs, seen_refs, EH_MAX_GALLERIES_PER_RUN)
+                dbg["unique_new_count"] = added
                 dbg["repeated_page"] = False
+                dbg["cap_blocked_page"] = False
                 page_debug.append(dbg)
-                break
+                for gid, _ in refs[before:]:
+                    backfill_gid_set.add(str(gid))
 
-            added = _append_unique_refs(refs, page_refs, seen_refs, EH_MAX_GALLERIES_PER_RUN)
-            dbg["unique_new_count"] = added
-            dbg["repeated_page"] = False
-            dbg["cap_blocked_page"] = False
-            page_debug.append(dbg)
+                if not page_refs:
+                    backfill_failed = True
+                    break
 
-            if not page_refs:
+                backfill_pages_fetched += 1
+                if next_cursor and next_cursor != backfill_cursor:
+                    backfill_advance_cursor = next_cursor
+                    backfill_cursor = next_cursor
+                else:
+                    backfill_advance_cursor = ""
+                    backfill_cursor = ""
+                    break
+            except Exception as e:
+                errors.append(f"backfill-japanese {i + 1}: {e}")
                 backfill_failed = True
                 break
+            if i < EH_BACKFILL_PAGES - 1:
+                time.sleep(3.2)
 
-            backfill_pages_fetched += 1
-            if next_cursor and next_cursor != backfill_cursor:
-                backfill_advance_cursor = next_cursor
-                backfill_cursor = next_cursor
-            else:
-                # End of chain or malformed pager. Do not keep inventing pages.
-                backfill_advance_cursor = ""
-                backfill_cursor = ""
-                break
-        except Exception as e:
-            errors.append(f"backfill {i + 1}: {e}")
-            backfill_failed = True
-            break
-        if i < EH_BACKFILL_PAGES - 1:
-            time.sleep(3.2)
-
-    items: list[dict] = []
+    all_items: list[dict] = []
     metadata_ok = True
     if refs:
         try:
-            items = _metadata(session, refs)
+            all_items = _metadata(session, refs)
         except Exception as e:
             errors.append(f"gdata: {e}")
             metadata_ok = False
 
+    # Important: global newest is only a discovery mechanism. We still keep the
+    # library Japanese-only by requiring the gdata language tag before return.
+    items = [x for x in all_items if str(x.get("language") or "").lower() == "japanese"]
+    latest_japanese_found = sum(1 for x in items if str(x.get("source_id") or "") in latest_gid_set)
+    latest_metadata_found = sum(1 for x in all_items if str(x.get("source_id") or "") in latest_gid_set)
+    backfill_japanese_found = sum(1 for x in items if str(x.get("source_id") or "") in backfill_gid_set)
+
     new_state = dict(state)
-    # Retire the unsafe numeric paging state only after this revision ran.
     new_state.pop("backfill_page", None)
     if metadata_ok and backfill_pages_fetched > 0 and not backfill_failed:
         if backfill_advance_cursor:
             new_state["backfill_next"] = backfill_advance_cursor
+            new_state.pop("backfill_exhausted", None)
         else:
             new_state.pop("backfill_next", None)
             new_state["backfill_exhausted"] = True
@@ -316,12 +342,21 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
 
     status = {
         "status": "ok" if items else ("error" if errors else "empty"),
-        "pagination_mode": "next-cursor",
+        "pagination_mode": "global-latest+japanese-next-cursor",
+        "latest_mode": "global-feed+gdata-language-filter",
+        "backfill_mode": "japanese-search-next-cursor",
         "discovered": len(refs),
+        "metadata_resolved": len(all_items),
+        "japanese_items": len(items),
         "accepted_raw": len(items),
         "latest_pages_fetched": latest_pages_fetched,
+        "latest_global_discovered": len(latest_gid_set),
+        "latest_metadata_found": latest_metadata_found,
+        "latest_japanese_found": latest_japanese_found,
+        "latest_non_japanese_skipped": max(0, latest_metadata_found - latest_japanese_found),
         "backfill_pages_requested": EH_BACKFILL_PAGES,
         "backfill_pages_fetched": backfill_pages_fetched,
+        "backfill_japanese_found": backfill_japanese_found,
         "backfill_cursor_before": backfill_cursor_before,
         "backfill_cursor_after": str(new_state.get("backfill_next") or ""),
         "legacy_backfill_page_ignored": legacy_backfill_page if legacy_backfill_page is not None else "",
