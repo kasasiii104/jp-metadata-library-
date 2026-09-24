@@ -1,7 +1,8 @@
 import os
+import re
 import time
 from typing import Any
-from urllib.parse import urljoin
+from urllib.parse import quote_plus, urljoin
 
 import requests
 
@@ -183,8 +184,53 @@ def _best_thumbnail_url(raw: dict) -> str:
     return candidates[0][1] if candidates else ""
 
 
+
+
+def _find_real_gallery_url(value: Any) -> str:
+    """Return an actual 3Hentai gallery URL found in the API payload.
+
+    Do not synthesize /d/<generic id>: Jandapress search payloads may contain
+    numeric IDs that are not the public 3Hentai gallery id.
+    """
+    found: list[str] = []
+
+    def scan(v: Any):
+        if isinstance(v, str):
+            text = v.strip()
+            # Absolute, protocol-relative and relative gallery links.
+            m = re.search(r"(?:(?:https?:)?//(?:[a-z0-9-]+\.)?3hentai\.net)?(/d/\d+)(?:[/#?]|$)", text, re.I)
+            if m:
+                if text.startswith("//"):
+                    found.append("https:" + text)
+                elif text.startswith(("http://", "https://")):
+                    found.append(text)
+                else:
+                    found.append(urljoin(SOURCE_BASE, m.group(1)))
+        elif isinstance(v, dict):
+            # Link-ish fields first, then recurse through the rest.
+            for k in ("url", "link", "href", "source_url", "path", "permalink"):
+                if k in v:
+                    scan(v[k])
+            for k, vv in v.items():
+                if k not in {"url", "link", "href", "source_url", "path", "permalink"}:
+                    scan(vv)
+        elif isinstance(v, (list, tuple, set)):
+            for vv in v:
+                scan(vv)
+
+    scan(value)
+    return found[0] if found else ""
+
 def _normalize(raw: dict, *, assumed_japanese: bool = False) -> dict | None:
-    ident = _first(raw, "id", "gallery_id", "galleryId", "book", "source_id", "gid")
+    # Jandapress search payloads may expose internal/nested numeric IDs.
+    # Only a real /d/<id> link found in the payload is trusted as a direct
+    # 3Hentai gallery URL. Never fabricate /d/<generic-id>.
+    source_url = _find_real_gallery_url(raw)
+    url_match = re.search(r"/d/(\d+)(?:/|$|[?#])", source_url or "", re.I)
+
+    ident = url_match.group(1) if url_match else _first(
+        raw, "gallery_id", "galleryId", "book", "source_id", "gid", "id"
+    )
     title = _first(raw, "title", "name", "pretty", "english", "japanese")
     if ident is None or not title:
         return None
@@ -192,6 +238,12 @@ def _normalize(raw: dict, *, assumed_japanese: bool = False) -> dict | None:
     sid = _clean(ident)
     title = _clean(title)
     title_jp = _clean(_first(raw, "title_jp", "title_jpn", "japanese", "jp_title") or "")
+
+    # When the API gives no real gallery link, send the user to a 3Hentai
+    # title search instead of a likely-dead /d/<internal-id> URL.
+    source_url_kind = "direct" if source_url else "search"
+    if not source_url:
+        source_url = f"{SOURCE_BASE}/search?q={quote_plus(title)}"
 
     tags = []
     for k in ("tags", "tag", "artists", "artist", "groups", "group", "parodies", "parody", "characters", "character", "languages", "language"):
@@ -227,9 +279,7 @@ def _normalize(raw: dict, *, assumed_japanese: bool = False) -> dict | None:
     popularity = _num(_first(raw, "views", "favorites", "favourites", "popularity", "likes"))
     posted = _clean(_first(raw, "posted_at", "posted", "date", "uploaded_at", "created_at") or "")
 
-    source_url = _pick_url(raw, "url", "link", "source_url", "href")
     thumbnail = _best_thumbnail_url(raw)
-
     category = _clean(_first(raw, "category", "type") or "")
 
     return {
@@ -237,6 +287,7 @@ def _normalize(raw: dict, *, assumed_japanese: bool = False) -> dict | None:
         "source": "3hentai",
         "source_id": sid,
         "source_url": source_url,
+        "source_url_kind": source_url_kind,
         "title": title,
         "title_jp": title_jp or (title if lang == "japanese" else ""),
         "language": lang,
@@ -252,7 +303,6 @@ def _normalize(raw: dict, *, assumed_japanese: bool = False) -> dict | None:
         "posted_at": posted,
         "thumbnail": thumbnail,
     }
-
 
 def _get_json(session: requests.Session, path: str, params: dict | None = None):
     url = f"{API_BASE}{path}"
@@ -349,13 +399,12 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     thumbs_found = 0
     thumbs_missing = 0
 
-    for sid, base_item in list(candidates.items())[:HENTAI3_MAX_GALLERIES_PER_RUN]:
-        detail, detail_info = _detail(session, sid)
-        item = detail or base_item
-        if detail is None:
-            detail_errors += 1
-            if len(detail_samples) < 5:
-                detail_samples.append(f"{sid}: {detail_info}")
+    # Do not call /3hentai/get for every search result.  On current 3Hentai
+    # data that endpoint can return 400 for fresh galleries, and dozens of
+    # sequential get calls also trigger 429 upstream.  Search is sufficient
+    # for discovery; thumbnails are resolved separately and slowly by the
+    # local cache step.
+    for sid, item in list(candidates.items())[:HENTAI3_MAX_GALLERIES_PER_RUN]:
         lang = item.get("language") or "missing"
         languages[lang] = languages.get(lang, 0) + 1
         if item.get("thumbnail"):
@@ -363,7 +412,6 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         else:
             thumbs_missing += 1
         items.append(item)
-        time.sleep(HENTAI3_DETAIL_SLEEP_SEC)
 
     new_state = dict(state)
     if items or candidates:
@@ -376,7 +424,12 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         "api_base": API_BASE,
         "jandapress_http": service_status,
         "search_key": SEARCH_KEY,
-        "detail_errors": detail_errors,
+        "detail_mode": "search-only",
+        "detail_errors": 0,
+        "source_urls_found": sum(1 for x in items if x.get("source_url")),
+        "direct_source_urls": sum(1 for x in items if x.get("source_url_kind") == "direct"),
+        "search_fallback_urls": sum(1 for x in items if x.get("source_url_kind") == "search"),
+        "source_url_samples": [f"{x.get('source_id')} [{x.get('source_url_kind')}]: {x.get('source_url')}" for x in items if x.get("source_url")][:5],
         "languages_detected": languages,
         "thumbnails_found": thumbs_found,
         "thumbnails_missing": thumbs_missing,

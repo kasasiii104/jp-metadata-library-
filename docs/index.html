@@ -13,14 +13,14 @@ button,input,select{font:inherit}header{position:sticky;top:0;z-index:20;backgro
 .chips{display:flex;gap:8px;overflow-x:auto;padding-top:10px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}.chip{white-space:nowrap;border:0;background:#282828;color:#fff;border-radius:9px;padding:8px 12px}.chip.on{background:#eee;color:#111}
 main{padding:14px 12px calc(90px + env(safe-area-inset-bottom))}.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.toolbar select{background:#1d1d1d;color:#fff;border:1px solid #333;border-radius:9px;padding:9px}.count{color:var(--muted);font-size:13px;margin-left:auto}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 10px}@media(min-width:720px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(min-width:1000px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}main{max-width:1500px;margin:auto}}@media(min-width:1400px){.grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
-.card{min-width:0}.thumb{position:relative;display:block;width:100%;aspect-ratio:3/4;background:#191919;border-radius:10px;overflow:hidden;border:0;padding:0}.thumb img{width:100%;height:100%;object-fit:cover;display:block}.ph{display:flex;align-items:center;justify-content:center;width:100%;height:100%;color:#777;font-size:12px}.source{position:absolute;left:6px;top:6px;max-width:78%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:rgba(0,0,0,.78);padding:3px 6px;border-radius:5px;font-size:10px}.dupe{position:absolute;left:6px;bottom:6px;background:rgba(0,0,0,.78);padding:3px 6px;border-radius:5px;font-size:10px}.favmark{position:absolute;right:6px;top:6px;background:rgba(0,0,0,.75);padding:3px 6px;border-radius:5px;font-size:12px}.body{position:relative;padding:8px 32px 0 2px}.title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:#fff;text-decoration:none;font-size:14px;font-weight:650;line-height:1.35}.meta{margin:4px 0 0;color:var(--muted);font-size:11px;line-height:1.4}.more{position:absolute;right:0;top:0;width:34px;height:34px;border:0;background:transparent;color:#aaa;font-size:20px}.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:50px 0}
+.card{min-width:0}.thumb{position:relative;display:block;width:100%;aspect-ratio:3/4;background:#191919;border-radius:10px;overflow:hidden;border:0;padding:0}.thumb img{width:100%;height:100%;object-fit:cover;display:block}.ph{display:flex;align-items:center;justify-content:center;width:100%;height:100%;color:#777;font-size:12px}.source{position:absolute;left:6px;top:6px;max-width:78%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:rgba(0,0,0,.78);padding:3px 6px;border-radius:5px;font-size:10px}.dupe{position:absolute;left:6px;bottom:6px;background:rgba(0,0,0,.78);padding:3px 6px;border-radius:5px;font-size:10px}.favmark{position:absolute;right:6px;top:6px;background:rgba(0,0,0,.75);padding:3px 6px;border-radius:5px;font-size:12px}.body{position:relative;padding:8px 32px 0 2px}.title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:#fff;text-decoration:none;font-size:14px;font-weight:650;line-height:1.35}.meta{margin:4px 0 0;color:var(--muted);font-size:11px;line-height:1.4}.facetline{display:flex;gap:5px;overflow:hidden;margin-top:6px}.facet{display:inline-block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:#242424;border:1px solid #333;border-radius:999px;padding:3px 7px;color:#ccc;font-size:10px}.detailblock{padding:8px 12px;border-bottom:1px solid #2d2d2d}.detailtitle{font-size:11px;color:#888;margin-bottom:6px}.detailchips{display:flex;gap:6px;flex-wrap:wrap}.detailchips .facet{font-size:11px}.more{position:absolute;right:0;top:0;width:34px;height:34px;border:0;background:transparent;color:#aaa;font-size:20px}.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:50px 0}
 .sheet-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:50}.sheet-bg.on{display:block}.sheet{display:none;position:fixed;left:0;right:0;bottom:0;z-index:60;background:#202020;border-radius:16px 16px 0 0;padding:12px 14px calc(18px + env(safe-area-inset-bottom));max-height:75vh;overflow:auto}.sheet.on{display:block}.sheet:before{content:"";display:block;width:36px;height:4px;border-radius:5px;background:#555;margin:0 auto 12px}.sheet button,.sheet a{display:block;width:100%;min-height:48px;padding:12px;border:0;background:transparent;color:#fff;text-align:left;text-decoration:none;border-bottom:1px solid #2d2d2d}.source-status{font-size:12px;color:#bbb;line-height:1.5;margin-top:8px}.load{display:block;margin:20px auto 0;border:0;background:#2a2a2a;color:#fff;padding:12px 18px;border-radius:10px}
 </style>
 </head>
 <body>
 <header>
   <div class="top"><div class="brand">日本語メタデータ</div><div id="status" class="status">読み込み中…</div></div>
-  <div class="search"><input id="q" type="search" placeholder="タイトル・作者・原作・タグで検索" autocomplete="off"><button id="favBtn" class="btn" type="button">★</button></div>
+  <div class="search"><input id="q" type="search" placeholder="タイトル・作者・グループ・作品・タグで検索" autocomplete="off"><button id="favBtn" class="btn" type="button">★</button></div>
   <div id="sourceChips" class="chips">
     <button class="chip on" data-source="all">すべて</button>
     <button class="chip" data-source="ehentai">E-Hentai</button>
@@ -32,6 +32,8 @@ main{padding:14px 12px calc(90px + env(safe-area-inset-bottom))}.toolbar{display
   <div class="toolbar">
     <select id="sort"><option value="new">新着順</option><option value="rating">評価順</option><option value="pages">ページ数順</option><option value="pop">人気指標順</option></select>
     <select id="category"><option value="">全カテゴリ</option></select>
+    <select id="facetKind"><option value="">メタ情報</option><option value="artists">アーティスト</option><option value="groups">グループ</option><option value="works">作品・原作</option><option value="characters">キャラクター</option><option value="tags">タグ</option></select>
+    <select id="facetValue" disabled><option value="">すべて</option></select>
     <select id="pages"><option value="0">ページ数すべて</option><option value="20">20ページ以上</option><option value="40">40ページ以上</option><option value="80">80ページ以上</option></select>
     <span id="count" class="count"></span>
   </div>
@@ -50,6 +52,15 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 function safeUrl(u){try{const x=new URL(String(u||''),location.href);return /^https?:$/.test(x.protocol)?x.href:''}catch{return''}}
 function saveSet(k,s){localStorage.setItem(k,JSON.stringify([...s]))}
 function sourceLabel(s){return ({ehentai:'E-Hentai',hitomi:'Hitomi','3hentai':'3Hentai'})[s]||s}
+function sourceWorkUrl(m){
+  if(m?.source==='3hentai'){
+    const direct=safeUrl(m.source_url);
+    if(m.source_url_kind==='direct'&&direct)return direct;
+    const q=String(m.title_jp||m.title||'').trim();
+    return q?`https://3hentai.net/search?q=${encodeURIComponent(q)}`:'https://3hentai.net/';
+  }
+  return safeUrl(m?.source_url);
+}
 function titleOf(x){return x.title_jp||x.title||`${x.source}:${x.source_id}`}
 function relative(v){const t=Date.parse(v||'');if(!Number.isFinite(t))return'';const d=Math.max(0,Date.now()-t),days=Math.floor(d/86400000);if(days<1)return'今日';if(days<7)return`${days}日前`;return new Date(t).toLocaleDateString('ja-JP')}
 function dateScore(x){const v=x.posted_at||x.first_seen||'';const n=Date.parse(v);return Number.isFinite(n)?n:0}
@@ -74,8 +85,10 @@ function collapseGroups(items){
     primary.artists=uniq(members.flatMap(x=>x.artists||[]));
     primary.groups=uniq(members.flatMap(x=>x.groups||[]));
     primary.parodies=uniq(members.flatMap(x=>x.parodies||[]));
+    primary.works=uniq(members.flatMap(x=>x.works||x.parodies||[]));
     primary.characters=uniq(members.flatMap(x=>x.characters||[]));
     primary.tags=uniq(members.flatMap(x=>x.tags||[]));
+    primary.meta_tags=uniq(members.flatMap(x=>x.meta_tags||[]));
     primary.pages=Math.max(...members.map(x=>Number(x.pages||0)),0);
     primary.duplicate_count=members.length;
     // Migrate old favorites/hidden entries from source-specific UIDs to group IDs.
@@ -86,32 +99,40 @@ function collapseGroups(items){
   saveSet('meta_favorites',favs); saveSet('meta_hidden',hidden);
   return out;
 }
-function searchable(x){return x._members.map(m=>[m.title,m.title_jp,m.category,...(m.artists||[]),...(m.groups||[]),...(m.parodies||[]),...(m.characters||[]),...(m.tags||[])].join(' ')).join(' ').toLowerCase()}
+function worksOf(x){return uniq([...(x.works||[]),...(x.parodies||[])])}
+function searchable(x){return x._members.map(m=>[m.title,m.title_jp,m.category,...(m.artists||[]),...(m.groups||[]),...worksOf(m),...(m.characters||[]),...(m.tags||[]),...(m.meta_tags||[])].join(' ')).join(' ').toLowerCase()}
+function fieldValues(x,key){if(key==='works')return worksOf(x);return x[key]||[]}
+function facetSummary(x){const vals=[];if(x.artists?.[0])vals.push(`作者 ${x.artists[0]}`);if(x.groups?.[0])vals.push(`G ${x.groups[0]}`);const w=worksOf(x)[0];if(w)vals.push(`作品 ${w}`);return vals.slice(0,2)}
 function metaLine(x){const a=[];if(x.rating!=null&&Number(x.rating)>0)a.push(`★${Number(x.rating).toFixed(2).replace(/0+$/,'').replace(/\.$/,'')}`);if(x.popularity!=null&&Number(x.popularity)>0)a.push(`人気 ${Number(x.popularity).toLocaleString()}`);if(x.pages)a.push(`${x.pages}p`);if(x.posted_at)a.push(relative(x.posted_at));return a.join(' ・ ')}
 function card(x){
-  const thumb=safeUrl(x.thumbnail),url=safeUrl(x.source_url),id=x._groupId;
+  const thumb=safeUrl(x.thumbnail),url=sourceWorkUrl(x),id=x._groupId;
   const labels=x._sources.map(sourceLabel).join(' / ');
   const dup=x.duplicate_count>1?`<span class="dupe">同一作品 ${x.duplicate_count}ソース</span>`:'';
-  return `<article class="card" data-uid="${esc(id)}"><a class="thumb" href="${esc(url||'#')}" target="_blank" rel="noopener noreferrer">${thumb?`<img src="${esc(thumb)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',textContent:'サムネイルなし'}))">`:`<div class="ph">サムネイルなし</div>`}<span class="source">${esc(labels)}</span>${dup}${favs.has(id)?'<span class="favmark">★</span>':''}</a><div class="body"><a class="title" href="${esc(url||'#')}" target="_blank" rel="noopener noreferrer">${esc(titleOf(x))}</a><p class="meta">${esc((x.artists||[]).slice(0,2).join(' / ')||x.category||'')}</p><p class="meta">${esc(metaLine(x))}</p><button class="more" type="button" data-more="${esc(id)}">⋮</button></div></article>`
+  const facets=facetSummary(x).map(v=>`<span class="facet">${esc(v)}</span>`).join('');
+  return `<article class="card" data-uid="${esc(id)}"><a class="thumb" href="${esc(url||'#')}" target="_blank" rel="noopener noreferrer">${thumb?`<img src="${esc(thumb)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',textContent:'サムネイルなし'}))">`:`<div class="ph">サムネイルなし</div>`}<span class="source">${esc(labels)}</span>${dup}${favs.has(id)?'<span class="favmark">★</span>':''}</a><div class="body"><a class="title" href="${esc(url||'#')}" target="_blank" rel="noopener noreferrer">${esc(titleOf(x))}</a>${facets?`<div class="facetline">${facets}</div>`:''}<p class="meta">${esc(metaLine(x))}</p><button class="more" type="button" data-more="${esc(id)}">⋮</button></div></article>`
 }
 function apply(){
-  const q=$('#q').value.trim().toLowerCase(),cat=$('#category').value,minPages=Number($('#pages').value||0),sort=$('#sort').value;
+  const q=$('#q').value.trim().toLowerCase(),cat=$('#category').value,minPages=Number($('#pages').value||0),sort=$('#sort').value,facetKind=$('#facetKind').value,facetValue=$('#facetValue').value;
   let arr=state.items.filter(x=>!hidden.has(x._groupId));
   if(state.source!=='all')arr=arr.filter(x=>x._sources.includes(state.source));
   if(state.favoritesOnly)arr=arr.filter(x=>favs.has(x._groupId));
   if(q)arr=arr.filter(x=>searchable(x).includes(q));
   if(cat)arr=arr.filter(x=>x._categories.includes(cat));
+  if(facetKind&&facetValue)arr=arr.filter(x=>fieldValues(x,facetKind).includes(facetValue));
   if(minPages)arr=arr.filter(x=>Number(x.pages||0)>=minPages);
   arr.sort((a,b)=>sort==='rating'?(Number(b.rating||-1)-Number(a.rating||-1))||dateScore(b)-dateScore(a):sort==='pages'?(Number(b.pages||0)-Number(a.pages||0))||dateScore(b)-dateScore(a):sort==='pop'?(Number(b.popularity||-1)-Number(a.popularity||-1))||dateScore(b)-dateScore(a):dateScore(b)-dateScore(a));
   state.filtered=arr;state.shown=INITIAL;render();
 }
 function render(){const list=state.filtered.slice(0,state.shown);$('#grid').innerHTML=list.length?list.map(card).join(''):'<div class="empty">該当作品がありません</div>';$('#count').textContent=`${state.filtered.length.toLocaleString()}作品`;$('#loadMore').hidden=state.shown>=state.filtered.length}
+function refreshFacetValues(){const kind=$('#facetKind').value,sel=$('#facetValue');sel.innerHTML='<option value="">すべて</option>';if(!kind){sel.disabled=true;return}const counts=new Map();for(const x of state.items)for(const v of fieldValues(x,kind)){if(v)counts.set(v,(counts.get(v)||0)+1)}const vals=[...counts].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],'ja')).slice(0,500);for(const [v,n] of vals){const o=document.createElement('option');o.value=v;o.textContent=`${v} (${n})`;sel.appendChild(o)}sel.disabled=false}
+function detailBlock(label,values){values=uniq(values||[]);if(!values.length)return'';return `<div class="detailblock"><div class="detailtitle">${esc(label)}</div><div class="detailchips">${values.slice(0,24).map(v=>`<span class="facet">${esc(v)}</span>`).join('')}</div></div>`}
 function menu(id){
   const x=state.items.find(i=>i._groupId===id);if(!x)return;
   const sheet=$('#sheet');
-  const links=x._members.map(m=>`<a href="${esc(safeUrl(m.source_url)||'#')}" target="_blank" rel="noopener noreferrer">${esc(sourceLabel(m.source))}で見る</a>`).join('');
+  const links=x._members.map(m=>`<a href="${esc(sourceWorkUrl(m)||'#')}" target="_blank" rel="noopener noreferrer">${esc(sourceLabel(m.source))}${m.source==='3hentai'&&m.source_url_kind!=='direct'?'で検索':'で見る'}</a>`).join('');
   const info=x.duplicate_count>1?`<div style="padding:8px 12px;color:#aaa;font-size:12px">同一作品として ${x.duplicate_count} 件をまとめています：${esc(x._sources.map(sourceLabel).join(' / '))}</div>`:'';
-  sheet.innerHTML=`${info}<button data-act="fav">${favs.has(id)?'お気に入りから外す':'お気に入りに追加'}</button><button data-act="hide">この作品を非表示</button>${links}`;
+  const details=detailBlock('アーティスト',x.artists)+detailBlock('グループ',x.groups)+detailBlock('作品・原作',worksOf(x))+detailBlock('キャラクター',x.characters)+detailBlock('タグ',(x.tags||[]).map(t=>String(t).replace(/^(?:artist|group|parody|character|language):/i,'')));
+  sheet.innerHTML=`${info}${details}<button data-act="fav">${favs.has(id)?'お気に入りから外す':'お気に入りに追加'}</button><button data-act="hide">この作品を非表示</button>${links}`;
   $('#sheetBg').classList.add('on');sheet.classList.add('on');
   sheet.querySelector('[data-act="fav"]').onclick=()=>{favs.has(id)?favs.delete(id):favs.add(id);saveSet('meta_favorites',favs);closeSheet();apply()};
   sheet.querySelector('[data-act="hide"]').onclick=()=>{hidden.add(id);saveSet('meta_hidden',hidden);closeSheet();apply()};
@@ -123,10 +144,11 @@ async function init(){try{
   const reduced=state.rawCount-state.items.length;
   $('#status').textContent=`更新 ${new Date(data.updated_at).toLocaleString('ja-JP')} ・ ${state.items.length.toLocaleString()}作品${reduced>0?`（重複${reduced.toLocaleString()}件統合）`:''}`;
   const cats=[...new Set(state.items.flatMap(x=>x._categories).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ja'));for(const c of cats){const o=document.createElement('option');o.value=c;o.textContent=c;$('#category').appendChild(o)}
+  refreshFacetValues();
   const parts=['ehentai','hitomi','3hentai'].map(k=>{const s=status[k]||{};const tc=s.thumbnail_cache;return `${sourceLabel(k)}: ${s.status||'不明'}${s.accepted!=null?` ${s.accepted}件`:''}${tc?` / サムネ ${Number(tc.cached||0)+Number(tc.reused||0)}件`:''}`});$('#sourceStatus').textContent=parts.join(' / ');
   apply();
 }catch(e){$('#status').textContent='データ読み込み失敗';$('#grid').innerHTML='<div class="empty">data.jsonを読み込めませんでした。</div>'}}
-$('#q').addEventListener('input',apply);$('#sort').addEventListener('change',apply);$('#category').addEventListener('change',apply);$('#pages').addEventListener('change',apply);$('#loadMore').onclick=()=>{state.shown+=STEP;render()};$('#favBtn').onclick=()=>{state.favoritesOnly=!state.favoritesOnly;$('#favBtn').textContent=state.favoritesOnly?'★のみ':'★';apply()};$$('[data-source]').forEach(b=>b.onclick=()=>{$$('[data-source]').forEach(x=>x.classList.remove('on'));b.classList.add('on');state.source=b.dataset.source;apply()});document.addEventListener('click',e=>{const b=e.target.closest('[data-more]');if(b){e.preventDefault();menu(b.dataset.more)}});$('#sheetBg').onclick=closeSheet;init();
+$('#q').addEventListener('input',apply);$('#sort').addEventListener('change',apply);$('#category').addEventListener('change',apply);$('#facetKind').addEventListener('change',()=>{refreshFacetValues();apply()});$('#facetValue').addEventListener('change',apply);$('#pages').addEventListener('change',apply);$('#loadMore').onclick=()=>{state.shown+=STEP;render()};$('#favBtn').onclick=()=>{state.favoritesOnly=!state.favoritesOnly;$('#favBtn').textContent=state.favoritesOnly?'★のみ':'★';apply()};$$('[data-source]').forEach(b=>b.onclick=()=>{$$('[data-source]').forEach(x=>x.classList.remove('on'));b.classList.add('on');state.source=b.dataset.source;apply()});document.addEventListener('click',e=>{const b=e.target.closest('[data-more]');if(b){e.preventDefault();menu(b.dataset.more)}});$('#sheetBg').onclick=closeSheet;init();
 </script>
 </body>
 </html>

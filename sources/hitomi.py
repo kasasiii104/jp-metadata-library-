@@ -358,6 +358,11 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         "thumbnails_found": thumbnails_found,
         "thumbnails_missing": max(0, len(items) - thumbnails_found),
         "thumbnail_samples": thumbnail_samples,
+        "artists_found": sum(1 for x in items if x.get("artists")),
+        "groups_found": sum(1 for x in items if x.get("groups")),
+        "works_found": sum(1 for x in items if x.get("parodies")),
+        "characters_found": sum(1 for x in items if x.get("characters")),
+        "tagged_items": sum(1 for x in items if x.get("tags")),
         "index_url": (preferred_base or RESOURCE_BASES[0]) + INDEX_PATH,
         "message": " | ".join(errors[:3]),
     }

@@ -43,6 +43,22 @@ BLOCK_TAGS = {
     "corpse",
 }
 
+# Insect / bug-like content requested to be excluded from the library.
+# Matching is applied to normalized content tags and selected Japanese/English
+# keywords before an item is saved. Existing matching rows are purged too.
+BLOCK_INSECT_TAGS = {
+    "insect", "insects", "insect girl", "insect girls", "insectoid",
+    "bug", "bugs", "bug girl", "bug girls", "arthropod", "arthropods",
+    "spider", "spiders", "cockroach", "cockroaches", "roach", "roaches",
+    "centipede", "centipedes", "millipede", "millipedes",
+    "maggot", "maggots", "larva", "larvae", "caterpillar", "caterpillars",
+    "beetle", "beetles", "moth", "moths", "mosquito", "mosquitoes",
+    "parasite", "parasites", "parasitism", "worm", "worms",
+    "昆虫", "虫", "蟲", "虫系", "蟲系", "昆虫系", "蜘蛛", "クモ",
+    "ゴキブリ", "ムカデ", "ヤスデ", "蛆", "ウジ", "幼虫", "芋虫",
+    "寄生虫", "寄生",
+}
+
 BLOCK_FULL_TAGS = {
     "male:yaoi",
     "male:boys love",

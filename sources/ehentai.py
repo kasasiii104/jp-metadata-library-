@@ -134,6 +134,11 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         "status": "ok" if items else ("error" if errors else "empty"),
         "discovered": len(unique_refs),
         "accepted_raw": len(items),
+        "artists_found": sum(1 for x in items if x.get("artists")),
+        "groups_found": sum(1 for x in items if x.get("groups")),
+        "works_found": sum(1 for x in items if x.get("parodies")),
+        "characters_found": sum(1 for x in items if x.get("characters")),
+        "tagged_items": sum(1 for x in items if x.get("tags")),
         "message": " | ".join(errors[:3]),
     }
     return items, new_state, status

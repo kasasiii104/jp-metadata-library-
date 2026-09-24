@@ -11,6 +11,7 @@ from typing import Any
 from config import (
     ALLOWED_LANGUAGES,
     BLOCK_FULL_TAGS,
+    BLOCK_INSECT_TAGS,
     BLOCK_TAGS,
     DATA_FILE,
     DOCS_DIR,
@@ -30,6 +31,7 @@ RETIRED_SOURCES = {"pururin", "nharchive", "nhentai"}
 
 NORMALIZED_BLOCK_TAGS = {normalize_tag(x) for x in BLOCK_TAGS}
 NORMALIZED_BLOCK_FULL_TAGS = {normalize_full_tag(x) for x in BLOCK_FULL_TAGS}
+NORMALIZED_INSECT_TAGS = {normalize_tag(x) for x in BLOCK_INSECT_TAGS}
 ALLOWED_LANGUAGE_SET = {str(x).lower() for x in ALLOWED_LANGUAGES}
 
 
@@ -61,6 +63,38 @@ def normalized_language(value: str) -> str:
     return "japanese" if v in ALLOWED_LANGUAGE_SET else v
 
 
+def _insect_tag_match(value: str) -> str:
+    full = normalize_full_tag(value)
+    base = normalize_tag(full.split(":", 1)[-1])
+    if not base:
+        return ""
+    if base in NORMALIZED_INSECT_TAGS:
+        return base
+    # E-Hentai/Hitomi occasionally use compound labels such as
+    # "insect impregnation" or "giant spider". Match whole English tokens
+    # and Japanese substrings, but never scan artist/group names.
+    for term in NORMALIZED_INSECT_TAGS:
+        if not term:
+            continue
+        if re.search(r"[ぁ-んァ-ン一-龯々〆ヵヶ蟲]", term):
+            if term in base:
+                return term
+        elif re.search(rf"(?:^|\s){re.escape(term)}(?:$|\s)", base):
+            return term
+    return ""
+
+
+def insect_block_reason(item: dict[str, Any]) -> str:
+    candidates: list[str] = list(item.get("tags") or [])
+    if item.get("category"):
+        candidates.append(str(item.get("category") or ""))
+    for raw in candidates:
+        match = _insect_tag_match(str(raw))
+        if match:
+            return f"blocked:insect:{match}"
+    return ""
+
+
 def blocked_reason(item: dict[str, Any]) -> str:
     if normalized_language(item.get("language", "")) != "japanese":
         return "language"
@@ -77,10 +111,28 @@ def blocked_reason(item: dict[str, Any]) -> str:
             return f"blocked:{full}"
         if base in NORMALIZED_BLOCK_TAGS:
             return f"blocked:{base}"
+
+    insect = insect_block_reason(item)
+    if insect:
+        return insect
     return ""
 
 
+def _meta_tags(artists: list[str], groups: list[str], works: list[str], characters: list[str]) -> list[str]:
+    return unique_strings(
+        [f"artist:{x}" for x in artists]
+        + [f"group:{x}" for x in groups]
+        + [f"work:{x}" for x in works]
+        + [f"character:{x}" for x in characters]
+    )
+
+
 def clean_item(item: dict[str, Any], stamp: str) -> dict[str, Any]:
+    artists = unique_strings(item.get("artists") or [])
+    groups = unique_strings(item.get("groups") or [])
+    parodies = unique_strings(item.get("parodies") or item.get("works") or [])
+    works = unique_strings(item.get("works") or parodies)
+    characters = unique_strings(item.get("characters") or [])
     return {
         "uid": str(item.get("uid") or ""),
         "source": str(item.get("source") or ""),
@@ -91,11 +143,13 @@ def clean_item(item: dict[str, Any], stamp: str) -> dict[str, Any]:
         "title_jp": str(item.get("title_jp") or "").strip(),
         "language": normalized_language(item.get("language", "")),
         "category": str(item.get("category") or "").strip(),
-        "artists": unique_strings(item.get("artists") or []),
-        "groups": unique_strings(item.get("groups") or []),
-        "parodies": unique_strings(item.get("parodies") or []),
-        "characters": unique_strings(item.get("characters") or []),
+        "artists": artists,
+        "groups": groups,
+        "parodies": parodies,
+        "works": works,
+        "characters": characters,
         "tags": unique_strings(item.get("tags") or []),
+        "meta_tags": _meta_tags(artists, groups, works, characters),
         "pages": int(item.get("pages") or 0),
         "rating": item.get("rating") if isinstance(item.get("rating"), (int, float)) else None,
         "popularity": item.get("popularity") if isinstance(item.get("popularity"), (int, float)) else None,
@@ -105,6 +159,25 @@ def clean_item(item: dict[str, Any], stamp: str) -> dict[str, Any]:
         "last_seen": stamp,
     }
 
+
+
+
+def upgrade_item_schema(item: dict[str, Any]) -> dict[str, Any]:
+    """Backfill structured metadata tags for rows saved by older revisions."""
+    out = dict(item)
+    artists = unique_strings(out.get("artists") or [])
+    groups = unique_strings(out.get("groups") or [])
+    parodies = unique_strings(out.get("parodies") or out.get("works") or [])
+    works = unique_strings(out.get("works") or parodies)
+    characters = unique_strings(out.get("characters") or [])
+    out["artists"] = artists
+    out["groups"] = groups
+    out["parodies"] = parodies
+    out["works"] = works
+    out["characters"] = characters
+    out["tags"] = unique_strings(out.get("tags") or [])
+    out["meta_tags"] = _meta_tags(artists, groups, works, characters)
+    return out
 
 def merge_item(old: dict[str, Any] | None, new: dict[str, Any], stamp: str) -> dict[str, Any]:
     if not old:
@@ -247,10 +320,20 @@ def main() -> int:
 
     data = load_json(DATA_FILE, {"items": []})
     existing_items = [
-        x for x in data.get("items", [])
+        upgrade_item_schema(x) for x in data.get("items", [])
         if isinstance(x, dict) and x.get("uid") and x.get("source") not in RETIRED_SOURCES
     ]
-    existing = {x["uid"]: x for x in existing_items}
+    # New exclusion rules also apply to retained data, so old insect/bug rows
+    # disappear on the first run after this revision rather than waiting until
+    # they happen to be rediscovered.
+    retained_items: list[dict[str, Any]] = []
+    purged_existing_insect = 0
+    for item in existing_items:
+        if insect_block_reason(item):
+            purged_existing_insect += 1
+            continue
+        retained_items.append(item)
+    existing = {x["uid"]: x for x in retained_items}
 
     state = load_json(STATE_FILE, {})
     status_store = load_json(STATUS_FILE, {})
@@ -326,9 +409,15 @@ def main() -> int:
         "item_count": len(items),
         "duplicate_group_count": duplicate_group_count,
         "duplicate_item_count": duplicate_item_count,
+        "purged_existing_insect": purged_existing_insect,
         "items": items,
     })
     save_json(STATE_FILE, state)
+    status_store["filters"] = {
+        "insect_filter": "enabled",
+        "insect_terms": len(NORMALIZED_INSECT_TAGS),
+        "purged_existing_insect": purged_existing_insect,
+    }
     save_json(STATUS_FILE, {**status_store, "updated_at": stamp})
 
     print(f"done: raw={total_raw}, accepted={total_accepted}, total={len(items)}, duplicate_groups={duplicate_group_count}")
