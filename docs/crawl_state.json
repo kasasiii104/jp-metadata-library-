@@ -1,14 +1,14 @@
 {
   "ehentai": {
-    "backfill_next": "4044619"
+    "backfill_next": "4008955"
   },
   "hitomi": {
     "resource_base": "https://ltn.gold-usergeneratedcontent.net",
-    "backfill_offset": 2190,
+    "backfill_offset": 2250,
     "backfill_complete": false
   },
   "3hentai": {
     "browse_mode": "browse-query-page",
-    "backfill_page": 91
+    "backfill_page": 94
   }
 }
