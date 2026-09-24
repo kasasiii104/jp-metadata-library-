@@ -13,7 +13,7 @@ USER_AGENT = "Japanese-Metadata-Library/1.6 (+GitHub Actions; metadata-only)"
 # E-Hentai: latest + historical backfill every run.
 EH_LATEST_PAGES = int(os.environ.get("EH_LATEST_PAGES", "2"))
 EH_BACKFILL_PAGES = int(os.environ.get("EH_BACKFILL_PAGES", "4"))
-EH_MAX_GALLERIES_PER_RUN = int(os.environ.get("EH_MAX_GALLERIES_PER_RUN", "100"))
+EH_MAX_GALLERIES_PER_RUN = int(os.environ.get("EH_MAX_GALLERIES_PER_RUN", "150"))
 
 # Hitomi: binary Japanese Nozomi index, fetched by byte range.
 HITOMI_LATEST_LIMIT = int(os.environ.get("HITOMI_LATEST_LIMIT", "30"))

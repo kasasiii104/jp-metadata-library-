@@ -221,6 +221,64 @@ def _find_real_gallery_url(value: Any) -> str:
     scan(value)
     return found[0] if found else ""
 
+
+
+def _debug_search_object(raw: dict) -> dict:
+    """Return a compact, non-destructive view of one Jandapress search item.
+
+    This is written to source_status.json only for a few samples so we can
+    see where 3Hentai keeps its public gallery URL / thumbnail fields without
+    dumping the full upstream payload.
+    """
+    urls: list[str] = []
+    image_like_values: list[str] = []
+    all_keys: list[str] = []
+    seen_keys: set[str] = set()
+
+    image_words = ("thumb", "thumbnail", "cover", "image", "img", "preview", "poster", "picture", "media", "page", "file")
+    image_exts = (".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif")
+
+    def add_unique(target: list[str], value: str, limit: int) -> None:
+        value = _clean(value)
+        if value and value not in target and len(target) < limit:
+            target.append(value[:1000])
+
+    def walk(v: Any, path: str = "") -> None:
+        if isinstance(v, dict):
+            for k, vv in v.items():
+                key_path = f"{path}.{k}" if path else str(k)
+                if key_path not in seen_keys and len(all_keys) < 100:
+                    seen_keys.add(key_path)
+                    all_keys.append(key_path)
+                if isinstance(vv, str):
+                    sv = _clean(vv)
+                    if sv.startswith(("http://", "https://", "//", "/")):
+                        add_unique(urls, f"{key_path}={sv}", 30)
+                    low = sv.lower().split("?", 1)[0]
+                    if any(word in str(k).lower() for word in image_words) or low.endswith(image_exts):
+                        add_unique(image_like_values, f"{key_path}={sv}", 30)
+                if isinstance(vv, (dict, list, tuple)):
+                    walk(vv, key_path)
+        elif isinstance(v, (list, tuple)):
+            for i, vv in enumerate(v[:30]):
+                walk(vv, f"{path}[{i}]")
+
+    walk(raw)
+    normalized = _normalize(raw, assumed_japanese=True) or {}
+    return {
+        "id_guess": _clean(_first(raw, "gallery_id", "galleryId", "book", "source_id", "gid", "id") or ""),
+        "title_guess": _clean(_first(raw, "title", "name", "pretty", "english", "japanese") or "")[:300],
+        "top_level_keys": list(raw.keys())[:60],
+        "all_keys": all_keys[:100],
+        "raw_urls": urls[:30],
+        "image_like_values": image_like_values[:30],
+        "real_gallery_url": _find_real_gallery_url(raw),
+        "best_thumbnail_url": _best_thumbnail_url(raw),
+        "normalized_source_id": normalized.get("source_id", ""),
+        "normalized_source_url_kind": normalized.get("source_url_kind", ""),
+        "normalized_source_url": normalized.get("source_url", ""),
+    }
+
 def _normalize(raw: dict, *, assumed_japanese: bool = False) -> dict | None:
     # Jandapress search payloads may expose internal/nested numeric IDs.
     # Only a real /d/<id> link found in the payload is trusted as a direct
@@ -346,6 +404,7 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     candidates: dict[str, dict] = {}
     search_debug: list[str] = []
     errors: list[str] = []
+    debug_raw_objects: list[dict] = []
 
     for page in pages:
         try:
@@ -357,6 +416,8 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
             found = _find_candidate_dicts(payload)
             search_debug.append(f"page={page} candidates={len(found)} url={final_url}")
             for obj in found:
+                if len(debug_raw_objects) < 3:
+                    debug_raw_objects.append(obj)
                 normalized = _normalize(obj, assumed_japanese=True)
                 if not normalized:
                     continue
@@ -382,6 +443,8 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
                 found = _find_candidate_dicts(payload)
                 search_debug.append(f"fallback={fallback_key!r} candidates={len(found)} url={final_url}")
                 for obj in found:
+                    if len(debug_raw_objects) < 3:
+                        debug_raw_objects.append(obj)
                     normalized = _normalize(obj, assumed_japanese=False)
                     if normalized:
                         candidates[normalized["source_id"]] = normalized
@@ -433,6 +496,8 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         "languages_detected": languages,
         "thumbnails_found": thumbs_found,
         "thumbnails_missing": thumbs_missing,
+        "3hentai_debug_samples": [_debug_search_object(x) for x in debug_raw_objects[:3]],
+        "debug_sample_count": min(3, len(debug_raw_objects)),
         "debug": " | ".join(search_debug[:8]),
         "message": " | ".join((errors + detail_samples)[:8]),
     }
