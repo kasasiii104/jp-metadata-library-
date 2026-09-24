@@ -4,29 +4,28 @@
     "discovered": 150,
     "accepted_raw": 150,
     "message": "",
-    "last_attempt": "2026-09-24T09:25:32+00:00",
-    "accepted": 137,
-    "blocked": 13,
+    "last_attempt": "2026-09-24T09:38:05+00:00",
+    "accepted": 142,
+    "blocked": 8,
     "blocked_reasons": {
       "blocked:torture": 2,
       "blocked:male:yaoi": 3,
-      "blocked:amputee": 3,
-      "blocked:snuff": 2,
-      "blocked:ryona": 1,
-      "blocked:insect:spider": 2
+      "blocked:amputee": 1,
+      "blocked:snuff": 1,
+      "blocked:corpse": 1
     },
-    "last_success": "2026-09-24T09:25:32+00:00",
-    "artists_found": 86,
-    "groups_found": 6,
-    "works_found": 137,
-    "characters_found": 101,
+    "last_success": "2026-09-24T09:38:05+00:00",
+    "artists_found": 115,
+    "groups_found": 5,
+    "works_found": 140,
+    "characters_found": 123,
     "tagged_items": 150,
     "pagination_mode": "next-cursor",
     "latest_pages_fetched": 2,
     "backfill_pages_requested": 4,
     "backfill_pages_fetched": 4,
-    "backfill_cursor_before": "4164074",
-    "backfill_cursor_after": "4105625",
+    "backfill_cursor_before": "4105625",
+    "backfill_cursor_after": "4085162",
     "legacy_backfill_page_ignored": "",
     "repeated_page_detected": false,
     "page_debug": [
@@ -54,48 +53,48 @@
       },
       {
         "stage": "backfill:1",
-        "requested_cursor": "4164074",
-        "final_url": "https://e-hentai.org/?f_search=language%3Ajapanese%24&next=4164074",
+        "requested_cursor": "4105625",
+        "final_url": "https://e-hentai.org/?f_search=language%3Ajapanese%24&next=4105625",
         "found_count": 25,
-        "first_gid": "4162784",
-        "last_gid": "4148685",
-        "next_cursor": "4148685",
+        "first_gid": "4105295",
+        "last_gid": "4094293",
+        "next_cursor": "4094293",
         "unique_new_count": 25,
         "repeated_page": false,
         "cap_blocked_page": false
       },
       {
         "stage": "backfill:2",
-        "requested_cursor": "4148685",
-        "final_url": "https://e-hentai.org/?f_search=language%3Ajapanese%24&next=4148685",
+        "requested_cursor": "4094293",
+        "final_url": "https://e-hentai.org/?f_search=language%3Ajapanese%24&next=4094293",
         "found_count": 25,
-        "first_gid": "4147986",
-        "last_gid": "4132306",
-        "next_cursor": "4132306",
+        "first_gid": "4093798",
+        "last_gid": "4088903",
+        "next_cursor": "4088903",
         "unique_new_count": 25,
         "repeated_page": false,
         "cap_blocked_page": false
       },
       {
         "stage": "backfill:3",
-        "requested_cursor": "4132306",
-        "final_url": "https://e-hentai.org/?f_search=language%3Ajapanese%24&next=4132306",
+        "requested_cursor": "4088903",
+        "final_url": "https://e-hentai.org/?f_search=language%3Ajapanese%24&next=4088903",
         "found_count": 25,
-        "first_gid": "4129198",
-        "last_gid": "4126895",
-        "next_cursor": "4126895",
+        "first_gid": "4087406",
+        "last_gid": "4087099",
+        "next_cursor": "4087099",
         "unique_new_count": 25,
         "repeated_page": false,
         "cap_blocked_page": false
       },
       {
         "stage": "backfill:4",
-        "requested_cursor": "4126895",
-        "final_url": "https://e-hentai.org/?f_search=language%3Ajapanese%24&next=4126895",
+        "requested_cursor": "4087099",
+        "final_url": "https://e-hentai.org/?f_search=language%3Ajapanese%24&next=4087099",
         "found_count": 25,
-        "first_gid": "4124431",
-        "last_gid": "4105625",
-        "next_cursor": "4105625",
+        "first_gid": "4087098",
+        "last_gid": "4085162",
+        "next_cursor": "4085162",
         "unique_new_count": 25,
         "repeated_page": false,
         "cap_blocked_page": false
@@ -115,17 +114,15 @@
     },
     "index_url": "https://ltn.gold-usergeneratedcontent.net/n/index-japanese.nozomi",
     "message": "",
-    "last_attempt": "2026-09-24T09:25:32+00:00",
-    "accepted": 78,
-    "blocked": 12,
+    "last_attempt": "2026-09-24T09:38:05+00:00",
+    "accepted": 83,
+    "blocked": 7,
     "blocked_reasons": {
-      "blocked:torture": 1,
-      "blocked:male:yaoi": 3,
-      "blocked:female:guro": 1,
-      "blocked:amputee": 6,
-      "blocked:insect:insect": 1
+      "blocked:torture": 2,
+      "blocked:male:yaoi": 4,
+      "blocked:female:guro": 1
     },
-    "last_success": "2026-09-24T09:25:32+00:00",
+    "last_success": "2026-09-24T09:38:05+00:00",
     "thumbnails_found": 90,
     "thumbnails_missing": 0,
     "thumbnail_samples": [
@@ -134,17 +131,17 @@
       "4209295: https://tn.hitomi.la/bigtn/2/cf/268246ebe47b159df51049b7f9a96b01ec204a2a27f8253ca56ea2631464ecf2.jpg"
     ],
     "thumbnail_cache": {
-      "attempted": 51,
-      "cached": 51,
-      "reused": 1802,
+      "attempted": 55,
+      "cached": 55,
+      "reused": 1853,
       "failed": 0,
       "pending": 0,
       "failures": []
     },
-    "artists_found": 50,
-    "groups_found": 26,
-    "works_found": 81,
-    "characters_found": 58,
+    "artists_found": 55,
+    "groups_found": 21,
+    "works_found": 72,
+    "characters_found": 45,
     "tagged_items": 83
   },
   "3hentai": {
@@ -165,13 +162,13 @@
     ],
     "thumbnails_found": 0,
     "thumbnails_missing": 60,
-    "debug": "page=1 candidates=21 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=1&sort=recent | page=2 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=2&sort=recent | page=82 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=82&sort=recent",
+    "debug": "page=1 candidates=21 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=1&sort=recent | page=2 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=2&sort=recent | page=85 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=85&sort=recent",
     "message": "",
-    "last_attempt": "2026-09-24T09:25:32+00:00",
+    "last_attempt": "2026-09-24T09:38:05+00:00",
     "accepted": 60,
     "blocked": 0,
     "blocked_reasons": {},
-    "last_success": "2026-09-24T09:25:32+00:00",
+    "last_success": "2026-09-24T09:38:05+00:00",
     "api_base": "http://127.0.0.1:3000",
     "jandapress_http": 200,
     "search_key": "language:japanese",
@@ -181,18 +178,18 @@
       "cached": 0,
       "reused": 0,
       "failed": 12,
-      "pending": 414,
+      "pending": 428,
       "rate_limited": false,
       "samples": [],
       "failures": [
-        "3713119: no image candidate",
-        "3713116: no image candidate",
-        "3713113: no image candidate",
-        "3713109: no image candidate",
-        "3713106: no image candidate",
-        "3713104: no image candidate",
-        "3713099: no image candidate",
-        "3713096: no image candidate"
+        "3712365: no image candidate",
+        "3712322: no image candidate",
+        "3712290: no image candidate",
+        "3712279: no image candidate",
+        "3712233: no image candidate",
+        "3712165: no image candidate",
+        "3712160: no image candidate",
+        "3712136: no image candidate"
       ]
     },
     "detail_mode": "search-only",
@@ -265,12 +262,108 @@
         "normalized_source_url": "https://3hentai.net/search?q=%28Kansai+Kemoket+11%29+%5BOnkou+Hakushiki+Otoko+Tokubetsu+Hogo-ku+%28Neocerapaima%29%5D+Puku+Tamago+Sanran+%28Dragon+Quest+X%29"
       }
     ],
-    "debug_sample_count": 3
+    "debug_sample_count": 3,
+    "get_probe_mode": "sample-only",
+    "3hentai_get_debug": [
+      {
+        "id": "3748004",
+        "http_status": 400,
+        "url": "http://127.0.0.1:3000/3hentai/get?book=3748004",
+        "content_type": "application/json",
+        "response_preview": "{\"success\":false,\"message\":\"Request failed with status 404 Not Found\"}",
+        "response_keys": [
+          "success",
+          "message"
+        ],
+        "raw_urls": [],
+        "image_like_values": [],
+        "real_gallery_url": "",
+        "best_thumbnail_url": "",
+        "response_type": "dict",
+        "top_level_keys": [
+          "success",
+          "message"
+        ],
+        "all_keys": [
+          "success",
+          "message"
+        ],
+        "candidate_objects": 0,
+        "normalized_source_id": "",
+        "normalized_source_url_kind": "",
+        "normalized_source_url": ""
+      },
+      {
+        "id": "3747994",
+        "http_status": 400,
+        "url": "http://127.0.0.1:3000/3hentai/get?book=3747994",
+        "content_type": "application/json",
+        "response_preview": "{\"success\":false,\"message\":\"Request failed with status 404 Not Found\"}",
+        "response_keys": [
+          "success",
+          "message"
+        ],
+        "raw_urls": [],
+        "image_like_values": [],
+        "real_gallery_url": "",
+        "best_thumbnail_url": "",
+        "response_type": "dict",
+        "top_level_keys": [
+          "success",
+          "message"
+        ],
+        "all_keys": [
+          "success",
+          "message"
+        ],
+        "candidate_objects": 0,
+        "normalized_source_id": "",
+        "normalized_source_url_kind": "",
+        "normalized_source_url": ""
+      },
+      {
+        "id": "3747989",
+        "http_status": 400,
+        "url": "http://127.0.0.1:3000/3hentai/get?book=3747989",
+        "content_type": "application/json",
+        "response_preview": "{\"success\":false,\"message\":\"Request failed with status 404 Not Found\"}",
+        "response_keys": [
+          "success",
+          "message"
+        ],
+        "raw_urls": [],
+        "image_like_values": [],
+        "real_gallery_url": "",
+        "best_thumbnail_url": "",
+        "response_type": "dict",
+        "top_level_keys": [
+          "success",
+          "message"
+        ],
+        "all_keys": [
+          "success",
+          "message"
+        ],
+        "candidate_objects": 0,
+        "normalized_source_id": "",
+        "normalized_source_url_kind": "",
+        "normalized_source_url": ""
+      }
+    ],
+    "get_debug_count": 3,
+    "get_debug_successes": 0,
+    "get_debug_http_statuses": [
+      400,
+      400,
+      400
+    ],
+    "get_debug_rate_limited": false,
+    "get_probe_enriched_items": 0
   },
   "filters": {
     "insect_filter": "enabled",
     "insect_terms": 55,
     "purged_existing_insect": 0
   },
-  "updated_at": "2026-09-24T09:25:32+00:00"
+  "updated_at": "2026-09-24T09:38:05+00:00"
 }
