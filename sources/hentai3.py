@@ -1,10 +1,12 @@
 import os
 import re
 import time
+import unicodedata
 from typing import Any
 from urllib.parse import quote_plus, urljoin
 
 import requests
+from bs4 import BeautifulSoup
 
 from config import (
     HENTAI3_BACKFILL_PAGES,
@@ -281,6 +283,125 @@ def _debug_search_object(raw: dict) -> dict:
         "normalized_source_url": normalized.get("source_url", ""),
     }
 
+
+def _title_key(value: Any) -> str:
+    """Normalize a title for conservative exact matching across HTML/API views."""
+    text = unicodedata.normalize("NFKC", _clean(value)).casefold()
+    return re.sub(r"[\W_]+", "", text, flags=re.UNICODE)
+
+
+def _direct_search_cards(session: requests.Session, key: str, page: int, sort: str = "recent") -> tuple[list[dict], dict]:
+    """Read public 3Hentai search cards and extract only public metadata.
+
+    Jandapress currently returns only title/id for search results and its detail
+    endpoint can fail because those numeric IDs are not the public /d/<id> IDs.
+    The public search HTML still exposes the actual gallery link and lazy cover
+    image.  We use those fields only; no reader pages or full images are fetched.
+    """
+    url = f"{SOURCE_BASE}/search"
+    info = {"page": page, "http_status": 0, "final_url": "", "cards": 0, "error": ""}
+    try:
+        r = session.get(
+            url,
+            params={"q": key, "page": page, "sort": sort},
+            timeout=TIMEOUT,
+            headers={
+                "User-Agent": "Mozilla/5.0 (compatible; Japanese-Metadata-Library/2.0; metadata-only)",
+                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+                "Accept-Language": "ja,en;q=0.8",
+            },
+        )
+        info["http_status"] = r.status_code
+        info["final_url"] = r.url
+        if r.status_code in {403, 429}:
+            info["error"] = f"HTTP {r.status_code}"
+            return [], info
+        r.raise_for_status()
+    except Exception as e:
+        info["error"] = str(e)[:500]
+        return [], info
+
+    soup = BeautifulSoup(r.text, "html.parser")
+    anchors = []
+    seen_nodes = set()
+    selectors = (
+        ".listing-container a.cover",
+        ".listing-galleries-container .gallery-wrapper .gallery-thumb",
+        "a.cover[href*='/d/']",
+        "a.gallery-thumb[href*='/d/']",
+    )
+    for selector in selectors:
+        for node in soup.select(selector):
+            ident = id(node)
+            if ident not in seen_nodes:
+                seen_nodes.add(ident)
+                anchors.append(node)
+    # Structure-safe fallback: only anchors that actually contain an image.
+    if not anchors:
+        for node in soup.select("a[href*='/d/']"):
+            if node.select_one("img") is not None:
+                anchors.append(node)
+
+    cards: list[dict] = []
+    seen_gallery_ids: set[str] = set()
+    for a in anchors:
+        href = _clean(a.get("href") or "")
+        direct_url = urljoin(r.url, href)
+        m = re.search(r"/d/(\d+)(?:/|$|[?#])", direct_url, re.I)
+        if not m:
+            continue
+        gallery_id = m.group(1)
+        if gallery_id in seen_gallery_ids:
+            continue
+        seen_gallery_ids.add(gallery_id)
+
+        img = a.select_one("img")
+        thumb = ""
+        title = ""
+        if img is not None:
+            thumb = _clean(img.get("data-src") or img.get("data-original") or img.get("src") or "")
+            title = _clean(img.get("alt") or img.get("title") or "")
+        if thumb:
+            thumb = urljoin(r.url, thumb)
+        if not title:
+            title = _clean(a.get("title") or a.get_text(" ", strip=True))
+        if not title and getattr(a, "parent", None) is not None:
+            parent = a.parent
+            caption = parent.select_one(".caption, .related-title, .gallery-title, .title") if hasattr(parent, "select_one") else None
+            if caption is not None:
+                title = _clean(caption.get_text(" ", strip=True))
+
+        cards.append({
+            "gallery_id": gallery_id,
+            "title": title,
+            "source_url": direct_url,
+            "thumbnail": thumb,
+        })
+
+    info["cards"] = len(cards)
+    return cards, info
+
+
+def _enrich_from_direct_card(item: dict, card: dict) -> bool:
+    """Attach verified public gallery/thumbnail metadata without changing UID."""
+    changed = False
+    direct_url = _clean(card.get("source_url"))
+    if direct_url and re.search(r"/d/\d+(?:/|$|[?#])", direct_url, re.I):
+        if item.get("source_url") != direct_url or item.get("source_url_kind") != "direct":
+            item["source_url"] = direct_url
+            item["source_url_kind"] = "direct"
+            changed = True
+    thumb = _clean(card.get("thumbnail"))
+    if thumb and not item.get("thumbnail"):
+        item["thumbnail"] = thumb
+        changed = True
+    gid = _clean(card.get("gallery_id"))
+    if gid and item.get("resolved_gallery_id") != gid:
+        item["resolved_gallery_id"] = gid
+        changed = True
+    return changed
+
+
 def _normalize(raw: dict, *, assumed_japanese: bool = False) -> dict | None:
     # Jandapress search payloads may expose internal/nested numeric IDs.
     # Only a real /d/<id> link found in the payload is trusted as a direct
@@ -537,8 +658,23 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     search_debug: list[str] = []
     errors: list[str] = []
     debug_raw_objects: list[dict] = []
+    direct_html_debug: list[dict] = []
+    direct_html_enriched = 0
+    direct_html_cards_total = 0
 
     for page in pages:
+        # Public HTML is used only to enrich the Jandapress search rows with
+        # the verified /d/<gallery_id> link and public lazy thumbnail.  The
+        # Jandapress ID remains the stable local UID for backward compatibility.
+        direct_cards, direct_info = _direct_search_cards(session, SEARCH_KEY, page, "recent")
+        direct_html_debug.append(direct_info)
+        direct_html_cards_total += len(direct_cards)
+        direct_by_title = {}
+        for card in direct_cards:
+            key = _title_key(card.get("title"))
+            if key and key not in direct_by_title:
+                direct_by_title[key] = card
+
         try:
             payload, final_url = _get_json(session, "/3hentai/search", {
                 "key": SEARCH_KEY,
@@ -553,6 +689,9 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
                 normalized = _normalize(obj, assumed_japanese=True)
                 if not normalized:
                     continue
+                card = direct_by_title.get(_title_key(normalized.get("title")))
+                if card and _enrich_from_direct_card(normalized, card):
+                    direct_html_enriched += 1
                 candidates[normalized["source_id"]] = normalized
                 if len(candidates) >= HENTAI3_MAX_GALLERIES_PER_RUN:
                     break
@@ -649,7 +788,11 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         "thumbnails_missing": thumbs_missing,
         "3hentai_debug_samples": [_debug_search_object(x) for x in debug_raw_objects[:3]],
         "debug_sample_count": min(3, len(debug_raw_objects)),
-        "get_probe_mode": "sample-only",
+        "direct_html_mode": "public-search-card-enrichment",
+        "direct_html_cards": direct_html_cards_total,
+        "direct_html_enriched": direct_html_enriched,
+        "direct_html_pages": direct_html_debug[:8],
+        "get_probe_mode": "sample-only" if HENTAI3_GET_DEBUG_LIMIT > 0 else "disabled",
         "3hentai_get_debug": get_debug,
         "get_debug_count": len(get_debug),
         "get_debug_successes": sum(1 for x in get_debug if x.get("http_status") == 200),

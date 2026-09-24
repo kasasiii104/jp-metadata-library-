@@ -10,6 +10,8 @@ import io
 import json
 import os
 import time
+import re
+import unicodedata
 from pathlib import Path
 from urllib.parse import urljoin
 
@@ -46,6 +48,81 @@ def absolute(base: str, value: str) -> str:
     if value.startswith("//"):
         return "https:" + value
     return urljoin(base, value)
+
+
+
+def title_key(value: str) -> str:
+    text = unicodedata.normalize("NFKC", " ".join(str(value or "").split())).casefold()
+    return re.sub(r"[\W_]+", "", text, flags=re.UNICODE)
+
+
+def search_cards(html: str, page_url: str) -> list[dict]:
+    """Extract public gallery links + lazy thumbnails from a search page."""
+    soup = BeautifulSoup(html, "html.parser")
+    anchors = []
+    seen_nodes = set()
+    for selector in (
+        ".listing-container a.cover",
+        ".listing-galleries-container .gallery-wrapper .gallery-thumb",
+        "a.cover[href*='/d/']",
+        "a.gallery-thumb[href*='/d/']",
+    ):
+        for node in soup.select(selector):
+            ident = id(node)
+            if ident not in seen_nodes:
+                seen_nodes.add(ident)
+                anchors.append(node)
+    if not anchors:
+        for node in soup.select("a[href*='/d/']"):
+            if node.select_one("img") is not None:
+                anchors.append(node)
+
+    out = []
+    seen = set()
+    for a in anchors:
+        href = " ".join(str(a.get("href") or "").split())
+        direct = absolute(page_url, href)
+        m = re.search(r"/d/(\d+)(?:/|$|[?#])", direct, re.I)
+        if not m or m.group(1) in seen:
+            continue
+        seen.add(m.group(1))
+        img = a.select_one("img")
+        thumb = ""
+        title = ""
+        if img is not None:
+            thumb = absolute(page_url, img.get("data-src") or img.get("data-original") or img.get("src") or "")
+            title = " ".join(str(img.get("alt") or img.get("title") or "").split())
+        if not title:
+            title = " ".join(str(a.get("title") or a.get_text(" ", strip=True) or "").split())
+        if not title and getattr(a, "parent", None) is not None:
+            parent = a.parent
+            caption = parent.select_one(".caption, .related-title, .gallery-title, .title") if hasattr(parent, "select_one") else None
+            if caption is not None:
+                title = " ".join(caption.get_text(" ", strip=True).split())
+        out.append({"gallery_id": m.group(1), "title": title, "source_url": direct, "thumbnail": thumb})
+    return out
+
+
+def resolve_search_fallback(session: requests.Session, search_url: str, expected_title: str) -> tuple[dict | None, str, bool]:
+    """Resolve one legacy title-search URL by an exact normalized-title match."""
+    try:
+        r = session.get(search_url, timeout=TIMEOUT)
+        if r.status_code == 429:
+            return None, f"429 from search page: {search_url}", True
+        if r.status_code in {403, 502, 503, 504}:
+            return None, f"HTTP {r.status_code} from search page: {search_url}", True
+        r.raise_for_status()
+        wanted = title_key(expected_title)
+        if not wanted:
+            return None, "empty expected title", False
+        exact = [c for c in search_cards(r.text, r.url) if title_key(c.get("title")) == wanted]
+        if len(exact) == 1:
+            return exact[0], "", False
+        if len(exact) > 1:
+            return None, f"ambiguous exact-title matches={len(exact)}", False
+        return None, "no exact-title match on search page", False
+    except Exception as e:
+        return None, f"search page: {e}", False
 
 
 def page_image_candidates(html: str, page_url: str) -> list[str]:
@@ -156,7 +233,9 @@ def main() -> int:
     })
 
     attempted = cached = reused = failed = 0
+    resolved_search_fallbacks = 0
     rate_limited = False
+    upstream_unavailable = False
     failures: list[str] = []
     samples: list[str] = []
 
@@ -182,13 +261,34 @@ def main() -> int:
         if current.startswith(("http://", "https://")):
             urls.append(current)
 
-        # Revision 11 may intentionally store a title-search fallback when the
-        # API payload did not contain a verified /d/<id> URL. Never scrape that
-        # search result page as if it were this work's gallery: doing so could
-        # attach another work's cover. Only direct, verified gallery URLs are
-        # page-scraped. Search-fallback rows may still use an image URL already
-        # present in the search payload.
-        if source_url_kind == "direct" and page_url.startswith(("http://", "https://")):
+        # Legacy Revision 11-16 rows may only have a title-search fallback.
+        # Resolve that page conservatively: only a single exact normalized-title
+        # match is accepted, so another work's cover is never guessed by order.
+        if source_url_kind != "direct" and "/search" in page_url:
+            card, resolve_error, stop = resolve_search_fallback(session, page_url, str(item.get("title") or ""))
+            if resolve_error and len(failures) < 8:
+                failures.append(f"{sid}: {resolve_error}")
+            if stop:
+                rate_limited = "429" in resolve_error
+                upstream_unavailable = not rate_limited
+                break
+            if card:
+                page_url = str(card.get("source_url") or "").strip()
+                item["source_url"] = page_url
+                item["source_url_kind"] = "direct"
+                if card.get("gallery_id"):
+                    item["resolved_gallery_id"] = str(card["gallery_id"])
+                thumb = str(card.get("thumbnail") or "").strip()
+                if thumb:
+                    item["thumbnail"] = thumb
+                    if thumb not in urls:
+                        urls.append(thumb)
+                source_url_kind = "direct"
+                resolved_search_fallbacks += 1
+
+        # For verified direct pages, only visit the gallery page when search/API
+        # did not already provide an image URL.
+        if source_url_kind == "direct" and page_url.startswith(("http://", "https://")) and not urls:
             page_urls, page_error, page_limited = fetch_page_candidates(session, page_url)
             if page_error and len(failures) < 8:
                 failures.append(f"{sid}: {page_error}")
@@ -226,20 +326,23 @@ def main() -> int:
     status = load(STATUS, {})
     src = status.setdefault("3hentai", {})
     src["thumbnail_cache"] = {
-        "mode": "public-gallery-page",
+        "mode": "public-search-exact-title+gallery",
         "attempted": attempted,
         "cached": cached,
         "reused": reused,
         "failed": failed,
         "pending": max(0, len(items) - reused - cached),
+        "resolved_search_fallbacks": resolved_search_fallbacks,
         "rate_limited": rate_limited,
+        "upstream_unavailable": upstream_unavailable,
         "samples": samples,
         "failures": failures,
     }
     save(STATUS, status)
     print(
         f"[3hentai-thumbs] total={len(items)} attempted={attempted} cached={cached} "
-        f"reused={reused} failed={failed} rate_limited={rate_limited}"
+        f"reused={reused} failed={failed} resolved={resolved_search_fallbacks} "
+        f"rate_limited={rate_limited} upstream_unavailable={upstream_unavailable}"
     )
     return 0
 
