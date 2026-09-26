@@ -4,7 +4,7 @@
     "discovered": 50,
     "accepted_raw": 0,
     "message": "",
-    "last_attempt": "2026-09-26T16:24:26+00:00",
+    "last_attempt": "2026-09-26T17:22:34+00:00",
     "accepted": 0,
     "blocked": 0,
     "blocked_reasons": {},
@@ -29,21 +29,21 @@
         "requested_cursor": "<latest>",
         "final_url": "https://e-hentai.org/",
         "found_count": 25,
-        "first_gid": "4214065",
-        "last_gid": "4214037",
-        "next_cursor": "4214037",
+        "first_gid": "4214187",
+        "last_gid": "4214152",
+        "next_cursor": "4214152",
         "unique_new_count": 25,
         "repeated_page": false
       },
       {
         "stage": "latest-global:2",
         "query_mode": "global-latest",
-        "requested_cursor": "4214037",
-        "final_url": "https://e-hentai.org/?next=4214037",
+        "requested_cursor": "4214152",
+        "final_url": "https://e-hentai.org/?next=4214152",
         "found_count": 25,
-        "first_gid": "4214036",
-        "last_gid": "4214009",
-        "next_cursor": "4214009",
+        "first_gid": "4214151",
+        "last_gid": "4214119",
+        "next_cursor": "4214119",
         "unique_new_count": 25,
         "repeated_page": false
       }
@@ -71,15 +71,14 @@
     },
     "index_url": "https://ltn.gold-usergeneratedcontent.net/n/index-japanese.nozomi",
     "message": "",
-    "last_attempt": "2026-09-26T16:24:26+00:00",
-    "accepted": 85,
-    "blocked": 5,
+    "last_attempt": "2026-09-26T17:22:34+00:00",
+    "accepted": 79,
+    "blocked": 11,
     "blocked_reasons": {
-      "blocked:male:yaoi": 3,
-      "blocked:torture": 1,
-      "blocked:ryona": 1
+      "blocked:male:yaoi": 10,
+      "blocked:torture": 1
     },
-    "last_success": "2026-09-26T16:24:26+00:00",
+    "last_success": "2026-09-26T17:22:34+00:00",
     "thumbnails_found": 90,
     "thumbnails_missing": 0,
     "thumbnail_samples": [
@@ -88,18 +87,18 @@
       "4214166: https://tn.hitomi.la/bigtn/6/d7/6397cc59104aaa527970a0b697627d24862418ff7f14d3a59c2cac17bec77d76.jpg"
     ],
     "thumbnail_cache": {
-      "attempted": 60,
-      "cached": 60,
-      "reused": 5074,
+      "attempted": 52,
+      "cached": 52,
+      "reused": 5134,
       "failed": 0,
       "pending": 0,
       "failures": []
     },
-    "artists_found": 68,
-    "groups_found": 16,
-    "works_found": 64,
-    "characters_found": 43,
-    "tagged_items": 86
+    "artists_found": 80,
+    "groups_found": 14,
+    "works_found": 66,
+    "characters_found": 30,
+    "tagged_items": 88
   },
   "3hentai": {
     "status": "ok",
@@ -119,15 +118,15 @@
     ],
     "thumbnails_found": 60,
     "thumbnails_missing": 0,
-    "debug": "page=1 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=1&sort=recent | page=2 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=2&sort=recent | page=265 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=265&sort=recent",
+    "debug": "page=1 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=1&sort=recent | page=2 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=2&sort=recent | page=268 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=268&sort=recent",
     "message": "",
-    "last_attempt": "2026-09-26T16:24:26+00:00",
-    "accepted": 54,
-    "blocked": 6,
+    "last_attempt": "2026-09-26T17:22:34+00:00",
+    "accepted": 51,
+    "blocked": 9,
     "blocked_reasons": {
-      "blocked:yaoi": 6
+      "blocked:yaoi": 9
     },
-    "last_success": "2026-09-26T16:24:26+00:00",
+    "last_success": "2026-09-26T17:22:34+00:00",
     "api_base": "http://127.0.0.1:3000",
     "jandapress_http": 200,
     "search_key": "language:japanese",
@@ -135,18 +134,18 @@
       "mode": "public-search-exact-title+gallery",
       "attempted": 12,
       "cached": 12,
-      "reused": 683,
+      "reused": 695,
       "failed": 0,
-      "pending": 652,
+      "pending": 688,
       "resolved_search_fallbacks": 0,
       "rate_limited": false,
       "upstream_unavailable": false,
       "samples": [
-        "3665795: https://s1.3hentai.xyz/d2241580/thumb.jpg -> thumbs/3hentai/3665795.webp",
-        "3665794: https://s1.3hentai.xyz/d2241561/thumb.jpg -> thumbs/3hentai/3665794.webp",
-        "3665783: https://s1.3hentai.xyz/d2241549/thumb.jpg -> thumbs/3hentai/3665783.webp",
-        "3665782: https://s1.3hentai.xyz/d2241551/thumb.jpg -> thumbs/3hentai/3665782.webp",
-        "3665776: https://s1.3hentai.xyz/d2241505/thumb.jpg -> thumbs/3hentai/3665776.webp"
+        "3749889: https://s1.3hentai.xyz/d2464923/thumb.jpg -> thumbs/3hentai/3749889.webp",
+        "3749879: https://s1.3hentai.xyz/d2464901/thumb.jpg -> thumbs/3hentai/3749879.webp",
+        "3749869: https://s1.3hentai.xyz/d2464898/thumb.jpg -> thumbs/3hentai/3749869.webp",
+        "3749864: https://s1.3hentai.xyz/d2464899/thumb.jpg -> thumbs/3hentai/3749864.webp",
+        "3749799: https://s1.3hentai.xyz/d2464864/thumb.jpg -> thumbs/3hentai/3749799.webp"
       ],
       "failures": []
     },
@@ -155,16 +154,16 @@
     "direct_source_urls": 60,
     "search_fallback_urls": 0,
     "source_url_samples": [
-      "3749339 [direct]: https://3hentai.net/d/749339",
-      "3749304 [direct]: https://3hentai.net/d/749304",
-      "3749279 [direct]: https://3hentai.net/d/749279",
-      "3749204 [direct]: https://3hentai.net/d/749204",
-      "3749199 [direct]: https://3hentai.net/d/749199"
+      "3749914 [direct]: https://3hentai.net/d/749914",
+      "3749909 [direct]: https://3hentai.net/d/749909",
+      "3749889 [direct]: https://3hentai.net/d/749889",
+      "3749879 [direct]: https://3hentai.net/d/749879",
+      "3749869 [direct]: https://3hentai.net/d/749869"
     ],
     "3hentai_debug_samples": [
       {
-        "id_guess": "3749339",
-        "title_guess": "[Yokojima] Tsukiai Hajimeta Sukonbu ga Shiotaiou de, Ossan Sukonbu ni Otosareru Fubuki-san (Shirakami Fubuki)",
+        "id_guess": "3749914",
+        "title_guess": "[bontiage(とらんじーな)] 温泉旅館日誌 [Digital][Japanese]",
         "top_level_keys": [
           "title",
           "id"
@@ -177,13 +176,13 @@
         "image_like_values": [],
         "real_gallery_url": "",
         "best_thumbnail_url": "",
-        "normalized_source_id": "3749339",
+        "normalized_source_id": "3749914",
         "normalized_source_url_kind": "search",
-        "normalized_source_url": "https://3hentai.net/search?q=%5BYokojima%5D+Tsukiai+Hajimeta+Sukonbu+ga+Shiotaiou+de%2C+Ossan+Sukonbu+ni+Otosareru+Fubuki-san+%28Shirakami+Fubuki%29"
+        "normalized_source_url": "https://3hentai.net/search?q=%5Bbontiage%28%E3%81%A8%E3%82%89%E3%82%93%E3%81%98%E3%83%BC%E3%81%AA%29%5D+%E6%B8%A9%E6%B3%89%E6%97%85%E9%A4%A8%E6%97%A5%E8%AA%8C+%5BDigital%5D%5BJapanese%5D"
       },
       {
-        "id_guess": "3749304",
-        "title_guess": "[Wide na Nomikuchi (enari)] Toshishita Kenryokusha ni Daisuki na Kanojo Sashidashite Netorase HaramaSex Shitemorau Hanashi | 對年下權力者交出自己最喜歡的女友做被寢取懷孕做愛的故事 [Chinese] [Digital]",
+        "id_guess": "3749909",
+        "title_guess": "[bontiage(とらんじーな)] 虎之巻 [Digital][Japanese]",
         "top_level_keys": [
           "title",
           "id"
@@ -196,13 +195,13 @@
         "image_like_values": [],
         "real_gallery_url": "",
         "best_thumbnail_url": "",
-        "normalized_source_id": "3749304",
+        "normalized_source_id": "3749909",
         "normalized_source_url_kind": "search",
-        "normalized_source_url": "https://3hentai.net/search?q=%5BWide+na+Nomikuchi+%28enari%29%5D+Toshishita+Kenryokusha+ni+Daisuki+na+Kanojo+Sashidashite+Netorase+HaramaSex+Shitemorau+Hanashi+%7C+%E5%B0%8D%E5%B9%B4%E4%B8%8B%E6%AC%8A%E5%8A%9B%E8%80%85%E4%BA%A4%E5%87%BA%E8%87%AA%E5%B7%B1%E6%9C%80%E5%96%9C%E6%AD%A1%E7%9A%84%E5%A5%B3%E5%8F%8B%E5%81%9A%E8%A2%AB%E5%AF%A2%E5%8F%96%E6%87%B7%E5%AD%95%E5%81%9A%E6%84%9B%E7%9A%84%E6%95%85%E4%BA%8B+%5BChinese%5D+%5BDigital%5D"
+        "normalized_source_url": "https://3hentai.net/search?q=%5Bbontiage%28%E3%81%A8%E3%82%89%E3%82%93%E3%81%98%E3%83%BC%E3%81%AA%29%5D+%E8%99%8E%E4%B9%8B%E5%B7%BB+%5BDigital%5D%5BJapanese%5D"
       },
       {
-        "id_guess": "3749279",
-        "title_guess": "[mayofun] The exorcist shrine maide and the Akaname",
+        "id_guess": "3749889",
+        "title_guess": "(Doujinshi) [Almondman] Hasumi-san Gets a Taste for It (Blue Archive)",
         "top_level_keys": [
           "title",
           "id"
@@ -215,9 +214,9 @@
         "image_like_values": [],
         "real_gallery_url": "",
         "best_thumbnail_url": "",
-        "normalized_source_id": "3749279",
+        "normalized_source_id": "3749889",
         "normalized_source_url_kind": "search",
-        "normalized_source_url": "https://3hentai.net/search?q=%5Bmayofun%5D+The+exorcist+shrine+maide+and+the+Akaname"
+        "normalized_source_url": "https://3hentai.net/search?q=%28Doujinshi%29+%5BAlmondman%5D+Hasumi-san+Gets+a+Taste+for+It+%28Blue+Archive%29"
       }
     ],
     "debug_sample_count": 3,
@@ -247,9 +246,9 @@
         "error": ""
       },
       {
-        "page": 265,
+        "page": 268,
         "http_status": 200,
-        "final_url": "https://3hentai.net/search?q=language%3Ajapanese&page=265&sort=recent",
+        "final_url": "https://3hentai.net/search?q=language%3Ajapanese&page=268&sort=recent",
         "cards": 25,
         "error": ""
       }
@@ -260,11 +259,11 @@
     "gallery_metadata_failed": 0,
     "gallery_metadata_stopped": false,
     "gallery_metadata_samples": [
-      "3749339: tags=19 artists=0 groups=0 category=doujinshi",
-      "3749304: tags=5 artists=0 groups=0 category=doujinshi",
-      "3749279: tags=4 artists=0 groups=0 category=doujinshi",
-      "3749204: tags=8 artists=0 groups=0 category=doujinshi",
-      "3749199: tags=6 artists=0 groups=0 category=doujinshi"
+      "3749914: tags=6 artists=0 groups=0 category=doujinshi",
+      "3749909: tags=6 artists=0 groups=0 category=doujinshi",
+      "3749889: tags=6 artists=0 groups=0 category=doujinshi",
+      "3749879: tags=3 artists=0 groups=0 category=doujinshi",
+      "3749869: tags=6 artists=0 groups=0 category=doujinshi"
     ],
     "gallery_metadata_failures": [],
     "existing_filter_audit_mode": "public-gallery-metadata",
@@ -289,8 +288,8 @@
     "tagged_items": 60,
     "artists_found": 0,
     "groups_found": 0,
-    "works_found": 48,
-    "characters_found": 36
+    "works_found": 30,
+    "characters_found": 21
   },
   "filters": {
     "content_filters": "enabled",
@@ -322,5 +321,5 @@
       ]
     }
   },
-  "updated_at": "2026-09-26T16:24:26+00:00"
+  "updated_at": "2026-09-26T17:22:34+00:00"
 }
