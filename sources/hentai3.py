@@ -687,7 +687,7 @@ def enrich_existing_for_filter(items: list[dict], limit: int | None = None) -> d
             stopped = True
             if len(failures) < 8: failures.append(f"{item.get('source_id')}: {info.get('error')}")
             break
-        if meta and int(meta.get("filter_evidence_count") or 0) > 0:
+        if meta and int(meta.get("evidence_count") or 0) > 0:
             _merge_gallery_metadata(item, meta, mark_checked=True)
             enriched += 1
             if len(samples) < 5:
@@ -1095,7 +1095,7 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
             if len(gallery_metadata_failures) < 8:
                 gallery_metadata_failures.append(f"{sid}: {info.get('error')}")
             break
-        if meta and int(meta.get("filter_evidence_count") or 0) > 0:
+        if meta and int(meta.get("evidence_count") or 0) > 0:
             _merge_gallery_metadata(item, meta, mark_checked=True)
             gallery_metadata_enriched += 1
             if len(gallery_metadata_samples) < 5:
@@ -1164,6 +1164,11 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         "gallery_metadata_stopped": gallery_metadata_stopped,
         "gallery_metadata_samples": gallery_metadata_samples,
         "gallery_metadata_failures": gallery_metadata_failures,
+        "tagged_items": sum(1 for x in items if x.get("tags")),
+        "artists_found": sum(1 for x in items if x.get("artists")),
+        "groups_found": sum(1 for x in items if x.get("groups")),
+        "works_found": sum(1 for x in items if x.get("parodies")),
+        "characters_found": sum(1 for x in items if x.get("characters")),
         "get_probe_mode": "sample-only" if HENTAI3_GET_DEBUG_LIMIT > 0 else "disabled",
         "3hentai_get_debug": get_debug,
         "get_debug_count": len(get_debug),
