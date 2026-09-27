@@ -76,10 +76,9 @@ function bestFallbackMember(m){
 function sourceWorkUrl(m){
   const direct=safeUrl(m?.source_url);
   if(m?.source!=='3hentai')return direct||fallbackSearchUrl(m?.source,titleOf(m));
-  // 3Hentai direct links are kept when available. The menu also exposes
-  // mirrors; if a row has no direct gallery URL, prefer an already matched
-  // mirror and finally fall back to a title search.
-  if(m.source_url_kind==='direct'&&direct)return direct;
+  // The main card never depends on 3Hentai availability. Prefer an already
+  // matched mirror; otherwise send the title to HentaiFox search. The original
+  // 3Hentai direct link remains available in the card menu.
   return bestFallbackMember(m)||fallbackSearchUrl('hentaifox',titleOf(m))||fallbackSearchUrl('ehentai',titleOf(m));
 }
 function titleOf(x){return x.title_jp||x.title||`${x.source}:${x.source_id}`}
@@ -167,14 +166,13 @@ function menu(id){
   const fallbackLinks=x._members.some(m=>m.source==='3hentai')?['hentaifox','ehentai','hitomi','nhentai','pururin'].filter(src=>!x._members.some(m=>m.source===src)).map(src=>`<a href="${esc(fallbackSearchUrl(src,titleOf(x))||'#')}" target="_blank" rel="noopener noreferrer">${esc(sourceLabel(src))}で検索</a>`).join(''):'';
   const info=x.duplicate_count>1?`<div style="padding:8px 12px;color:#aaa;font-size:12px">同一作品として ${x.duplicate_count} 件をまとめています：${esc(x._sources.map(sourceLabel).join(' / '))}</div>`:'';
   const details=detailBlock('アーティスト',x.artists,'artists')+detailBlock('グループ',x.groups,'groups')+detailBlock('作品・原作',worksOf(x),'works')+detailBlock('キャラクター',x.characters,'characters')+detailBlock('タグ',contentTagsOf(x),'tags');
-  sheet.innerHTML=`${info}${details}<button data-act="fav">${favs.has(id)?'お気に入りから外す':'お気に入りに追加'}</button><button data-act="hide">この作品を非表示</button>${links}`;
+  sheet.innerHTML=`${info}${details}<button data-act="fav">${favs.has(id)?'お気に入りから外す':'お気に入りに追加'}</button><button data-act="hide">この作品を非表示</button>${links}${fallbackLinks}`;
   $('#sheetBg').classList.add('on');sheet.classList.add('on');
   sheet.querySelector('[data-act="fav"]').onclick=()=>{favs.has(id)?favs.delete(id):favs.add(id);saveSet('meta_favorites',favs);closeSheet();apply()};
   sheet.querySelector('[data-act="hide"]').onclick=()=>{hidden.add(id);saveSet('meta_hidden',hidden);closeSheet();apply()};
 }
 function closeSheet(){$('#sheetBg').classList.remove('on');$('#sheet').classList.remove('on')}
 async function init(){try{
-  const originalMenuLinks=links+fallbackLinks;
   const [data,status]=await Promise.all([fetch('data.json',{cache:'no-store'}).then(r=>r.json()),fetch('source_status.json',{cache:'no-store'}).then(r=>r.ok?r.json():{}).catch(()=>({}))]);
   state.rawItems=Array.isArray(data.items)?data.items:[];state.rawCount=state.rawItems.length;state.items=collapseGroups(state.rawItems);state.dupeGroups=Number(data.duplicate_group_count||0);
   const reduced=state.rawCount-state.items.length;
