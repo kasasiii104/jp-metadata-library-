@@ -31,10 +31,6 @@ HENTAI3_EXISTING_FILTER_AUDIT_DELAY_SEC = float(os.environ.get("HENTAI3_EXISTING
 HENTAI3_GET_DEBUG_LIMIT = int(os.environ.get("HENTAI3_GET_DEBUG_LIMIT", "0"))
 HENTAI3_GET_DEBUG_DELAY_SEC = float(os.environ.get("HENTAI3_GET_DEBUG_DELAY_SEC", "1.5"))
 
-# HentaiFox: self-hosted Jandapress discovery.
-HENTAIFOX_LATEST_PAGES = int(os.environ.get("HENTAIFOX_LATEST_PAGES", "3"))
-HENTAIFOX_MAX_GALLERIES_PER_RUN = int(os.environ.get("HENTAIFOX_MAX_GALLERIES_PER_RUN", "60"))
-
 # Items are retained indefinitely unless explicitly retired/filtered.
 KEEP_ITEMS = 0
 
