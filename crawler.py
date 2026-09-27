@@ -19,13 +19,14 @@ from config import (
     STATE_FILE,
     STATUS_FILE,
 )
-from sources import ehentai, hitomi, hentai3
+from sources import ehentai, hitomi, hentai3, hentaifox
 from sources.common import normalize_full_tag, normalize_tag, unique_strings
 
 SOURCES = {
     "ehentai": ehentai.collect,
     "hitomi": hitomi.collect,
     "3hentai": hentai3.collect,
+    "hentaifox": hentaifox.collect,
 }
 RETIRED_SOURCES = {"pururin", "nharchive", "nhentai"}
 
