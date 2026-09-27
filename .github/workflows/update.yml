@@ -62,6 +62,7 @@ jobs:
         env:
           JANDAPRESS_URL: "http://127.0.0.1:3000"
           HENTAI3_SEARCH_KEY: "language:japanese"
+          HENTAIFOX_SEARCH_KEY: "language:japanese"
         run: python crawler.py
 
       - name: Cache 3Hentai thumbnails locally
