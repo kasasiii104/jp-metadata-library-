@@ -26,6 +26,7 @@ main{padding:14px 12px calc(90px + env(safe-area-inset-bottom))}.toolbar{display
     <button class="chip" data-source="ehentai">E-Hentai</button>
     <button class="chip" data-source="hitomi">Hitomi</button>
     <button class="chip" data-source="3hentai">3Hentai</button>
+    <button class="chip" data-source="asmhentai">ASMHentai</button>
   </div>
 </header>
 <main>
@@ -52,7 +53,7 @@ const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function safeUrl(u){try{const x=new URL(String(u||''),location.href);return /^https?:$/.test(x.protocol)?x.href:''}catch{return''}}
 function saveSet(k,s){localStorage.setItem(k,JSON.stringify([...s]))}
-function sourceLabel(s){return ({ehentai:'E-Hentai',hitomi:'Hitomi','3hentai':'3Hentai'})[s]||s}
+function sourceLabel(s){return ({ehentai:'E-Hentai',hitomi:'Hitomi','3hentai':'3Hentai',asmhentai:'ASMHentai'})[s]||s}
 function sourceWorkUrl(m){
   if(m?.source==='3hentai'){
     const direct=safeUrl(m.source_url);
@@ -159,7 +160,7 @@ async function init(){try{
   $('#status').textContent=`更新 ${new Date(data.updated_at).toLocaleString('ja-JP')} ・ ${state.items.length.toLocaleString()}作品${reduced>0?`（重複${reduced.toLocaleString()}件統合）`:''}`;
   const cats=[...new Set(state.items.flatMap(x=>x._categories).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ja'));for(const c of cats){const o=document.createElement('option');o.value=c;o.textContent=c;$('#category').appendChild(o)}
   refreshFacetValues();
-  const parts=['ehentai','hitomi','3hentai'].map(k=>{const s=status[k]||{};const tc=s.thumbnail_cache;return `${sourceLabel(k)}: ${s.status||'不明'}${s.accepted!=null?` ${s.accepted}件`:''}${s.tagged_items!=null?` / タグ ${Number(s.tagged_items).toLocaleString()}件`:''}${tc?` / サムネ ${Number(tc.cached||0)+Number(tc.reused||0)}件`:''}`});$('#sourceStatus').textContent=parts.join(' / ');
+  const parts=['ehentai','hitomi','3hentai','asmhentai'].map(k=>{const s=status[k]||{};const tc=s.thumbnail_cache;return `${sourceLabel(k)}: ${s.status||'不明'}${s.accepted!=null?` ${s.accepted}件`:''}${s.tagged_items!=null?` / タグ ${Number(s.tagged_items).toLocaleString()}件`:''}${tc?` / サムネ ${Number(tc.cached||0)+Number(tc.reused||0)}件`:''}`});$('#sourceStatus').textContent=parts.join(' / ');
   apply();
 }catch(e){$('#status').textContent='データ読み込み失敗';$('#grid').innerHTML='<div class="empty">data.jsonを読み込めませんでした。</div>'}}
 $('#q').addEventListener('input',apply);$('#sort').addEventListener('change',apply);$('#category').addEventListener('change',apply);$('#facetKind').addEventListener('change',()=>{refreshFacetValues();apply()});$('#facetValue').addEventListener('change',apply);$('#pages').addEventListener('change',apply);$('#loadMore').onclick=()=>{state.shown+=STEP;render()};$('#favBtn').onclick=()=>{state.favoritesOnly=!state.favoritesOnly;$('#favBtn').textContent=state.favoritesOnly?'★のみ':'★';apply()};$('#activeFacet').onclick=clearFacetFilter;$$('[data-source]').forEach(b=>b.onclick=()=>{$$('[data-source]').forEach(x=>x.classList.remove('on'));b.classList.add('on');state.source=b.dataset.source;apply()});document.addEventListener('click',e=>{const f=e.target.closest('[data-facet-kind][data-facet-value]');if(f){e.preventDefault();e.stopPropagation();setFacetFilter(f.dataset.facetKind,f.dataset.facetValue);return}const b=e.target.closest('[data-more]');if(b){e.preventDefault();menu(b.dataset.more)}});$('#sheetBg').onclick=closeSheet;init();
