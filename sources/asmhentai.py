@@ -10,8 +10,8 @@ SEARCH_KEYS = [x.strip() for x in os.environ.get("ASMHENTAI_SEARCH_KEYS", f"{SEA
 PROBE_KEY = os.environ.get("ASMHENTAI_PROBE_KEY", "futanari")
 PAGES = int(os.environ.get("ASMHENTAI_LATEST_PAGES", "4"))
 LIMIT = int(os.environ.get("ASMHENTAI_MAX_GALLERIES_PER_RUN", "80"))
-TIMEOUT = int(os.environ.get("ASMHENTAI_TIMEOUT_SEC", "10"))
-DETAIL_LIMIT = int(os.environ.get("ASMHENTAI_DETAIL_LIMIT", "24"))
+TIMEOUT = int(os.environ.get("ASMHENTAI_TIMEOUT_SEC", "5"))
+DETAIL_LIMIT = int(os.environ.get("ASMHENTAI_DETAIL_LIMIT", "8"))
 
 
 def clean(v: Any) -> str:
