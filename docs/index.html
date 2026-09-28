@@ -126,7 +126,30 @@ const JP_TERMS={
   'the idolmaster':'アイドルマスター','idolmaster':'アイドルマスター','love live':'ラブライブ！',
   'genshin impact':'原神','honkai star rail':'崩壊：スターレイル','uma musume':'ウマ娘 プリティーダービー',
   'demon slayer':'鬼滅の刃','jujutsu kaisen':'呪術廻戦','my hero academia':'僕のヒーローアカデミア',
-  'sailor moon':'美少女戦士セーラームーン','precure':'プリキュア'
+  'sailor moon':'美少女戦士セーラームーン','precure':'プリキュア',
+  'spy x family':'SPY×FAMILY','chainsaw man':'チェンソーマン','frieren':'葬送のフリーレン',
+  'oshi no ko':'【推しの子】','bocchi the rock':'ぼっち・ざ・ろっく！','lycoris recoil':'リコリス・リコイル',
+  'konosuba':'この素晴らしい世界に祝福を！','re zero':'Re:ゼロから始める異世界生活','rezero':'Re:ゼロから始める異世界生活',
+  'sword art online':'ソードアート・オンライン','attack on titan':'進撃の巨人','bleach':'BLEACH',
+  'hunter x hunter':'HUNTER×HUNTER','jojo':'ジョジョの奇妙な冒険','hololive':'ホロライブ','nijisanji':'にじさんじ',
+  'arknights':'アークナイツ','nikke':'勝利の女神：NIKKE','girls frontline':'ドールズフロントライン',
+  'granblue fantasy':'グランブルーファンタジー','princess connect':'プリンセスコネクト！Re:Dive',
+  'final fantasy':'ファイナルファンタジー','dragon quest':'ドラゴンクエスト','persona 5':'ペルソナ5',
+  'fire emblem':'ファイアーエムブレム','super mario':'スーパーマリオ','zelda':'ゼルダの伝説',
+  'splatoon':'スプラトゥーン','my dress up darling':'その着せ替え人形は恋をする',
+  'quintessential quintuplets':'五等分の花嫁','to love ru':'To LOVEる -とらぶる-',
+  'highschool dxd':'ハイスクールD×D','date a live':'デート・ア・ライブ','kaguya sama':'かぐや様は告らせたい',
+  'girls und panzer':'ガールズ＆パンツァー','madoka magica':'魔法少女まどか☆マギカ',
+  'cardcaptor sakura':'カードキャプターさくら','gundam':'機動戦士ガンダム','code geass':'コードギアス',
+  'macross':'マクロス','netorare':'寝取られ','ntr':'寝取られ','netori':'寝取り','netorase':'寝取らせ',
+  'ahegao':'アヘ顔','double penetration':'二穴','deepthroat':'イラマチオ','facesitting':'顔面騎乗',
+  'footjob':'足コキ','titjob':'パイズリ','rimjob':'アナル舐め','cunnilingus':'クンニ',
+  'voyeurism':'覗き','exhibitionism':'露出','rape':'レイプ','tentacles':'触手','futanari':'ふたなり',
+  'yaoi':'BL','yuri':'百合','crossdressing':'女装','gender bender':'性転換','body swap':'入れ替わり',
+  'stockings':'ストッキング','pantyhose':'パンスト','garter belt':'ガーターベルト',
+  'lingerie':'ランジェリー','bloomers':'ブルマ','gymshorts':'体操服','school swimsuit':'スクール水着',
+  'cheating':'浮気','harem':'ハーレム','incest':'近親相姦','mother':'母親','daughter':'娘',
+  'sister':'姉妹','older sister':'姉','younger sister':'妹','childhood friend':'幼なじみ'
 };
 function jpTerm(v){
   const raw=String(v||'').trim(), m=raw.match(/^(male|female|other):(.*)$/i);
@@ -134,15 +157,19 @@ function jpTerm(v){
   const base=(m?m[2]:raw).trim(), jp=JP_TERMS[base.toLowerCase()]||base;
   return ns?`${ns}：${jp}`:jp
 }
-function displayValue(kind,v){return kind==='tags'||kind==='works'||kind==='characters'?jpTerm(v):String(v||'')}
+function displayValue(kind,v){
+  const raw=String(v||'').replace(/^(?:parody|work|character|tag):/i,'').trim();
+  return kind==='tags'||kind==='works'||kind==='characters'?jpTerm(raw):raw
+}
 function tagLabel(v){return jpTerm(v)}
 function facetSummary(x){
   const vals=[];
-  const w=worksOf(x)[0];if(w)vals.push({kind:'works',value:w,label:`作品 ${displayValue('works',w)}`});
+  const w=worksOf(x)[0];if(w)vals.push({kind:'works',value:w,label:`作品：${displayValue('works',w)}`});
   if(x.artists?.[0])vals.push({kind:'artists',value:x.artists[0],label:`作者 ${x.artists[0]}`});
-  for(const t of contentTagsOf(x).slice(0,2))if(vals.length<3)vals.push({kind:'tags',value:t,label:`#${displayValue('tags',t)}`});
+  if(x.characters?.[0]&&vals.length<3)vals.push({kind:'characters',value:x.characters[0],label:`キャラ：${displayValue('characters',x.characters[0])}`});
+  for(const t of contentTagsOf(x).slice(0,2))if(vals.length<4)vals.push({kind:'tags',value:t,label:`#${displayValue('tags',t)}`});
   if(vals.length<3&&x.groups?.[0])vals.push({kind:'groups',value:x.groups[0],label:`G ${x.groups[0]}`});
-  return vals.slice(0,3)
+  return vals.slice(0,4)
 }
 function metaLine(x){const a=[];if(x.rating!=null&&Number(x.rating)>0)a.push(`★${Number(x.rating).toFixed(2).replace(/0+$/,'').replace(/\.$/,'')}`);if(x.popularity!=null&&Number(x.popularity)>0)a.push(`人気 ${Number(x.popularity).toLocaleString()}`);if(x.pages)a.push(`${x.pages}p`);if(x.posted_at)a.push(relative(x.posted_at));return a.join(' ・ ')}
 function facetButton(f){return `<button class="facet" type="button" data-facet-kind="${esc(f.kind)}" data-facet-value="${esc(f.value)}" title="${esc(f.label)}で絞り込む">${esc(f.label)}</button>`}
