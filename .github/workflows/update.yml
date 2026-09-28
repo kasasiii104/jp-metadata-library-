@@ -13,7 +13,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: japanese-metadata-library
+  group: japanese-metadata-library-v2
   cancel-in-progress: true
 
 jobs:
