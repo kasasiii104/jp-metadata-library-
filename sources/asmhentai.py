@@ -10,7 +10,8 @@ SEARCH_KEYS = [x.strip() for x in os.environ.get("ASMHENTAI_SEARCH_KEYS", f"{SEA
 PROBE_KEY = os.environ.get("ASMHENTAI_PROBE_KEY", "futanari")
 PAGES = int(os.environ.get("ASMHENTAI_LATEST_PAGES", "4"))
 LIMIT = int(os.environ.get("ASMHENTAI_MAX_GALLERIES_PER_RUN", "80"))
-TIMEOUT = 30
+TIMEOUT = int(os.environ.get("ASMHENTAI_TIMEOUT_SEC", "5"))
+DETAIL_LIMIT = int(os.environ.get("ASMHENTAI_DETAIL_LIMIT", "8"))
 
 
 def clean(v: Any) -> str:
@@ -121,24 +122,18 @@ def normalize(raw: dict) -> dict | None:
     }
 
 
-def _get(sess, book: str):
-    r = sess.get(f"{API_BASE}/asmhentai/get", params={"book": book}, timeout=TIMEOUT)
-    r.raise_for_status()
-    rows = walk(r.json())
-    return rows[0] if rows else None
-
-
-def _random(sess):
-    r = sess.get(f"{API_BASE}/asmhentai/random", timeout=TIMEOUT)
-    r.raise_for_status()
-    rows = walk(r.json())
-    return rows[0] if rows else None
-
-
 def _search(sess, key: str, page: int):
     r = sess.get(f"{API_BASE}/asmhentai/search", params={"key": key, "page": page}, timeout=TIMEOUT)
     r.raise_for_status()
     return walk(r.json())
+
+
+def _get(sess, book: str) -> dict:
+    r = sess.get(f"{API_BASE}/asmhentai/get", params={"book": book}, timeout=TIMEOUT)
+    r.raise_for_status()
+    payload = r.json()
+    data = payload.get("data") if isinstance(payload, dict) else None
+    return data if isinstance(data, dict) else {}
 
 
 def collect(state: dict | None = None):
@@ -146,6 +141,10 @@ def collect(state: dict | None = None):
     sess = requests.Session()
     found, errors = {}, []
     rejected_non_japanese = 0
+    detail_attempts = 0
+    detail_success = 0
+    detail_cursor = int(state.get("detail_cursor") or 0)
+    candidate_index = 0
     search_ok = False
     search_key_used = ""
 
@@ -159,15 +158,30 @@ def collect(state: dict | None = None):
                 search_ok = True
                 search_key_used = key
                 for raw in rows:
-                    # Search only returns title+id. Fetch the gallery detail so
-                    # Japanese qualification and thumbnail data are based on
-                    # actual metadata rather than the search title.
-                    detail = None
-                    try:
-                        detail = _get(sess, clean(first(raw, "id", "gallery_id", "galleryId", "book", "source_id", "gid")))
-                    except Exception as e:
-                        errors.append(f"get={first(raw, 'id', 'book')}: {str(e)[:160]}")
-                    item = normalize(detail or raw)
+                    sid = clean(first(raw, "id", "gallery_id", "galleryId", "book", "source_id", "gid"))
+                    detail = {}
+                    should_detail = detail_cursor <= candidate_index < detail_cursor + DETAIL_LIMIT
+                    candidate_index += 1
+                    if sid and should_detail:
+                        detail_attempts += 1
+                        try:
+                            detail = _get(sess, sid)
+                            if detail:
+                                detail_success += 1
+                        except Exception as e:
+                            errors.append(f"get={sid}: {str(e)[:180]}")
+                    candidate = detail or raw
+                    # A result returned by the explicit 日本語 search is useful
+                    # discovery evidence, but admission still requires either
+                    # Japanese metadata/tags or Japanese script in the detailed
+                    # title. This prevents English-only galleries leaking in.
+                    ts = tags(first(candidate, "tags", "tag", "metadata"))
+                    detailed_title = clean(first(candidate, "title", "name", "pretty", "japanese"))
+                    japanese_script = bool(__import__("re").search(r"[ぁ-んァ-ヶ一-龯]", detailed_title))
+                    if key == "日本語" and japanese_script and not is_japanese(candidate, ts):
+                        candidate = dict(candidate)
+                        candidate["language"] = "japanese"
+                    item = normalize(candidate)
                     if item:
                         found[item["source_id"]] = item
                     else:
@@ -200,27 +214,8 @@ def collect(state: dict | None = None):
         except Exception as e:
             errors.append(f"probe={PROBE_KEY}: {str(e)[:220]}")
 
-    # Last diagnostic/fallback: random uses a different upstream route. It
-    # proves whether gallery pages themselves are reachable when search HTML
-    # is broken. Only independently Japanese-qualified details are admitted.
-    random_ok = False
-    random_attempts = 0
-    random_japanese = 0
-    if not found:
-        for _ in range(8):
-            random_attempts += 1
-            try:
-                raw = _random(sess)
-                if raw:
-                    random_ok = True
-                    item = normalize(raw)
-                    if item:
-                        found[item["source_id"]] = item
-                        random_japanese += 1
-            except Exception as e:
-                errors.append(f"random: {str(e)[:180]}")
-                break
-
+    if candidate_index:
+        state["detail_cursor"] = (detail_cursor + max(detail_attempts, DETAIL_LIMIT)) % candidate_index
     items = list(found.values())[:LIMIT]
     if items:
         status = "ok"
@@ -238,12 +233,14 @@ def collect(state: dict | None = None):
         "rejected_non_japanese": rejected_non_japanese,
         "tagged_items": sum(bool(x["tags"]) for x in items),
         "thumbnail_urls": sum(bool(x["thumbnail"]) for x in items),
+        "detail_attempts": detail_attempts,
+        "detail_success": detail_success,
+        "detail_cursor": detail_cursor,
+        "detail_cursor_next": state.get("detail_cursor", 0),
+        "detail_candidates": candidate_index,
         "japanese_search_ok": search_ok,
         "japanese_search_key": search_key_used,
         "probe_ok": probe_ok,
         "probe_rows": probe_rows,
-        "random_ok": random_ok,
-        "random_attempts": random_attempts,
-        "random_japanese": random_japanese,
         "message": message + (" | " + " | ".join(errors[:6]) if errors else ""),
     }
