@@ -105,13 +105,43 @@ function worksOf(x){return uniq([...(x.works||[]),...(x.parodies||[])])}
 function searchable(x){return x._members.map(m=>[m.title,m.title_jp,m.category,...(m.artists||[]),...(m.groups||[]),...worksOf(m),...(m.characters||[]),...(m.tags||[]),...(m.meta_tags||[])].join(' ')).join(' ').toLowerCase()}
 function contentTagsOf(x){return uniq(x.tags||[]).filter(v=>{const t=String(v||'').trim();return t&&!/^(?:language|artist|group|parody|work|character):/i.test(t)})}
 function fieldValues(x,key){if(key==='works')return worksOf(x);if(key==='tags')return contentTagsOf(x);return x[key]||[]}
-function tagLabel(v){return String(v||'').replace(/^(?:male|female|other):/i,'')}
+const JP_TERMS={
+  'big breasts':'巨乳','huge breasts':'爆乳','small breasts':'貧乳','sole female':'女性1人','sole male':'男性1人',
+  'full color':'フルカラー','schoolgirl uniform':'制服','schoolgirl':'女子学生','swimsuit':'水着','bikini':'ビキニ',
+  'glasses':'眼鏡','ponytail':'ポニーテール','twintails':'ツインテール','long hair':'ロングヘア','short hair':'ショートヘア',
+  'blowjob':'フェラ','handjob':'手コキ','paizuri':'パイズリ','nakadashi':'中出し','creampie':'中出し',
+  'anal':'アナル','masturbation':'オナニー','toys':'玩具','sex toys':'大人のおもちゃ','bondage':'拘束',
+  'group':'乱交','group sex':'乱交','threesome':'3P','femdom':'女性優位','mind control':'洗脳',
+  'pregnant':'妊婦','pregnancy':'妊娠','lactation':'母乳','milf':'熟女','mature':'熟女','virginity':'処女',
+  'teacher':'教師','nurse':'ナース','maid':'メイド','nun':'シスター','office lady':'OL','gyaru':'ギャル',
+  'cosplay':'コスプレ','kemonomimi':'ケモミミ','catgirl':'猫耳','monster girl':'モンスター娘','elf':'エルフ',
+  'dark skin':'褐色','tanlines':'日焼け跡','muscle':'筋肉','bbw':'ぽっちゃり','chubby':'ぽっちゃり',
+  'uncensored':'無修正','censored':'修正あり','mosaic censorship':'モザイク','digital':'デジタル',
+  'original':'オリジナル','doujinshi':'同人誌','manga':'漫画','artist cg':'CG集','game cg':'ゲームCG',
+  'translated':'翻訳済み','japanese':'日本語',
+  'original work':'オリジナル',
+  'fate grand order':'Fate/Grand Order','kantai collection':'艦隊これくしょん','azur lane':'アズールレーン',
+  'blue archive':'ブルーアーカイブ','touhou project':'東方Project','pokemon':'ポケットモンスター',
+  'one piece':'ONE PIECE','naruto':'NARUTO','dragon ball':'ドラゴンボール','evangelion':'新世紀エヴァンゲリオン',
+  'the idolmaster':'アイドルマスター','idolmaster':'アイドルマスター','love live':'ラブライブ！',
+  'genshin impact':'原神','honkai star rail':'崩壊：スターレイル','uma musume':'ウマ娘 プリティーダービー',
+  'demon slayer':'鬼滅の刃','jujutsu kaisen':'呪術廻戦','my hero academia':'僕のヒーローアカデミア',
+  'sailor moon':'美少女戦士セーラームーン','precure':'プリキュア'
+};
+function jpTerm(v){
+  const raw=String(v||'').trim(), m=raw.match(/^(male|female|other):(.*)$/i);
+  const ns=m?({male:'男性',female:'女性',other:'その他'})[m[1].toLowerCase()]:'';
+  const base=(m?m[2]:raw).trim(), jp=JP_TERMS[base.toLowerCase()]||base;
+  return ns?`${ns}：${jp}`:jp
+}
+function displayValue(kind,v){return kind==='tags'||kind==='works'||kind==='characters'?jpTerm(v):String(v||'')}
+function tagLabel(v){return jpTerm(v)}
 function facetSummary(x){
   const vals=[];
+  const w=worksOf(x)[0];if(w)vals.push({kind:'works',value:w,label:`作品 ${displayValue('works',w)}`});
   if(x.artists?.[0])vals.push({kind:'artists',value:x.artists[0],label:`作者 ${x.artists[0]}`});
-  for(const t of contentTagsOf(x).slice(0,2))vals.push({kind:'tags',value:t,label:`#${tagLabel(t)}`});
-  if(vals.length<2&&x.groups?.[0])vals.push({kind:'groups',value:x.groups[0],label:`G ${x.groups[0]}`});
-  const w=worksOf(x)[0];if(vals.length<3&&w)vals.push({kind:'works',value:w,label:`作品 ${w}`});
+  for(const t of contentTagsOf(x).slice(0,2))if(vals.length<3)vals.push({kind:'tags',value:t,label:`#${displayValue('tags',t)}`});
+  if(vals.length<3&&x.groups?.[0])vals.push({kind:'groups',value:x.groups[0],label:`G ${x.groups[0]}`});
   return vals.slice(0,3)
 }
 function metaLine(x){const a=[];if(x.rating!=null&&Number(x.rating)>0)a.push(`★${Number(x.rating).toFixed(2).replace(/0+$/,'').replace(/\.$/,'')}`);if(x.popularity!=null&&Number(x.popularity)>0)a.push(`人気 ${Number(x.popularity).toLocaleString()}`);if(x.pages)a.push(`${x.pages}p`);if(x.posted_at)a.push(relative(x.posted_at));return a.join(' ・ ')}
@@ -123,7 +153,7 @@ function card(x){
   const facets=facetSummary(x).map(facetButton).join('');
   return `<article class="card" data-uid="${esc(id)}"><a class="thumb" href="${esc(url||'#')}" target="_blank" rel="noopener noreferrer">${thumb?`<img src="${esc(thumb)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',textContent:'サムネイルなし'}))">`:`<div class="ph">サムネイルなし</div>`}<span class="source">${esc(labels)}</span>${dup}${favs.has(id)?'<span class="favmark">★</span>':''}</a><div class="body"><a class="title" href="${esc(url||'#')}" target="_blank" rel="noopener noreferrer">${esc(titleOf(x))}</a>${facets?`<div class="facetline">${facets}</div>`:''}<p class="meta">${esc(metaLine(x))}</p><button class="more" type="button" data-more="${esc(id)}">⋮</button></div></article>`
 }
-function updateActiveFacet(){const kind=$('#facetKind').value,value=$('#facetValue').value,b=$('#activeFacet');if(!kind||!value){b.hidden=true;b.textContent='';return}const labels={artists:'作者',groups:'グループ',works:'作品',characters:'キャラ',tags:'タグ'};b.hidden=false;b.textContent=`${labels[kind]||kind}: ${value} ×`}
+function updateActiveFacet(){const kind=$('#facetKind').value,value=$('#facetValue').value,b=$('#activeFacet');if(!kind||!value){b.hidden=true;b.textContent='';return}const labels={artists:'作者',groups:'グループ',works:'作品',characters:'キャラ',tags:'タグ'};b.hidden=false;b.textContent=`${labels[kind]||kind}: ${displayValue(kind,value)} ×`}
 function apply(){
   const q=$('#q').value.trim().toLowerCase(),cat=$('#category').value,minPages=Number($('#pages').value||0),sort=$('#sort').value,facetKind=$('#facetKind').value,facetValue=$('#facetValue').value;
   let arr=state.items.filter(x=>!hidden.has(x._groupId));
@@ -137,10 +167,10 @@ function apply(){
   state.filtered=arr;state.shown=INITIAL;updateActiveFacet();render();
 }
 function render(){const list=state.filtered.slice(0,state.shown);$('#grid').innerHTML=list.length?list.map(card).join(''):'<div class="empty">該当作品がありません</div>';$('#count').textContent=`${state.filtered.length.toLocaleString()}作品`;$('#loadMore').hidden=state.shown>=state.filtered.length}
-function refreshFacetValues(selectedValue=''){const kind=$('#facetKind').value,sel=$('#facetValue');sel.innerHTML='<option value="">すべて</option>';if(!kind){sel.disabled=true;return}const counts=new Map();for(const x of state.items)for(const v of fieldValues(x,kind)){if(v)counts.set(v,(counts.get(v)||0)+1)}const vals=[...counts].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],'ja')).slice(0,500);for(const [v,n] of vals){const o=document.createElement('option');o.value=v;o.textContent=`${v} (${n})`;sel.appendChild(o)}if(selectedValue&&!counts.has(selectedValue)){const o=document.createElement('option');o.value=selectedValue;o.textContent=selectedValue;sel.appendChild(o)}sel.disabled=false;if(selectedValue)sel.value=selectedValue}
+function refreshFacetValues(selectedValue=''){const kind=$('#facetKind').value,sel=$('#facetValue');sel.innerHTML='<option value="">すべて</option>';if(!kind){sel.disabled=true;return}const counts=new Map();for(const x of state.items)for(const v of fieldValues(x,kind)){if(v)counts.set(v,(counts.get(v)||0)+1)}const vals=[...counts].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],'ja')).slice(0,500);for(const [v,n] of vals){const o=document.createElement('option');o.value=v;o.textContent=`${displayValue(kind,v)} (${n})`;sel.appendChild(o)}if(selectedValue&&!counts.has(selectedValue)){const o=document.createElement('option');o.value=selectedValue;o.textContent=displayValue(kind,selectedValue);sel.appendChild(o)}sel.disabled=false;if(selectedValue)sel.value=selectedValue}
 function setFacetFilter(kind,value){if(!kind||!value)return;$('#facetKind').value=kind;refreshFacetValues(value);$('#facetValue').value=value;closeSheet();apply();window.scrollTo({top:0,behavior:'smooth'})}
 function clearFacetFilter(){$('#facetKind').value='';refreshFacetValues();$('#facetValue').value='';apply()}
-function detailBlock(label,values,kind){values=uniq(values||[]);if(!values.length)return'';return `<div class="detailblock"><div class="detailtitle">${esc(label)} ・ タップで絞り込み</div><div class="detailchips">${values.slice(0,36).map(v=>facetButton({kind,value:v,label:kind==='tags'?`#${tagLabel(v)}`:v})).join('')}</div></div>`}
+function detailBlock(label,values,kind){values=uniq(values||[]);if(!values.length)return'';return `<div class="detailblock"><div class="detailtitle">${esc(label)} ・ タップで絞り込み</div><div class="detailchips">${values.slice(0,36).map(v=>facetButton({kind,value:v,label:kind==='tags'?`#${displayValue(kind,v)}`:displayValue(kind,v)})).join('')}</div></div>`}
 function menu(id){
   const x=state.items.find(i=>i._groupId===id);if(!x)return;
   const sheet=$('#sheet');
