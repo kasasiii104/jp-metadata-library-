@@ -120,7 +120,7 @@ def collect(state: dict | None = None):
     found={}; errors=[]; rejected_non_japanese=0
     for page in range(1,PAGES+1):
         try:
-            r=sess.get(f"{API_BASE}/asmhentai/search",params={"key":SEARCH_KEY,"page":page,"sort":"latest"},timeout=TIMEOUT)
+            r=sess.get(f"{API_BASE}/asmhentai/search",params={"key":SEARCH_KEY,"page":page},timeout=TIMEOUT)
             r.raise_for_status()
             rows=walk(r.json())
             for raw in rows:
