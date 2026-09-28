@@ -6,6 +6,8 @@ import requests
 
 API_BASE = os.environ.get("JANDAPRESS_URL", "http://127.0.0.1:3000").rstrip("/")
 SEARCH_KEY = os.environ.get("ASMHENTAI_SEARCH_KEY", "japanese")
+SEARCH_KEYS = [x.strip() for x in os.environ.get("ASMHENTAI_SEARCH_KEYS", f"{SEARCH_KEY},日本語").split(",") if x.strip()]
+PROBE_KEY = os.environ.get("ASMHENTAI_PROBE_KEY", "futanari")
 PAGES = int(os.environ.get("ASMHENTAI_LATEST_PAGES", "4"))
 LIMIT = int(os.environ.get("ASMHENTAI_MAX_GALLERIES_PER_RUN", "80"))
 TIMEOUT = 30
@@ -115,23 +117,83 @@ def normalize(raw: dict) -> dict | None:
     }
 
 
+def _search(sess, key: str, page: int):
+    r = sess.get(f"{API_BASE}/asmhentai/search", params={"key": key, "page": page}, timeout=TIMEOUT)
+    r.raise_for_status()
+    return walk(r.json())
+
+
 def collect(state: dict | None = None):
-    state=dict(state or {}); sess=requests.Session()
-    found={}; errors=[]; rejected_non_japanese=0
-    for page in range(1,PAGES+1):
+    state = dict(state or {})
+    sess = requests.Session()
+    found, errors = {}, []
+    rejected_non_japanese = 0
+    search_ok = False
+    search_key_used = ""
+
+    # Try explicit Japanese markers first. ASMHentai/Jandapress returns HTTP 400
+    # for an empty search result, so a 400 here is not enough to conclude that
+    # the whole source is unreachable.
+    for key in SEARCH_KEYS:
+        for page in range(1, PAGES + 1):
+            try:
+                rows = _search(sess, key, page)
+                search_ok = True
+                search_key_used = key
+                for raw in rows:
+                    item = normalize(raw)
+                    if item:
+                        found[item["source_id"]] = item
+                    else:
+                        rejected_non_japanese += 1
+                    if len(found) >= LIMIT:
+                        break
+            except Exception as e:
+                errors.append(f"key={key} page={page}: {str(e)[:220]}")
+            if len(found) >= LIMIT:
+                break
+        if found:
+            break
+
+    # Diagnostic probe: distinguish "Japanese query has no results" from
+    # "ASMHentai is blocked/unparseable from GitHub Actions". Probe results are
+    # NEVER admitted unless normalize() independently proves Japanese metadata.
+    probe_ok = False
+    probe_rows = 0
+    if not search_ok:
         try:
-            r=sess.get(f"{API_BASE}/asmhentai/search",params={"key":SEARCH_KEY,"page":page},timeout=TIMEOUT)
-            r.raise_for_status()
-            rows=walk(r.json())
+            rows = _search(sess, PROBE_KEY, 1)
+            probe_ok = True
+            probe_rows = len(rows)
             for raw in rows:
-                item=normalize(raw)
-                if item: found[item["source_id"]]=item
-                else: rejected_non_japanese+=1
-                if len(found)>=LIMIT: break
+                item = normalize(raw)
+                if item:
+                    found[item["source_id"]] = item
+                else:
+                    rejected_non_japanese += 1
         except Exception as e:
-            errors.append(f"page={page}: {str(e)[:300]}")
-        if len(found)>=LIMIT: break
-    items=list(found.values())[:LIMIT]
-    return items,state,{"status":"ok" if items else "error","discovered":len(found),"accepted_raw":len(items),
-        "rejected_non_japanese":rejected_non_japanese,"tagged_items":sum(bool(x["tags"]) for x in items),
-        "thumbnail_urls":sum(bool(x["thumbnail"]) for x in items),"message":" | ".join(errors[:4])}
+            errors.append(f"probe={PROBE_KEY}: {str(e)[:220]}")
+
+    items = list(found.values())[:LIMIT]
+    if items:
+        status = "ok"
+        message = ""
+    elif probe_ok:
+        status = "empty"
+        message = "ASMHentai is reachable, but Japanese-qualified results were not found"
+    else:
+        status = "error"
+        message = "ASMHentai search is unreachable or its HTML no longer matches Jandapress"
+    return items, state, {
+        "status": status,
+        "discovered": len(found),
+        "accepted_raw": len(items),
+        "rejected_non_japanese": rejected_non_japanese,
+        "tagged_items": sum(bool(x["tags"]) for x in items),
+        "thumbnail_urls": sum(bool(x["thumbnail"]) for x in items),
+        "japanese_search_ok": search_ok,
+        "japanese_search_key": search_key_used,
+        "probe_ok": probe_ok,
+        "probe_rows": probe_rows,
+        "message": message + (" | " + " | ".join(errors[:6]) if errors else ""),
+    }
