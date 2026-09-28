@@ -83,6 +83,10 @@ def thumbnail_of(raw: dict) -> str:
         v = raw.get(key)
         if isinstance(v, str) and v.startswith(("http://","https://","//")):
             return ("https:"+v) if v.startswith("//") else v
+        if isinstance(v, list):
+            for vv in v:
+                if isinstance(vv, str) and vv.startswith(("http://","https://","//")):
+                    return ("https:"+vv) if vv.startswith("//") else vv
         if isinstance(v, dict):
             for kk in ("url","src","source","thumbnail"):
                 vv = v.get(kk)
@@ -123,6 +127,14 @@ def _search(sess, key: str, page: int):
     return walk(r.json())
 
 
+def _get(sess, book: str) -> dict:
+    r = sess.get(f"{API_BASE}/asmhentai/get", params={"book": book}, timeout=TIMEOUT)
+    r.raise_for_status()
+    payload = r.json()
+    data = payload.get("data") if isinstance(payload, dict) else None
+    return data if isinstance(data, dict) else {}
+
+
 def collect(state: dict | None = None):
     state = dict(state or {})
     sess = requests.Session()
@@ -141,7 +153,25 @@ def collect(state: dict | None = None):
                 search_ok = True
                 search_key_used = key
                 for raw in rows:
-                    item = normalize(raw)
+                    sid = clean(first(raw, "id", "gallery_id", "galleryId", "book", "source_id", "gid"))
+                    detail = {}
+                    if sid:
+                        try:
+                            detail = _get(sess, sid)
+                        except Exception as e:
+                            errors.append(f"get={sid}: {str(e)[:180]}")
+                    candidate = detail or raw
+                    # A result returned by the explicit 日本語 search is useful
+                    # discovery evidence, but admission still requires either
+                    # Japanese metadata/tags or Japanese script in the detailed
+                    # title. This prevents English-only galleries leaking in.
+                    ts = tags(first(candidate, "tags", "tag", "metadata"))
+                    detailed_title = clean(first(candidate, "title", "name", "pretty", "japanese"))
+                    japanese_script = bool(__import__("re").search(r"[ぁ-んァ-ヶ一-龯]", detailed_title))
+                    if key == "日本語" and japanese_script and not is_japanese(candidate, ts):
+                        candidate = dict(candidate)
+                        candidate["language"] = "japanese"
+                    item = normalize(candidate)
                     if item:
                         found[item["source_id"]] = item
                     else:
