@@ -64,8 +64,8 @@ jobs:
         env:
           JANDAPRESS_URL: "http://127.0.0.1:3000"
           HENTAI3_SEARCH_KEY: "language:japanese"
-          ASMHENTAI_SEARCH_KEY: "japanese"
-          ASMHENTAI_SEARCH_KEYS: "japanese,日本語"
+          ASMHENTAI_SEARCH_KEY: "日本語"
+          ASMHENTAI_SEARCH_KEYS: "日本語"
           ASMHENTAI_PROBE_KEY: "futanari"
         run: python crawler.py
 
