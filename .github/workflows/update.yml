@@ -1,6 +1,15 @@
 name: Japanese Metadata Library
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "sources/**"
+      - "crawler.py"
+      - "config.py"
+      - "tools/**"
+      - "requirements.txt"
+      - ".github/workflows/update.yml"
   schedule:
     - cron: "17 * * * *"
   workflow_dispatch:
