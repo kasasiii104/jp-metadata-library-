@@ -143,6 +143,8 @@ def collect(state: dict | None = None):
     rejected_non_japanese = 0
     detail_attempts = 0
     detail_success = 0
+    detail_cursor = int(state.get("detail_cursor") or 0)
+    candidate_index = 0
     search_ok = False
     search_key_used = ""
 
@@ -158,7 +160,9 @@ def collect(state: dict | None = None):
                 for raw in rows:
                     sid = clean(first(raw, "id", "gallery_id", "galleryId", "book", "source_id", "gid"))
                     detail = {}
-                    if sid and detail_attempts < DETAIL_LIMIT:
+                    should_detail = detail_cursor <= candidate_index < detail_cursor + DETAIL_LIMIT
+                    candidate_index += 1
+                    if sid and should_detail:
                         detail_attempts += 1
                         try:
                             detail = _get(sess, sid)
@@ -210,6 +214,8 @@ def collect(state: dict | None = None):
         except Exception as e:
             errors.append(f"probe={PROBE_KEY}: {str(e)[:220]}")
 
+    if candidate_index:
+        state["detail_cursor"] = (detail_cursor + max(detail_attempts, DETAIL_LIMIT)) % candidate_index
     items = list(found.values())[:LIMIT]
     if items:
         status = "ok"
@@ -229,6 +235,9 @@ def collect(state: dict | None = None):
         "thumbnail_urls": sum(bool(x["thumbnail"]) for x in items),
         "detail_attempts": detail_attempts,
         "detail_success": detail_success,
+        "detail_cursor": detail_cursor,
+        "detail_cursor_next": state.get("detail_cursor", 0),
+        "detail_candidates": candidate_index,
         "japanese_search_ok": search_ok,
         "japanese_search_key": search_key_used,
         "probe_ok": probe_ok,
