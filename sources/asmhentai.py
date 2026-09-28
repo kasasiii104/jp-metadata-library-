@@ -10,7 +10,8 @@ SEARCH_KEYS = [x.strip() for x in os.environ.get("ASMHENTAI_SEARCH_KEYS", f"{SEA
 PROBE_KEY = os.environ.get("ASMHENTAI_PROBE_KEY", "futanari")
 PAGES = int(os.environ.get("ASMHENTAI_LATEST_PAGES", "4"))
 LIMIT = int(os.environ.get("ASMHENTAI_MAX_GALLERIES_PER_RUN", "80"))
-TIMEOUT = 30
+TIMEOUT = int(os.environ.get("ASMHENTAI_TIMEOUT_SEC", "10"))
+DETAIL_LIMIT = int(os.environ.get("ASMHENTAI_DETAIL_LIMIT", "24"))
 
 
 def clean(v: Any) -> str:
@@ -140,6 +141,8 @@ def collect(state: dict | None = None):
     sess = requests.Session()
     found, errors = {}, []
     rejected_non_japanese = 0
+    detail_attempts = 0
+    detail_success = 0
     search_ok = False
     search_key_used = ""
 
@@ -155,9 +158,12 @@ def collect(state: dict | None = None):
                 for raw in rows:
                     sid = clean(first(raw, "id", "gallery_id", "galleryId", "book", "source_id", "gid"))
                     detail = {}
-                    if sid:
+                    if sid and detail_attempts < DETAIL_LIMIT:
+                        detail_attempts += 1
                         try:
                             detail = _get(sess, sid)
+                            if detail:
+                                detail_success += 1
                         except Exception as e:
                             errors.append(f"get={sid}: {str(e)[:180]}")
                     candidate = detail or raw
@@ -221,6 +227,8 @@ def collect(state: dict | None = None):
         "rejected_non_japanese": rejected_non_japanese,
         "tagged_items": sum(bool(x["tags"]) for x in items),
         "thumbnail_urls": sum(bool(x["thumbnail"]) for x in items),
+        "detail_attempts": detail_attempts,
+        "detail_success": detail_success,
         "japanese_search_ok": search_ok,
         "japanese_search_key": search_key_used,
         "probe_ok": probe_ok,
