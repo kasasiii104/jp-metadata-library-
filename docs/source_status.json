@@ -4,7 +4,7 @@
     "discovered": 50,
     "accepted_raw": 0,
     "message": "",
-    "last_attempt": "2026-09-28T18:29:41+00:00",
+    "last_attempt": "2026-09-28T19:25:19+00:00",
     "accepted": 0,
     "blocked": 0,
     "blocked_reasons": {},
@@ -29,21 +29,21 @@
         "requested_cursor": "<latest>",
         "final_url": "https://e-hentai.org/",
         "found_count": 25,
-        "first_gid": "4218611",
-        "last_gid": "4218575",
-        "next_cursor": "4218575",
+        "first_gid": "4218686",
+        "last_gid": "4218658",
+        "next_cursor": "4218658",
         "unique_new_count": 25,
         "repeated_page": false
       },
       {
         "stage": "latest-global:2",
         "query_mode": "global-latest",
-        "requested_cursor": "4218575",
-        "final_url": "https://e-hentai.org/?next=4218575",
+        "requested_cursor": "4218658",
+        "final_url": "https://e-hentai.org/?next=4218658",
         "found_count": 25,
-        "first_gid": "4218574",
-        "last_gid": "4218546",
-        "next_cursor": "4218546",
+        "first_gid": "4218657",
+        "last_gid": "4218624",
+        "next_cursor": "4218624",
         "unique_new_count": 25,
         "repeated_page": false
       }
@@ -64,42 +64,40 @@
     "accepted_raw": 90,
     "latest_ids": 30,
     "backfill_ids": 60,
-    "total_index": 554419,
+    "total_index": 554432,
     "resource_base": "https://ltn.gold-usergeneratedcontent.net",
     "used_hosts": {
       "https://ltn.gold-usergeneratedcontent.net": 90
     },
     "index_url": "https://ltn.gold-usergeneratedcontent.net/n/index-japanese.nozomi",
     "message": "",
-    "last_attempt": "2026-09-28T18:29:41+00:00",
-    "accepted": 86,
-    "blocked": 4,
+    "last_attempt": "2026-09-28T19:25:19+00:00",
+    "accepted": 87,
+    "blocked": 3,
     "blocked_reasons": {
-      "blocked:farting": 1,
-      "blocked:male:yaoi": 1,
-      "blocked:ryona": 2
+      "blocked:male:yaoi": 3
     },
-    "last_success": "2026-09-28T18:29:41+00:00",
+    "last_success": "2026-09-28T19:25:19+00:00",
     "thumbnails_found": 90,
     "thumbnails_missing": 0,
     "thumbnail_samples": [
-      "4218711: https://tn.hitomi.la/bigtn/9/82/e1266880e8d5a39d87dafad5ed19807643255820d2f48cde5502e05d8bba7829.jpg",
-      "4218710: https://tn.hitomi.la/bigtn/2/6a/a35db2371b161561a1099888c381555b61fd5336f5ced62855a7e89f343176a2.jpg",
-      "4218709: https://tn.hitomi.la/bigtn/e/f4/52066c2f6dd0f725f908c2d6ae54a3d76ec12479b48ce6e79bee45378e434f4e.jpg"
+      "4218787: https://tn.hitomi.la/bigtn/f/c5/14d46fb491424ec9591c91764c947a897f8fc307291b3c01f13c457b7d6f7c5f.jpg",
+      "4218783: https://tn.hitomi.la/bigtn/0/27/2e80b5e431930ca3a034adfbe7c3a19cc0a9248a66117628155d59512ffe7270.jpg",
+      "4218782: https://tn.hitomi.la/bigtn/6/7f/2c9f8bbb811e6cdd77716ec93928184281aac02a9e195b17f52c2f36bbf5d7f6.jpg"
     ],
     "thumbnail_cache": {
       "attempted": 58,
       "cached": 58,
-      "reused": 8171,
+      "reused": 8229,
       "failed": 0,
       "pending": 0,
       "failures": []
     },
-    "artists_found": 82,
-    "groups_found": 40,
-    "works_found": 82,
-    "characters_found": 67,
-    "tagged_items": 88
+    "artists_found": 84,
+    "groups_found": 48,
+    "works_found": 75,
+    "characters_found": 58,
+    "tagged_items": 89
   },
   "3hentai": {
     "status": "ok",
@@ -119,15 +117,15 @@
     ],
     "thumbnails_found": 60,
     "thumbnails_missing": 0,
-    "debug": "page=1 candidates=24 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=1&sort=recent | page=2 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=2&sort=recent | page=436 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=436&sort=recent",
+    "debug": "page=1 candidates=24 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=1&sort=recent | page=2 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=2&sort=recent | page=439 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=439&sort=recent",
     "message": "",
-    "last_attempt": "2026-09-28T18:29:41+00:00",
-    "accepted": 56,
-    "blocked": 4,
+    "last_attempt": "2026-09-28T19:25:19+00:00",
+    "accepted": 58,
+    "blocked": 2,
     "blocked_reasons": {
-      "blocked:yaoi": 4
+      "blocked:yaoi": 2
     },
-    "last_success": "2026-09-28T18:29:41+00:00",
+    "last_success": "2026-09-28T19:25:19+00:00",
     "api_base": "http://127.0.0.1:3000",
     "jandapress_http": 200,
     "search_key": "language:japanese",
@@ -135,18 +133,18 @@
       "mode": "public-search-exact-title+gallery",
       "attempted": 12,
       "cached": 12,
-      "reused": 1365,
+      "reused": 1377,
       "failed": 0,
-      "pending": 1002,
+      "pending": 1001,
       "resolved_search_fallbacks": 0,
       "rate_limited": false,
       "upstream_unavailable": false,
       "samples": [
-        "3618827: https://s1.3hentai.xyz/d2084326/thumb.jpg -> thumbs/3hentai/3618827.webp",
-        "3618825: https://s1.3hentai.xyz/d2084324/thumb.jpg -> thumbs/3hentai/3618825.webp",
-        "3618813: https://s1.3hentai.xyz/d2084322/thumb.jpg -> thumbs/3hentai/3618813.webp",
-        "3618788: https://s1.3hentai.xyz/d2084287/thumb.jpg -> thumbs/3hentai/3618788.webp",
-        "3618763: https://s1.3hentai.xyz/d2084240/thumb.jpg -> thumbs/3hentai/3618763.webp"
+        "3617602: https://s1.3hentai.xyz/d2082211/thumb.jpg -> thumbs/3hentai/3617602.webp",
+        "3617567: https://s1.3hentai.xyz/d2082128/thumb.jpg -> thumbs/3hentai/3617567.webp",
+        "3617490: https://s1.3hentai.xyz/d2081915/thumb.jpg -> thumbs/3hentai/3617490.webp",
+        "3617473: https://s1.3hentai.xyz/d2081726/thumb.jpg -> thumbs/3hentai/3617473.webp",
+        "3617350: https://s1.3hentai.xyz/d2081705/thumb.jpg -> thumbs/3hentai/3617350.webp"
       ],
       "failures": []
     },
@@ -247,9 +245,9 @@
         "error": ""
       },
       {
-        "page": 436,
+        "page": 439,
         "http_status": 200,
-        "final_url": "https://3hentai.net/search?q=language%3Ajapanese&page=436&sort=recent",
+        "final_url": "https://3hentai.net/search?q=language%3Ajapanese&page=439&sort=recent",
         "cards": 25,
         "error": ""
       }
@@ -289,8 +287,8 @@
     "tagged_items": 60,
     "artists_found": 0,
     "groups_found": 0,
-    "works_found": 35,
-    "characters_found": 29
+    "works_found": 37,
+    "characters_found": 32
   },
   "filters": {
     "content_filters": "enabled",
@@ -342,18 +340,16 @@
   },
   "asmhentai": {
     "status": "ok",
-    "discovered": 78,
-    "accepted_raw": 78,
-    "rejected_non_japanese": 2,
+    "discovered": 80,
+    "accepted_raw": 80,
+    "rejected_non_japanese": 0,
     "tagged_items": 8,
     "thumbnail_urls": 8,
     "message": "",
-    "last_attempt": "2026-09-28T18:29:41+00:00",
-    "accepted": 76,
-    "blocked": 2,
-    "blocked_reasons": {
-      "blocked:yaoi": 2
-    },
+    "last_attempt": "2026-09-28T19:25:19+00:00",
+    "accepted": 80,
+    "blocked": 0,
+    "blocked_reasons": {},
     "thumbnail_cache": {
       "attempted": 0,
       "cached": 0,
@@ -367,10 +363,10 @@
     "probe_rows": 0,
     "detail_attempts": 8,
     "detail_success": 8,
-    "last_success": "2026-09-28T18:29:41+00:00",
-    "detail_cursor": 64,
-    "detail_cursor_next": 72,
+    "last_success": "2026-09-28T19:25:19+00:00",
+    "detail_cursor": 72,
+    "detail_cursor_next": 0,
     "detail_candidates": 80
   },
-  "updated_at": "2026-09-28T18:29:41+00:00"
+  "updated_at": "2026-09-28T19:25:19+00:00"
 }

@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-09-28T18:29:41+00:00",
-  "item_count": 14216,
-  "duplicate_group_count": 53,
-  "duplicate_item_count": 116,
+  "updated_at": "2026-09-28T19:25:19+00:00",
+  "item_count": 14285,
+  "duplicate_group_count": 49,
+  "duplicate_item_count": 108,
   "purged_existing_insect": 0,
   "purged_existing_blocked": 0,
   "purged_existing_reasons": {},
@@ -133,6 +133,761 @@
       "last_seen": "2026-09-28T07:28:26+00:00"
     },
     {
+      "uid": "hitomi:4218787",
+      "source": "hitomi",
+      "source_id": "4218787",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4218787.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "にど",
+      "title_jp": "にど",
+      "language": "japanese",
+      "category": "imageset",
+      "artists": [
+        "zerodo"
+      ],
+      "groups": [],
+      "parodies": [
+        "hololive",
+        "nijisanji",
+        "to love-ru"
+      ],
+      "works": [
+        "hololive",
+        "nijisanji",
+        "to love-ru"
+      ],
+      "characters": [
+        "aiba uiha",
+        "amamiya kokoro",
+        "amane kanata",
+        "hakase fuyuki",
+        "higuchi kaede",
+        "hoshikawa sara",
+        "hoshimachi suisei",
+        "lize helesta",
+        "sasaki saku",
+        "shirogane noel",
+        "suzuhara lulu",
+        "usada pekora",
+        "yorumi rena"
+      ],
+      "tags": [
+        "female:mind control",
+        "female:schoolgirl uniform",
+        "female:vtuber"
+      ],
+      "meta_tags": [
+        "artist:zerodo",
+        "work:hololive",
+        "work:nijisanji",
+        "work:to love-ru",
+        "character:aiba uiha",
+        "character:amamiya kokoro",
+        "character:amane kanata",
+        "character:hakase fuyuki",
+        "character:higuchi kaede",
+        "character:hoshikawa sara",
+        "character:hoshimachi suisei",
+        "character:lize helesta",
+        "character:sasaki saku",
+        "character:shirogane noel",
+        "character:suzuhara lulu",
+        "character:usada pekora",
+        "character:yorumi rena"
+      ],
+      "pages": 526,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-09-28 13:41:00-05",
+      "thumbnail": "thumbs/hitomi/4218787.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4218783",
+      "source": "hitomi",
+      "source_id": "4218783",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4218783.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "FINISHアーカイブvol.106 天童アリス5",
+      "title_jp": "FINISHアーカイブvol.106 天童アリス5",
+      "language": "japanese",
+      "category": "artistcg",
+      "artists": [
+        "kouji",
+        "yu-ji"
+      ],
+      "groups": [
+        "yuujikouji"
+      ],
+      "parodies": [
+        "blue archive"
+      ],
+      "works": [
+        "blue archive"
+      ],
+      "characters": [
+        "alice tendou"
+      ],
+      "tags": [
+        "female:halo",
+        "female:loli",
+        "female:sole female",
+        "male:sole male",
+        "variant set",
+        "female:very long hair"
+      ],
+      "meta_tags": [
+        "artist:kouji",
+        "artist:yu-ji",
+        "group:yuujikouji",
+        "work:blue archive",
+        "character:alice tendou"
+      ],
+      "pages": 6,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-09-28 13:37:00-05",
+      "thumbnail": "thumbs/hitomi/4218783.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4218782",
+      "source": "hitomi",
+      "source_id": "4218782",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4218782.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "FINISHアーカイブvol.105 杏山カズサ3",
+      "title_jp": "FINISHアーカイブvol.105 杏山カズサ3",
+      "language": "japanese",
+      "category": "artistcg",
+      "artists": [
+        "kouji",
+        "yu-ji"
+      ],
+      "groups": [
+        "yuujikouji"
+      ],
+      "parodies": [
+        "blue archive"
+      ],
+      "works": [
+        "blue archive"
+      ],
+      "characters": [
+        "kazusa kyouyama"
+      ],
+      "tags": [
+        "female:collar",
+        "male:first person perspective",
+        "female:halo",
+        "female:kemonomimi",
+        "female:sole female",
+        "male:sole male",
+        "variant set"
+      ],
+      "meta_tags": [
+        "artist:kouji",
+        "artist:yu-ji",
+        "group:yuujikouji",
+        "work:blue archive",
+        "character:kazusa kyouyama"
+      ],
+      "pages": 6,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-09-28 13:37:00-05",
+      "thumbnail": "thumbs/hitomi/4218782.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4218781",
+      "source": "hitomi",
+      "source_id": "4218781",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4218781.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "FINISHアーカイブvol.104 砂狼シロコ6",
+      "title_jp": "FINISHアーカイブvol.104 砂狼シロコ6",
+      "language": "japanese",
+      "category": "artistcg",
+      "artists": [
+        "kouji",
+        "yu-ji"
+      ],
+      "groups": [
+        "yuujikouji"
+      ],
+      "parodies": [
+        "blue archive"
+      ],
+      "works": [
+        "blue archive"
+      ],
+      "characters": [
+        "shiroko sunaookami"
+      ],
+      "tags": [
+        "female:halo",
+        "female:kemonomimi",
+        "female:loli",
+        "female:sole female",
+        "male:sole male",
+        "female:swimsuit",
+        "variant set"
+      ],
+      "meta_tags": [
+        "artist:kouji",
+        "artist:yu-ji",
+        "group:yuujikouji",
+        "work:blue archive",
+        "character:shiroko sunaookami"
+      ],
+      "pages": 6,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-09-28 13:37:00-05",
+      "thumbnail": "thumbs/hitomi/4218781.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4218780",
+      "source": "hitomi",
+      "source_id": "4218780",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4218780.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "FINISHアーカイブvol.103 古関ウイ1",
+      "title_jp": "FINISHアーカイブvol.103 古関ウイ1",
+      "language": "japanese",
+      "category": "artistcg",
+      "artists": [
+        "kouji",
+        "yu-ji"
+      ],
+      "groups": [
+        "yuujikouji"
+      ],
+      "parodies": [
+        "blue archive"
+      ],
+      "works": [
+        "blue archive"
+      ],
+      "characters": [
+        "ui kozeki"
+      ],
+      "tags": [
+        "female:bikini",
+        "female:halo",
+        "female:ponytail",
+        "female:sole female",
+        "male:sole male",
+        "female:swimsuit",
+        "variant set"
+      ],
+      "meta_tags": [
+        "artist:kouji",
+        "artist:yu-ji",
+        "group:yuujikouji",
+        "work:blue archive",
+        "character:ui kozeki"
+      ],
+      "pages": 6,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-09-28 13:37:00-05",
+      "thumbnail": "thumbs/hitomi/4218780.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4218779",
+      "source": "hitomi",
+      "source_id": "4218779",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4218779.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "FINISHアーカイブvol.102 百合園セイア6",
+      "title_jp": "FINISHアーカイブvol.102 百合園セイア6",
+      "language": "japanese",
+      "category": "artistcg",
+      "artists": [
+        "kouji",
+        "yu-ji"
+      ],
+      "groups": [
+        "yuujikouji"
+      ],
+      "parodies": [
+        "blue archive"
+      ],
+      "works": [
+        "blue archive"
+      ],
+      "characters": [
+        "seia yurizono"
+      ],
+      "tags": [
+        "male:first person perspective",
+        "female:halo",
+        "female:kemonomimi",
+        "female:loli",
+        "female:sole female",
+        "male:sole male",
+        "female:swimsuit",
+        "variant set"
+      ],
+      "meta_tags": [
+        "artist:kouji",
+        "artist:yu-ji",
+        "group:yuujikouji",
+        "work:blue archive",
+        "character:seia yurizono"
+      ],
+      "pages": 6,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-09-28 13:36:00-05",
+      "thumbnail": "thumbs/hitomi/4218779.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4218778",
+      "source": "hitomi",
+      "source_id": "4218778",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4218778.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "FINISHアーカイブvol.101 板垣カノエ3",
+      "title_jp": "FINISHアーカイブvol.101 板垣カノエ3",
+      "language": "japanese",
+      "category": "artistcg",
+      "artists": [
+        "kouji",
+        "yu-ji"
+      ],
+      "groups": [
+        "yuujikouji"
+      ],
+      "parodies": [
+        "blue archive"
+      ],
+      "works": [
+        "blue archive"
+      ],
+      "characters": [
+        "kanoe itagaki"
+      ],
+      "tags": [
+        "female:eye-covering bang",
+        "female:halo",
+        "female:loli",
+        "female:pantyhose",
+        "female:sole female",
+        "male:sole male",
+        "variant set"
+      ],
+      "meta_tags": [
+        "artist:kouji",
+        "artist:yu-ji",
+        "group:yuujikouji",
+        "work:blue archive",
+        "character:kanoe itagaki"
+      ],
+      "pages": 6,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-09-28 13:36:00-05",
+      "thumbnail": "thumbs/hitomi/4218778.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4218777",
+      "source": "hitomi",
+      "source_id": "4218777",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4218777.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "FINISHアーカイブvol.99 桐生キキョウ9",
+      "title_jp": "FINISHアーカイブvol.99 桐生キキョウ9",
+      "language": "japanese",
+      "category": "artistcg",
+      "artists": [
+        "kouji",
+        "yu-ji"
+      ],
+      "groups": [
+        "yuujikouji"
+      ],
+      "parodies": [
+        "blue archive"
+      ],
+      "works": [
+        "blue archive"
+      ],
+      "characters": [
+        "kikyou kiryuu"
+      ],
+      "tags": [
+        "male:first person perspective",
+        "female:halo",
+        "female:kemonomimi",
+        "female:multiple tails",
+        "female:sole female",
+        "male:sole male",
+        "female:tail",
+        "variant set"
+      ],
+      "meta_tags": [
+        "artist:kouji",
+        "artist:yu-ji",
+        "group:yuujikouji",
+        "work:blue archive",
+        "character:kikyou kiryuu"
+      ],
+      "pages": 6,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-09-28 13:36:00-05",
+      "thumbnail": "thumbs/hitomi/4218777.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4218776",
+      "source": "hitomi",
+      "source_id": "4218776",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4218776.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "FINISHアーカイブvol.97 杏山カズサ2",
+      "title_jp": "FINISHアーカイブvol.97 杏山カズサ2",
+      "language": "japanese",
+      "category": "artistcg",
+      "artists": [
+        "kouji",
+        "yu-ji"
+      ],
+      "groups": [
+        "yuujikouji"
+      ],
+      "parodies": [
+        "blue archive"
+      ],
+      "works": [
+        "blue archive"
+      ],
+      "characters": [
+        "kazusa kyouyama"
+      ],
+      "tags": [
+        "female:collar",
+        "female:halo",
+        "female:kemonomimi",
+        "female:pantyhose",
+        "female:sole female",
+        "male:sole male",
+        "variant set"
+      ],
+      "meta_tags": [
+        "artist:kouji",
+        "artist:yu-ji",
+        "group:yuujikouji",
+        "work:blue archive",
+        "character:kazusa kyouyama"
+      ],
+      "pages": 6,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-09-28 13:36:00-05",
+      "thumbnail": "thumbs/hitomi/4218776.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4218775",
+      "source": "hitomi",
+      "source_id": "4218775",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4218775.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "FINISHアーカイブvol.96 プラナ3",
+      "title_jp": "FINISHアーカイブvol.96 プラナ3",
+      "language": "japanese",
+      "category": "artistcg",
+      "artists": [
+        "kouji",
+        "yu-ji"
+      ],
+      "groups": [
+        "yuujikouji"
+      ],
+      "parodies": [
+        "blue archive"
+      ],
+      "works": [
+        "blue archive"
+      ],
+      "characters": [
+        "plana"
+      ],
+      "tags": [
+        "female:collar",
+        "female:eye-covering bang",
+        "male:first person perspective",
+        "female:halo",
+        "female:loli",
+        "female:sole female",
+        "male:sole male",
+        "variant set"
+      ],
+      "meta_tags": [
+        "artist:kouji",
+        "artist:yu-ji",
+        "group:yuujikouji",
+        "work:blue archive",
+        "character:plana"
+      ],
+      "pages": 6,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-09-28 13:36:00-05",
+      "thumbnail": "thumbs/hitomi/4218775.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4218774",
+      "source": "hitomi",
+      "source_id": "4218774",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4218774.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "FINISHアーカイブvol.95 仲正イチカ5",
+      "title_jp": "FINISHアーカイブvol.95 仲正イチカ5",
+      "language": "japanese",
+      "category": "artistcg",
+      "artists": [
+        "kouji",
+        "yu-ji"
+      ],
+      "groups": [
+        "yuujikouji"
+      ],
+      "parodies": [
+        "blue archive"
+      ],
+      "works": [
+        "blue archive"
+      ],
+      "characters": [
+        "ichika nakamasa"
+      ],
+      "tags": [
+        "female:collar",
+        "female:gloves",
+        "female:halo",
+        "female:loli",
+        "female:sole female",
+        "male:sole male",
+        "variant set",
+        "female:wings"
+      ],
+      "meta_tags": [
+        "artist:kouji",
+        "artist:yu-ji",
+        "group:yuujikouji",
+        "work:blue archive",
+        "character:ichika nakamasa"
+      ],
+      "pages": 6,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-09-28 13:36:00-05",
+      "thumbnail": "thumbs/hitomi/4218774.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4218760",
+      "source": "hitomi",
+      "source_id": "4218760",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4218760.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "JS Kankin Choukyou Kiroku no Tsuzuki",
+      "title_jp": "J〇監禁調教記録の続き",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "hatome"
+      ],
+      "groups": [
+        "hatome honpo"
+      ],
+      "parodies": [],
+      "works": [],
+      "characters": [],
+      "tags": [
+        "male:bbm",
+        "female:bikini",
+        "female:catgirl",
+        "female:collar",
+        "female:gloves",
+        "female:kemonomimi",
+        "female:loli",
+        "female:sole female",
+        "male:sole male",
+        "female:stockings",
+        "female:swimsuit"
+      ],
+      "meta_tags": [
+        "artist:hatome",
+        "group:hatome honpo"
+      ],
+      "pages": 10,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-09-28 13:21:00-05",
+      "thumbnail": "thumbs/hitomi/4218760.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4218749",
+      "source": "hitomi",
+      "source_id": "4218749",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4218749.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "無職転生シルフィ＆アリエル",
+      "title_jp": "無職転生シルフィ＆アリエル",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "tachibana yuu"
+      ],
+      "groups": [],
+      "parodies": [
+        "mushoku tensei"
+      ],
+      "works": [
+        "mushoku tensei"
+      ],
+      "characters": [
+        "ariel anemoi asura",
+        "sylphiette"
+      ],
+      "tags": [
+        "female:elf"
+      ],
+      "meta_tags": [
+        "artist:tachibana yuu",
+        "work:mushoku tensei",
+        "character:ariel anemoi asura",
+        "character:sylphiette"
+      ],
+      "pages": 9,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-09-28 13:14:00-05",
+      "thumbnail": "thumbs/hitomi/4218749.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4218740",
+      "source": "hitomi",
+      "source_id": "4218740",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4218740.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "広ちゃん...",
+      "title_jp": "広ちゃん...",
+      "language": "japanese",
+      "category": "artistcg",
+      "artists": [
+        "daram"
+      ],
+      "groups": [],
+      "parodies": [
+        "the idolmaster"
+      ],
+      "works": [
+        "the idolmaster"
+      ],
+      "characters": [
+        "hiro shinosawa"
+      ],
+      "tags": [
+        "female:sole female",
+        "male:sole male"
+      ],
+      "meta_tags": [
+        "artist:daram",
+        "work:the idolmaster",
+        "character:hiro shinosawa"
+      ],
+      "pages": 2,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-09-28 13:03:00-05",
+      "thumbnail": "thumbs/hitomi/4218740.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
       "uid": "hitomi:4218711",
       "source": "hitomi",
       "source_id": "4218711",
@@ -182,7 +937,7 @@
       "posted_at": "2026-09-28 12:36:00-05",
       "thumbnail": "thumbs/hitomi/4218711.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4218710",
@@ -301,7 +1056,7 @@
       "posted_at": "2026-09-28 12:36:00-05",
       "thumbnail": "thumbs/hitomi/4218709.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4218708",
@@ -354,7 +1109,7 @@
       "posted_at": "2026-09-28 12:36:00-05",
       "thumbnail": "thumbs/hitomi/4218708.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4218707",
@@ -408,7 +1163,7 @@
       "posted_at": "2026-09-28 12:35:00-05",
       "thumbnail": "thumbs/hitomi/4218707.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4218706",
@@ -460,7 +1215,7 @@
       "posted_at": "2026-09-28 12:35:00-05",
       "thumbnail": "thumbs/hitomi/4218706.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4218705",
@@ -515,7 +1270,7 @@
       "posted_at": "2026-09-28 12:35:00-05",
       "thumbnail": "thumbs/hitomi/4218705.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4218704",
@@ -568,7 +1323,7 @@
       "posted_at": "2026-09-28 12:35:00-05",
       "thumbnail": "thumbs/hitomi/4218704.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4218703",
@@ -620,7 +1375,7 @@
       "posted_at": "2026-09-28 12:35:00-05",
       "thumbnail": "thumbs/hitomi/4218703.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4218701",
@@ -673,7 +1428,7 @@
       "posted_at": "2026-09-28 12:35:00-05",
       "thumbnail": "thumbs/hitomi/4218701.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4218700",
@@ -726,7 +1481,7 @@
       "posted_at": "2026-09-28 12:35:00-05",
       "thumbnail": "thumbs/hitomi/4218700.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4218681",
@@ -756,6 +1511,7 @@
         "yuuka hayase"
       ],
       "tags": [
+        "female:big breasts",
         "female:halo",
         "female:sole female",
         "male:sole male",
@@ -772,7 +1528,7 @@
       "posted_at": "2026-09-28 12:14:00-05",
       "thumbnail": "thumbs/hitomi/4218681.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4218679",
@@ -820,7 +1576,7 @@
       "posted_at": "2026-09-28 12:13:00-05",
       "thumbnail": "thumbs/hitomi/4218679.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4218677",
@@ -864,7 +1620,7 @@
       "posted_at": "2026-09-28 12:12:00-05",
       "thumbnail": "thumbs/hitomi/4218677.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4218676",
@@ -911,7 +1667,7 @@
       "posted_at": "2026-09-28 12:10:00-05",
       "thumbnail": "thumbs/hitomi/4218676.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4218664",
@@ -940,7 +1696,7 @@
       "posted_at": "2026-09-28 12:01:00-05",
       "thumbnail": "thumbs/hitomi/4218664.webp",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4218655",
@@ -965,7 +1721,9 @@
       "characters": [],
       "tags": [
         "female:dark skin",
-        "female:loli"
+        "female:incest",
+        "female:loli",
+        "female:rape"
       ],
       "meta_tags": [
         "artist:robo mikan"
@@ -976,7 +1734,7 @@
       "posted_at": "2026-09-28 11:54:00-05",
       "thumbnail": "thumbs/hitomi/4218655.webp",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4218648",
@@ -417003,7 +417761,7 @@
       "posted_at": "2026-08-19 10:50:00-05",
       "thumbnail": "thumbs/hitomi/4131549.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4131541",
@@ -417064,7 +417822,7 @@
       "posted_at": "2026-08-19 10:46:00-05",
       "thumbnail": "thumbs/hitomi/4131541.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4131516",
@@ -417122,7 +417880,7 @@
       "posted_at": "2026-08-19 10:37:00-05",
       "thumbnail": "thumbs/hitomi/4131516.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4131510",
@@ -417169,7 +417927,7 @@
       "posted_at": "2026-08-19 10:35:00-05",
       "thumbnail": "thumbs/hitomi/4131510.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4131504",
@@ -417223,7 +417981,7 @@
       "posted_at": "2026-08-19 10:28:00-05",
       "thumbnail": "thumbs/hitomi/4131504.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4131496",
@@ -417287,7 +418045,7 @@
       "posted_at": "2026-08-19 10:24:00-05",
       "thumbnail": "thumbs/hitomi/4131496.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4131488",
@@ -417339,7 +418097,7 @@
       "posted_at": "2026-08-19 10:21:00-05",
       "thumbnail": "thumbs/hitomi/4131488.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4131484",
@@ -417453,7 +418211,7 @@
       "posted_at": "2026-08-19 10:19:00-05",
       "thumbnail": "thumbs/hitomi/4131484.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4131482",
@@ -417511,7 +418269,7 @@
       "posted_at": "2026-08-19 10:19:00-05",
       "thumbnail": "thumbs/hitomi/4131482.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4131480",
@@ -417563,7 +418321,7 @@
       "posted_at": "2026-08-19 10:18:00-05",
       "thumbnail": "thumbs/hitomi/4131480.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4131472",
@@ -417617,7 +418375,7 @@
       "posted_at": "2026-08-19 10:16:00-05",
       "thumbnail": "thumbs/hitomi/4131472.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4131451",
@@ -417672,7 +418430,120 @@
       "posted_at": "2026-08-19 10:07:00-05",
       "thumbnail": "thumbs/hitomi/4131451.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4131407",
+      "source": "hitomi",
+      "source_id": "4131407",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4131407.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Yuzu Kaoru",
+      "title_jp": "ユズカヲル",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "wodae"
+      ],
+      "groups": [
+        "miraiha kireini"
+      ],
+      "parodies": [
+        "blue archive"
+      ],
+      "works": [
+        "blue archive"
+      ],
+      "characters": [
+        "sensei",
+        "yuzu hanaoka"
+      ],
+      "tags": [
+        "female:blowjob",
+        "digital",
+        "female:halo",
+        "female:loli",
+        "female:nakadashi",
+        "female:ponytail",
+        "female:sole female",
+        "male:sole male",
+        "female:stirrup legwear",
+        "female:very long hair"
+      ],
+      "meta_tags": [
+        "artist:wodae",
+        "group:miraiha kireini",
+        "work:blue archive",
+        "character:sensei",
+        "character:yuzu hanaoka"
+      ],
+      "pages": 26,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 10:02:00-05",
+      "thumbnail": "thumbs/hitomi/4131407.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4131405",
+      "source": "hitomi",
+      "source_id": "4131405",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4131405.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Kinou no Neko wa Kyou no Koi",
+      "title_jp": "昨日の猫は今日の恋",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "suppa"
+      ],
+      "groups": [
+        "picapica suppa"
+      ],
+      "parodies": [
+        "blue archive"
+      ],
+      "works": [
+        "blue archive"
+      ],
+      "characters": [
+        "hina sorasaki",
+        "sensei"
+      ],
+      "tags": [
+        "digital",
+        "male:glasses",
+        "female:halo",
+        "female:horns",
+        "female:loli",
+        "female:sole female",
+        "male:sole male",
+        "female:very long hair",
+        "female:wings"
+      ],
+      "meta_tags": [
+        "artist:suppa",
+        "group:picapica suppa",
+        "work:blue archive",
+        "character:hina sorasaki",
+        "character:sensei"
+      ],
+      "pages": 40,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 10:02:00-05",
+      "thumbnail": "thumbs/hitomi/4131405.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "hitomi:4131408",
@@ -417758,7 +418629,2250 @@
       "posted_at": "2026-08-19 10:02:00-05",
       "thumbnail": "thumbs/hitomi/4131408.webp",
       "first_seen": "2026-09-28T18:29:41+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4131395",
+      "source": "hitomi",
+      "source_id": "4131395",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4131395.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Futanari Chinpo 47cm!?",
+      "title_jp": "フタナリチンポ47cm!?",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "teterun"
+      ],
+      "groups": [
+        "rosetta stone"
+      ],
+      "parodies": [
+        "original"
+      ],
+      "works": [
+        "original"
+      ],
+      "characters": [],
+      "tags": [
+        "female:big areolae",
+        "female:big ass",
+        "female:big balls",
+        "female:big breasts",
+        "female:big penis",
+        "female:condom",
+        "female:cumflation",
+        "female:dickgirl on female",
+        "digital",
+        "female:futanari",
+        "female:huge breasts",
+        "female:huge penis",
+        "female:nakadashi",
+        "female:small breasts",
+        "female:sole dickgirl",
+        "female:sole female",
+        "female:stomach deformation"
+      ],
+      "meta_tags": [
+        "artist:teterun",
+        "group:rosetta stone",
+        "work:original"
+      ],
+      "pages": 44,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 09:56:00-05",
+      "thumbnail": "thumbs/hitomi/4131395.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4131391",
+      "source": "hitomi",
+      "source_id": "4131391",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4131391.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Gensai-chan ni Nerawareteru!!",
+      "title_jp": "玄斎ちゃんに狙われてる!!",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "natsuzame"
+      ],
+      "groups": [],
+      "parodies": [
+        "fate grand order"
+      ],
+      "works": [
+        "fate grand order"
+      ],
+      "characters": [
+        "gensai kawakami",
+        "gudao"
+      ],
+      "tags": [
+        "c108",
+        "full censorship",
+        "female:ponytail",
+        "female:sole female",
+        "male:sole male"
+      ],
+      "meta_tags": [
+        "artist:natsuzame",
+        "work:fate grand order",
+        "character:gensai kawakami",
+        "character:gudao"
+      ],
+      "pages": 28,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 09:54:00-05",
+      "thumbnail": "thumbs/hitomi/4131391.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4131387",
+      "source": "hitomi",
+      "source_id": "4131387",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4131387.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "リクエストいただいたものです",
+      "title_jp": "リクエストいただいたものです",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "osuwaani"
+      ],
+      "groups": [],
+      "parodies": [
+        "one piece"
+      ],
+      "works": [
+        "one piece"
+      ],
+      "characters": [
+        "nami"
+      ],
+      "tags": [
+        "female:big breasts",
+        "male:smalldom",
+        "female:sole female",
+        "male:sole male",
+        "female:sweating",
+        "female:very long hair"
+      ],
+      "meta_tags": [
+        "artist:osuwaani",
+        "work:one piece",
+        "character:nami"
+      ],
+      "pages": 2,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 09:51:00-05",
+      "thumbnail": "thumbs/hitomi/4131387.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4131383",
+      "source": "hitomi",
+      "source_id": "4131383",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4131383.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Futanari Tokku Gakuen Annai 2026 Natsu",
+      "title_jp": "ふたなり特区学園案内2026夏",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "gero"
+      ],
+      "groups": [
+        "onasuga 99-yen"
+      ],
+      "parodies": [
+        "original"
+      ],
+      "works": [
+        "original"
+      ],
+      "characters": [],
+      "tags": [
+        "female:ahegao",
+        "male:bald",
+        "female:balls expansion",
+        "female:big ass",
+        "female:big balls",
+        "female:big breasts",
+        "female:big muscles",
+        "female:big nipples",
+        "female:big penis",
+        "female:bukkake",
+        "female:centaur",
+        "female:condom",
+        "female:crying",
+        "female:cumflation",
+        "female:dickgirl on dickgirl",
+        "digital",
+        "female:drill hair",
+        "female:exhibitionism",
+        "female:eye-covering bang",
+        "female:full-packaged futanari",
+        "female:futanari",
+        "female:horse cock",
+        "female:huge breasts",
+        "female:huge penis",
+        "female:inflation",
+        "female:inverted nipples",
+        "female:lactation",
+        "female:masturbation",
+        "female:multiple arms",
+        "female:multiple breasts",
+        "female:multiple orgasms",
+        "female:multiple penises",
+        "female:muscle",
+        "female:nakadashi",
+        "female:onahole",
+        "female:painted nails",
+        "female:penis enlargement",
+        "female:phimosis",
+        "female:ponytail",
+        "female:schoolgirl uniform",
+        "male:sole male",
+        "female:solo action",
+        "female:stockings",
+        "female:stomach deformation",
+        "female:tall girl",
+        "female:tanlines",
+        "female:teacher",
+        "female:twintails",
+        "female:unusual pupils"
+      ],
+      "meta_tags": [
+        "artist:gero",
+        "group:onasuga 99-yen",
+        "work:original"
+      ],
+      "pages": 46,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 09:50:00-05",
+      "thumbnail": "thumbs/hitomi/4131383.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4131380",
+      "source": "hitomi",
+      "source_id": "4131380",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4131380.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "嫁ネロといちゃいちゃ魔力供給",
+      "title_jp": "嫁ネロといちゃいちゃ魔力供給",
+      "language": "japanese",
+      "category": "artistcg",
+      "artists": [
+        "natsuzame"
+      ],
+      "groups": [],
+      "parodies": [
+        "fate grand order"
+      ],
+      "works": [
+        "fate grand order"
+      ],
+      "characters": [
+        "red saber"
+      ],
+      "tags": [
+        "full censorship",
+        "female:sole female",
+        "male:sole male",
+        "female:unusual pupils",
+        "variant set"
+      ],
+      "meta_tags": [
+        "artist:natsuzame",
+        "work:fate grand order",
+        "character:red saber"
+      ],
+      "pages": 9,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 09:49:00-05",
+      "thumbnail": "thumbs/hitomi/4131380.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4131376",
+      "source": "hitomi",
+      "source_id": "4131376",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4131376.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "ケイ",
+      "title_jp": "ケイ",
+      "language": "japanese",
+      "category": "imageset",
+      "artists": [
+        "myuchiron"
+      ],
+      "groups": [],
+      "parodies": [
+        "blue archive"
+      ],
+      "works": [
+        "blue archive"
+      ],
+      "characters": [
+        "alice tendou",
+        "kei tendou",
+        "sensei"
+      ],
+      "tags": [
+        "female:halo",
+        "female:loli",
+        "uncensored",
+        "female:very long hair"
+      ],
+      "meta_tags": [
+        "artist:myuchiron",
+        "work:blue archive",
+        "character:alice tendou",
+        "character:kei tendou",
+        "character:sensei"
+      ],
+      "pages": 12,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 09:48:00-05",
+      "thumbnail": "thumbs/hitomi/4131376.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4131344",
+      "source": "hitomi",
+      "source_id": "4131344",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4131344.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Ore, Ima Gensoukyou ni Iru...",
+      "title_jp": "おれ、今幻想郷にいる...",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "enmi"
+      ],
+      "groups": [],
+      "parodies": [
+        "touhou project"
+      ],
+      "works": [
+        "touhou project"
+      ],
+      "characters": [
+        "reimu hakurei"
+      ],
+      "tags": [
+        "female:big breasts",
+        "digital",
+        "full censorship",
+        "female:miko",
+        "female:nakadashi",
+        "female:sole female",
+        "male:sole male"
+      ],
+      "meta_tags": [
+        "artist:enmi",
+        "work:touhou project",
+        "character:reimu hakurei"
+      ],
+      "pages": 16,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 09:35:00-05",
+      "thumbnail": "thumbs/hitomi/4131344.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4131322",
+      "source": "hitomi",
+      "source_id": "4131322",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4131322.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Howaito Rikiddo Arubamu",
+      "title_jp": "ホワイトリキッドアルバム",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "ikuta takanon"
+      ],
+      "groups": [
+        "hinaprin"
+      ],
+      "parodies": [
+        "touhou project"
+      ],
+      "works": [
+        "touhou project"
+      ],
+      "characters": [
+        "ran yakumo"
+      ],
+      "tags": [
+        "female:big breasts",
+        "digital",
+        "female:fox girl",
+        "female:kemonomimi",
+        "female:multiple tails",
+        "male:sole male",
+        "female:tail",
+        "female:tentacles"
+      ],
+      "meta_tags": [
+        "artist:ikuta takanon",
+        "group:hinaprin",
+        "work:touhou project",
+        "character:ran yakumo"
+      ],
+      "pages": 22,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 09:25:00-05",
+      "thumbnail": "thumbs/hitomi/4131322.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4131240",
+      "source": "hitomi",
+      "source_id": "4131240",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4131240.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "黒月マチ",
+      "title_jp": "黒月マチ",
+      "language": "japanese",
+      "category": "imageset",
+      "artists": [
+        "kurotsuki machi"
+      ],
+      "groups": [],
+      "parodies": [
+        "blue archive",
+        "honkai star rail",
+        "nijisanji",
+        "zenless zone zero"
+      ],
+      "works": [
+        "blue archive",
+        "honkai star rail",
+        "nijisanji",
+        "zenless zone zero"
+      ],
+      "characters": [
+        "ako amau",
+        "aru rikuhachima",
+        "asuna ichinose",
+        "furen e lustario",
+        "kayoko onikata",
+        "mika misono",
+        "nagisa kirifuji",
+        "noa ushio",
+        "toki asuma",
+        "yuuka hayase"
+      ],
+      "tags": [
+        "female:ahegao",
+        "female:big breasts",
+        "female:bikini",
+        "female:blindfold",
+        "female:bukkake",
+        "female:bunny girl",
+        "female:collar",
+        "female:dark skin",
+        "female:demon girl",
+        "female:eye-covering bang",
+        "female:facesitting",
+        "female:fishnets",
+        "female:halo",
+        "female:high heels",
+        "female:kemonomimi",
+        "female:leash",
+        "female:maid",
+        "female:mind control",
+        "female:nakadashi",
+        "female:netorare",
+        "female:nun",
+        "female:pantyhose",
+        "female:sex toys",
+        "female:stewardess",
+        "female:stockings",
+        "female:sunglasses",
+        "female:tail",
+        "female:thigh high boots",
+        "female:twintails",
+        "female:unusual pupils",
+        "female:very long hair",
+        "female:vtuber",
+        "female:wings"
+      ],
+      "meta_tags": [
+        "artist:kurotsuki machi",
+        "work:blue archive",
+        "work:honkai star rail",
+        "work:nijisanji",
+        "work:zenless zone zero",
+        "character:ako amau",
+        "character:aru rikuhachima",
+        "character:asuna ichinose",
+        "character:furen e lustario",
+        "character:kayoko onikata",
+        "character:mika misono",
+        "character:nagisa kirifuji",
+        "character:noa ushio",
+        "character:toki asuma",
+        "character:yuuka hayase"
+      ],
+      "pages": 216,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 08:57:00-05",
+      "thumbnail": "thumbs/hitomi/4131240.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4131225",
+      "source": "hitomi",
+      "source_id": "4131225",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4131225.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Mitsumata Kaname 2026.08",
+      "title_jp": "みつまたかなめ 2026.08",
+      "language": "japanese",
+      "category": "imageset",
+      "artists": [
+        "mitsumata kaname"
+      ],
+      "groups": [],
+      "parodies": [],
+      "works": [],
+      "characters": [],
+      "tags": [
+        "female:ahegao",
+        "female:big balls",
+        "female:big penis",
+        "female:dickgirl on female",
+        "female:futanari",
+        "female:handjob",
+        "female:masturbation",
+        "female:onahole"
+      ],
+      "meta_tags": [
+        "artist:mitsumata kaname"
+      ],
+      "pages": 223,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 08:51:00-05",
+      "thumbnail": "thumbs/hitomi/4131225.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4131224",
+      "source": "hitomi",
+      "source_id": "4131224",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4131224.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Ran Samaa Woozu",
+      "title_jp": "藍サマーウォーズ",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "ikuta takanon"
+      ],
+      "groups": [
+        "hinaprin"
+      ],
+      "parodies": [
+        "touhou project"
+      ],
+      "works": [
+        "touhou project"
+      ],
+      "characters": [
+        "ran yakumo"
+      ],
+      "tags": [
+        "male:dark skin",
+        "digital",
+        "female:fox girl",
+        "group",
+        "female:kemonomimi",
+        "mmf threesome",
+        "female:nakadashi",
+        "male:shota",
+        "female:sole female",
+        "female:tail"
+      ],
+      "meta_tags": [
+        "artist:ikuta takanon",
+        "group:hinaprin",
+        "work:touhou project",
+        "character:ran yakumo"
+      ],
+      "pages": 18,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 08:51:00-05",
+      "thumbnail": "thumbs/hitomi/4131224.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4131131",
+      "source": "hitomi",
+      "source_id": "4131131",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4131131.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Daily 1-Pic Completion 4",
+      "title_jp": "1日1絵まとめ その4",
+      "language": "japanese",
+      "category": "imageset",
+      "artists": [
+        "koori nezumi"
+      ],
+      "groups": [],
+      "parodies": [],
+      "works": [],
+      "characters": [],
+      "tags": [
+        "female:furry",
+        "male:furry",
+        "male:shota"
+      ],
+      "meta_tags": [
+        "artist:koori nezumi"
+      ],
+      "pages": 26,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 08:14:00-05",
+      "thumbnail": "thumbs/hitomi/4131131.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4131114",
+      "source": "hitomi",
+      "source_id": "4131114",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4131114.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "KOURINTENSHI TWINKLE HEART  Another Future",
+      "title_jp": "光凛天使ツインクルハート Another Future",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "gittangittan"
+      ],
+      "groups": [
+        "no future"
+      ],
+      "parodies": [
+        "original"
+      ],
+      "works": [
+        "original"
+      ],
+      "characters": [],
+      "tags": [
+        "digital",
+        "female:magical girl",
+        "female:sole female",
+        "female:tentacles",
+        "female:twintails"
+      ],
+      "meta_tags": [
+        "artist:gittangittan",
+        "group:no future",
+        "work:original"
+      ],
+      "pages": 28,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 08:06:00-05",
+      "thumbnail": "thumbs/hitomi/4131114.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4131103",
+      "source": "hitomi",
+      "source_id": "4131103",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4131103.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Hle (5948143) 2026.08.18",
+      "title_jp": "Hle (5948143) 2026.08.18",
+      "language": "japanese",
+      "category": "imageset",
+      "artists": [
+        "hle"
+      ],
+      "groups": [],
+      "parodies": [
+        "genshin impact",
+        "honkai star rail",
+        "zenless zone zero"
+      ],
+      "works": [
+        "genshin impact",
+        "honkai star rail",
+        "zenless zone zero"
+      ],
+      "characters": [
+        "ayaka kamisato",
+        "bronya rand",
+        "clorinde",
+        "eula lawrence",
+        "focalors",
+        "ganyu",
+        "hu tao",
+        "kafka",
+        "keqing",
+        "lynette",
+        "march 7th",
+        "nilou",
+        "robin",
+        "shenhe",
+        "silver wolf",
+        "tingyun",
+        "xiangling",
+        "yelan",
+        "yixuan",
+        "yoimiya naganohara"
+      ],
+      "tags": [
+        "female:high heels",
+        "female:horns",
+        "female:kemonomimi",
+        "non-h imageset",
+        "female:pantyhose",
+        "female:ponytail",
+        "female:stirrup legwear",
+        "female:stockings",
+        "female:tail"
+      ],
+      "meta_tags": [
+        "artist:hle",
+        "work:genshin impact",
+        "work:honkai star rail",
+        "work:zenless zone zero",
+        "character:ayaka kamisato",
+        "character:bronya rand",
+        "character:clorinde",
+        "character:eula lawrence",
+        "character:focalors",
+        "character:ganyu",
+        "character:hu tao",
+        "character:kafka",
+        "character:keqing",
+        "character:lynette",
+        "character:march 7th",
+        "character:nilou",
+        "character:robin",
+        "character:shenhe",
+        "character:silver wolf",
+        "character:tingyun",
+        "character:xiangling",
+        "character:yelan",
+        "character:yixuan",
+        "character:yoimiya naganohara"
+      ],
+      "pages": 131,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 08:00:00-05",
+      "thumbnail": "thumbs/hitomi/4131103.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4131071",
+      "source": "hitomi",
+      "source_id": "4131071",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4131071.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Kaeriuchi Kama to Nakanaori Sex",
+      "title_jp": "返り討ちカーマと仲直りセックス❤︎",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "4uu"
+      ],
+      "groups": [],
+      "parodies": [
+        "fate grand order"
+      ],
+      "works": [
+        "fate grand order"
+      ],
+      "characters": [
+        "gudao",
+        "kama"
+      ],
+      "tags": [
+        "female:big breasts",
+        "female:sole female",
+        "male:sole male"
+      ],
+      "meta_tags": [
+        "artist:4uu",
+        "work:fate grand order",
+        "character:gudao",
+        "character:kama"
+      ],
+      "pages": 5,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 07:56:00-05",
+      "thumbnail": "thumbs/hitomi/4131071.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4131068",
+      "source": "hitomi",
+      "source_id": "4131068",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4131068.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Zakoman Tohzai Shishou ni Oshiokix",
+      "title_jp": "雑魚マン東西師匠にお仕置きっクス❤︎",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "4uu"
+      ],
+      "groups": [],
+      "parodies": [
+        "fate grand order"
+      ],
+      "works": [
+        "fate grand order"
+      ],
+      "characters": [
+        "gudao",
+        "kiichi hougen",
+        "scathach"
+      ],
+      "tags": [
+        "female:big breasts",
+        "ffm threesome",
+        "group",
+        "female:horns",
+        "male:sole male",
+        "female:very long hair"
+      ],
+      "meta_tags": [
+        "artist:4uu",
+        "work:fate grand order",
+        "character:gudao",
+        "character:kiichi hougen",
+        "character:scathach"
+      ],
+      "pages": 4,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 07:55:00-05",
+      "thumbnail": "thumbs/hitomi/4131068.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4131067",
+      "source": "hitomi",
+      "source_id": "4131067",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4131067.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Hitozuma Gal na Ouhi-sama",
+      "title_jp": "人妻ギャルな王妃様❤︎",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "4uu"
+      ],
+      "groups": [],
+      "parodies": [
+        "fate grand order"
+      ],
+      "works": [
+        "fate grand order"
+      ],
+      "characters": [
+        "gudao",
+        "marie antoinette alter"
+      ],
+      "tags": [
+        "female:big breasts",
+        "female:sole female",
+        "male:sole male"
+      ],
+      "meta_tags": [
+        "artist:4uu",
+        "work:fate grand order",
+        "character:gudao",
+        "character:marie antoinette alter"
+      ],
+      "pages": 4,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 07:55:00-05",
+      "thumbnail": "thumbs/hitomi/4131067.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4131066",
+      "source": "hitomi",
+      "source_id": "4131066",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4131066.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Inazuma Sandwich",
+      "title_jp": "稲妻サンドイッチ❤︎",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "4uu"
+      ],
+      "groups": [],
+      "parodies": [
+        "genshin impact"
+      ],
+      "works": [
+        "genshin impact"
+      ],
+      "characters": [
+        "aether",
+        "raiden shogun",
+        "yae miko"
+      ],
+      "tags": [
+        "female:big breasts",
+        "ffm threesome",
+        "group",
+        "female:kemonomimi",
+        "male:sole male"
+      ],
+      "meta_tags": [
+        "artist:4uu",
+        "work:genshin impact",
+        "character:aether",
+        "character:raiden shogun",
+        "character:yae miko"
+      ],
+      "pages": 5,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 07:55:00-05",
+      "thumbnail": "thumbs/hitomi/4131066.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4131065",
+      "source": "hitomi",
+      "source_id": "4131065",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4131065.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Hebi no Onee-san ni Shiboraretai",
+      "title_jp": "蛇のお姉さんに搾られたい❤︎",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "4uu"
+      ],
+      "groups": [],
+      "parodies": [
+        "fate grand order"
+      ],
+      "works": [
+        "fate grand order"
+      ],
+      "characters": [
+        "gudao",
+        "hebi nyobo",
+        "rider"
+      ],
+      "tags": [
+        "female:big breasts",
+        "female:blowjob",
+        "female:eye-covering bang",
+        "female:facesitting",
+        "ffm threesome",
+        "group",
+        "female:multimouth blowjob",
+        "male:sole male",
+        "female:very long hair"
+      ],
+      "meta_tags": [
+        "artist:4uu",
+        "work:fate grand order",
+        "character:gudao",
+        "character:hebi nyobo",
+        "character:rider"
+      ],
+      "pages": 4,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 07:54:00-05",
+      "thumbnail": "thumbs/hitomi/4131065.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4130976",
+      "source": "hitomi",
+      "source_id": "4130976",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4130976.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "hai-das fanbox",
+      "title_jp": "hai-das fanbox",
+      "language": "japanese",
+      "category": "imageset",
+      "artists": [],
+      "groups": [],
+      "parodies": [],
+      "works": [],
+      "characters": [],
+      "tags": [
+        "female:diaper"
+      ],
+      "meta_tags": [],
+      "pages": 950,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 07:10:00-05",
+      "thumbnail": "thumbs/hitomi/4130976.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4130935",
+      "source": "hitomi",
+      "source_id": "4130935",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4130935.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Pool Mae no Junbi Matome",
+      "title_jp": "【R-18 落書き】プール前の準備 まとめ",
+      "language": "japanese",
+      "category": "artistcg",
+      "artists": [
+        "watchie"
+      ],
+      "groups": [],
+      "parodies": [
+        "original"
+      ],
+      "works": [
+        "original"
+      ],
+      "characters": [],
+      "tags": [
+        "female:blowjob",
+        "female:bukkake",
+        "female:defloration",
+        "female:double penetration",
+        "female:loli",
+        "female:nakadashi",
+        "female:school swimsuit",
+        "sketch lines",
+        "female:small breasts",
+        "female:sole female",
+        "female:tentacles",
+        "variant set"
+      ],
+      "meta_tags": [
+        "artist:watchie",
+        "work:original"
+      ],
+      "pages": 177,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 06:56:00-05",
+      "thumbnail": "thumbs/hitomi/4130935.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4130919",
+      "source": "hitomi",
+      "source_id": "4130919",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4130919.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Sigrid (uncensored)",
+      "title_jp": "シグリッド",
+      "language": "japanese",
+      "category": "artistcg",
+      "artists": [
+        "gwegwe"
+      ],
+      "groups": [],
+      "parodies": [
+        "zenless zone zero"
+      ],
+      "works": [
+        "zenless zone zero"
+      ],
+      "characters": [
+        "sigrid",
+        "sigrid de lazur"
+      ],
+      "tags": [
+        "female:big breasts",
+        "female:eye-covering bang",
+        "female:impregnation",
+        "female:kemonomimi",
+        "female:nakadashi",
+        "female:ponytail",
+        "female:sole female",
+        "male:sole male",
+        "uncensored",
+        "variant set",
+        "female:x-ray"
+      ],
+      "meta_tags": [
+        "artist:gwegwe",
+        "work:zenless zone zero",
+        "character:sigrid",
+        "character:sigrid de lazur"
+      ],
+      "pages": 12,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 06:53:00-05",
+      "thumbnail": "thumbs/hitomi/4130919.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4130895",
+      "source": "hitomi",
+      "source_id": "4130895",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4130895.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "BluArch Hina-chan no Ecchi na Hon",
+      "title_jp": "ブルアカ ヒナちゃんのえっちな本",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [],
+      "groups": [],
+      "parodies": [
+        "blue archive"
+      ],
+      "works": [
+        "blue archive"
+      ],
+      "characters": [
+        "hina sorasaki",
+        "sensei"
+      ],
+      "tags": [
+        "digital",
+        "female:halo",
+        "female:horns",
+        "female:loli",
+        "female:sole female",
+        "male:sole male",
+        "female:tail",
+        "female:very long hair",
+        "female:wings"
+      ],
+      "meta_tags": [
+        "work:blue archive",
+        "character:hina sorasaki",
+        "character:sensei"
+      ],
+      "pages": 14,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 06:37:00-05",
+      "thumbnail": "thumbs/hitomi/4130895.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4130847",
+      "source": "hitomi",
+      "source_id": "4130847",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4130847.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Haiboku no Taima Miko wa Midarajiru o Shiborareru Maki no Ni Maki",
+      "title_jp": "敗北の退魔巫女は淫ら汁を絞られる 巻之二 槙",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "art jam"
+      ],
+      "groups": [
+        "art jam"
+      ],
+      "parodies": [
+        "original"
+      ],
+      "works": [
+        "original"
+      ],
+      "characters": [],
+      "tags": [
+        "digital",
+        "female:miko",
+        "female:tentacles"
+      ],
+      "meta_tags": [
+        "artist:art jam",
+        "group:art jam",
+        "work:original"
+      ],
+      "pages": 40,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 06:19:00-05",
+      "thumbnail": "thumbs/hitomi/4130847.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4130805",
+      "source": "hitomi",
+      "source_id": "4130805",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4130805.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "19cm ga Hairu made 2 ~Natsuyasumi Choukyou Hen~",
+      "title_jp": "19cmが挿入るまで2〜夏休み調教編〜",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [],
+      "groups": [
+        "kojiraen"
+      ],
+      "parodies": [
+        "original"
+      ],
+      "works": [
+        "original"
+      ],
+      "characters": [],
+      "tags": [
+        "female:blindfold",
+        "female:bondage",
+        "male:dilf",
+        "male:glasses",
+        "mosaic censorship",
+        "multi-work series",
+        "female:netorare",
+        "female:school gym uniform",
+        "female:school swimsuit",
+        "female:schoolgirl uniform",
+        "female:sex toys",
+        "female:sole female",
+        "male:teacher"
+      ],
+      "meta_tags": [
+        "group:kojiraen",
+        "work:original"
+      ],
+      "pages": 54,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 06:02:00-05",
+      "thumbnail": "thumbs/hitomi/4130805.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4130722",
+      "source": "hitomi",
+      "source_id": "4130722",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4130722.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Fantia限定短篇",
+      "title_jp": "Fantia限定一枚絵",
+      "language": "japanese",
+      "category": "artistcg",
+      "artists": [
+        "roche"
+      ],
+      "groups": [
+        "530"
+      ],
+      "parodies": [
+        "dungeon ni deai o motomeru no wa machigatteiru darou ka",
+        "final fantasy vii",
+        "kono subarashii sekai ni syukufuku o",
+        "sword art online"
+      ],
+      "works": [
+        "dungeon ni deai o motomeru no wa machigatteiru darou ka",
+        "final fantasy vii",
+        "kono subarashii sekai ni syukufuku o",
+        "sword art online"
+      ],
+      "characters": [
+        "asuna yuuki",
+        "hestia",
+        "megumin",
+        "suguha kirigaya",
+        "tifa lockhart"
+      ],
+      "tags": [
+        "female:ahegao",
+        "female:mind control",
+        "mosaic censorship",
+        "female:netorare",
+        "female:paizuri",
+        "female:pregnant",
+        "female:rimjob"
+      ],
+      "meta_tags": [
+        "artist:roche",
+        "group:530",
+        "work:dungeon ni deai o motomeru no wa machigatteiru darou ka",
+        "work:final fantasy vii",
+        "work:kono subarashii sekai ni syukufuku o",
+        "work:sword art online",
+        "character:asuna yuuki",
+        "character:hestia",
+        "character:megumin",
+        "character:suguha kirigaya",
+        "character:tifa lockhart"
+      ],
+      "pages": 186,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 05:34:00-05",
+      "thumbnail": "thumbs/hitomi/4130722.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4130676",
+      "source": "hitomi",
+      "source_id": "4130676",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4130676.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Mizugi Mash Paladin",
+      "title_jp": "水着マシュパラディン",
+      "language": "japanese",
+      "category": "artistcg",
+      "artists": [
+        "alali"
+      ],
+      "groups": [],
+      "parodies": [
+        "fate grand order"
+      ],
+      "works": [
+        "fate grand order"
+      ],
+      "characters": [
+        "shielder"
+      ],
+      "tags": [
+        "female:big areolae",
+        "female:big breasts",
+        "female:eye-covering bang",
+        "female:inverted nipples",
+        "female:netorare"
+      ],
+      "meta_tags": [
+        "artist:alali",
+        "work:fate grand order",
+        "character:shielder"
+      ],
+      "pages": 2,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 05:00:00-05",
+      "thumbnail": "thumbs/hitomi/4130676.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4130634",
+      "source": "hitomi",
+      "source_id": "4130634",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4130634.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "The Second Summer of Love",
+      "title_jp": "The Second Summer of Love",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "sharekoube"
+      ],
+      "groups": [
+        "lv426"
+      ],
+      "parodies": [
+        "blue archive"
+      ],
+      "works": [
+        "blue archive"
+      ],
+      "characters": [
+        "kanoe itagaki",
+        "sensei"
+      ],
+      "tags": [
+        "female:asphyxiation",
+        "female:bondage",
+        "digital",
+        "female:eye-covering bang",
+        "female:halo",
+        "female:nakadashi",
+        "female:nipple stimulation",
+        "female:sole female",
+        "male:sole male",
+        "female:swimsuit",
+        "female:twintails",
+        "female:very long hair"
+      ],
+      "meta_tags": [
+        "artist:sharekoube",
+        "group:lv426",
+        "work:blue archive",
+        "character:kanoe itagaki",
+        "character:sensei"
+      ],
+      "pages": 28,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 04:47:00-05",
+      "thumbnail": "thumbs/hitomi/4130634.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4130589",
+      "source": "hitomi",
+      "source_id": "4130589",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4130589.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Isshō ni Kyūsuku ♥",
+      "title_jp": "旧スクといっしょ♥",
+      "language": "japanese",
+      "category": "manga",
+      "artists": [
+        "kekemotsu"
+      ],
+      "groups": [],
+      "parodies": [],
+      "works": [],
+      "characters": [],
+      "tags": [
+        "already uploaded",
+        "full color"
+      ],
+      "meta_tags": [
+        "artist:kekemotsu"
+      ],
+      "pages": 10,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 04:12:00-05",
+      "thumbnail": "thumbs/hitomi/4130589.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4130588",
+      "source": "hitomi",
+      "source_id": "4130588",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4130588.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Natsu no Hi",
+      "title_jp": "夏の日",
+      "language": "japanese",
+      "category": "manga",
+      "artists": [
+        "kekemotsu"
+      ],
+      "groups": [],
+      "parodies": [],
+      "works": [],
+      "characters": [],
+      "tags": [
+        "already uploaded",
+        "female:big breasts",
+        "full color"
+      ],
+      "meta_tags": [
+        "artist:kekemotsu"
+      ],
+      "pages": 8,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 04:11:00-05",
+      "thumbnail": "thumbs/hitomi/4130588.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4130587",
+      "source": "hitomi",
+      "source_id": "4130587",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4130587.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "prurient teacher",
+      "title_jp": "prurient teacher",
+      "language": "japanese",
+      "category": "manga",
+      "artists": [
+        "kekemotsu"
+      ],
+      "groups": [],
+      "parodies": [],
+      "works": [],
+      "characters": [],
+      "tags": [
+        "already uploaded",
+        "female:big breasts",
+        "full color"
+      ],
+      "meta_tags": [
+        "artist:kekemotsu"
+      ],
+      "pages": 8,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 04:10:00-05",
+      "thumbnail": "thumbs/hitomi/4130587.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4130585",
+      "source": "hitomi",
+      "source_id": "4130585",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4130585.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "みそおでん",
+      "title_jp": "みそおでん",
+      "language": "japanese",
+      "category": "imageset",
+      "artists": [
+        "miso oden"
+      ],
+      "groups": [],
+      "parodies": [],
+      "works": [],
+      "characters": [],
+      "tags": [
+        "female:big breasts",
+        "male:big penis",
+        "female:glasses",
+        "female:huge breasts",
+        "female:nakadashi"
+      ],
+      "meta_tags": [
+        "artist:miso oden"
+      ],
+      "pages": 552,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 04:07:00-05",
+      "thumbnail": "thumbs/hitomi/4130585.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4130572",
+      "source": "hitomi",
+      "source_id": "4130572",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4130572.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Kisaki to Abunai Satsuei",
+      "title_jp": "キサキと危ない撮影",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "takorice"
+      ],
+      "groups": [
+        "ready.set.go"
+      ],
+      "parodies": [
+        "blue archive"
+      ],
+      "works": [
+        "blue archive"
+      ],
+      "characters": [
+        "kisaki ryuuge",
+        "sensei"
+      ],
+      "tags": [
+        "female:bikini",
+        "digital",
+        "female:filming",
+        "female:fingering",
+        "female:hair buns",
+        "female:halo",
+        "female:loli",
+        "female:nipple stimulation",
+        "female:orgasm denial",
+        "female:sole female",
+        "male:sole male",
+        "female:squirting",
+        "female:swimsuit",
+        "female:very long hair"
+      ],
+      "meta_tags": [
+        "artist:takorice",
+        "group:ready.set.go",
+        "work:blue archive",
+        "character:kisaki ryuuge",
+        "character:sensei"
+      ],
+      "pages": 28,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 03:50:00-05",
+      "thumbnail": "thumbs/hitomi/4130572.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4130530",
+      "source": "hitomi",
+      "source_id": "4130530",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4130530.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Kazusa-chan wa Beast dakara ne, Shouganai ne...",
+      "title_jp": "カズサちゃんはビーストだからね、しょうがないね...",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [],
+      "groups": [],
+      "parodies": [
+        "blue archive"
+      ],
+      "works": [
+        "blue archive"
+      ],
+      "characters": [
+        "airi kurimura",
+        "kazusa kyouyama"
+      ],
+      "tags": [
+        "c108",
+        "female:catgirl",
+        "female:females only",
+        "female:fingering",
+        "female:halo",
+        "female:kemonomimi",
+        "female:kissing",
+        "female:nipple stimulation",
+        "female:tribadism",
+        "female:yuri"
+      ],
+      "meta_tags": [
+        "work:blue archive",
+        "character:airi kurimura",
+        "character:kazusa kyouyama"
+      ],
+      "pages": 22,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 03:35:00-05",
+      "thumbnail": "thumbs/hitomi/4130530.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4130519",
+      "source": "hitomi",
+      "source_id": "4130519",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4130519.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Occult Cupid",
+      "title_jp": "オカルト・キューピット",
+      "language": "japanese",
+      "category": "manga",
+      "artists": [
+        "alp"
+      ],
+      "groups": [],
+      "parodies": [],
+      "works": [],
+      "characters": [],
+      "tags": [
+        "already uploaded",
+        "full censorship"
+      ],
+      "meta_tags": [
+        "artist:alp"
+      ],
+      "pages": 20,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 03:30:00-05",
+      "thumbnail": "thumbs/hitomi/4130519.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4130517",
+      "source": "hitomi",
+      "source_id": "4130517",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4130517.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "SweetEdda Vol.17 Aku no Soshikihen 2 after",
+      "title_jp": "SweetEdda vol.17 悪の組織編2 after",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "loki"
+      ],
+      "groups": [
+        "sweetedda"
+      ],
+      "parodies": [
+        "original"
+      ],
+      "works": [
+        "original"
+      ],
+      "characters": [],
+      "tags": [
+        "female:big breasts",
+        "male:body modification",
+        "female:dark skin",
+        "female:demon girl",
+        "female:dickgirl on female",
+        "female:futanari",
+        "male:gender change",
+        "female:slime girl",
+        "female:transformation"
+      ],
+      "meta_tags": [
+        "artist:loki",
+        "group:sweetedda",
+        "work:original"
+      ],
+      "pages": 60,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 03:29:00-05",
+      "thumbnail": "thumbs/hitomi/4130517.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4130511",
+      "source": "hitomi",
+      "source_id": "4130511",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4130511.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Mikan no Alcohol",
+      "title_jp": "魅感のアルコール",
+      "language": "japanese",
+      "category": "manga",
+      "artists": [
+        "alp"
+      ],
+      "groups": [],
+      "parodies": [],
+      "works": [],
+      "characters": [],
+      "tags": [
+        "already uploaded"
+      ],
+      "meta_tags": [
+        "artist:alp"
+      ],
+      "pages": 24,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 03:28:00-05",
+      "thumbnail": "thumbs/hitomi/4130511.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4130448",
+      "source": "hitomi",
+      "source_id": "4130448",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4130448.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Sensei!! Chiisai Onnanoko ga Suki tte Hontou desu ka!? Second Season!",
+      "title_jp": "先生！！小さい女の子が好きって本当ですか！？せかんどしーずん！",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "eiraku tee",
+        "fami",
+        "gensou destroyer",
+        "hurure",
+        "jaaku",
+        "kido kadou",
+        "mannen junyuuki",
+        "nagumo naruse",
+        "parapara",
+        "qutouten",
+        "rei",
+        "rinki",
+        "simejitake",
+        "strong reitaro",
+        "tough man",
+        "yayuyoron",
+        "yonketa",
+        "yuki"
+      ],
+      "groups": [],
+      "parodies": [
+        "blue archive"
+      ],
+      "works": [
+        "blue archive"
+      ],
+      "characters": [
+        "fubuki nemugaki",
+        "hina sorasaki",
+        "ibuki tanga",
+        "kei tendou",
+        "kisaki ryuuge",
+        "mutsuki asagi",
+        "niyaniya kyouju",
+        "sensei"
+      ],
+      "tags": [
+        "digital",
+        "goudoushi",
+        "female:impregnation",
+        "female:loli"
+      ],
+      "meta_tags": [
+        "artist:eiraku tee",
+        "artist:fami",
+        "artist:gensou destroyer",
+        "artist:hurure",
+        "artist:jaaku",
+        "artist:kido kadou",
+        "artist:mannen junyuuki",
+        "artist:nagumo naruse",
+        "artist:parapara",
+        "artist:qutouten",
+        "artist:rei",
+        "artist:rinki",
+        "artist:simejitake",
+        "artist:strong reitaro",
+        "artist:tough man",
+        "artist:yayuyoron",
+        "artist:yonketa",
+        "artist:yuki",
+        "work:blue archive",
+        "character:fubuki nemugaki",
+        "character:hina sorasaki",
+        "character:ibuki tanga",
+        "character:kei tendou",
+        "character:kisaki ryuuge",
+        "character:mutsuki asagi",
+        "character:niyaniya kyouju",
+        "character:sensei"
+      ],
+      "pages": 96,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 03:00:00-05",
+      "thumbnail": "thumbs/hitomi/4130448.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4130435",
+      "source": "hitomi",
+      "source_id": "4130435",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4130435.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Kore Kara Itadaite mo?",
+      "title_jp": "これからいただいても?",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "odd"
+      ],
+      "groups": [
+        "drink it"
+      ],
+      "parodies": [
+        "touhou project"
+      ],
+      "works": [
+        "touhou project"
+      ],
+      "characters": [
+        "yukari yakumo",
+        "yuyuko saigyouji"
+      ],
+      "tags": [
+        "female:females only",
+        "reitaisai 23",
+        "female:tribadism",
+        "female:very long hair",
+        "female:yuri"
+      ],
+      "meta_tags": [
+        "artist:odd",
+        "group:drink it",
+        "work:touhou project",
+        "character:yukari yakumo",
+        "character:yuyuko saigyouji"
+      ],
+      "pages": 22,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 02:51:00-05",
+      "thumbnail": "thumbs/hitomi/4130435.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4130411",
+      "source": "hitomi",
+      "source_id": "4130411",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4130411.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Oyashiki Wonderful Life ~ Maid Saiyou da to Omottara, Inu ni Saremashita ~",
+      "title_jp": "お屋敷わんだふるライフ～メイド採用だと思ったら、犬にされました～",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "dancyo"
+      ],
+      "groups": [
+        "himitsukessya usagi"
+      ],
+      "parodies": [
+        "original"
+      ],
+      "works": [
+        "original"
+      ],
+      "characters": [],
+      "tags": [
+        "female:anal",
+        "female:bdsm",
+        "female:big breasts",
+        "female:bisexual",
+        "female:blindfold",
+        "female:blowjob",
+        "female:clit stimulation",
+        "female:collar",
+        "digital",
+        "female:exhibitionism",
+        "female:forced exposure",
+        "female:humiliation",
+        "kodomo doushi",
+        "female:leash",
+        "female:loli",
+        "female:maid",
+        "female:petplay",
+        "female:sex toys",
+        "male:shota",
+        "male:sole male",
+        "female:tail plug",
+        "female:very long hair"
+      ],
+      "meta_tags": [
+        "artist:dancyo",
+        "group:himitsukessya usagi",
+        "work:original"
+      ],
+      "pages": 30,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 02:42:00-05",
+      "thumbnail": "thumbs/hitomi/4130411.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4130391",
+      "source": "hitomi",
+      "source_id": "4130391",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4130391.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "Kanoe to Himitsu no Heya",
+      "title_jp": "カノエと秘密の部屋",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "totemoii"
+      ],
+      "groups": [
+        "totemoyoi"
+      ],
+      "parodies": [
+        "blue archive"
+      ],
+      "works": [
+        "blue archive"
+      ],
+      "characters": [
+        "kanoe itagaki",
+        "sensei"
+      ],
+      "tags": [
+        "male:bald",
+        "female:blowjob",
+        "male:condom",
+        "digital",
+        "female:eye-covering bang",
+        "male:glasses",
+        "female:gokkun",
+        "female:halo",
+        "female:loli",
+        "female:pantyhose",
+        "female:sole female",
+        "male:sole male",
+        "female:squirting",
+        "female:very long hair"
+      ],
+      "meta_tags": [
+        "artist:totemoii",
+        "group:totemoyoi",
+        "work:blue archive",
+        "character:kanoe itagaki",
+        "character:sensei"
+      ],
+      "pages": 23,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 02:23:00-05",
+      "thumbnail": "thumbs/hitomi/4130391.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "hitomi:4130359",
+      "source": "hitomi",
+      "source_id": "4130359",
+      "source_token": "",
+      "source_url": "https://hitomi.la/galleries/4130359.html",
+      "source_url_kind": "",
+      "resolved_gallery_id": "",
+      "filter_metadata_checked": "",
+      "filter_metadata_checked_at": "",
+      "title": "\"Kei\" tte Yonde Kudasai!",
+      "title_jp": "「ケイ」って呼んでください!",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [
+        "yamime"
+      ],
+      "groups": [
+        "toubunkata"
+      ],
+      "parodies": [
+        "blue archive"
+      ],
+      "works": [
+        "blue archive"
+      ],
+      "characters": [
+        "kei tendou",
+        "sensei"
+      ],
+      "tags": [
+        "digital",
+        "female:halo",
+        "female:loli",
+        "female:sole female",
+        "male:sole male",
+        "female:stockings",
+        "female:very long hair"
+      ],
+      "meta_tags": [
+        "artist:yamime",
+        "group:toubunkata",
+        "work:blue archive",
+        "character:kei tendou",
+        "character:sensei"
+      ],
+      "pages": 23,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "2026-08-19 02:10:00-05",
+      "thumbnail": "thumbs/hitomi/4130359.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "ehentai:4129198",
@@ -427317,17 +430431,7 @@
       "posted_at": "2026-07-25T17:45:34+00:00",
       "thumbnail": "https://ehgt.org/w/02/534/06830-bd70b5bl.webp",
       "first_seen": "2026-09-24T09:52:06+00:00",
-      "last_seen": "2026-09-24T09:52:06+00:00",
-      "duplicate_group": "dup:2600cc184085b3a4",
-      "duplicate_count": 2,
-      "duplicate_sources": [
-        "asmhentai",
-        "ehentai"
-      ],
-      "duplicate_uids": [
-        "asmhentai:664721",
-        "ehentai:4076639"
-      ]
+      "last_seen": "2026-09-24T09:52:06+00:00"
     },
     {
       "uid": "ehentai:4076629",
@@ -427458,17 +430562,7 @@
       "posted_at": "2026-07-25T17:41:35+00:00",
       "thumbnail": "https://ehgt.org/w/02/275/85352-kpmacjpo.webp",
       "first_seen": "2026-09-24T09:52:06+00:00",
-      "last_seen": "2026-09-24T09:52:06+00:00",
-      "duplicate_group": "dup:ab34b36634946a4d",
-      "duplicate_count": 2,
-      "duplicate_sources": [
-        "asmhentai",
-        "ehentai"
-      ],
-      "duplicate_uids": [
-        "asmhentai:664720",
-        "ehentai:4076620"
-      ]
+      "last_seen": "2026-09-24T09:52:06+00:00"
     },
     {
       "uid": "ehentai:4076558",
@@ -427507,17 +430601,7 @@
       "posted_at": "2026-07-25T17:22:30+00:00",
       "thumbnail": "https://ehgt.org/w/02/534/04893-t5b23gj7.webp",
       "first_seen": "2026-09-24T09:52:06+00:00",
-      "last_seen": "2026-09-24T09:52:06+00:00",
-      "duplicate_group": "dup:aad215e7f64cd96a",
-      "duplicate_count": 2,
-      "duplicate_sources": [
-        "asmhentai",
-        "ehentai"
-      ],
-      "duplicate_uids": [
-        "asmhentai:664717",
-        "ehentai:4076558"
-      ]
+      "last_seen": "2026-09-24T09:52:06+00:00"
     },
     {
       "uid": "ehentai:4074779",
@@ -428314,17 +431398,7 @@
       "posted_at": "2026-07-21T13:50:41+00:00",
       "thumbnail": "https://ehgt.org/w/02/524/78376-l0ms9345.webp",
       "first_seen": "2026-09-24T09:52:06+00:00",
-      "last_seen": "2026-09-24T09:52:06+00:00",
-      "duplicate_group": "dup:3c24faf8d2ad368d",
-      "duplicate_count": 2,
-      "duplicate_sources": [
-        "asmhentai",
-        "ehentai"
-      ],
-      "duplicate_uids": [
-        "asmhentai:663484",
-        "ehentai:4067630"
-      ]
+      "last_seen": "2026-09-24T09:52:06+00:00"
     },
     {
       "uid": "ehentai:4067628",
@@ -428371,17 +431445,7 @@
       "posted_at": "2026-07-21T13:49:44+00:00",
       "thumbnail": "https://ehgt.org/w/02/524/78994-hlr87pjm.webp",
       "first_seen": "2026-09-24T09:52:06+00:00",
-      "last_seen": "2026-09-24T09:52:06+00:00",
-      "duplicate_group": "dup:37362ebaeb662fdf",
-      "duplicate_count": 2,
-      "duplicate_sources": [
-        "asmhentai",
-        "ehentai"
-      ],
-      "duplicate_uids": [
-        "asmhentai:663483",
-        "ehentai:4067628"
-      ]
+      "last_seen": "2026-09-24T09:52:06+00:00"
     },
     {
       "uid": "ehentai:4066798",
@@ -431512,7 +434576,17 @@
       "posted_at": "2026-07-03T15:29:33+00:00",
       "thumbnail": "https://ehgt.org/w/02/486/52011-9adfbbgh.webp",
       "first_seen": "2026-09-24T10:24:53+00:00",
-      "last_seen": "2026-09-24T10:24:53+00:00"
+      "last_seen": "2026-09-24T10:24:53+00:00",
+      "duplicate_group": "dup:7fd1015da939b058",
+      "duplicate_count": 2,
+      "duplicate_sources": [
+        "asmhentai",
+        "ehentai"
+      ],
+      "duplicate_uids": [
+        "asmhentai:657523",
+        "ehentai:4028444"
+      ]
     },
     {
       "uid": "ehentai:4026752",
@@ -595599,6 +598673,533 @@
       "last_seen": "2026-09-25T22:23:53+00:00"
     },
     {
+      "uid": "3hentai:3617602",
+      "source": "3hentai",
+      "source_id": "3617602",
+      "source_token": "",
+      "source_url": "https://3hentai.net/d/617602",
+      "source_url_kind": "direct",
+      "resolved_gallery_id": "617602",
+      "filter_metadata_checked": "3hentai-gallery-v1",
+      "filter_metadata_checked_at": "2026-09-28T19:26:43+00:00",
+      "title": "[Mameko × Keteru] Isekai Magic Mirror-gou Volume 1",
+      "title_jp": "[Mameko × Keteru] Isekai Magic Mirror-gou Volume 1",
+      "language": "japanese",
+      "category": "manga",
+      "artists": [],
+      "groups": [],
+      "parodies": [],
+      "works": [],
+      "characters": [],
+      "tags": [
+        "language:japanese",
+        "big breasts (female)",
+        "blowjob (female)",
+        "full censorship",
+        "multi-work series",
+        "nipple stimulation (female)",
+        "nun (female)",
+        "story arc",
+        "watermarked",
+        "japanese"
+      ],
+      "meta_tags": [],
+      "pages": 0,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "",
+      "thumbnail": "thumbs/3hentai/3617602.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "3hentai:3617567",
+      "source": "3hentai",
+      "source_id": "3617567",
+      "source_token": "",
+      "source_url": "https://3hentai.net/d/617567",
+      "source_url_kind": "direct",
+      "resolved_gallery_id": "617567",
+      "filter_metadata_checked": "3hentai-gallery-v1",
+      "filter_metadata_checked_at": "2026-09-28T19:26:43+00:00",
+      "title": "[Sugar*Berry*Syrup (Kuroe)] Shokugeki no Soma Soushuuhen1 CHOCOLATE COLLECTION [Digital]",
+      "title_jp": "[Sugar*Berry*Syrup (Kuroe)] Shokugeki no Soma Soushuuhen1 CHOCOLATE COLLECTION [Digital]",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [],
+      "groups": [],
+      "parodies": [
+        "shokugeki no soma"
+      ],
+      "works": [
+        "shokugeki no soma"
+      ],
+      "characters": [
+        "erina nakiri",
+        "megumi tadokoro"
+      ],
+      "tags": [
+        "language:japanese",
+        "japanese",
+        "crowe"
+      ],
+      "meta_tags": [
+        "work:shokugeki no soma",
+        "character:erina nakiri",
+        "character:megumi tadokoro"
+      ],
+      "pages": 0,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "",
+      "thumbnail": "thumbs/3hentai/3617567.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "3hentai:3617490",
+      "source": "3hentai",
+      "source_id": "3617490",
+      "source_token": "",
+      "source_url": "https://3hentai.net/d/617490",
+      "source_url_kind": "direct",
+      "resolved_gallery_id": "617490",
+      "filter_metadata_checked": "3hentai-gallery-v1",
+      "filter_metadata_checked_at": "2026-09-28T19:26:44+00:00",
+      "title": "(C91) [Rippadou (Liveis Watanabe)] Fujiko Collection 5 (Lupin III)",
+      "title_jp": "(C91) [Rippadou (Liveis Watanabe)] Fujiko Collection 5 (Lupin III)",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [],
+      "groups": [],
+      "parodies": [
+        "lupin iii"
+      ],
+      "works": [
+        "lupin iii"
+      ],
+      "characters": [
+        "fujiko mine"
+      ],
+      "tags": [
+        "language:japanese",
+        "anal (female)",
+        "bdsm (female)",
+        "big breasts (female)",
+        "bodysuit (female)",
+        "bondage (female)",
+        "bunny girl",
+        "gag (female)",
+        "huge breasts (female)",
+        "humiliation (female)",
+        "latex (female)",
+        "lingerie (female)",
+        "rape (female)",
+        "sex toys (female)",
+        "sole female",
+        "squirting",
+        "stockings (female)",
+        "sweating (female)",
+        "tickling (female)",
+        "japanese",
+        "liveis watanabe | ankokudou shinkaigyo"
+      ],
+      "meta_tags": [
+        "work:lupin iii",
+        "character:fujiko mine"
+      ],
+      "pages": 0,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "",
+      "thumbnail": "thumbs/3hentai/3617490.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "3hentai:3617473",
+      "source": "3hentai",
+      "source_id": "3617473",
+      "source_token": "",
+      "source_url": "https://3hentai.net/d/617473",
+      "source_url_kind": "direct",
+      "resolved_gallery_id": "617473",
+      "filter_metadata_checked": "3hentai-gallery-v1",
+      "filter_metadata_checked_at": "2026-09-28T19:26:44+00:00",
+      "title": "[きらぼし] アリーザママ (グランブルーファンタジー)",
+      "title_jp": "[きらぼし] アリーザママ (グランブルーファンタジー)",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [],
+      "groups": [],
+      "parodies": [
+        "granblue fantasy"
+      ],
+      "works": [
+        "granblue fantasy"
+      ],
+      "characters": [
+        "alicia",
+        "aliza"
+      ],
+      "tags": [
+        "language:japanese",
+        "ahegao (female)",
+        "big breasts (female)",
+        "horns (female)",
+        "horns (male)",
+        "lactation (female)",
+        "nakadashi (female)",
+        "sole female",
+        "sole male",
+        "x-ray (female)",
+        "japanese",
+        "kira boshi"
+      ],
+      "meta_tags": [
+        "work:granblue fantasy",
+        "character:alicia",
+        "character:aliza"
+      ],
+      "pages": 0,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "",
+      "thumbnail": "thumbs/3hentai/3617473.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "3hentai:3617350",
+      "source": "3hentai",
+      "source_id": "3617350",
+      "source_token": "",
+      "source_url": "https://3hentai.net/d/617350",
+      "source_url_kind": "direct",
+      "resolved_gallery_id": "617350",
+      "filter_metadata_checked": "3hentai-gallery-v1",
+      "filter_metadata_checked_at": "2026-09-28T19:26:44+00:00",
+      "title": "[河中島] 羽川skeb (化物語)",
+      "title_jp": "[河中島] 羽川skeb (化物語)",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [],
+      "groups": [],
+      "parodies": [
+        "bakemonogatari"
+      ],
+      "works": [
+        "bakemonogatari"
+      ],
+      "characters": [
+        "tsubasa hanekawa"
+      ],
+      "tags": [
+        "language:japanese",
+        "focus paizuri",
+        "glasses (female)",
+        "no penetration",
+        "paizuri (female)",
+        "sole female",
+        "japanese"
+      ],
+      "meta_tags": [
+        "work:bakemonogatari",
+        "character:tsubasa hanekawa"
+      ],
+      "pages": 0,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "",
+      "thumbnail": "thumbs/3hentai/3617350.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "3hentai:3617325",
+      "source": "3hentai",
+      "source_id": "3617325",
+      "source_token": "",
+      "source_url": "https://3hentai.net/d/617325",
+      "source_url_kind": "direct",
+      "resolved_gallery_id": "617325",
+      "filter_metadata_checked": "3hentai-gallery-v1",
+      "filter_metadata_checked_at": "2026-09-28T19:26:45+00:00",
+      "title": "[マカ] おまけ 性夜ペコパコ折本 電子版 (プリンセスコネクト!Re:Dive)",
+      "title_jp": "[マカ] おまけ 性夜ペコパコ折本 電子版 (プリンセスコネクト!Re:Dive)",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [],
+      "groups": [],
+      "parodies": [
+        "princess connect"
+      ],
+      "works": [
+        "princess connect"
+      ],
+      "characters": [
+        "pecorine | eustiana von astraea"
+      ],
+      "tags": [
+        "language:japanese",
+        "full color",
+        "kissing (female)",
+        "mosaic censorship",
+        "sole female",
+        "sole male",
+        "unusual pupils (female)",
+        "x-ray (female)",
+        "japanese",
+        "maca"
+      ],
+      "meta_tags": [
+        "work:princess connect",
+        "character:pecorine | eustiana von astraea"
+      ],
+      "pages": 0,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "",
+      "thumbnail": "thumbs/3hentai/3617325.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "3hentai:3617321",
+      "source": "3hentai",
+      "source_id": "3617321",
+      "source_token": "",
+      "source_url": "https://3hentai.net/d/617321",
+      "source_url_kind": "direct",
+      "resolved_gallery_id": "617321",
+      "filter_metadata_checked": "3hentai-gallery-v1",
+      "filter_metadata_checked_at": "2026-09-28T19:26:45+00:00",
+      "title": "[マカ] 会場限定折本 電子版 (プリンセスコネクト!Re:Dive)",
+      "title_jp": "[マカ] 会場限定折本 電子版 (プリンセスコネクト!Re:Dive)",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [],
+      "groups": [],
+      "parodies": [
+        "princess connect"
+      ],
+      "works": [
+        "princess connect"
+      ],
+      "characters": [
+        "saren sasaki"
+      ],
+      "tags": [
+        "language:japanese",
+        "sole female",
+        "sole male",
+        "unusual pupils (female)",
+        "x-ray (female)",
+        "japanese",
+        "maca"
+      ],
+      "meta_tags": [
+        "work:princess connect",
+        "character:saren sasaki"
+      ],
+      "pages": 0,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "",
+      "thumbnail": "thumbs/3hentai/3617321.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "3hentai:3617233",
+      "source": "3hentai",
+      "source_id": "3617233",
+      "source_token": "",
+      "source_url": "https://3hentai.net/d/617233",
+      "source_url_kind": "direct",
+      "resolved_gallery_id": "617233",
+      "filter_metadata_checked": "3hentai-gallery-v1",
+      "filter_metadata_checked_at": "2026-09-28T19:26:45+00:00",
+      "title": "[cloudair (Katsuto)] Kasshoku Otome ni Shiboraretai! (THE IDOLM@STER CINDERELLA GIRLS) [Digital]",
+      "title_jp": "[cloudair (Katsuto)] Kasshoku Otome ni Shiboraretai! (THE IDOLM@STER CINDERELLA GIRLS) [Digital]",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [],
+      "groups": [],
+      "parodies": [
+        "the idolmaster"
+      ],
+      "works": [
+        "the idolmaster"
+      ],
+      "characters": [
+        "natalia"
+      ],
+      "tags": [
+        "language:japanese",
+        "full color",
+        "sole female",
+        "sole male",
+        "japanese",
+        "katsuto"
+      ],
+      "meta_tags": [
+        "work:the idolmaster",
+        "character:natalia"
+      ],
+      "pages": 0,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "",
+      "thumbnail": "thumbs/3hentai/3617233.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "3hentai:3617209",
+      "source": "3hentai",
+      "source_id": "3617209",
+      "source_token": "",
+      "source_url": "https://3hentai.net/d/617209",
+      "source_url_kind": "direct",
+      "resolved_gallery_id": "617209",
+      "filter_metadata_checked": "3hentai-gallery-v1",
+      "filter_metadata_checked_at": "2026-09-28T19:26:46+00:00",
+      "title": "[Juudenshiwasure (Kenkenpa)] Shouhou、Netsujou no Kizashi (Kantai Collection -KanColle-)",
+      "title_jp": "[Juudenshiwasure (Kenkenpa)] Shouhou、Netsujou no Kizashi (Kantai Collection -KanColle-)",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [],
+      "groups": [],
+      "parodies": [
+        "kantai collection"
+      ],
+      "works": [
+        "kantai collection"
+      ],
+      "characters": [
+        "teitoku",
+        "shouhou"
+      ],
+      "tags": [
+        "language:japanese",
+        "defloration",
+        "japanese"
+      ],
+      "meta_tags": [
+        "work:kantai collection",
+        "character:teitoku",
+        "character:shouhou"
+      ],
+      "pages": 0,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "",
+      "thumbnail": "thumbs/3hentai/3617209.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "3hentai:3617207",
+      "source": "3hentai",
+      "source_id": "3617207",
+      "source_token": "",
+      "source_url": "https://3hentai.net/d/617207",
+      "source_url_kind": "direct",
+      "resolved_gallery_id": "617207",
+      "filter_metadata_checked": "3hentai-gallery-v1",
+      "filter_metadata_checked_at": "2026-09-28T19:26:46+00:00",
+      "title": "KancolleHentaiManga (Kantai Collection -KanColle-) [Uncensored]",
+      "title_jp": "KancolleHentaiManga (Kantai Collection -KanColle-) [Uncensored]",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [],
+      "groups": [],
+      "parodies": [
+        "kantai collection"
+      ],
+      "works": [
+        "kantai collection"
+      ],
+      "characters": [
+        "z3",
+        "maikaze"
+      ],
+      "tags": [
+        "language:japanese",
+        "uncensored",
+        "japanese"
+      ],
+      "meta_tags": [
+        "work:kantai collection",
+        "character:z3",
+        "character:maikaze"
+      ],
+      "pages": 0,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "",
+      "thumbnail": "thumbs/3hentai/3617207.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
+      "uid": "3hentai:3617201",
+      "source": "3hentai",
+      "source_id": "3617201",
+      "source_token": "",
+      "source_url": "https://3hentai.net/d/617201",
+      "source_url_kind": "direct",
+      "resolved_gallery_id": "617201",
+      "filter_metadata_checked": "3hentai-gallery-v1",
+      "filter_metadata_checked_at": "2026-09-28T19:26:47+00:00",
+      "title": "[Giga] ゼルダ×ガノン フ〇ラ (ゼルダの伝説)",
+      "title_jp": "[Giga] ゼルダ×ガノン フ〇ラ (ゼルダの伝説)",
+      "language": "japanese",
+      "category": "doujinshi",
+      "artists": [],
+      "groups": [],
+      "parodies": [
+        "the legend of zelda"
+      ],
+      "works": [
+        "the legend of zelda"
+      ],
+      "characters": [
+        "princess zelda",
+        "ganondorf"
+      ],
+      "tags": [
+        "language:japanese",
+        "ahegao (female)",
+        "big breasts (female)",
+        "blowjob (female)",
+        "blowjob face (female)",
+        "cheating (female)",
+        "cockslapping (female)",
+        "elf (female)",
+        "first person perspective (male)",
+        "focus blowjob (female)",
+        "lipstick mark (male)",
+        "no penetration",
+        "sole female",
+        "japanese",
+        "giga"
+      ],
+      "meta_tags": [
+        "work:the legend of zelda",
+        "character:princess zelda",
+        "character:ganondorf"
+      ],
+      "pages": 0,
+      "rating": null,
+      "popularity": null,
+      "posted_at": "",
+      "thumbnail": "thumbs/3hentai/3617201.webp",
+      "first_seen": "2026-09-28T19:25:19+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00"
+    },
+    {
       "uid": "3hentai:3618827",
       "source": "3hentai",
       "source_id": "3618827",
@@ -596039,7 +599640,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751984",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:46+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:25+00:00",
       "title": "[GLAMOUR WORKS] YínFudaYūgi",
       "title_jp": "[GLAMOUR WORKS] YínFudaYūgi",
       "language": "japanese",
@@ -596067,7 +599668,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/3hentai/3751984.webp",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751979",
@@ -596078,7 +599679,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751979",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:46+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:25+00:00",
       "title": "[Shirotanuki no Sato (Pontanuki)] Gensoukyou Deriheru ~ Satori-chan no Torotoro Onee-chan Gohoushi ~(Touhou Project)[Digital]",
       "title_jp": "[Shirotanuki no Sato (Pontanuki)] Gensoukyou Deriheru ~ Satori-chan no Torotoro Onee-chan Gohoushi ~(Touhou Project)[Digital]",
       "language": "japanese",
@@ -596114,7 +599715,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/3hentai/3751979.webp",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751969",
@@ -596125,7 +599726,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751969",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:59+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:38+00:00",
       "title": "[Kagura Yutakamaru] Uruwashi Bijo Gahou - Pictorial of Charming and Alluring Women [Digital]",
       "title_jp": "[Kagura Yutakamaru] Uruwashi Bijo Gahou - Pictorial of Charming and Alluring Women [Digital]",
       "language": "japanese",
@@ -596175,7 +599776,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/3hentai/3751969.webp",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751964",
@@ -596186,7 +599787,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751964",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:46+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:25+00:00",
       "title": "[yuji-koji] 二人きりの図書室にて (ブルーアーカイブ)",
       "title_jp": "[yuji-koji] 二人きりの図書室にて (ブルーアーカイブ)",
       "language": "japanese",
@@ -596220,7 +599821,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/3hentai/3751964.webp",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751954",
@@ -596231,7 +599832,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751954",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:47+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:26+00:00",
       "title": "[Ankoman] Bāvu~anshī, tsutan-kun to…❤ (Fate/Grand Order) [Digital]",
       "title_jp": "[Ankoman] Bāvu~anshī, tsutan-kun to…❤ (Fate/Grand Order) [Digital]",
       "language": "japanese",
@@ -596266,7 +599867,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/3hentai/3751954.webp",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751949",
@@ -596277,7 +599878,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751949",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:47+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:26+00:00",
       "title": "[yuji-koji] 勢いよく飛び出して (ブルーアーカイブ)",
       "title_jp": "[yuji-koji] 勢いよく飛び出して (ブルーアーカイブ)",
       "language": "japanese",
@@ -596317,7 +599918,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/3hentai/3751949.webp",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751934",
@@ -596328,7 +599929,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751934",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:47+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:26+00:00",
       "title": "[聖水BAR] 異世界転生して能力でＨなことする話㉚『捕縛された女神』",
       "title_jp": "[聖水BAR] 異世界転生して能力でＨなことする話㉚『捕縛された女神』",
       "language": "japanese",
@@ -596356,7 +599957,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/3hentai/3751934.webp",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751929",
@@ -596367,7 +599968,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751929",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:48+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:27+00:00",
       "title": "[聖水BAR] 軽いノリでHしてくれる夏色まつり♡ (ホロライブ)",
       "title_jp": "[聖水BAR] 軽いノリでHしてくれる夏色まつり♡ (ホロライブ)",
       "language": "japanese",
@@ -596403,7 +600004,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/3hentai/3751929.webp",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751924",
@@ -596414,7 +600015,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751924",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:48+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:27+00:00",
       "title": "[聖水BAR] のぞめる性教育番組♡ (にじさんじ)",
       "title_jp": "[聖水BAR] のぞめる性教育番組♡ (にじさんじ)",
       "language": "japanese",
@@ -596454,7 +600055,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/3hentai/3751924.webp",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751919",
@@ -596465,7 +600066,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751949",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:48+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:27+00:00",
       "title": "[yuji-koji] 勢いよく飛び出して (ブルーアーカイブ)",
       "title_jp": "[yuji-koji] 勢いよく飛び出して (ブルーアーカイブ)",
       "language": "japanese",
@@ -596505,7 +600106,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/3hentai/3751919.webp",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751909",
@@ -596516,7 +600117,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751909",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:49+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:28+00:00",
       "title": "[アスハー] 幼馴染がハメられる",
       "title_jp": "[アスハー] 幼馴染がハメられる",
       "language": "japanese",
@@ -596544,7 +600145,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/3hentai/3751909.webp",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751889",
@@ -596555,7 +600156,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751889",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:49+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:28+00:00",
       "title": "[聖水BAR] 射精後にお掃除してくれる女神様♡",
       "title_jp": "[聖水BAR] 射精後にお掃除してくれる女神様♡",
       "language": "japanese",
@@ -596581,7 +600182,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/3hentai/3751889.webp",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751834",
@@ -596592,7 +600193,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751834",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:50+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:29+00:00",
       "title": "[トキビト] ゲヘナ雷帝編 (学園アイドルマスター)",
       "title_jp": "[トキビト] ゲヘナ雷帝編 (学園アイドルマスター)",
       "language": "japanese",
@@ -596616,7 +600217,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/3hentai/3751834.webp",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751619",
@@ -596627,7 +600228,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751619",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:50+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:29+00:00",
       "title": "[ハマチトモサク] クラスで2番目に可愛い女の子と性行為をした 〜初めての純愛セックス〜 (クラスで2番目に可愛い女の子と友だちになった)",
       "title_jp": "[ハマチトモサク] クラスで2番目に可愛い女の子と性行為をした 〜初めての純愛セックス〜 (クラスで2番目に可愛い女の子と友だちになった)",
       "language": "japanese",
@@ -596664,7 +600265,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/3hentai/3751619.webp",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751609",
@@ -596675,7 +600276,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751609",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:50+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:29+00:00",
       "title": "[六作] 花火(火花)のドキドキ配信",
       "title_jp": "[六作] 花火(火花)のドキドキ配信",
       "language": "japanese",
@@ -596711,9 +600312,9 @@
       "rating": null,
       "popularity": null,
       "posted_at": "",
-      "thumbnail": "https://s1.3hentai.xyz/d2466915/thumb.jpg",
+      "thumbnail": "thumbs/3hentai/3751609.webp",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751599",
@@ -596724,7 +600325,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751599",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:51+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:30+00:00",
       "title": "Samayoeru shōakuma-tachi Volume 1",
       "title_jp": "Samayoeru shōakuma-tachi Volume 1",
       "language": "japanese",
@@ -596747,7 +600348,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466912/thumb.jpg",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751549",
@@ -596758,7 +600359,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751549",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:51+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:30+00:00",
       "title": "[Fuka (Akoya)] Sore de wa Gohoushi Itashimasu (Detective Conan) [Digital]",
       "title_jp": "[Fuka (Akoya)] Sore de wa Gohoushi Itashimasu (Detective Conan) [Digital]",
       "language": "japanese",
@@ -596792,7 +600393,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466818/thumb.jpg",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751534",
@@ -596803,7 +600404,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751534",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:52+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:30+00:00",
       "title": "[みんなの巨乳アイランド] K仙人のよいこ眠眠姦3 (ドラゴンボールZ)",
       "title_jp": "[みんなの巨乳アイランド] K仙人のよいこ眠眠姦3 (ドラゴンボールZ)",
       "language": "japanese",
@@ -596824,7 +600425,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466810/thumb.jpg",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751529",
@@ -596835,7 +600436,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751529",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:52+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:31+00:00",
       "title": "[みんなの巨乳アイランド] K仙人のよいこ眠眠姦2 (ドラゴンボールZ)",
       "title_jp": "[みんなの巨乳アイランド] K仙人のよいこ眠眠姦2 (ドラゴンボールZ)",
       "language": "japanese",
@@ -596856,7 +600457,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466809/thumb.jpg",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751524",
@@ -596867,7 +600468,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751524",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:52+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:31+00:00",
       "title": "[みんなの巨乳アイランド] K仙人のよいこ眠眠姦1 (ドラゴンボールZ)",
       "title_jp": "[みんなの巨乳アイランド] K仙人のよいこ眠眠姦1 (ドラゴンボールZ)",
       "language": "japanese",
@@ -596888,7 +600489,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466808/thumb.jpg",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751519",
@@ -596899,7 +600500,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751519",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:53+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:31+00:00",
       "title": "[ハマチトモサク] クラスで2番目に可愛い女の子と性行為をした 2 〜初めての純愛セックスのその後談〜 (クラスで2番目に可愛い女の子と友だちになった)",
       "title_jp": "[ハマチトモサク] クラスで2番目に可愛い女の子と性行為をした 2 〜初めての純愛セックスのその後談〜 (クラスで2番目に可愛い女の子と友だちになった)",
       "language": "japanese",
@@ -596932,7 +600533,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466807/thumb.jpg",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751514",
@@ -596943,7 +600544,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751619",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:53+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:32+00:00",
       "title": "[ハマチトモサク] クラスで2番目に可愛い女の子と性行為をした 〜初めての純愛セックス〜 (クラスで2番目に可愛い女の子と友だちになった)",
       "title_jp": "[ハマチトモサク] クラスで2番目に可愛い女の子と性行為をした 〜初めての純愛セックス〜 (クラスで2番目に可愛い女の子と友だちになった)",
       "language": "japanese",
@@ -596980,7 +600581,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466933/thumb.jpg",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751484",
@@ -596991,7 +600592,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751484",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:54+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:32+00:00",
       "title": "[みんなの巨乳アイランド] K仙人のよいこ眠眠姦4 (ドラゴンボールZ)",
       "title_jp": "[みんなの巨乳アイランド] K仙人のよいこ眠眠姦4 (ドラゴンボールZ)",
       "language": "japanese",
@@ -597012,7 +600613,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466779/thumb.jpg",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751414",
@@ -597023,7 +600624,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751414",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:54+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:33+00:00",
       "title": "(C108) [TwinBox (Hanahanamaki, Sousouman)] Tsuki ga Michiru Mae ni (Chou Kaguya-hime!)",
       "title_jp": "(C108) [TwinBox (Hanahanamaki, Sousouman)] Tsuki ga Michiru Mae ni (Chou Kaguya-hime!)",
       "language": "japanese",
@@ -597059,7 +600660,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466695/thumb.jpg",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751324",
@@ -597070,7 +600671,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751324",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:54+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:33+00:00",
       "title": "[Sennoukai (Yusen)] Yakubutsu Doutai (Blue Archive) [Digital]",
       "title_jp": "[Sennoukai (Yusen)] Yakubutsu Doutai (Blue Archive) [Digital]",
       "language": "japanese",
@@ -597106,7 +600707,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466571/thumb.jpg",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751259",
@@ -597117,7 +600718,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751259",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:55+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:33+00:00",
       "title": "(C97) [Kaki no Tane (Summer)] Azur Lane Soap Department —Belfast Edition (Azur Lane)",
       "title_jp": "(C97) [Kaki no Tane (Summer)] Azur Lane Soap Department —Belfast Edition (Azur Lane)",
       "language": "japanese",
@@ -597152,7 +600753,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466467/thumb.jpg",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751154",
@@ -597163,7 +600764,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751154",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:55+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:34+00:00",
       "title": "[Suzuoka Chitose] 快感ヒロイン ―汗と蜜と吐息― [Digital]",
       "title_jp": "[Suzuoka Chitose] 快感ヒロイン ―汗と蜜と吐息― [Digital]",
       "language": "japanese",
@@ -597186,7 +600787,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466404/thumb.jpg",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751149",
@@ -597197,7 +600798,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751149",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:56+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:34+00:00",
       "title": "[Ono Kenuji] 性交同意アプリでHしよっ！[Digital]",
       "title_jp": "[Ono Kenuji] 性交同意アプリでHしよっ！[Digital]",
       "language": "japanese",
@@ -597220,7 +600821,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466401/thumb.jpg",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751139",
@@ -597231,7 +600832,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751139",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:56+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:35+00:00",
       "title": "[Naitou Kirara] Haramase Ryuuguu Harem Tou [Digital]",
       "title_jp": "[Naitou Kirara] Haramase Ryuuguu Harem Tou [Digital]",
       "language": "japanese",
@@ -597253,7 +600854,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466392/thumb.jpg",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751134",
@@ -597264,7 +600865,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751134",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:56+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:35+00:00",
       "title": "[内藤キララ] 孕ませ流遇ハーレム島 [DL版]",
       "title_jp": "[内藤キララ] 孕ませ流遇ハーレム島 [DL版]",
       "language": "japanese",
@@ -597287,7 +600888,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466390/thumb.jpg",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751129",
@@ -597298,7 +600899,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751129",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:57+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:35+00:00",
       "title": "[逆又練物] ヒプノステイ 1【デジタル特装版】",
       "title_jp": "[逆又練物] ヒプノステイ 1【デジタル特装版】",
       "language": "japanese",
@@ -597322,7 +600923,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466389/thumb.jpg",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751124",
@@ -597333,7 +600934,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751124",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:57+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:36+00:00",
       "title": "[つかさ] 「俺のがずっと欲しかったんだろ？」変態上司の止まらない淫語に絶頂し続ける一ヵ月11-17",
       "title_jp": "[つかさ] 「俺のがずっと欲しかったんだろ？」変態上司の止まらない淫語に絶頂し続ける一ヵ月11-17",
       "language": "japanese",
@@ -597357,7 +600958,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466388/thumb.jpg",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751119",
@@ -597368,7 +600969,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751119",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:58+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:36+00:00",
       "title": "[つかさ] 「俺のがずっと欲しかったんだろ？」変態上司の止まらない淫語に絶頂し続ける一ヵ月1-10",
       "title_jp": "[つかさ] 「俺のがずっと欲しかったんだろ？」変態上司の止まらない淫語に絶頂し続ける一ヵ月1-10",
       "language": "japanese",
@@ -597392,7 +600993,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466387/thumb.jpg",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751104",
@@ -597403,7 +601004,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751104",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:58+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:37+00:00",
       "title": "(C108) [Kyorandotou (Otaku)] Hokago no Kakubetsu Omori Choko Minto (Blue Archive)",
       "title_jp": "(C108) [Kyorandotou (Otaku)] Hokago no Kakubetsu Omori Choko Minto (Blue Archive)",
       "language": "japanese",
@@ -597439,7 +601040,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466369/thumb.jpg",
       "first_seen": "2026-09-28T17:25:52+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3621317",
@@ -601185,7 +604786,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/653877.webp",
       "first_seen": "2026-09-28T09:29:26+00:00",
-      "last_seen": "2026-09-28T09:29:26+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:651397",
@@ -601223,7 +604824,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/651397.webp",
       "first_seen": "2026-09-28T09:29:26+00:00",
-      "last_seen": "2026-09-28T09:29:26+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3628627",
@@ -608653,7 +612254,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/683738.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:677531",
@@ -608690,7 +612291,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/677531.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00",
+      "last_seen": "2026-09-28T19:25:19+00:00",
       "duplicate_group": "dup:e68dd0a410f05640",
       "duplicate_count": 2,
       "duplicate_sources": [
@@ -608742,7 +612343,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/674288.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:671931",
@@ -608783,7 +612384,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/671931.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:670653",
@@ -608825,7 +612426,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/670653.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:668370",
@@ -608865,7 +612466,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/668370.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666453",
@@ -608904,7 +612505,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666453.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666435",
@@ -608949,7 +612550,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666435.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666433",
@@ -608992,7 +612593,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666433.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666432",
@@ -609035,7 +612636,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666432.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666431",
@@ -609079,7 +612680,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666431.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666430",
@@ -609123,7 +612724,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666430.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666429",
@@ -609167,7 +612768,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666429.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666428",
@@ -609211,7 +612812,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666428.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666427",
@@ -609254,7 +612855,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666427.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666426",
@@ -609298,7 +612899,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666426.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666425",
@@ -609342,7 +612943,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666425.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666423",
@@ -609388,7 +612989,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666423.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666422",
@@ -609432,7 +613033,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666422.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666421",
@@ -609478,7 +613079,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666421.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666272",
@@ -609522,7 +613123,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666272.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666257",
@@ -609569,7 +613170,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666257.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666256",
@@ -609613,7 +613214,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666256.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666255",
@@ -609655,7 +613256,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666255.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666254",
@@ -609697,7 +613298,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666254.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666253",
@@ -609740,7 +613341,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666253.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666252",
@@ -609784,7 +613385,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666252.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666251",
@@ -609829,7 +613430,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666251.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666250",
@@ -609871,7 +613472,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666250.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666249",
@@ -609915,7 +613516,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666249.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666248",
@@ -609960,7 +613561,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666248.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666246",
@@ -610005,7 +613606,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666246.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666245",
@@ -610046,7 +613647,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666245.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666244",
@@ -610093,7 +613694,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666244.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666243",
@@ -610138,7 +613739,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666243.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666242",
@@ -610181,7 +613782,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666242.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666204",
@@ -610227,7 +613828,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666204.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666203",
@@ -610270,7 +613871,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666203.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666202",
@@ -610314,7 +613915,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666202.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666200",
@@ -610358,7 +613959,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666200.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666198",
@@ -610400,7 +614001,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666198.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666197",
@@ -610444,7 +614045,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666197.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666196",
@@ -610491,7 +614092,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666196.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666195",
@@ -610536,7 +614137,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666195.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666194",
@@ -610581,7 +614182,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666194.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666192",
@@ -610626,7 +614227,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666192.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666177",
@@ -610669,7 +614270,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666177.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666176",
@@ -610714,7 +614315,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666176.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666175",
@@ -610762,7 +614363,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666175.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666174",
@@ -610806,7 +614407,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666174.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666173",
@@ -610853,7 +614454,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666173.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666172",
@@ -610896,7 +614497,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666172.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666171",
@@ -610942,7 +614543,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666171.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666170",
@@ -610986,7 +614587,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666170.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666168",
@@ -611031,7 +614632,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666168.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666167",
@@ -611077,7 +614678,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666167.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666166",
@@ -611121,7 +614722,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666166.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666165",
@@ -611167,7 +614768,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666165.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666164",
@@ -611214,7 +614815,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666164.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666163",
@@ -611258,7 +614859,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666163.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666162",
@@ -611304,7 +614905,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666162.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666161",
@@ -611351,7 +614952,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666161.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666160",
@@ -611395,7 +614996,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666160.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:666159",
@@ -611439,7 +615040,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/666159.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:664721",
@@ -611451,7 +615052,7 @@
       "resolved_gallery_id": "",
       "filter_metadata_checked": "",
       "filter_metadata_checked_at": "",
-      "title": "[yukio] レイヴンの水浴び [日本語、英語]",
+      "title": "レイヴンの水浴び",
       "title_jp": "",
       "language": "japanese",
       "category": "",
@@ -611474,23 +615075,13 @@
         "doujinshi"
       ],
       "meta_tags": [],
-      "pages": 8,
+      "pages": 0,
       "rating": null,
       "popularity": null,
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/664721.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00",
-      "duplicate_group": "dup:2600cc184085b3a4",
-      "duplicate_count": 2,
-      "duplicate_sources": [
-        "asmhentai",
-        "ehentai"
-      ],
-      "duplicate_uids": [
-        "asmhentai:664721",
-        "ehentai:4076639"
-      ]
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:664720",
@@ -611502,7 +615093,7 @@
       "resolved_gallery_id": "",
       "filter_metadata_checked": "",
       "filter_metadata_checked_at": "",
-      "title": "[yukio] 騎士ポルキアのその後 [日本語、英語]",
+      "title": "騎士ポルキアのその後",
       "title_jp": "",
       "language": "japanese",
       "category": "",
@@ -611529,23 +615120,13 @@
         "doujinshi"
       ],
       "meta_tags": [],
-      "pages": 14,
+      "pages": 0,
       "rating": null,
       "popularity": null,
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/664720.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00",
-      "duplicate_group": "dup:ab34b36634946a4d",
-      "duplicate_count": 2,
-      "duplicate_sources": [
-        "asmhentai",
-        "ehentai"
-      ],
-      "duplicate_uids": [
-        "asmhentai:664720",
-        "ehentai:4076620"
-      ]
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:664717",
@@ -611557,7 +615138,7 @@
       "resolved_gallery_id": "",
       "filter_metadata_checked": "",
       "filter_metadata_checked_at": "",
-      "title": "[yukio] 新キャラ 楓 5p漫画 [日本語、英語]",
+      "title": "新キャラ 楓 5p漫画",
       "title_jp": "",
       "language": "japanese",
       "category": "",
@@ -611573,23 +615154,13 @@
         "doujinshi"
       ],
       "meta_tags": [],
-      "pages": 10,
+      "pages": 0,
       "rating": null,
       "popularity": null,
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/664717.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00",
-      "duplicate_group": "dup:aad215e7f64cd96a",
-      "duplicate_count": 2,
-      "duplicate_sources": [
-        "asmhentai",
-        "ehentai"
-      ],
-      "duplicate_uids": [
-        "asmhentai:664717",
-        "ehentai:4076558"
-      ]
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:664698",
@@ -611601,7 +615172,7 @@
       "resolved_gallery_id": "",
       "filter_metadata_checked": "",
       "filter_metadata_checked_at": "",
-      "title": "[yukio] 彼女は未来を約束された騎士だった [日本語、英語]",
+      "title": "彼女は未来を約束された騎士だった",
       "title_jp": "",
       "language": "japanese",
       "category": "",
@@ -611620,13 +615191,13 @@
         "doujinshi"
       ],
       "meta_tags": [],
-      "pages": 11,
+      "pages": 0,
       "rating": null,
       "popularity": null,
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/664698.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:663755",
@@ -611655,7 +615226,7 @@
       "posted_at": "",
       "thumbnail": "",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T17:25:52+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:663569",
@@ -611684,7 +615255,7 @@
       "posted_at": "",
       "thumbnail": "",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T17:25:52+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:663484",
@@ -611696,7 +615267,7 @@
       "resolved_gallery_id": "",
       "filter_metadata_checked": "",
       "filter_metadata_checked_at": "",
-      "title": "[船屋] アスナ (ブルーアーカイブ) [日本語、英語、中国語]",
+      "title": "アスナ",
       "title_jp": "",
       "language": "japanese",
       "category": "",
@@ -611719,23 +615290,13 @@
         "doujinshi"
       ],
       "meta_tags": [],
-      "pages": 24,
+      "pages": 0,
       "rating": null,
       "popularity": null,
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/663484.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00",
-      "duplicate_group": "dup:3c24faf8d2ad368d",
-      "duplicate_count": 2,
-      "duplicate_sources": [
-        "asmhentai",
-        "ehentai"
-      ],
-      "duplicate_uids": [
-        "asmhentai:663484",
-        "ehentai:4067630"
-      ]
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:663483",
@@ -611747,7 +615308,7 @@
       "resolved_gallery_id": "",
       "filter_metadata_checked": "",
       "filter_metadata_checked_at": "",
-      "title": "[船屋] ネロ (Fate/Grand Order) [日本語、英語、中国語]",
+      "title": "ネロ",
       "title_jp": "",
       "language": "japanese",
       "category": "",
@@ -611769,23 +615330,13 @@
         "doujinshi"
       ],
       "meta_tags": [],
-      "pages": 20,
+      "pages": 0,
       "rating": null,
       "popularity": null,
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/663483.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00",
-      "duplicate_group": "dup:37362ebaeb662fdf",
-      "duplicate_count": 2,
-      "duplicate_sources": [
-        "asmhentai",
-        "ehentai"
-      ],
-      "duplicate_uids": [
-        "asmhentai:663483",
-        "ehentai:4067628"
-      ]
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:663482",
@@ -611797,7 +615348,7 @@
       "resolved_gallery_id": "",
       "filter_metadata_checked": "",
       "filter_metadata_checked_at": "",
-      "title": "トリガー",
+      "title": "[船屋] トリガー (ゼンレスゾーンゼロ) [日本語、英語、中国語]",
       "title_jp": "",
       "language": "japanese",
       "category": "",
@@ -611819,13 +615370,13 @@
         "doujinshi"
       ],
       "meta_tags": [],
-      "pages": 0,
+      "pages": 28,
       "rating": null,
       "popularity": null,
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/663482.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:658010",
@@ -611837,7 +615388,7 @@
       "resolved_gallery_id": "",
       "filter_metadata_checked": "",
       "filter_metadata_checked_at": "",
-      "title": "こどもリフレ",
+      "title": "[くまQM] こどもリフレ [日本語、英語]",
       "title_jp": "",
       "language": "japanese",
       "category": "",
@@ -611858,13 +615409,13 @@
         "artist cg"
       ],
       "meta_tags": [],
-      "pages": 0,
+      "pages": 52,
       "rating": null,
       "popularity": null,
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/658010.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:657523",
@@ -611876,7 +615427,7 @@
       "resolved_gallery_id": "",
       "filter_metadata_checked": "",
       "filter_metadata_checked_at": "",
-      "title": "卯月とラブラブ性活！",
+      "title": "[くまQM] 卯月とラブラブ性活！(アイドルマスター シンデレラガールズ) [日本語、英語]",
       "title_jp": "",
       "language": "japanese",
       "category": "",
@@ -611897,13 +615448,23 @@
         "doujinshi"
       ],
       "meta_tags": [],
-      "pages": 0,
+      "pages": 18,
       "rating": null,
       "popularity": null,
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/657523.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00",
+      "duplicate_group": "dup:7fd1015da939b058",
+      "duplicate_count": 2,
+      "duplicate_sources": [
+        "asmhentai",
+        "ehentai"
+      ],
+      "duplicate_uids": [
+        "asmhentai:657523",
+        "ehentai:4028444"
+      ]
     },
     {
       "uid": "asmhentai:652510",
@@ -611915,7 +615476,7 @@
       "resolved_gallery_id": "",
       "filter_metadata_checked": "",
       "filter_metadata_checked_at": "",
-      "title": "淫らな赤ずきん – 第1.1章",
+      "title": "淫らな赤ずきん – 第1.1章 [日本語版、完結] [MonsterShake (Sayuri Milkshake, ER0POPO)]",
       "title_jp": "",
       "language": "japanese",
       "category": "",
@@ -611968,13 +615529,13 @@
         "doujinshi"
       ],
       "meta_tags": [],
-      "pages": 0,
+      "pages": 16,
       "rating": null,
       "popularity": null,
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/652510.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:640674",
@@ -611986,7 +615547,7 @@
       "resolved_gallery_id": "",
       "filter_metadata_checked": "",
       "filter_metadata_checked_at": "",
-      "title": "ぼっちちゃん",
+      "title": "[Sunhyun] ぼっちちゃん (ぼっち・ざ・ろっく!) [日本語、韓国語] [Decensored] [on going]",
       "title_jp": "",
       "language": "japanese",
       "category": "",
@@ -612005,13 +615566,13 @@
         "doujinshi"
       ],
       "meta_tags": [],
-      "pages": 0,
+      "pages": 39,
       "rating": null,
       "popularity": null,
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/640674.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "asmhentai:636218",
@@ -612023,7 +615584,7 @@
       "resolved_gallery_id": "",
       "filter_metadata_checked": "",
       "filter_metadata_checked_at": "",
-      "title": "【R18】瞬夏漫画3P SKEB委託日本語/中文翻譯 瞬夏-私と兄の夏休み",
+      "title": "【R18】瞬夏漫画3P SKEB委託日本語/中文翻譯 ([パンダが一匹。 (コミズミコ)] 瞬夏-私と兄の夏休み)",
       "title_jp": "",
       "language": "japanese",
       "category": "",
@@ -612046,13 +615607,13 @@
         "doujinshi"
       ],
       "meta_tags": [],
-      "pages": 0,
+      "pages": 6,
       "rating": null,
       "popularity": null,
       "posted_at": "",
       "thumbnail": "thumbs/asmhentai/636218.webp",
       "first_seen": "2026-09-28T04:05:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3647020",
@@ -620959,7 +624520,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751069",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:30:59+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:37+00:00",
       "title": "(Torimchisai 2) [Ebi Kousen (Ebiko Ebi)] The Rim in the night with you (Trickcal: Chibi Go) [Digital]",
       "title_jp": "(Torimchisai 2) [Ebi Kousen (Ebiko Ebi)] The Rim in the night with you (Trickcal: Chibi Go) [Digital]",
       "language": "japanese",
@@ -620987,7 +624548,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/3hentai/3751069.webp",
       "first_seen": "2026-09-27T17:22:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751054",
@@ -621038,7 +624599,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751024",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:31:00+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:38+00:00",
       "title": "[介錯] ドラゴン少女はドラゴンスレイヤーには敵わない! (ルリドラゴン)",
       "title_jp": "[介錯] ドラゴン少女はドラゴンスレイヤーには敵わない! (ルリドラゴン)",
       "language": "japanese",
@@ -621070,7 +624631,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/3hentai/3751024.webp",
       "first_seen": "2026-09-27T17:22:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751014",
@@ -621081,7 +624642,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "751014",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:31:00+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:38+00:00",
       "title": "[＃みまもりみもり] 猫又さんの催眠アプリ (バーチャルYouTuber)",
       "title_jp": "[＃みまもりみもり] 猫又さんの催眠アプリ (バーチャルYouTuber)",
       "language": "japanese",
@@ -621119,7 +624680,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/3hentai/3751014.webp",
       "first_seen": "2026-09-27T17:22:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3751009",
@@ -621167,7 +624728,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "750984",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:31:01+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:39+00:00",
       "title": "[4UU]『授業直前までセックスしてたプリヤ組❤︎』",
       "title_jp": "[4UU]『授業直前までセックスしてたプリヤ組❤︎』",
       "language": "japanese",
@@ -621194,7 +624755,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/3hentai/3750984.webp",
       "first_seen": "2026-09-27T17:22:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3750969",
@@ -621205,7 +624766,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "750969",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:31:01+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:39+00:00",
       "title": "[Puchi Puchi (Ryuuka)] XXX Shinai to Derarenai Heya!? (Genshin Impact) [Digital]",
       "title_jp": "[Puchi Puchi (Ryuuka)] XXX Shinai to Derarenai Heya!? (Genshin Impact) [Digital]",
       "language": "japanese",
@@ -621240,7 +624801,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/3hentai/3750969.webp",
       "first_seen": "2026-09-27T17:22:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3750964",
@@ -621251,7 +624812,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "750964",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:31:01+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:40+00:00",
       "title": "[4UU]『現実デビル結成物語❤︎』",
       "title_jp": "[4UU]『現実デビル結成物語❤︎』",
       "language": "japanese",
@@ -621279,7 +624840,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/3hentai/3750964.webp",
       "first_seen": "2026-09-27T17:22:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3750949",
@@ -621290,7 +624851,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "750949",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:31:02+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:40+00:00",
       "title": "[4UU]『夜のターン制バトル❤︎〜延長戦〜』",
       "title_jp": "[4UU]『夜のターン制バトル❤︎〜延長戦〜』",
       "language": "japanese",
@@ -621318,7 +624879,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/3hentai/3750949.webp",
       "first_seen": "2026-09-27T17:22:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3750929",
@@ -621369,7 +624930,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "750924",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:31:02+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:40+00:00",
       "title": "[A Color Summoner (Kara)] Chō! Hassurukyassuru! A (THE IDOLM@STER Series)",
       "title_jp": "[A Color Summoner (Kara)] Chō! Hassurukyassuru! A (THE IDOLM@STER Series)",
       "language": "japanese",
@@ -621403,7 +624964,7 @@
       "posted_at": "",
       "thumbnail": "thumbs/3hentai/3750924.webp",
       "first_seen": "2026-09-27T17:22:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3750904",
@@ -621447,7 +625008,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "750889",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:31:03+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:41+00:00",
       "title": "[りゅうかくさんのどあめ (極太眉毛)] To My ココロ (ブルーアーカイブ) [DL版]",
       "title_jp": "[りゅうかくさんのどあめ (極太眉毛)] To My ココロ (ブルーアーカイブ) [DL版]",
       "language": "japanese",
@@ -621479,7 +625040,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466052/thumb.jpg",
       "first_seen": "2026-09-27T17:22:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3750884",
@@ -621490,7 +625051,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "750884",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:31:04+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:42+00:00",
       "title": "[Fuun Arai Daiki] Kou Miete Haetemasu. 15",
       "title_jp": "[Fuun Arai Daiki] Kou Miete Haetemasu. 15",
       "language": "japanese",
@@ -621513,7 +625074,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466050/thumb.jpg",
       "first_seen": "2026-09-27T17:22:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3750879",
@@ -621524,7 +625085,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "750879",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:31:03+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:41+00:00",
       "title": "[Fuun Arai Daiki] Kou Miete Haetemasu. 14",
       "title_jp": "[Fuun Arai Daiki] Kou Miete Haetemasu. 14",
       "language": "japanese",
@@ -621547,7 +625108,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466041/thumb.jpg",
       "first_seen": "2026-09-27T17:22:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3750864",
@@ -621558,7 +625119,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "750864",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:31:04+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:42+00:00",
       "title": "[Fuun Arai Daiki] Kou Miete Haetemasu. 13",
       "title_jp": "[Fuun Arai Daiki] Kou Miete Haetemasu. 13",
       "language": "japanese",
@@ -621581,7 +625142,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466034/thumb.jpg",
       "first_seen": "2026-09-27T17:22:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3750844",
@@ -621592,7 +625153,7 @@
       "source_url_kind": "direct",
       "resolved_gallery_id": "750844",
       "filter_metadata_checked": "3hentai-gallery-v1",
-      "filter_metadata_checked_at": "2026-09-28T18:31:04+00:00",
+      "filter_metadata_checked_at": "2026-09-28T19:26:42+00:00",
       "title": "[Chococornet (Tenro Aya)] Oathbreaker Zenpen Ingyaku no Konoe Kishi",
       "title_jp": "[Chococornet (Tenro Aya)] Oathbreaker Zenpen Ingyaku no Konoe Kishi",
       "language": "japanese",
@@ -621617,7 +625178,7 @@
       "posted_at": "",
       "thumbnail": "https://s1.3hentai.xyz/d2466017/thumb.jpg",
       "first_seen": "2026-09-27T17:22:32+00:00",
-      "last_seen": "2026-09-28T18:29:41+00:00"
+      "last_seen": "2026-09-28T19:25:19+00:00"
     },
     {
       "uid": "3hentai:3750734",
