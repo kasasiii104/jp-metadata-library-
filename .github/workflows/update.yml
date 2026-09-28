@@ -10,6 +10,7 @@ on:
       - "tools/**"
       - "requirements.txt"
       - ".github/workflows/update.yml"
+      - "docs/index.html"
   schedule:
     - cron: "17 * * * *"
   workflow_dispatch:
