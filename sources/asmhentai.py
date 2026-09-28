@@ -83,6 +83,10 @@ def thumbnail_of(raw: dict) -> str:
         v = raw.get(key)
         if isinstance(v, str) and v.startswith(("http://","https://","//")):
             return ("https:"+v) if v.startswith("//") else v
+        if isinstance(v, list):
+            for vv in v:
+                if isinstance(vv, str) and vv.startswith(("http://","https://","//")):
+                    return ("https:"+vv) if vv.startswith("//") else vv
         if isinstance(v, dict):
             for kk in ("url","src","source","thumbnail"):
                 vv = v.get(kk)
@@ -117,6 +121,20 @@ def normalize(raw: dict) -> dict | None:
     }
 
 
+def _get(sess, book: str):
+    r = sess.get(f"{API_BASE}/asmhentai/get", params={"book": book}, timeout=TIMEOUT)
+    r.raise_for_status()
+    rows = walk(r.json())
+    return rows[0] if rows else None
+
+
+def _random(sess):
+    r = sess.get(f"{API_BASE}/asmhentai/random", timeout=TIMEOUT)
+    r.raise_for_status()
+    rows = walk(r.json())
+    return rows[0] if rows else None
+
+
 def _search(sess, key: str, page: int):
     r = sess.get(f"{API_BASE}/asmhentai/search", params={"key": key, "page": page}, timeout=TIMEOUT)
     r.raise_for_status()
@@ -141,7 +159,15 @@ def collect(state: dict | None = None):
                 search_ok = True
                 search_key_used = key
                 for raw in rows:
-                    item = normalize(raw)
+                    # Search only returns title+id. Fetch the gallery detail so
+                    # Japanese qualification and thumbnail data are based on
+                    # actual metadata rather than the search title.
+                    detail = None
+                    try:
+                        detail = _get(sess, clean(first(raw, "id", "gallery_id", "galleryId", "book", "source_id", "gid")))
+                    except Exception as e:
+                        errors.append(f"get={first(raw, 'id', 'book')}: {str(e)[:160]}")
+                    item = normalize(detail or raw)
                     if item:
                         found[item["source_id"]] = item
                     else:
@@ -174,6 +200,27 @@ def collect(state: dict | None = None):
         except Exception as e:
             errors.append(f"probe={PROBE_KEY}: {str(e)[:220]}")
 
+    # Last diagnostic/fallback: random uses a different upstream route. It
+    # proves whether gallery pages themselves are reachable when search HTML
+    # is broken. Only independently Japanese-qualified details are admitted.
+    random_ok = False
+    random_attempts = 0
+    random_japanese = 0
+    if not found:
+        for _ in range(8):
+            random_attempts += 1
+            try:
+                raw = _random(sess)
+                if raw:
+                    random_ok = True
+                    item = normalize(raw)
+                    if item:
+                        found[item["source_id"]] = item
+                        random_japanese += 1
+            except Exception as e:
+                errors.append(f"random: {str(e)[:180]}")
+                break
+
     items = list(found.values())[:LIMIT]
     if items:
         status = "ok"
@@ -195,5 +242,8 @@ def collect(state: dict | None = None):
         "japanese_search_key": search_key_used,
         "probe_ok": probe_ok,
         "probe_rows": probe_rows,
+        "random_ok": random_ok,
+        "random_attempts": random_attempts,
+        "random_japanese": random_japanese,
         "message": message + (" | " + " | ".join(errors[:6]) if errors else ""),
     }
