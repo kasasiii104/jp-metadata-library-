@@ -26335,12 +26335,12 @@
         "posted_at": "2026-09-29 11:59:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/4/ed/901cb9d4e9a96d738401a79e17cfb307bd200e792db9fb5796b34c321e014ed4.jpg",
         "first_seen": "2026-09-29T17:26:30+00:00",
-        "last_seen": "2026-09-29T17:26:30+00:00"
+        "last_seen": "2026-09-29T18:30:30+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T17:26:30+00:00",
-      "updated_at": "2026-09-29T17:26:30+00:00"
+      "updated_at": "2026-09-29T18:30:30+00:00"
     },
     "hitomi:4220409": {
       "item": {
@@ -26416,41 +26416,6 @@
       },
       "reason": "blocked:insect:moth",
       "status": "blocked",
-      "first_quarantined_at": "2026-09-29T17:26:30+00:00",
-      "updated_at": "2026-09-29T17:26:30+00:00"
-    },
-    "hitomi:4220406": {
-      "item": {
-        "uid": "hitomi:4220406",
-        "source": "hitomi",
-        "source_id": "4220406",
-        "source_token": "",
-        "source_url": "https://hitomi.la/galleries/4220406.html",
-        "source_url_kind": "",
-        "resolved_gallery_id": "",
-        "filter_metadata_checked": "",
-        "filter_metadata_checked_at": "",
-        "title": "Manzoku shita kashira?",
-        "title_jp": "満足したかしら？",
-        "language": "japanese",
-        "category": "doujinshi",
-        "artists": [],
-        "groups": [],
-        "parodies": [],
-        "works": [],
-        "characters": [],
-        "tags": [],
-        "meta_tags": [],
-        "pages": 25,
-        "rating": null,
-        "popularity": null,
-        "posted_at": "2026-09-29 11:24:00-05",
-        "thumbnail": "https://tn.hitomi.la/bigtn/c/9a/9163fe26f52568fd42f99885a7e780f94602697303e7ab51004ed304853219ac.jpg",
-        "first_seen": "2026-09-29T17:26:30+00:00",
-        "last_seen": "2026-09-29T17:26:30+00:00"
-      },
-      "reason": "metadata_unverified",
-      "status": "pending",
       "first_quarantined_at": "2026-09-29T17:26:30+00:00",
       "updated_at": "2026-09-29T17:26:30+00:00"
     },
@@ -27152,6 +27117,733 @@
       "status": "blocked",
       "first_quarantined_at": "2026-09-29T17:26:30+00:00",
       "updated_at": "2026-09-29T17:26:30+00:00"
+    },
+    "hitomi:4220553": {
+      "item": {
+        "uid": "hitomi:4220553",
+        "source": "hitomi",
+        "source_id": "4220553",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4220553.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-09-29T18:30:58+00:00",
+        "title": "A loyal female ninja falls to her fate as a puppet...",
+        "title_jp": "忠義のくノ一、傀儡にて散る…。",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [
+          "appie"
+        ],
+        "groups": [
+          "center field"
+        ],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "full color",
+          "male:group",
+          "female:kunoichi",
+          "female:rape",
+          "female:ryona",
+          "female:very long hair"
+        ],
+        "meta_tags": [
+          "artist:appie",
+          "group:center field"
+        ],
+        "pages": 55,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-09-29 12:41:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/6/95/74cfc377200530ee98926feab2e05ac746bf2cba348d7141871d984fd0a1a956.jpg",
+        "first_seen": "2026-09-29T18:30:30+00:00",
+        "last_seen": "2026-09-29T18:30:30+00:00"
+      },
+      "reason": "blocked:ryona",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-29T18:30:30+00:00",
+      "updated_at": "2026-09-29T18:30:30+00:00"
+    },
+    "hitomi:4220551": {
+      "item": {
+        "uid": "hitomi:4220551",
+        "source": "hitomi",
+        "source_id": "4220551",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4220551.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "モモジャンの秘密のファン交流会",
+        "title_jp": "モモジャンの秘密のファン交流会",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "project sekai"
+        ],
+        "works": [
+          "project sekai"
+        ],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [
+          "work:project sekai"
+        ],
+        "pages": 58,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-09-29 12:41:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/7/07/2f9aaa8e76ccde6b668ef84e38d40d5abf258cf7a30ee1531bd7285c17956077.jpg",
+        "first_seen": "2026-09-29T18:30:30+00:00",
+        "last_seen": "2026-09-29T18:30:30+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-09-29T18:30:30+00:00",
+      "updated_at": "2026-09-29T18:30:30+00:00"
+    },
+    "hitomi:4220550": {
+      "item": {
+        "uid": "hitomi:4220550",
+        "source": "hitomi",
+        "source_id": "4220550",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4220550.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-09-29T18:30:58+00:00",
+        "title": "日月輪舞1",
+        "title_jp": "日月輪舞1",
+        "language": "japanese",
+        "category": "manga",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "male:furry",
+          "male:yaoi"
+        ],
+        "meta_tags": [],
+        "pages": 72,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-09-29 12:40:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/d/d5/793d3b289e15ebefb9c62725eb732634eb489a286ac8a3e91547add193e41d5d.jpg",
+        "first_seen": "2026-09-29T18:30:30+00:00",
+        "last_seen": "2026-09-29T18:30:30+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-29T18:30:30+00:00",
+      "updated_at": "2026-09-29T18:30:30+00:00"
+    },
+    "hitomi:4220537": {
+      "item": {
+        "uid": "hitomi:4220537",
+        "source": "hitomi",
+        "source_id": "4220537",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4220537.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "NESZ",
+        "title_jp": "NESZ",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [],
+        "pages": 361,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-09-29 12:37:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/b/9f/0d682e14607e57026fb24f3b418424cfb9c0e12f26c818e579d7b67ebe12c9fb.jpg",
+        "first_seen": "2026-09-29T18:30:30+00:00",
+        "last_seen": "2026-09-29T18:30:30+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-09-29T18:30:30+00:00",
+      "updated_at": "2026-09-29T18:30:30+00:00"
+    },
+    "hitomi:4220521": {
+      "item": {
+        "uid": "hitomi:4220521",
+        "source": "hitomi",
+        "source_id": "4220521",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4220521.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-09-29T18:31:01+00:00",
+        "title": "Banyue x Lycaon",
+        "title_jp": "Banyue x Lycaon",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "male:furry",
+          "male:yaoi"
+        ],
+        "meta_tags": [],
+        "pages": 16,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-09-29 12:31:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/d/57/c6631735fdb3cd3ab393fe9a2273125846bf7cc85303eb18da1bf2250a06857d.jpg",
+        "first_seen": "2026-09-29T18:30:30+00:00",
+        "last_seen": "2026-09-29T18:30:30+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-29T18:30:30+00:00",
+      "updated_at": "2026-09-29T18:30:30+00:00"
+    },
+    "hitomi:4220507": {
+      "item": {
+        "uid": "hitomi:4220507",
+        "source": "hitomi",
+        "source_id": "4220507",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4220507.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-09-29T18:31:01+00:00",
+        "title": "2026 Slimed dragon 2",
+        "title_jp": "2026 Slimed dragon 2",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [
+          "magangz"
+        ],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:magangz"
+        ],
+        "pages": 23,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-09-29 12:26:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/d/93/6434d4a8d285d671044a3c7932c37f2bb96f243f35ba7c6caeba24615304d93d.jpg",
+        "first_seen": "2026-09-29T18:30:30+00:00",
+        "last_seen": "2026-09-29T18:30:30+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-29T18:30:30+00:00",
+      "updated_at": "2026-09-29T18:30:30+00:00"
+    },
+    "hitomi:4220505": {
+      "item": {
+        "uid": "hitomi:4220505",
+        "source": "hitomi",
+        "source_id": "4220505",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4220505.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-09-29T18:31:02+00:00",
+        "title": "DaRoon5",
+        "title_jp": "DaRoon5",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [
+          "daroon5"
+        ],
+        "groups": [],
+        "parodies": [
+          "blue archive",
+          "princess connect",
+          "the idolmaster"
+        ],
+        "works": [
+          "blue archive",
+          "princess connect",
+          "the idolmaster"
+        ],
+        "characters": [
+          "arisu tachibana",
+          "chloe von einzbern",
+          "illyasviel von einzbern",
+          "miyu edelfelt",
+          "momoka sakurai",
+          "nobara kugisaki"
+        ],
+        "tags": [
+          "female:burping",
+          "female:farting",
+          "female:gokkun",
+          "female:loli",
+          "female:personality excretion",
+          "female:rimjob",
+          "female:scat"
+        ],
+        "meta_tags": [
+          "artist:daroon5",
+          "work:blue archive",
+          "work:princess connect",
+          "work:the idolmaster",
+          "character:arisu tachibana",
+          "character:chloe von einzbern",
+          "character:illyasviel von einzbern",
+          "character:miyu edelfelt",
+          "character:momoka sakurai",
+          "character:nobara kugisaki"
+        ],
+        "pages": 501,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-09-29 12:25:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/5/b9/691860c24497c27fa7f92757525bd86f7ffd70a4c19ba76e45370e7ebf356b95.jpg",
+        "first_seen": "2026-09-29T18:30:30+00:00",
+        "last_seen": "2026-09-29T18:30:30+00:00"
+      },
+      "reason": "blocked:farting",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-29T18:30:30+00:00",
+      "updated_at": "2026-09-29T18:30:30+00:00"
+    },
+    "hitomi:4120769": {
+      "item": {
+        "uid": "hitomi:4120769",
+        "source": "hitomi",
+        "source_id": "4120769",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4120769.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-09-29T18:31:13+00:00",
+        "title": "りりま  CG",
+        "title_jp": "りりま  CG",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "male:bondage",
+          "male:furry",
+          "male:shota",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "work:original"
+        ],
+        "pages": 225,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-15 04:50:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/8/23/4d7bb7072e10a1933a7afd074ad6c294216affd27929a94b6d7d76ca5bc3a238.jpg",
+        "first_seen": "2026-09-29T18:30:30+00:00",
+        "last_seen": "2026-09-29T18:30:30+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-29T18:30:30+00:00",
+      "updated_at": "2026-09-29T18:30:30+00:00"
+    },
+    "hitomi:4120538": {
+      "item": {
+        "uid": "hitomi:4120538",
+        "source": "hitomi",
+        "source_id": "4120538",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4120538.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-09-29T18:31:24+00:00",
+        "title": "星酔菫音05",
+        "title_jp": "星酔菫音05",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [
+          "gmkj"
+        ],
+        "groups": [],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "female:ahegao",
+          "female:amputee",
+          "mosaic censorship",
+          "female:sole female",
+          "male:sole male",
+          "variant set"
+        ],
+        "meta_tags": [
+          "artist:gmkj",
+          "work:original"
+        ],
+        "pages": 31,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-15 02:14:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/0/a2/d0b198dba8754e9d2eb8e0bc2de00d40d396c528f67c3a09a71197d876494a20.jpg",
+        "first_seen": "2026-09-29T18:30:30+00:00",
+        "last_seen": "2026-09-29T18:30:30+00:00"
+      },
+      "reason": "blocked:amputee",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-29T18:30:30+00:00",
+      "updated_at": "2026-09-29T18:30:30+00:00"
+    },
+    "hitomi:4120529": {
+      "item": {
+        "uid": "hitomi:4120529",
+        "source": "hitomi",
+        "source_id": "4120529",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4120529.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "たのしい！ 監獄経営 CG",
+        "title_jp": "たのしい！ 監獄経営",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [
+          "work:original"
+        ],
+        "pages": 246,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-15 02:08:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/7/d2/be8add836f62cdf9cab393f8320a99e1c19804fdc058fae7d99d962e96c1fd27.jpg",
+        "first_seen": "2026-09-29T18:30:30+00:00",
+        "last_seen": "2026-09-29T18:30:30+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-09-29T18:30:30+00:00",
+      "updated_at": "2026-09-29T18:30:30+00:00"
+    },
+    "hitomi:4120481": {
+      "item": {
+        "uid": "hitomi:4120481",
+        "source": "hitomi",
+        "source_id": "4120481",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4120481.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "たのしい！ 監獄経営 cg",
+        "title_jp": "たのしい！ 監獄経営 cg",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [
+          "work:original"
+        ],
+        "pages": 175,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-15 01:45:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/7/d2/be8add836f62cdf9cab393f8320a99e1c19804fdc058fae7d99d962e96c1fd27.jpg",
+        "first_seen": "2026-09-29T18:30:30+00:00",
+        "last_seen": "2026-09-29T18:30:30+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-09-29T18:30:30+00:00",
+      "updated_at": "2026-09-29T18:30:30+00:00"
+    },
+    "3hentai:3702076": {
+      "item": {
+        "uid": "3hentai:3702076",
+        "source": "3hentai",
+        "source_id": "3702076",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/702076",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "702076",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-09-29T18:31:48+00:00",
+        "title": "[chung0u0] Poison [Korean] [Digital]",
+        "title_jp": "[chung0u0] Poison [Korean] [Digital]",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "arknights"
+        ],
+        "works": [
+          "arknights"
+        ],
+        "characters": [
+          "hung",
+          "mountain"
+        ],
+        "tags": [
+          "language:japanese",
+          "anal (male)",
+          "anal intercourse (male)",
+          "blowjob (male)",
+          "catboy",
+          "furry (male)",
+          "kissing (male)",
+          "males only",
+          "muscle (male)",
+          "nakadashi (male)",
+          "rimjob (male)",
+          "yaoi",
+          "japanese",
+          "chung0u0"
+        ],
+        "meta_tags": [
+          "work:arknights",
+          "character:hung",
+          "character:mountain"
+        ],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s1.3hentai.xyz/d1993267/thumb.jpg",
+        "first_seen": "2026-09-29T18:30:30+00:00",
+        "last_seen": "2026-09-29T18:30:30+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-29T18:30:30+00:00",
+      "updated_at": "2026-09-29T18:30:30+00:00"
+    },
+    "3hentai:3701099": {
+      "item": {
+        "uid": "3hentai:3701099",
+        "source": "3hentai",
+        "source_id": "3701099",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/701099",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "701099",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-09-29T18:31:49+00:00",
+        "title": "[seikei] 私がガマンをやめるまでの五日間 [Digital] [Japanese]",
+        "title_jp": "[seikei] 私がガマンをやめるまでの五日間 [Digital] [Japanese]",
+        "language": "japanese",
+        "category": "manga",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "language:japanese",
+          "bbm",
+          "bear boy",
+          "furry (male)",
+          "males only",
+          "muscle (male)",
+          "yaoi",
+          "japanese",
+          "seikei"
+        ],
+        "meta_tags": [],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s1.3hentai.xyz/d1993176/thumb.jpg",
+        "first_seen": "2026-09-29T18:30:30+00:00",
+        "last_seen": "2026-09-29T18:30:30+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-29T18:30:30+00:00",
+      "updated_at": "2026-09-29T18:30:30+00:00"
+    },
+    "3hentai:3701053": {
+      "item": {
+        "uid": "3hentai:3701053",
+        "source": "3hentai",
+        "source_id": "3701053",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/701053",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "701053",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-09-29T18:31:49+00:00",
+        "title": "[Yumebuta bokujō (Arima bin) ] Swipe and play 2 [Jananese] [Digital]",
+        "title_jp": "[Yumebuta bokujō (Arima bin) ] Swipe and play 2 [Jananese] [Digital]",
+        "language": "japanese",
+        "category": "manga",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "language:japanese",
+          "males only",
+          "yaoi",
+          "japanese",
+          "arima bn"
+        ],
+        "meta_tags": [],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s1.3hentai.xyz/d1993164/thumb.jpg",
+        "first_seen": "2026-09-29T18:30:30+00:00",
+        "last_seen": "2026-09-29T18:30:30+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-29T18:30:30+00:00",
+      "updated_at": "2026-09-29T18:30:30+00:00"
+    },
+    "3hentai:3700991": {
+      "item": {
+        "uid": "3hentai:3700991",
+        "source": "3hentai",
+        "source_id": "3700991",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/700991",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "700991",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-09-29T18:31:50+00:00",
+        "title": "[nullQ]マレビト_マリッジ [Digital] [Japanese]",
+        "title_jp": "[nullQ]マレビト_マリッジ [Digital] [Japanese]",
+        "language": "japanese",
+        "category": "manga",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "language:japanese",
+          "males only",
+          "rape (male)",
+          "yaoi",
+          "japanese",
+          "nullq"
+        ],
+        "meta_tags": [],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s1.3hentai.xyz/d1993151/thumb.jpg",
+        "first_seen": "2026-09-29T18:30:30+00:00",
+        "last_seen": "2026-09-29T18:30:30+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-29T18:30:30+00:00",
+      "updated_at": "2026-09-29T18:30:30+00:00"
+    },
+    "3hentai:3700679": {
+      "item": {
+        "uid": "3hentai:3700679",
+        "source": "3hentai",
+        "source_id": "3700679",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/700679",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "700679",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-09-29T18:31:51+00:00",
+        "title": "[WILD STYLE (Ross)] GAOGAOGAOOO!! [Uncensored][Digital]",
+        "title_jp": "[WILD STYLE (Ross)] GAOGAOGAOOO!! [Uncensored][Digital]",
+        "language": "japanese",
+        "category": "manga",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "language:japanese",
+          "anal (male)",
+          "furry (male)",
+          "group (male)",
+          "males only",
+          "muscle (male)",
+          "uncensored",
+          "yaoi",
+          "japanese",
+          "ross"
+        ],
+        "meta_tags": [],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s1.3hentai.xyz/d1993137/thumb.jpg",
+        "first_seen": "2026-09-29T18:30:30+00:00",
+        "last_seen": "2026-09-29T18:30:30+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-29T18:30:30+00:00",
+      "updated_at": "2026-09-29T18:30:30+00:00"
     }
   },
   "hitomi_attempts": {
@@ -27227,10 +27919,10 @@
   },
   "verified_checkpoints": {},
   "hitomi_host_retry_at": 1790724360.0,
-  "updated_at": "2026-09-29T17:26:30+00:00",
+  "updated_at": "2026-09-29T18:30:30+00:00",
   "last_audit": {
-    "last_run": "2026-09-29T17:26:30+00:00",
-    "eligible": 9144,
+    "last_run": "2026-09-29T18:30:30+00:00",
+    "eligible": 9148,
     "attempted": 0,
     "verified": 0,
     "restored": 0,
@@ -27239,6 +27931,6 @@
     "failed": 0,
     "stopped": true,
     "host_cooldown": true,
-    "remaining_source_rechecks": 9163
+    "remaining_source_rechecks": 9166
   }
 }
