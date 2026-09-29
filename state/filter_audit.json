@@ -26108,6 +26108,204 @@
       "status": "blocked",
       "first_quarantined_at": "2026-09-29T15:29:52+00:00",
       "updated_at": "2026-09-29T15:29:52+00:00"
+    },
+    "hitomi:4220346": {
+      "item": {
+        "uid": "hitomi:4220346",
+        "source": "hitomi",
+        "source_id": "4220346",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4220346.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "maki",
+        "title_jp": "maki",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "blue archive"
+        ],
+        "works": [
+          "blue archive"
+        ],
+        "characters": [
+          "maki konuri"
+        ],
+        "tags": [],
+        "meta_tags": [
+          "work:blue archive",
+          "character:maki konuri"
+        ],
+        "pages": 18,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-09-29 10:58:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/d/1e/bb74e9bd54459f2c09b6d65ddcadf1343350d0afaaa4125044c6936cc44bf1ed.jpg",
+        "first_seen": "2026-09-29T16:29:07+00:00",
+        "last_seen": "2026-09-29T16:29:07+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-09-29T16:29:07+00:00",
+      "updated_at": "2026-09-29T16:29:07+00:00"
+    },
+    "hitomi:4220329": {
+      "item": {
+        "uid": "hitomi:4220329",
+        "source": "hitomi",
+        "source_id": "4220329",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4220329.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "年下彼女は感度良好",
+        "title_jp": "年下彼女は感度良好",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [],
+        "pages": 17,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-09-29 10:52:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/6/49/86fa0c56d3912adc50b056f5af5d1c8c5dc03c5429a1c3f26053444a4bd69496.jpg",
+        "first_seen": "2026-09-29T16:29:07+00:00",
+        "last_seen": "2026-09-29T16:29:07+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-09-29T16:29:07+00:00",
+      "updated_at": "2026-09-29T16:29:07+00:00"
+    },
+    "hitomi:4220299": {
+      "item": {
+        "uid": "hitomi:4220299",
+        "source": "hitomi",
+        "source_id": "4220299",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4220299.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-09-29T16:29:40+00:00",
+        "title": "ゲゲゲのキュア娘③",
+        "title_jp": "ゲゲゲのキュア娘③",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "meitantei precure"
+        ],
+        "works": [
+          "meitantei precure"
+        ],
+        "characters": [
+          "cure arcana shadow"
+        ],
+        "tags": [
+          "female:ahegao",
+          "female:body writing",
+          "female:futanari",
+          "female:scat",
+          "female:sex toys",
+          "female:urination",
+          "variant set"
+        ],
+        "meta_tags": [
+          "work:meitantei precure",
+          "character:cure arcana shadow"
+        ],
+        "pages": 63,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-09-29 10:45:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/6/9e/5284b835a4e3138969464182ca611cfa81aa212649c15e11f622ade0dc8c79e6.jpg",
+        "first_seen": "2026-09-29T16:29:07+00:00",
+        "last_seen": "2026-09-29T16:29:07+00:00"
+      },
+      "reason": "blocked:female:scat",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-29T16:29:07+00:00",
+      "updated_at": "2026-09-29T16:29:07+00:00"
+    },
+    "3hentai:3731048": {
+      "item": {
+        "uid": "3hentai:3731048",
+        "source": "3hentai",
+        "source_id": "3731048",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/731048",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "731048",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-09-29T16:30:26+00:00",
+        "title": "[Toriaezu Namade. (Amatsu)] Irui joto! ~Zoku chumon'nooiryoriten~ (Dragon Ball Z)",
+        "title_jp": "[Toriaezu Namade. (Amatsu)] Irui joto! ~Zoku chumon'nooiryoriten~ (Dragon Ball Z)",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "dragon ball z",
+          "dragon ball gt",
+          "dragon ball super"
+        ],
+        "works": [
+          "dragon ball z",
+          "dragon ball gt",
+          "dragon ball super"
+        ],
+        "characters": [
+          "son goku",
+          "gogeta",
+          "vegito"
+        ],
+        "tags": [
+          "language:japanese",
+          "anal (male)",
+          "anal intercourse (male)",
+          "catboy",
+          "double anal (male)",
+          "double penetration (male)",
+          "males only",
+          "muscle (male)",
+          "selfcest (male)",
+          "yaoi",
+          "japanese",
+          "amatsu"
+        ],
+        "meta_tags": [
+          "work:dragon ball z",
+          "work:dragon ball gt",
+          "work:dragon ball super",
+          "character:son goku",
+          "character:gogeta",
+          "character:vegito"
+        ],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s1.3hentai.xyz/d1999523/thumb.jpg",
+        "first_seen": "2026-09-29T16:29:07+00:00",
+        "last_seen": "2026-09-29T16:29:07+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-29T16:29:07+00:00",
+      "updated_at": "2026-09-29T16:29:07+00:00"
     }
   },
   "hitomi_attempts": {
@@ -26183,10 +26381,10 @@
   },
   "verified_checkpoints": {},
   "hitomi_host_retry_at": 1790724360.0,
-  "updated_at": "2026-09-29T15:29:52+00:00",
+  "updated_at": "2026-09-29T16:29:07+00:00",
   "last_audit": {
-    "last_run": "2026-09-29T15:29:52+00:00",
-    "eligible": 9140,
+    "last_run": "2026-09-29T16:29:07+00:00",
+    "eligible": 9142,
     "attempted": 0,
     "verified": 0,
     "restored": 0,
@@ -26195,6 +26393,6 @@
     "failed": 0,
     "stopped": true,
     "host_cooldown": true,
-    "remaining_source_rechecks": 9157
+    "remaining_source_rechecks": 9159
   }
 }
