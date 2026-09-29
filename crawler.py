@@ -293,7 +293,7 @@ def audit_existing_hitomi(existing: dict, store: dict, stamp: str, preferred_bas
     ))
     stats = {"last_run": stamp, "eligible": len(candidates), "attempted": 0,
              "verified": 0, "restored": 0, "blocked": 0, "unverified": 0,
-             "failed": 0, "stopped": False}
+             "failed": 0, "failed_reasons": {}, "stopped": False}
     if float(store.get("hitomi_host_retry_at") or 0) > now:
         stats["stopped"] = True
         stats["host_cooldown"] = True
@@ -326,15 +326,25 @@ def audit_existing_hitomi(existing: dict, store: dict, stamp: str, preferred_bas
                     attempts.pop(uid, None)
                     stats["verified"] += 1
             except Exception as exc:
-                consecutive_errors += 1
+                match = re.search(r"HTTP (\d{3})\b", str(exc))
+                status = int(match.group(1)) if match else None
+                transport_error = (isinstance(exc, (hitomi.requests.Timeout, hitomi.requests.ConnectionError, TimeoutError))
+                                   or str(exc).startswith("request failed url="))
+                reason = f"http_{status}" if status else ("transport" if transport_error else "metadata_invalid")
+                host_failure = transport_error or (status is not None and status >= 500)
+                consecutive_errors = consecutive_errors + 1 if host_failure else 0
                 failures = int(prior.get("failures") or 0) + 1
                 attempts[uid] = {"last_attempt": now, "failures": failures,
+                                 "reason": reason,
                                  "retry_at": now + min(HITOMI_FILTER_RETRY_SEC * 2 ** min(failures - 1, 3), 3 * 86400)}
                 stats["failed"] += 1
+                stats["failed_reasons"][reason] = stats["failed_reasons"].get(reason, 0) + 1
                 # Respect access/rate limits, and stop an unavailable host
-                # before spending a timeout on every saved work.
-                if re.search(r"HTTP (?:403|429)\b", str(exc)) or consecutive_errors >= 3:
+                # before spending a timeout on every saved work. A removed
+                # gallery (404/410) or malformed record is not a host outage.
+                if status in (403, 429) or consecutive_errors >= 3:
                     store["hitomi_host_retry_at"] = now + HITOMI_FILTER_RETRY_SEC
+                    store["hitomi_host_retry_reason"] = reason
                     stats["stopped"] = True
                     break
             if stats["attempted"] % 25 == 0:
