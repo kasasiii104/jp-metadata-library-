@@ -1,4 +1,5 @@
 import re
+from datetime import datetime, timezone
 from typing import Any
 
 import requests
@@ -29,6 +30,7 @@ JS_HEADERS = {
     "Accept": "application/javascript,text/javascript,*/*;q=0.8",
     "Referer": FRONT_BASE + "/",
 }
+FILTER_METADATA_VERSION = "hitomi-gallery-v2"
 
 
 def _ids_from_nozomi(data: bytes) -> list[int]:
@@ -234,7 +236,8 @@ def _normalize(gid: int, raw: dict[str, Any], thumbnail: str) -> dict[str, Any] 
     if language_norm == "japanese" and not title_jp:
         title_jp = title
 
-    tags = _tag_values(raw.get("tags"))
+    tags = _tag_values(raw.get("tags")) if isinstance(raw.get("tags"), list) else []
+    verified = bool(tags and title and language_norm == "japanese")
     artists = _list_values(raw.get("artists"), ("artist", "name"))
     groups = _list_values(raw.get("groups"), ("group", "name"))
     parodies = _list_values(raw.get("parodys") or raw.get("parodies"), ("parody", "name"))
@@ -255,6 +258,8 @@ def _normalize(gid: int, raw: dict[str, Any], thumbnail: str) -> dict[str, Any] 
         "parodies": parodies,
         "characters": characters,
         "tags": tags,
+        "filter_metadata_checked": FILTER_METADATA_VERSION if verified else "",
+        "filter_metadata_checked_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat() if verified else "",
         "pages": len(files) if isinstance(files, list) else int(raw.get("files") or 0),
         "rating": None,
         "popularity": None,
@@ -282,6 +287,16 @@ def _fetch_one(session: requests.Session, gid: int, preferred_base: str | None) 
     raw, used_base = _fetch_gallery_js(session, gid, preferred_base)
     thumb = _thumbnail(session, gid, raw)
     return _normalize(gid, raw, thumb), used_base
+
+
+def fetch_filter_metadata(session: requests.Session, gid: int, preferred_base: str | None = None) -> dict:
+    """Audit metadata only: no gallery/image download and no host hopping."""
+    base = preferred_base if preferred_base in RESOURCE_BASES else RESOURCE_BASES[0]
+    res = safe_get(session, base + GALLERY_JS_PATH.format(gid=gid), headers=JS_HEADERS)
+    raw = parse_json_wrapped_js(res.text)
+    if raw.get("id") is not None and str(raw["id"]) != str(gid):
+        raise ValueError("Hitomi gallery identity mismatch")
+    return _normalize(gid, raw, "")
 
 
 def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:

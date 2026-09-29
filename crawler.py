@@ -4,7 +4,7 @@ import json
 import re
 import sys
 import unicodedata
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -13,14 +13,20 @@ from config import (
     BLOCK_FULL_TAGS,
     BLOCK_INSECT_TAGS,
     BLOCK_TAGS,
+    BLOCK_TAG_ALIASES,
     DATA_FILE,
     DOCS_DIR,
     KEEP_ITEMS,
     STATE_FILE,
     STATUS_FILE,
+    FILTER_STATE_FILE,
+    HITOMI_FILTER_AUDIT_LIMIT,
+    HITOMI_FILTER_AUDIT_DELAY_SEC,
+    HITOMI_FILTER_AUDIT_REFRESH_SEC,
+    HITOMI_FILTER_RETRY_SEC,
 )
 from sources import ehentai, hitomi, hentai3, asmhentai
-from sources.common import normalize_full_tag, normalize_tag, unique_strings
+from sources.common import normalize_full_tag, normalize_tag, unique_strings, polite_sleep
 
 SOURCES = {
     "ehentai": ehentai.collect,
@@ -32,6 +38,7 @@ RETIRED_SOURCES = {"pururin", "nharchive", "nhentai"}
 
 NORMALIZED_BLOCK_TAGS = {normalize_tag(x) for x in BLOCK_TAGS}
 NORMALIZED_BLOCK_FULL_TAGS = {normalize_full_tag(x) for x in BLOCK_FULL_TAGS}
+NORMALIZED_BLOCK_ALIASES = {normalize_tag(k): normalize_tag(v) for k, v in BLOCK_TAG_ALIASES.items()}
 NORMALIZED_INSECT_TAGS = {normalize_tag(x) for x in BLOCK_INSECT_TAGS}
 ALLOWED_LANGUAGE_SET = {str(x).lower() for x in ALLOWED_LANGUAGES}
 
@@ -110,8 +117,9 @@ def blocked_reason(item: dict[str, Any]) -> str:
         base = normalize_tag(full.split(":", 1)[-1])
         if full in NORMALIZED_BLOCK_FULL_TAGS:
             return f"blocked:{full}"
-        if base in NORMALIZED_BLOCK_TAGS:
-            return f"blocked:{base}"
+        canonical = NORMALIZED_BLOCK_ALIASES.get(base, base)
+        if canonical in NORMALIZED_BLOCK_TAGS:
+            return f"blocked:{canonical}"
 
     # Hitomi occasionally exposes a content warning/descriptor only in the
     # gallery title while its structured tag list omits the same term. Scan
@@ -119,16 +127,19 @@ def blocked_reason(item: dict[str, Any]) -> str:
     # boundaries so short terms such as "bl" cannot match ordinary words.
     title_text = unicodedata.normalize(
         "NFKC", f"{item.get('title', '')} {item.get('title_jp', '')}"
-    ).lower()
-    for term in sorted(NORMALIZED_BLOCK_TAGS, key=len, reverse=True):
+    ).lower().replace("’", "'").replace("‘", "'")
+    for term in sorted(NORMALIZED_BLOCK_TAGS | NORMALIZED_BLOCK_ALIASES.keys(), key=lambda x: (-len(x), x)):
         if not term:
             continue
-        if re.search(r"[ぁ-んァ-ン一-龯々〆ヵヶ蟲]", term):
+        if term == "グロ":
+            # Do not mistake マグロ / グローバル for a content warning.
+            matched = bool(re.search(r"(?<![ァ-ヶー])グロ(?![ァ-ヶー])", title_text))
+        elif re.search(r"[ぁ-んァ-ン一-龯々〆ヵヶ蟲]", term):
             matched = term in title_text
         else:
             matched = bool(re.search(rf"(?<![a-z0-9]){re.escape(term)}(?![a-z0-9])", title_text))
         if matched:
-            return f"blocked:title:{term}"
+            return f"blocked:title:{NORMALIZED_BLOCK_ALIASES.get(term, term)}"
 
     insect = insect_block_reason(item)
     if insect:
@@ -214,6 +225,126 @@ def merge_item(old: dict[str, Any] | None, new: dict[str, Any], stamp: str) -> d
     merged["first_seen"] = old.get("first_seen") or stamp
     merged["last_seen"] = stamp
     return merged
+
+
+def unverified_hitomi(item: dict[str, Any], *, fresh: bool = False) -> bool:
+    if item.get("source") != "hitomi":
+        return False
+    if not item.get("tags") or not (item.get("title") or item.get("title_jp")) or not item.get("language"):
+        return True
+    return fresh and item.get("filter_metadata_checked") != hitomi.FILTER_METADATA_VERSION
+
+
+def publication_reason(item: dict, *, fresh: bool = False) -> str:
+    if item.get("source") == "hitomi" and (
+        not item.get("language") or not (item.get("title") or item.get("title_jp"))
+    ):
+        return "metadata_unverified"
+    return blocked_reason(item) or ("metadata_unverified" if unverified_hitomi(item, fresh=fresh) else "")
+
+
+def quarantine_item(store: dict, item: dict, reason: str, stamp: str) -> None:
+    uid = item.get("uid")
+    if not uid:
+        return
+    records = store.setdefault("records", {})
+    old = records.get(uid) or {}
+    # Missing tags on a later response must not erase a confirmed exclusion.
+    if old.get("status") == "blocked":
+        return
+    records[uid] = {"item": dict(item), "reason": reason,
+                    "status": "pending" if reason == "metadata_unverified" else "blocked",
+                    "first_quarantined_at": old.get("first_quarantined_at") or stamp,
+                    "updated_at": stamp}
+
+
+def _timestamp(value: str) -> float:
+    try:
+        return datetime.fromisoformat(str(value).replace("Z", "+00:00")).timestamp()
+    except (ValueError, TypeError):
+        return 0
+
+
+def audit_existing_hitomi(existing: dict, store: dict, stamp: str, preferred_base: str = "") -> dict:
+    """Bounded, resumable audit; missing tags are checked before older records."""
+    records = store.setdefault("records", {})
+    attempts = store.setdefault("hitomi_attempts", {})
+    now = _timestamp(stamp)
+    pool = {uid: item for uid, item in existing.items() if item.get("source") == "hitomi"}
+    pool.update({uid: rec["item"] for uid, rec in records.items()
+                 if rec.get("status") == "pending" and rec.get("item", {}).get("source") == "hitomi"})
+    candidates = []
+    for uid, item in pool.items():
+        if records.get(uid, {}).get("status") == "blocked":
+            continue
+        checked = _timestamp(item.get("filter_metadata_checked_at", ""))
+        if (records.get(uid, {}).get("status") != "pending"
+                and item.get("filter_metadata_checked") == hitomi.FILTER_METADATA_VERSION
+                and checked and now - checked < HITOMI_FILTER_AUDIT_REFRESH_SEC):
+            continue
+        if float(attempts.get(uid, {}).get("retry_at") or 0) > now:
+            continue
+        candidates.append(item)
+    candidates.sort(key=lambda x: (
+        0 if records.get(x["uid"], {}).get("status") == "pending" or not x.get("tags") else 1,
+        float(attempts.get(x["uid"], {}).get("last_attempt") or 0),
+        _timestamp(x.get("filter_metadata_checked_at", "")),
+        x.get("first_seen") or "", x["uid"],
+    ))
+    stats = {"last_run": stamp, "eligible": len(candidates), "attempted": 0,
+             "verified": 0, "restored": 0, "blocked": 0, "unverified": 0,
+             "failed": 0, "stopped": False}
+    if float(store.get("hitomi_host_retry_at") or 0) > now:
+        stats["stopped"] = True
+        stats["host_cooldown"] = True
+        return stats
+    consecutive_errors = 0
+    with hitomi.requests.Session() as session:
+        for item in candidates[:max(0, HITOMI_FILTER_AUDIT_LIMIT)]:
+            uid = item["uid"]
+            stats["attempted"] += 1
+            prior = attempts.get(uid) or {}
+            try:
+                fresh = hitomi.fetch_filter_metadata(session, int(item["source_id"]), preferred_base)
+                if fresh.get("uid") != uid:
+                    raise ValueError("Hitomi audit identity mismatch")
+                consecutive_errors = 0
+                merged = merge_item(item, fresh, stamp)
+                reason = publication_reason(fresh, fresh=True)
+                if reason:
+                    existing.pop(uid, None)
+                    quarantine_item(store, merged, reason, stamp)
+                    stats["unverified" if reason == "metadata_unverified" else "blocked"] += 1
+                    attempts[uid] = {"last_attempt": now, "retry_at": now + HITOMI_FILTER_RETRY_SEC}
+                else:
+                    # Set the audit's own clock; fixtures and source timestamps
+                    # must not make a successful row immediately stale.
+                    merged["filter_metadata_checked_at"] = stamp
+                    stats["restored"] += uid not in existing
+                    existing[uid] = merged
+                    records.pop(uid, None)
+                    attempts.pop(uid, None)
+                    stats["verified"] += 1
+            except Exception as exc:
+                consecutive_errors += 1
+                failures = int(prior.get("failures") or 0) + 1
+                attempts[uid] = {"last_attempt": now, "failures": failures,
+                                 "retry_at": now + min(HITOMI_FILTER_RETRY_SEC * 2 ** min(failures - 1, 3), 3 * 86400)}
+                stats["failed"] += 1
+                # Respect access/rate limits, and stop an unavailable host
+                # before spending a timeout on every saved work.
+                if re.search(r"HTTP (?:403|429)\b", str(exc)) or consecutive_errors >= 3:
+                    store["hitomi_host_retry_at"] = now + HITOMI_FILTER_RETRY_SEC
+                    stats["stopped"] = True
+                    break
+            if stats["attempted"] % 25 == 0:
+                # Checkpoint source results, including safe restorations. The
+                # final public catalog is published only at the end of main().
+                store["verified_checkpoints"] = {uid: value for uid, value in existing.items()
+                    if value.get("source") == "hitomi" and value.get("filter_metadata_checked_at") == stamp}
+                save_json(FILTER_STATE_FILE, store)
+            polite_sleep(HITOMI_FILTER_AUDIT_DELAY_SEC)
+    return stats
 
 
 def sort_key(item: dict[str, Any]):
@@ -336,22 +467,39 @@ def apply_duplicate_groups(items: list[dict[str, Any]]) -> int:
     return duplicate_groups
 
 
-def main() -> int:
+def main(*, audit_only: bool = False) -> int:
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
     stamp = now_iso()
 
     data = load_json(DATA_FILE, {"items": []})
+    state = load_json(STATE_FILE, {})
+    filter_store = load_json(FILTER_STATE_FILE, {})
+    for key in ("records", "hitomi_attempts", "verified_checkpoints"):
+        if not isinstance(filter_store.get(key), dict):
+            filter_store[key] = {}
+    records = filter_store["records"]
     existing_items = [
         upgrade_item_schema(x) for x in data.get("items", [])
         if isinstance(x, dict) and x.get("uid") and x.get("source") not in RETIRED_SOURCES
     ]
+    # Recover verified audit results if a previous job stopped after a
+    # checkpoint but before writing the final catalog.
+    existing_map = {x["uid"]: x for x in existing_items}
+    for uid, saved in filter_store["verified_checkpoints"].items():
+        if (records.get(uid, {}).get("status") != "blocked"
+                and saved.get("filter_metadata_checked") == hitomi.FILTER_METADATA_VERSION
+                and not unverified_hitomi(saved, fresh=True) and not blocked_reason(saved)):
+            existing_map[uid] = merge_item(existing_map.get(uid), saved, stamp)
+            records.pop(uid, None)
+    existing_items = list(existing_map.values())
     # Revision 19: 3Hentai historically had little/no tag metadata, so old
     # visible rows could not be evaluated by the common BL/guro/ryona/insect
     # filters.  Audit a bounded number of saved 3Hentai galleries every run,
     # then apply the same common filter to *all* retained rows.  This gradually
     # cleans the existing site without a one-off destructive reset.
     try:
-        h3_existing_audit = hentai3.enrich_existing_for_filter(existing_items)
+        h3_existing_audit = ({"skipped": "hitomi-filter-audit-only"} if audit_only else
+                             hentai3.enrich_existing_for_filter(existing_items))
     except Exception as e:
         h3_existing_audit = {
             "existing_filter_audit_mode": "public-gallery-metadata",
@@ -371,9 +519,17 @@ def main() -> int:
     purged_existing_by_source: dict[str, int] = {}
     purged_existing_insect = 0
     purged_existing_3hentai = 0
+    held_existing_unverified = 0
     for item in existing_items:
-        reason = blocked_reason(item)
+        rec = records.get(item["uid"], {})
+        reason = (rec.get("reason") if rec.get("status") == "blocked" else publication_reason(item))
+        if not reason and (unverified_hitomi(item) or rec.get("status") == "pending"):
+            reason = "metadata_unverified"
         if reason:
+            quarantine_item(filter_store, item, reason, stamp)
+            if reason == "metadata_unverified":
+                held_existing_unverified += 1
+                continue
             purged_existing_blocked += 1
             purged_existing_reasons[reason] = purged_existing_reasons.get(reason, 0) + 1
             src = str(item.get("source") or "unknown")
@@ -386,7 +542,8 @@ def main() -> int:
         retained_items.append(item)
     existing = {x["uid"]: x for x in retained_items}
 
-    state = load_json(STATE_FILE, {})
+    hitomi_audit = audit_existing_hitomi(existing, filter_store, stamp,
+                                        (state.get("hitomi") or {}).get("resource_base", ""))
     status_store = load_json(STATUS_FILE, {})
     if not isinstance(status_store, dict):
         status_store = {}
@@ -400,7 +557,7 @@ def main() -> int:
     total_accepted = 0
     successful_sources = 0
 
-    for name, collector in SOURCES.items():
+    for name, collector in ([] if audit_only else SOURCES.items()):
         print(f"[{name}] start")
         src_state = state.get(name) if isinstance(state.get(name), dict) else {}
         try:
@@ -420,16 +577,34 @@ def main() -> int:
             # 3Hentai is fail-closed for newly discovered rows: if the public
             # gallery page did not yield filter-relevant metadata, do not add
             # the item yet. It can be discovered again on a later healthy run.
-            if name == "3hentai" and raw.get("filter_metadata_checked") != "3hentai-gallery-v1":
+            uid = raw["uid"]
+            saved_block = records.get(uid, {})
+            if saved_block.get("status") == "blocked":
+                reason = saved_block["reason"]
+            elif name == "3hentai" and raw.get("filter_metadata_checked") != "3hentai-gallery-v1":
                 reason = "metadata_unverified"
             else:
-                reason = blocked_reason(raw)
+                reason = publication_reason(raw, fresh=True)
             if reason:
                 blocked += 1
                 blocked_reasons[reason] = blocked_reasons.get(reason, 0) + 1
+                # Rejecting this response alone leaves the old catalog row
+                # visible. Remove it too and retain evidence outside docs.
+                prior = existing.pop(uid, None) or records.get(uid, {}).get("item")
+                quarantine_item(filter_store, merge_item(prior, raw, stamp), reason, stamp)
                 continue
-            uid = raw["uid"]
-            existing[uid] = merge_item(existing.get(uid), raw, stamp)
+            prior = existing.get(uid) or records.get(uid, {}).get("item")
+            merged = merge_item(prior, raw, stamp)
+            reason = blocked_reason(merged)
+            if reason:
+                existing.pop(uid, None)
+                quarantine_item(filter_store, merged, reason, stamp)
+                blocked += 1
+                blocked_reasons[reason] = blocked_reasons.get(reason, 0) + 1
+                continue
+            existing[uid] = merged
+            records.pop(uid, None)
+            filter_store["hitomi_attempts"].pop(uid, None)
             accepted += 1
 
         if result.get("status") == "ok":
@@ -465,6 +640,26 @@ def main() -> int:
     duplicate_group_count = apply_duplicate_groups(items)
     duplicate_item_count = sum(1 for x in items if x.get("duplicate_group"))
 
+    # Final defense applies after every merge, not just to incoming responses.
+    assert not any(blocked_reason(x) or unverified_hitomi(x) for x in items), "Unsafe catalog row"
+    pending_counts: dict[str, int] = {}
+    blocked_counts: dict[str, int] = {}
+    for rec in records.values():
+        counts = pending_counts if rec.get("status") == "pending" else blocked_counts
+        source = rec.get("item", {}).get("source") or "unknown"
+        counts[source] = counts.get(source, 0) + 1
+    hitomi_audit["remaining_source_rechecks"] = sum(
+        x.get("source") == "hitomi" and (
+            x.get("filter_metadata_checked") != hitomi.FILTER_METADATA_VERSION
+            or _timestamp(stamp) - _timestamp(x.get("filter_metadata_checked_at", "")) >= HITOMI_FILTER_AUDIT_REFRESH_SEC
+        ) for x in items
+    ) + pending_counts.get("hitomi", 0)
+    filter_store["updated_at"] = stamp
+    filter_store["last_audit"] = hitomi_audit
+    filter_store["verified_checkpoints"] = {x["uid"]: x for x in items
+        if x.get("source") == "hitomi" and x.get("filter_metadata_checked_at") == stamp}
+    save_json(FILTER_STATE_FILE, filter_store)
+
     save_json(DATA_FILE, {
         "updated_at": stamp,
         "item_count": len(items),
@@ -475,6 +670,7 @@ def main() -> int:
         "purged_existing_reasons": purged_existing_reasons,
         "purged_existing_by_source": purged_existing_by_source,
         "purged_existing_3hentai": purged_existing_3hentai,
+        "held_existing_unverified": held_existing_unverified,
         "items": items,
     })
     save_json(STATE_FILE, state)
@@ -488,15 +684,23 @@ def main() -> int:
         "purged_existing_reasons": purged_existing_reasons,
         "purged_existing_by_source": purged_existing_by_source,
         "3hentai_existing_audit": h3_existing_audit,
+        "hitomi_existing_audit": hitomi_audit,
+        "quarantined_pending_by_source": pending_counts,
+        "quarantined_blocked_by_source": blocked_counts,
+        "held_existing_unverified": held_existing_unverified,
     }
     save_json(STATUS_FILE, {**status_store, "updated_at": stamp})
+    filter_store["verified_checkpoints"] = {}
+    save_json(FILTER_STATE_FILE, filter_store)
 
     print(f"done: raw={total_raw}, accepted={total_accepted}, total={len(items)}, duplicate_groups={duplicate_group_count}")
-    if successful_sources == 0 and not items:
+    print(f"[Hitomi filter audit] {hitomi_audit}")
+    print(f"[Filter quarantine] pending={pending_counts} blocked={blocked_counts}")
+    if not audit_only and successful_sources == 0 and not items:
         print("All sources failed and there is no retained dataset.", file=sys.stderr)
         return 1
     return 0
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(main(audit_only="--audit-filters-only" in sys.argv))
