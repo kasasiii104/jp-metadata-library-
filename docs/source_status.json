@@ -89,9 +89,9 @@
       "4219691: https://tn.hitomi.la/bigtn/a/61/30613dc40b98b59d8860151ad2d5cbb98fb0f5f080c98e84c03d981c226ea61a.jpg"
     ],
     "thumbnail_cache": {
-      "attempted": 56,
-      "cached": 56,
-      "reused": 9115,
+      "attempted": 0,
+      "cached": 0,
+      "reused": 8669,
       "failed": 0,
       "pending": 0,
       "failures": []
@@ -138,18 +138,18 @@
       "mode": "public-search-exact-title+gallery",
       "attempted": 12,
       "cached": 12,
-      "reused": 1568,
+      "reused": 1580,
       "failed": 0,
-      "pending": 1021,
+      "pending": 1008,
       "resolved_search_fallbacks": 0,
       "rate_limited": false,
       "upstream_unavailable": false,
       "samples": [
-        "3718323: https://s1.3hentai.xyz/d2022307/thumb.jpg -> thumbs/3hentai/3718323.webp",
-        "3718322: https://s1.3hentai.xyz/d2022306/thumb.jpg -> thumbs/3hentai/3718322.webp",
-        "3718306: https://s1.3hentai.xyz/d2022224/thumb.jpg -> thumbs/3hentai/3718306.webp",
-        "3718270: https://s1.3hentai.xyz/d2022073/thumb.jpg -> thumbs/3hentai/3718270.webp",
-        "3718216: https://s1.3hentai.xyz/d2021888/thumb.jpg -> thumbs/3hentai/3718216.webp"
+        "3621221: https://s1.3hentai.xyz/d2027297/thumb.jpg -> thumbs/3hentai/3621221.webp",
+        "3621219: https://s1.3hentai.xyz/d2027271/thumb.jpg -> thumbs/3hentai/3621219.webp",
+        "3620637: https://s1.3hentai.xyz/d2027270/thumb.jpg -> thumbs/3hentai/3620637.webp",
+        "3629551: https://s1.3hentai.xyz/d2029895/thumb.jpg -> thumbs/3hentai/3629551.webp",
+        "3629545: https://s1.3hentai.xyz/d2029889/thumb.jpg -> thumbs/3hentai/3629545.webp"
       ],
       "failures": []
     },
@@ -293,45 +293,51 @@
     "artists_found": 0,
     "groups_found": 0,
     "works_found": 40,
-    "characters_found": 35
+    "characters_found": 35,
+    "skipped": "hitomi-filter-audit-only"
   },
   "filters": {
     "content_filters": "enabled",
     "insect_filter": "enabled",
     "insect_terms": 55,
-    "purged_existing_blocked": 13,
+    "purged_existing_blocked": 28,
     "purged_existing_insect": 0,
     "purged_existing_3hentai": 1,
     "purged_existing_reasons": {
-      "blocked:title:torture": 5,
-      "blocked:title:snuff": 5,
-      "blocked:title:vore": 3
+      "blocked:title:blood": 2,
+      "blocked:blood": 12,
+      "blocked:title:vore": 12,
+      "blocked:title:torture": 2
     },
     "purged_existing_by_source": {
-      "hitomi": 2,
-      "ehentai": 10,
+      "hitomi": 18,
+      "ehentai": 9,
       "3hentai": 1
     },
     "3hentai_existing_audit": {
-      "existing_filter_audit_mode": "public-gallery-metadata",
-      "existing_filter_audit_attempted": 60,
-      "existing_filter_audit_enriched": 0,
-      "existing_filter_audit_resolved_search": 0,
-      "existing_filter_audit_failed": 60,
-      "existing_filter_audit_pending": 205,
-      "existing_filter_audit_stopped": false,
-      "existing_filter_audit_samples": [],
-      "existing_filter_audit_failures": [
-        "3712322: search exact-title matches=2",
-        "3711742: search exact-title matches=4",
-        "3711617: search exact-title matches=4",
-        "3711560: search exact-title matches=2",
-        "3711529: search exact-title matches=3",
-        "3713846: search exact-title matches=2",
-        "3713678: search exact-title matches=2",
-        "3717191: search exact-title matches=8"
-      ]
-    }
+      "skipped": "hitomi-filter-audit-only"
+    },
+    "hitomi_existing_audit": {
+      "last_run": "2026-09-29T11:26:00+00:00",
+      "eligible": 9153,
+      "attempted": 18,
+      "verified": 2,
+      "restored": 2,
+      "blocked": 1,
+      "unverified": 10,
+      "failed": 5,
+      "stopped": true,
+      "remaining_source_rechecks": 9150
+    },
+    "quarantined_pending_by_source": {
+      "hitomi": 483
+    },
+    "quarantined_blocked_by_source": {
+      "hitomi": 19,
+      "ehentai": 9,
+      "3hentai": 1
+    },
+    "held_existing_unverified": 486
   },
   "hentaifox": {
     "status": "ok",
@@ -381,5 +387,5 @@
     "detail_cursor_next": 48,
     "detail_candidates": 80
   },
-  "updated_at": "2026-09-29T10:42:44+00:00"
+  "updated_at": "2026-09-29T11:26:00+00:00"
 }
