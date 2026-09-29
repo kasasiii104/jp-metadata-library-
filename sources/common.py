@@ -26,6 +26,7 @@ def iso_from_unix(value: Any) -> str:
 
 def normalize_tag(value: str) -> str:
     value = unicodedata.normalize("NFKC", str(value or "")).strip().lower()
+    value = value.replace("’", "'").replace("‘", "'")
     value = value.replace("_", " ").replace("-", " ")
     value = re.sub(r"\s+", " ", value)
     return value

@@ -6,6 +6,9 @@ DOCS_DIR = ROOT / "docs"
 DATA_FILE = DOCS_DIR / "data.json"
 STATE_FILE = DOCS_DIR / "crawl_state.json"
 STATUS_FILE = DOCS_DIR / "source_status.json"
+# Kept outside docs: excluded/unverified metadata is recoverable, but is not
+# shipped in the public catalog or Pages artifact.
+FILTER_STATE_FILE = ROOT / "state" / "filter_audit.json"
 
 REQUEST_TIMEOUT = 30
 USER_AGENT = "Japanese-Metadata-Library/1.6 (+GitHub Actions; metadata-only)"
@@ -18,6 +21,10 @@ EH_MAX_GALLERIES_PER_RUN = int(os.environ.get("EH_MAX_GALLERIES_PER_RUN", "150")
 # Hitomi: binary Japanese Nozomi index, fetched by byte range.
 HITOMI_LATEST_LIMIT = int(os.environ.get("HITOMI_LATEST_LIMIT", "30"))
 HITOMI_BACKFILL_LIMIT = int(os.environ.get("HITOMI_BACKFILL_LIMIT", "60"))
+HITOMI_FILTER_AUDIT_LIMIT = int(os.environ.get("HITOMI_FILTER_AUDIT_LIMIT", "200"))
+HITOMI_FILTER_AUDIT_DELAY_SEC = float(os.environ.get("HITOMI_FILTER_AUDIT_DELAY_SEC", "0.2"))
+HITOMI_FILTER_AUDIT_REFRESH_SEC = 7 * 86400
+HITOMI_FILTER_RETRY_SEC = 12 * 3600
 
 # 3Hentai: latest pages + historical backfill every run.
 HENTAI3_LATEST_PAGES = int(os.environ.get("HENTAI3_LATEST_PAGES", "2"))
@@ -47,10 +54,25 @@ BLOCK_TAGS = {
     "amputee",
     "decapitation",
     "corpse",
+    "blood",
     "farting",
     "miniguy",
     "vore",
     "scat",
+}
+
+# Aliases of already requested exclusions, not additional content categories.
+BLOCK_TAG_ALIASES = {
+    "やおい": "yaoi", "ヤオイ": "yaoi", "ボーイズラブ": "yaoi",
+    "gore": "guro", "グロ": "guro", "グロテスク": "guro",
+    "スナッフ": "snuff", "リョナ": "ryona", "拷問": "torture",
+    "四肢欠損": "amputee", "手足欠損": "amputee", "斬首": "decapitation",
+    "死体": "corpse", "流血": "blood",
+    "fart": "farting", "farts": "farting", "おなら": "farting",
+    "オナラ": "farting", "放屁": "farting", "ミニガイ": "miniguy",
+    "丸呑み": "vore", "丸飲み": "vore", "捕食": "vore",
+    "scatology": "scat", "スカトロ": "scat", "スカトロジー": "scat",
+    "排便": "scat", "脱糞": "scat",
 }
 
 # Insect / bug-like content requested to be excluded from the library.
@@ -70,6 +92,7 @@ BLOCK_INSECT_TAGS = {
 }
 
 BLOCK_FULL_TAGS = {
+    "male:male",
     "male:yaoi",
     "male:boys love",
     "male:boys' love",

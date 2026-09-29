@@ -22,7 +22,7 @@ permissions:
 
 concurrency:
   group: japanese-metadata-library-v2
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   update:
@@ -31,6 +31,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
 
       - uses: actions/setup-python@v5
         with:
@@ -43,6 +45,9 @@ jobs:
 
       - name: Install Python dependencies
         run: pip install -r requirements.txt
+
+      - name: Verify content filters
+        run: python -m unittest discover -s tests -v
 
       - name: Install Hitomi thumbnail resolver
         run: npm install --no-save node-hitomi@9.2.0
@@ -75,7 +80,13 @@ jobs:
           ASMHENTAI_SEARCH_KEY: "日本語"
           ASMHENTAI_SEARCH_KEYS: "日本語"
           ASMHENTAI_PROBE_KEY: "futanari"
-        run: python crawler.py
+          RUN_FILTER_AUDIT_ONLY: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[filter-audit]') }}
+        run: |
+          if [ "$RUN_FILTER_AUDIT_ONLY" = "true" ]; then
+            HITOMI_FILTER_AUDIT_LIMIT=500 python crawler.py --audit-filters-only
+          else
+            python crawler.py
+          fi
 
       - name: Cache 3Hentai thumbnails locally
         env:
@@ -106,7 +117,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add docs
+          git add docs state/filter_audit.json
 
           if git diff --cached --quiet; then
             echo "No data changes"
