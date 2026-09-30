@@ -30919,12 +30919,12 @@
         "posted_at": "2026-09-29 18:52:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/c/8a/1e9df620d08ba0f200aedd82346817e158873d56d1f55d2d3fee9e43901348ac.jpg",
         "first_seen": "2026-09-30T00:34:31+00:00",
-        "last_seen": "2026-09-30T00:34:31+00:00"
+        "last_seen": "2026-09-30T01:26:43+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-30T00:34:31+00:00",
-      "updated_at": "2026-09-30T00:34:31+00:00"
+      "updated_at": "2026-09-30T01:26:43+00:00"
     },
     "hitomi:4221081": {
       "item": {
@@ -31107,12 +31107,12 @@
         "posted_at": "2026-08-13 23:32:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/9/07/e5a3af1ff9bc07a0cee8637b8b6801b603bb805167dde9213ab65f0b3b1bf079.jpg",
         "first_seen": "2026-09-30T00:34:31+00:00",
-        "last_seen": "2026-09-30T00:34:31+00:00"
+        "last_seen": "2026-09-30T01:26:43+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-30T00:34:31+00:00",
-      "updated_at": "2026-09-30T00:34:31+00:00"
+      "updated_at": "2026-09-30T01:26:43+00:00"
     },
     "hitomi:4118226": {
       "item": {
@@ -31156,12 +31156,667 @@
         "posted_at": "2026-08-13 23:21:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/6/c3/93fcac1e532a57db76e94b51a00a8833915e7809a09e68057c9484004348fc36.jpg",
         "first_seen": "2026-09-30T00:34:31+00:00",
-        "last_seen": "2026-09-30T00:34:31+00:00"
+        "last_seen": "2026-09-30T01:26:43+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-30T00:34:31+00:00",
-      "updated_at": "2026-09-30T00:34:31+00:00"
+      "updated_at": "2026-09-30T01:26:43+00:00"
+    },
+    "hitomi:4221154": {
+      "item": {
+        "uid": "hitomi:4221154",
+        "source": "hitomi",
+        "source_id": "4221154",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4221154.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "Ryudai Ishizaka",
+        "title_jp": "石坂ﾘｭｰﾀﾞｲ",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [
+          "ishizaka ryudai"
+        ],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [
+          "artist:ishizaka ryudai"
+        ],
+        "pages": 90,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-09-29 19:27:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/3/83/7e19effeae2fd7f7f87750bb9de2c465747b0b4310d0054ad11ed49f172e6833.jpg",
+        "first_seen": "2026-09-30T01:26:43+00:00",
+        "last_seen": "2026-09-30T01:26:43+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-09-30T01:26:43+00:00",
+      "updated_at": "2026-09-30T01:26:43+00:00"
+    },
+    "hitomi:4118105": {
+      "item": {
+        "uid": "hitomi:4118105",
+        "source": "hitomi",
+        "source_id": "4118105",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4118105.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-09-30T01:27:31+00:00",
+        "title": "こもぢ",
+        "title_jp": "こもぢ",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [
+          "komodj"
+        ],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "female:guro",
+          "female:loli",
+          "mosaic censorship"
+        ],
+        "meta_tags": [
+          "artist:komodj"
+        ],
+        "pages": 323,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-13 21:55:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/b/58/d612837785c517e018fd3f95ec5435ba83e44b2fe149b648d360f48c1dbfb58b.jpg",
+        "first_seen": "2026-09-30T01:26:43+00:00",
+        "last_seen": "2026-09-30T01:26:43+00:00"
+      },
+      "reason": "blocked:female:guro",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-30T01:26:43+00:00",
+      "updated_at": "2026-09-30T01:26:43+00:00"
+    },
+    "hitomi:4117970": {
+      "item": {
+        "uid": "hitomi:4117970",
+        "source": "hitomi",
+        "source_id": "4117970",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4117970.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-09-30T01:27:33+00:00",
+        "title": "Boys Factory 29.9.2",
+        "title_jp": "Boys Factory 29.9.2",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "ogawa hiroshi"
+        ],
+        "groups": [
+          "boys factory"
+        ],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "male:males only",
+          "male:schoolboy uniform",
+          "male:sex toys",
+          "male:shota",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:ogawa hiroshi",
+          "group:boys factory",
+          "work:original"
+        ],
+        "pages": 14,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-13 20:04:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/8/56/41d9048fd78a71afe8956ff742fa7d49780e8f1d32fb4f1b9447ceff201f2568.jpg",
+        "first_seen": "2026-09-30T01:26:43+00:00",
+        "last_seen": "2026-09-30T01:26:43+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-30T01:26:43+00:00",
+      "updated_at": "2026-09-30T01:26:43+00:00"
+    },
+    "hitomi:4117966": {
+      "item": {
+        "uid": "hitomi:4117966",
+        "source": "hitomi",
+        "source_id": "4117966",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4117966.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-09-30T01:27:34+00:00",
+        "title": "Boys Factory 29.9.1",
+        "title_jp": "Boys Factory 29.9.1",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "ogawa hiroshi"
+        ],
+        "groups": [
+          "boys factory"
+        ],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "male:males only",
+          "male:schoolboy uniform",
+          "male:shota",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:ogawa hiroshi",
+          "group:boys factory",
+          "work:original"
+        ],
+        "pages": 14,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-13 20:01:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/e/9e/c9b61316a7b1fa8810e60d12148dd179175b90000a2147ecd9343098a52b09ee.jpg",
+        "first_seen": "2026-09-30T01:26:43+00:00",
+        "last_seen": "2026-09-30T01:26:43+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-30T01:26:43+00:00",
+      "updated_at": "2026-09-30T01:26:43+00:00"
+    },
+    "hitomi:4117959": {
+      "item": {
+        "uid": "hitomi:4117959",
+        "source": "hitomi",
+        "source_id": "4117959",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4117959.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-09-30T01:27:34+00:00",
+        "title": "Boys Factory 29.9",
+        "title_jp": "Boys Factory 29.9",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "ogawa hiroshi"
+        ],
+        "groups": [
+          "boys factory"
+        ],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "male:bondage",
+          "male:fundoshi",
+          "male:males only",
+          "male:shota",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:ogawa hiroshi",
+          "group:boys factory",
+          "work:original"
+        ],
+        "pages": 10,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-13 19:57:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/f/42/9c5d974d4ac40b6c45e27d3c0cba6c121d2b3f8d6387f6d55deceb80aca1542f.jpg",
+        "first_seen": "2026-09-30T01:26:43+00:00",
+        "last_seen": "2026-09-30T01:26:43+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-30T01:26:43+00:00",
+      "updated_at": "2026-09-30T01:26:43+00:00"
+    },
+    "hitomi:4117953": {
+      "item": {
+        "uid": "hitomi:4117953",
+        "source": "hitomi",
+        "source_id": "4117953",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4117953.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-09-30T01:27:35+00:00",
+        "title": "Boys Factory 29.8",
+        "title_jp": "Boys Factory 29.8",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "ogawa hiroshi"
+        ],
+        "groups": [
+          "boys factory"
+        ],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "male:males only",
+          "male:schoolboy uniform",
+          "male:shota",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:ogawa hiroshi",
+          "group:boys factory",
+          "work:original"
+        ],
+        "pages": 14,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-13 19:48:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/2/13/e8ce4c6d5063428d3909aa750ed341e0e316dedc972cf6b50e36ffdce55c7132.jpg",
+        "first_seen": "2026-09-30T01:26:43+00:00",
+        "last_seen": "2026-09-30T01:26:43+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-30T01:26:43+00:00",
+      "updated_at": "2026-09-30T01:26:43+00:00"
+    },
+    "hitomi:4117952": {
+      "item": {
+        "uid": "hitomi:4117952",
+        "source": "hitomi",
+        "source_id": "4117952",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4117952.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-09-30T01:27:35+00:00",
+        "title": "Boys Factory 29.6",
+        "title_jp": "Boys Factory 29.6",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "ogawa hiroshi"
+        ],
+        "groups": [
+          "boys factory"
+        ],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "male:males only",
+          "male:schoolboy uniform",
+          "male:sex toys",
+          "male:shota",
+          "male:swimsuit",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:ogawa hiroshi",
+          "group:boys factory",
+          "work:original"
+        ],
+        "pages": 17,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-13 19:45:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/2/0c/5766f04e103373d3fc16578e00de0993b95d9ee33469fa66aea87b78c79500c2.jpg",
+        "first_seen": "2026-09-30T01:26:43+00:00",
+        "last_seen": "2026-09-30T01:26:43+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-30T01:26:43+00:00",
+      "updated_at": "2026-09-30T01:26:43+00:00"
+    },
+    "hitomi:4117946": {
+      "item": {
+        "uid": "hitomi:4117946",
+        "source": "hitomi",
+        "source_id": "4117946",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4117946.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-09-30T01:27:35+00:00",
+        "title": "Boys Factory 29.5 (Ogawa Hiroshi",
+        "title_jp": "Boys Factory 29.5 (Ogawa Hiroshi",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "ogawa hiroshi"
+        ],
+        "groups": [
+          "boys factory"
+        ],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "male:anal",
+          "male:bondage",
+          "male:males only",
+          "no penetration",
+          "male:sex toys",
+          "male:shota",
+          "male:swimsuit",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:ogawa hiroshi",
+          "group:boys factory",
+          "work:original"
+        ],
+        "pages": 16,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-13 19:41:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/d/43/03a4966d1d78f818ad4cd39372648a5aab2820f1aa2eb0ececa9b93e46bd443d.jpg",
+        "first_seen": "2026-09-30T01:26:43+00:00",
+        "last_seen": "2026-09-30T01:26:43+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-30T01:26:43+00:00",
+      "updated_at": "2026-09-30T01:26:43+00:00"
+    },
+    "hitomi:4117943": {
+      "item": {
+        "uid": "hitomi:4117943",
+        "source": "hitomi",
+        "source_id": "4117943",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4117943.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-09-30T01:27:36+00:00",
+        "title": "Boys Factory 28",
+        "title_jp": "Boys Factory 28",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "ogawa hiroshi"
+        ],
+        "groups": [
+          "boys factory"
+        ],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "male:bondage",
+          "male:males only",
+          "male:schoolboy uniform",
+          "male:sex toys",
+          "male:shota",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:ogawa hiroshi",
+          "group:boys factory",
+          "work:original"
+        ],
+        "pages": 13,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-13 19:38:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/6/0d/cb801e86ecf43cdff70cd5d10d25020bec1f572b06c9f3e67b098070d3dd30d6.jpg",
+        "first_seen": "2026-09-30T01:26:43+00:00",
+        "last_seen": "2026-09-30T01:26:43+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-30T01:26:43+00:00",
+      "updated_at": "2026-09-30T01:26:43+00:00"
+    },
+    "hitomi:4117936": {
+      "item": {
+        "uid": "hitomi:4117936",
+        "source": "hitomi",
+        "source_id": "4117936",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4117936.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-09-30T01:27:36+00:00",
+        "title": "Boys Factory 27",
+        "title_jp": "Boys Factory 27",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "ogawa hiroshi"
+        ],
+        "groups": [
+          "boys factory"
+        ],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "male:bondage",
+          "male:collar",
+          "male:males only",
+          "male:schoolboy uniform",
+          "male:sex toys",
+          "male:shota",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:ogawa hiroshi",
+          "group:boys factory",
+          "work:original"
+        ],
+        "pages": 18,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-13 19:34:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/9/08/df45de87e1f1148b46779ece6bbb7f937e7fdc51e7aea213ca1f1b1853fae089.jpg",
+        "first_seen": "2026-09-30T01:26:43+00:00",
+        "last_seen": "2026-09-30T01:26:43+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-30T01:26:43+00:00",
+      "updated_at": "2026-09-30T01:26:43+00:00"
+    },
+    "3hentai:3734736": {
+      "item": {
+        "uid": "3hentai:3734736",
+        "source": "3hentai",
+        "source_id": "3734736",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/734736",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "734736",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-09-30T01:28:03+00:00",
+        "title": "[Saki Kaori] Haru yo Koi Volume 11 [English]",
+        "title_jp": "[Saki Kaori] Haru yo Koi Volume 11 [English]",
+        "language": "english",
+        "category": "manga",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "language:japanese",
+          "language:english",
+          "story arc",
+          "english",
+          "japanese",
+          "saki kaori"
+        ],
+        "meta_tags": [],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s1.3hentai.xyz/d1967357/thumb.jpg",
+        "first_seen": "2026-09-30T01:26:43+00:00",
+        "last_seen": "2026-09-30T01:26:43+00:00"
+      },
+      "reason": "language",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-30T01:26:43+00:00",
+      "updated_at": "2026-09-30T01:26:43+00:00"
+    },
+    "3hentai:3734728": {
+      "item": {
+        "uid": "3hentai:3734728",
+        "source": "3hentai",
+        "source_id": "3734728",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/734728",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "734728",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-09-30T01:28:05+00:00",
+        "title": "[Saki Kaori] Haru yo Koi Volume 4 [English]",
+        "title_jp": "[Saki Kaori] Haru yo Koi Volume 4 [English]",
+        "language": "english",
+        "category": "manga",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "language:japanese",
+          "language:english",
+          "maid (female)",
+          "multi-work series",
+          "story arc",
+          "english",
+          "japanese",
+          "saki kaori"
+        ],
+        "meta_tags": [],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s1.3hentai.xyz/d1967318/thumb.jpg",
+        "first_seen": "2026-09-30T01:26:43+00:00",
+        "last_seen": "2026-09-30T01:26:43+00:00"
+      },
+      "reason": "language",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-30T01:26:43+00:00",
+      "updated_at": "2026-09-30T01:26:43+00:00"
+    },
+    "3hentai:3734727": {
+      "item": {
+        "uid": "3hentai:3734727",
+        "source": "3hentai",
+        "source_id": "3734727",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/734727",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "734727",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-09-30T01:28:06+00:00",
+        "title": "[Saki Kaori] Haru yo Koi Volume 9 [English]",
+        "title_jp": "[Saki Kaori] Haru yo Koi Volume 9 [English]",
+        "language": "english",
+        "category": "manga",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "language:japanese",
+          "language:english",
+          "multi-work series",
+          "schoolgirl uniform (female)",
+          "story arc",
+          "english",
+          "japanese",
+          "saki kaori"
+        ],
+        "meta_tags": [],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s1.3hentai.xyz/d1967304/thumb.jpg",
+        "first_seen": "2026-09-30T01:26:43+00:00",
+        "last_seen": "2026-09-30T01:26:43+00:00"
+      },
+      "reason": "language",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-30T01:26:43+00:00",
+      "updated_at": "2026-09-30T01:26:43+00:00"
     }
   },
   "hitomi_attempts": {
@@ -31252,17 +31907,18 @@
   },
   "verified_checkpoints": {},
   "hitomi_host_retry_at": 1790771671.0,
-  "updated_at": "2026-09-30T00:34:31+00:00",
+  "updated_at": "2026-09-30T01:26:43+00:00",
   "last_audit": {
-    "last_run": "2026-09-30T00:34:31+00:00",
-    "eligible": 9184,
-    "attempted": 3,
+    "last_run": "2026-09-30T01:26:43+00:00",
+    "eligible": 9186,
+    "attempted": 0,
     "verified": 0,
     "restored": 0,
     "blocked": 0,
     "unverified": 0,
-    "failed": 3,
+    "failed": 0,
     "stopped": true,
-    "remaining_source_rechecks": 9189
+    "host_cooldown": true,
+    "remaining_source_rechecks": 9190
   }
 }
