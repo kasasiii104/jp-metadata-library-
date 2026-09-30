@@ -30919,12 +30919,12 @@
         "posted_at": "2026-09-29 18:52:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/c/8a/1e9df620d08ba0f200aedd82346817e158873d56d1f55d2d3fee9e43901348ac.jpg",
         "first_seen": "2026-09-30T00:34:31+00:00",
-        "last_seen": "2026-09-30T01:26:43+00:00"
+        "last_seen": "2026-09-30T02:24:58+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-30T00:34:31+00:00",
-      "updated_at": "2026-09-30T01:26:43+00:00"
+      "updated_at": "2026-09-30T02:24:58+00:00"
     },
     "hitomi:4221081": {
       "item": {
@@ -31195,12 +31195,12 @@
         "posted_at": "2026-09-29 19:27:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/3/83/7e19effeae2fd7f7f87750bb9de2c465747b0b4310d0054ad11ed49f172e6833.jpg",
         "first_seen": "2026-09-30T01:26:43+00:00",
-        "last_seen": "2026-09-30T01:26:43+00:00"
+        "last_seen": "2026-09-30T02:24:58+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-30T01:26:43+00:00",
-      "updated_at": "2026-09-30T01:26:43+00:00"
+      "updated_at": "2026-09-30T02:24:58+00:00"
     },
     "hitomi:4118105": {
       "item": {
@@ -31817,6 +31817,274 @@
       "status": "blocked",
       "first_quarantined_at": "2026-09-30T01:26:43+00:00",
       "updated_at": "2026-09-30T01:26:43+00:00"
+    },
+    "hitomi:4117606": {
+      "item": {
+        "uid": "hitomi:4117606",
+        "source": "hitomi",
+        "source_id": "4117606",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4117606.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-09-30T02:25:36+00:00",
+        "title": "Svein Secret",
+        "title_jp": "Svein Secret",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [
+          "estper"
+        ],
+        "groups": [],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "male:chastity belt",
+          "male:dog boy",
+          "male:furry",
+          "male:males only",
+          "male:muscle",
+          "male:shibari",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:estper",
+          "work:original"
+        ],
+        "pages": 24,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-13 14:30:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/7/7d/345a79c589a0abcf5427ff524669ac9ea89e7b4ee4dda571e4389f502536c7d7.jpg",
+        "first_seen": "2026-09-30T02:24:58+00:00",
+        "last_seen": "2026-09-30T02:24:58+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-30T02:24:58+00:00",
+      "updated_at": "2026-09-30T02:24:58+00:00"
+    },
+    "hitomi:4117499": {
+      "item": {
+        "uid": "hitomi:4117499",
+        "source": "hitomi",
+        "source_id": "4117499",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4117499.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-09-30T02:25:40+00:00",
+        "title": "凌野彩",
+        "title_jp": "凌野彩",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [
+          "yb limitless"
+        ],
+        "groups": [],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "female:corpse",
+          "female:guro"
+        ],
+        "meta_tags": [
+          "artist:yb limitless",
+          "work:original"
+        ],
+        "pages": 48,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-13 13:28:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/e/3f/33b47bdf968f12c112a31520d16dea77ea53da6ed56985e4c61d82acae17c3fe.jpg",
+        "first_seen": "2026-09-30T02:24:58+00:00",
+        "last_seen": "2026-09-30T02:24:58+00:00"
+      },
+      "reason": "blocked:corpse",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-30T02:24:58+00:00",
+      "updated_at": "2026-09-30T02:24:58+00:00"
+    },
+    "hitomi:4117488": {
+      "item": {
+        "uid": "hitomi:4117488",
+        "source": "hitomi",
+        "source_id": "4117488",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4117488.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-09-30T02:25:41+00:00",
+        "title": "Maya Zenana Choukyou",
+        "title_jp": "摩耶全穴調教",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "mizuya tiharu"
+        ],
+        "groups": [
+          "heart of cool"
+        ],
+        "parodies": [
+          "kantai collection"
+        ],
+        "works": [
+          "kantai collection"
+        ],
+        "characters": [
+          "maya"
+        ],
+        "tags": [
+          "female:anal",
+          "female:anal intercourse",
+          "female:bondage",
+          "female:collar",
+          "female:double penetration",
+          "female:enema",
+          "fleet dock kai",
+          "female:gag",
+          "group",
+          "female:nose hook",
+          "female:rape",
+          "female:scat",
+          "female:shibari",
+          "female:sole female",
+          "female:urethra insertion"
+        ],
+        "meta_tags": [
+          "artist:mizuya tiharu",
+          "group:heart of cool",
+          "work:kantai collection",
+          "character:maya"
+        ],
+        "pages": 50,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-13 13:17:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/e/5f/7b3da6426fab4ab3d5272e62e44f34ef072b9193522a39b5a232e66660eea5fe.jpg",
+        "first_seen": "2026-09-30T02:24:58+00:00",
+        "last_seen": "2026-09-30T02:24:58+00:00"
+      },
+      "reason": "blocked:female:scat",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-30T02:24:58+00:00",
+      "updated_at": "2026-09-30T02:24:58+00:00"
+    },
+    "hitomi:4117466": {
+      "item": {
+        "uid": "hitomi:4117466",
+        "source": "hitomi",
+        "source_id": "4117466",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4117466.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-09-30T02:25:42+00:00",
+        "title": "Constipated girl poops very sexy",
+        "title_jp": "Constipated girl poops very sexy",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [
+          "hayami yami"
+        ],
+        "groups": [],
+        "parodies": [
+          "honkai star rail"
+        ],
+        "works": [
+          "honkai star rail"
+        ],
+        "characters": [
+          "the herta"
+        ],
+        "tags": [
+          "female:big ass",
+          "female:hairy",
+          "female:scat",
+          "variant set",
+          "female:witch"
+        ],
+        "meta_tags": [
+          "artist:hayami yami",
+          "work:honkai star rail",
+          "character:the herta"
+        ],
+        "pages": 112,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-13 13:00:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/e/88/7eea4e58244a0560542a71b01139469c7a6cc8d54d77e7bee41a09dad9a2d88e.jpg",
+        "first_seen": "2026-09-30T02:24:58+00:00",
+        "last_seen": "2026-09-30T02:24:58+00:00"
+      },
+      "reason": "blocked:female:scat",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-30T02:24:58+00:00",
+      "updated_at": "2026-09-30T02:24:58+00:00"
+    },
+    "hitomi:4117305": {
+      "item": {
+        "uid": "hitomi:4117305",
+        "source": "hitomi",
+        "source_id": "4117305",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4117305.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-09-30T02:25:50+00:00",
+        "title": "Others",
+        "title_jp": "Others",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [
+          "dagasi"
+        ],
+        "groups": [],
+        "parodies": [
+          "animal crossing"
+        ],
+        "works": [
+          "animal crossing"
+        ],
+        "characters": [],
+        "tags": [
+          "male:anal",
+          "male:crossdressing",
+          "female:furry",
+          "male:furry",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:dagasi",
+          "work:animal crossing"
+        ],
+        "pages": 52,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-13 11:17:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/e/14/5ca308b43c3b92ae6bbd272748a88de1c78d16574e257680b09f06717395014e.jpg",
+        "first_seen": "2026-09-30T02:24:58+00:00",
+        "last_seen": "2026-09-30T02:24:58+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-09-30T02:24:58+00:00",
+      "updated_at": "2026-09-30T02:24:58+00:00"
     }
   },
   "hitomi_attempts": {
@@ -31907,10 +32175,10 @@
   },
   "verified_checkpoints": {},
   "hitomi_host_retry_at": 1790771671.0,
-  "updated_at": "2026-09-30T01:26:43+00:00",
+  "updated_at": "2026-09-30T02:24:58+00:00",
   "last_audit": {
-    "last_run": "2026-09-30T01:26:43+00:00",
-    "eligible": 9186,
+    "last_run": "2026-09-30T02:24:58+00:00",
+    "eligible": 9187,
     "attempted": 0,
     "verified": 0,
     "restored": 0,
