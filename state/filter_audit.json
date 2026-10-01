@@ -42401,12 +42401,12 @@
         "posted_at": "2026-09-30 18:50:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/d/24/d9b77c3f1efe6a6dfd2340933f1eef9d3aaaff9cac0915657a986b94cacc324d.jpg",
         "first_seen": "2026-10-01T00:35:46+00:00",
-        "last_seen": "2026-10-01T00:35:46+00:00"
+        "last_seen": "2026-10-01T01:27:16+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-01T00:35:46+00:00",
-      "updated_at": "2026-10-01T00:35:46+00:00"
+      "updated_at": "2026-10-01T01:27:16+00:00"
     },
     "hitomi:4223044": {
       "item": {
@@ -42417,14 +42417,16 @@
         "source_url": "https://hitomi.la/galleries/4223044.html",
         "source_url_kind": "",
         "resolved_gallery_id": "",
-        "filter_metadata_checked": "",
-        "filter_metadata_checked_at": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T01:27:51+00:00",
         "title": "The Downfall of a Kunoichi Who Got Carried Away",
         "title_jp": "The Downfall of a Kunoichi Who Got Carried Away",
         "language": "japanese",
         "category": "artistcg",
         "artists": [],
-        "groups": [],
+        "groups": [
+          "orange box"
+        ],
         "parodies": [
           "king of fighters"
         ],
@@ -42434,8 +42436,12 @@
         "characters": [
           "mai shiranui"
         ],
-        "tags": [],
+        "tags": [
+          "female:kunoichi",
+          "female:ryona"
+        ],
         "meta_tags": [
+          "group:orange box",
           "work:king of fighters",
           "character:mai shiranui"
         ],
@@ -42445,12 +42451,12 @@
         "posted_at": "2026-09-30 18:25:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/0/b9/30dfc5470c2bf8f865177511898e842d22d208bb778a0530a5e07a811e841b90.jpg",
         "first_seen": "2026-10-01T00:35:46+00:00",
-        "last_seen": "2026-10-01T00:35:46+00:00"
+        "last_seen": "2026-10-01T01:27:16+00:00"
       },
-      "reason": "metadata_unverified",
-      "status": "pending",
+      "reason": "blocked:ryona",
+      "status": "blocked",
       "first_quarantined_at": "2026-10-01T00:35:46+00:00",
-      "updated_at": "2026-10-01T00:35:46+00:00"
+      "updated_at": "2026-10-01T01:27:16+00:00"
     },
     "hitomi:4223021": {
       "item": {
@@ -43230,6 +43236,412 @@
       "status": "blocked",
       "first_quarantined_at": "2026-10-01T00:35:46+00:00",
       "updated_at": "2026-10-01T00:35:46+00:00"
+    },
+    "ehentai:4223044": {
+      "item": {
+        "uid": "ehentai:4223044",
+        "source": "ehentai",
+        "source_id": "4223044",
+        "source_token": "9e948c6b17",
+        "source_url": "https://e-hentai.org/g/4223044/9e948c6b17/",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "[H@ruki] The Downfall of a Kunoichi Who Got Carried Away [Japanese, English]",
+        "title_jp": "",
+        "language": "japanese",
+        "category": "Artist CG",
+        "artists": [],
+        "groups": [
+          "orange box"
+        ],
+        "parodies": [
+          "king of fighters"
+        ],
+        "works": [
+          "king of fighters"
+        ],
+        "characters": [
+          "mai shiranui"
+        ],
+        "tags": [
+          "language:english",
+          "language:japanese",
+          "parody:king of fighters",
+          "character:mai shiranui",
+          "group:orange box",
+          "female:kunoichi",
+          "female:ryona"
+        ],
+        "meta_tags": [
+          "group:orange box",
+          "work:king of fighters",
+          "character:mai shiranui"
+        ],
+        "pages": 10,
+        "rating": 1.63,
+        "popularity": null,
+        "posted_at": "2026-09-30T23:25:48+00:00",
+        "thumbnail": "https://ehgt.org/w/02/683/90766-e9977x0k.webp",
+        "first_seen": "2026-10-01T01:27:16+00:00",
+        "last_seen": "2026-10-01T01:27:16+00:00"
+      },
+      "reason": "blocked:ryona",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T01:27:16+00:00",
+      "updated_at": "2026-10-01T01:27:16+00:00"
+    },
+    "hitomi:4223199": {
+      "item": {
+        "uid": "hitomi:4223199",
+        "source": "hitomi",
+        "source_id": "4223199",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4223199.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T01:27:42+00:00",
+        "title": "【FULL】スポブラ姿で丸呑みされて大ピンチな七架さん（新作キャラ_全8枚）",
+        "title_jp": "【FULL】スポブラ姿で丸呑みされて大ピンチな七架さん（新作キャラ_全8枚）",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [
+          "yoshikawa hideaki"
+        ],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "female:big breasts",
+          "female:tentacles",
+          "variant set"
+        ],
+        "meta_tags": [
+          "artist:yoshikawa hideaki"
+        ],
+        "pages": 9,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-09-30 19:48:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/2/82/c14761f12baf6dee360b316e096aaa1ce3f9ab3fbeb9272e45ab434426b9e822.jpg",
+        "first_seen": "2026-10-01T01:27:16+00:00",
+        "last_seen": "2026-10-01T01:27:16+00:00"
+      },
+      "reason": "blocked:title:vore",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T01:27:16+00:00",
+      "updated_at": "2026-10-01T01:27:16+00:00"
+    },
+    "hitomi:4223191": {
+      "item": {
+        "uid": "hitomi:4223191",
+        "source": "hitomi",
+        "source_id": "4223191",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4223191.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "Menu: 19 LOVE TRAIN",
+        "title_jp": "Menu：19 LOVE TRAIN",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "polorinken"
+        ],
+        "groups": [
+          "polorinken"
+        ],
+        "parodies": [
+          "sentimental graffiti"
+        ],
+        "works": [
+          "sentimental graffiti"
+        ],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [
+          "artist:polorinken",
+          "group:polorinken",
+          "work:sentimental graffiti"
+        ],
+        "pages": 58,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-09-30 19:43:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/b/fc/858a655ec7aa5a1c4ab375a00ef34a489b9592de16e71c6a9007800129e73fcb.jpg",
+        "first_seen": "2026-10-01T01:27:16+00:00",
+        "last_seen": "2026-10-01T01:27:16+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-01T01:27:16+00:00",
+      "updated_at": "2026-10-01T01:27:16+00:00"
+    },
+    "hitomi:4223160": {
+      "item": {
+        "uid": "hitomi:4223160",
+        "source": "hitomi",
+        "source_id": "4223160",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4223160.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T01:27:45+00:00",
+        "title": "Kept By a Classmate",
+        "title_jp": "Kept By a Classmate",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "female:femdom",
+          "male:miniguy",
+          "male:slave",
+          "female:sole female",
+          "male:sole male",
+          "male:unbirth"
+        ],
+        "meta_tags": [],
+        "pages": 10,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-09-30 19:28:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/b/d3/156d5c4255e1efacb6b7f004d9fa51ff3cccc6cea516ad48c0484b2c8bd51d3b.jpg",
+        "first_seen": "2026-10-01T01:27:16+00:00",
+        "last_seen": "2026-10-01T01:27:16+00:00"
+      },
+      "reason": "blocked:male:miniguy",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T01:27:16+00:00",
+      "updated_at": "2026-10-01T01:27:16+00:00"
+    },
+    "hitomi:4223122": {
+      "item": {
+        "uid": "hitomi:4223122",
+        "source": "hitomi",
+        "source_id": "4223122",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4223122.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "【セリフ付き】尻で堕とされる莉理＆スパイスーツエミリアさん（全8枚）",
+        "title_jp": "【セリフ付き】尻で堕とされる莉理＆スパイスーツエミリアさん（全8枚）",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [
+          "yoshikawa hideaki"
+        ],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [
+          "artist:yoshikawa hideaki"
+        ],
+        "pages": 9,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-09-30 19:02:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/b/04/b2e44931f124d93415a18ab626973e45559cb0e0408427e23aa2df9c1801604b.jpg",
+        "first_seen": "2026-10-01T01:27:16+00:00",
+        "last_seen": "2026-10-01T01:27:16+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-01T01:27:16+00:00",
+      "updated_at": "2026-10-01T01:27:16+00:00"
+    },
+    "hitomi:4106765": {
+      "item": {
+        "uid": "hitomi:4106765",
+        "source": "hitomi",
+        "source_id": "4106765",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4106765.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T01:28:07+00:00",
+        "title": "Artist: NDawJaidee",
+        "title_jp": "Artist: NDawJaidee",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "bocchi the rock",
+          "genshin impact",
+          "made in abyss",
+          "zenless zone zero"
+        ],
+        "works": [
+          "bocchi the rock",
+          "genshin impact",
+          "made in abyss",
+          "zenless zone zero"
+        ],
+        "characters": [
+          "arlecchino",
+          "nanachi",
+          "ryou yamada",
+          "soukaku",
+          "venus"
+        ],
+        "tags": [
+          "female:big breasts",
+          "female:corpse",
+          "female:guro",
+          "female:loli",
+          "male:necrophilia",
+          "female:small breasts",
+          "female:snuff",
+          "female:zombie"
+        ],
+        "meta_tags": [
+          "work:bocchi the rock",
+          "work:genshin impact",
+          "work:made in abyss",
+          "work:zenless zone zero",
+          "character:arlecchino",
+          "character:nanachi",
+          "character:ryou yamada",
+          "character:soukaku",
+          "character:venus"
+        ],
+        "pages": 366,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-08 10:42:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/f/02/499f286b2bae64971d4079d7224cdf5d50efefeb9b743ccbab1a3fa39e62202f.jpg",
+        "first_seen": "2026-10-01T01:27:16+00:00",
+        "last_seen": "2026-10-01T01:27:16+00:00"
+      },
+      "reason": "blocked:corpse",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T01:27:16+00:00",
+      "updated_at": "2026-10-01T01:27:16+00:00"
+    },
+    "hitomi:4106665": {
+      "item": {
+        "uid": "hitomi:4106665",
+        "source": "hitomi",
+        "source_id": "4106665",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4106665.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T01:28:12+00:00",
+        "title": "Ryu-chan (Otokonoko) to Ichaicha Suru Hon",
+        "title_jp": "りゅうちゃん(男の子)といちゃいちゃする本",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "kyaradain"
+        ],
+        "groups": [],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "male:blowjob",
+          "male:condom",
+          "male:crossdressing",
+          "male:males only",
+          "male:mesuiki",
+          "male:muscle",
+          "male:phimosis",
+          "male:ponytail",
+          "male:shota",
+          "male:small penis",
+          "story arc",
+          "male:sweating",
+          "male:tomgirl",
+          "male:unusual teeth",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:kyaradain",
+          "work:original"
+        ],
+        "pages": 84,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-08 09:57:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/b/74/1d4133161063ac46dddd74d9e8b0a4892b44ae50f273bfe55285efa2e2b7174b.jpg",
+        "first_seen": "2026-10-01T01:27:16+00:00",
+        "last_seen": "2026-10-01T01:27:16+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T01:27:16+00:00",
+      "updated_at": "2026-10-01T01:27:16+00:00"
+    },
+    "3hentai:3700717": {
+      "item": {
+        "uid": "3hentai:3700717",
+        "source": "3hentai",
+        "source_id": "3700717",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/700717",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "700717",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-10-01T01:28:36+00:00",
+        "title": "[B-G, PUSH (Aoinu, Kurari ssa)] Ra bura bu hiyuburakunga mitai hon! (Mega Man 11)",
+        "title_jp": "[B-G, PUSH (Aoinu, Kurari ssa)] Ra bura bu hiyuburakunga mitai hon! (Mega Man 11)",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "megaman | rockman"
+        ],
+        "works": [
+          "megaman | rockman"
+        ],
+        "characters": [],
+        "tags": [
+          "language:japanese",
+          "dark skin (male)",
+          "males only",
+          "otokofutanari",
+          "yaoi",
+          "japanese"
+        ],
+        "meta_tags": [
+          "work:megaman | rockman"
+        ],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s1.3hentai.xyz/d1897653/thumb.jpg",
+        "first_seen": "2026-10-01T01:27:16+00:00",
+        "last_seen": "2026-10-01T01:27:16+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T01:27:16+00:00",
+      "updated_at": "2026-10-01T01:27:16+00:00"
     }
   },
   "hitomi_attempts": {
@@ -44580,10 +44992,10 @@
   },
   "verified_checkpoints": {},
   "hitomi_host_retry_at": 1790818143.0,
-  "updated_at": "2026-10-01T00:35:46+00:00",
+  "updated_at": "2026-10-01T01:27:16+00:00",
   "last_audit": {
-    "last_run": "2026-10-01T00:35:46+00:00",
-    "eligible": 8901,
+    "last_run": "2026-10-01T01:27:16+00:00",
+    "eligible": 9079,
     "attempted": 0,
     "verified": 0,
     "restored": 0,
@@ -44592,6 +45004,6 @@
     "failed": 0,
     "stopped": true,
     "host_cooldown": true,
-    "remaining_source_rechecks": 9203
+    "remaining_source_rechecks": 9204
   }
 }
