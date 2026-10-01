@@ -46957,14 +46957,16 @@
         "filter_metadata_checked_at": "",
         "title": "きちんとしなさいっ！",
         "title_jp": "きちんとしなさいっ！",
-        "language": "japanese",
+        "language": "chinese",
         "category": "doujinshi",
         "artists": [],
         "groups": [],
         "parodies": [],
         "works": [],
         "characters": [],
-        "tags": [],
+        "tags": [
+          "comic"
+        ],
         "meta_tags": [],
         "pages": 32,
         "rating": null,
@@ -46972,12 +46974,12 @@
         "posted_at": "2026-10-01 04:01:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/3/71/322620455d93324acbb072544ed8a3fc3d5827f2922c9e81c29c03376a3ad713.jpg",
         "first_seen": "2026-10-01T09:29:00+00:00",
-        "last_seen": "2026-10-01T10:28:24+00:00"
+        "last_seen": "2026-10-01T11:27:17+00:00"
       },
-      "reason": "metadata_unverified",
-      "status": "pending",
+      "reason": "language",
+      "status": "blocked",
       "first_quarantined_at": "2026-10-01T09:29:00+00:00",
-      "updated_at": "2026-10-01T10:28:24+00:00"
+      "updated_at": "2026-10-01T11:27:17+00:00"
     },
     "hitomi:4223939": {
       "item": {
@@ -47007,63 +47009,12 @@
         "posted_at": "2026-10-01 03:53:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/e/c6/a17f1025cdc44e618326039ad8b4d585f2c69be9c61787ca35810bbd15f16c6e.jpg",
         "first_seen": "2026-10-01T09:29:00+00:00",
-        "last_seen": "2026-10-01T10:28:24+00:00"
+        "last_seen": "2026-10-01T11:27:17+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-01T09:29:00+00:00",
-      "updated_at": "2026-10-01T10:28:24+00:00"
-    },
-    "hitomi:4223928": {
-      "item": {
-        "uid": "hitomi:4223928",
-        "source": "hitomi",
-        "source_id": "4223928",
-        "source_token": "",
-        "source_url": "https://hitomi.la/galleries/4223928.html",
-        "source_url_kind": "",
-        "resolved_gallery_id": "",
-        "filter_metadata_checked": "",
-        "filter_metadata_checked_at": "",
-        "title": "【hahakigi】2026/9/30",
-        "title_jp": "【hahakigi】2026/9/30",
-        "language": "japanese",
-        "category": "artistcg",
-        "artists": [
-          "hahakigi"
-        ],
-        "groups": [],
-        "parodies": [
-          "uma musume pretty derby"
-        ],
-        "works": [
-          "uma musume pretty derby"
-        ],
-        "characters": [
-          "aston machan",
-          "buena vista",
-          "zenno rob roy"
-        ],
-        "tags": [],
-        "meta_tags": [
-          "artist:hahakigi",
-          "work:uma musume pretty derby",
-          "character:aston machan",
-          "character:buena vista",
-          "character:zenno rob roy"
-        ],
-        "pages": 38,
-        "rating": null,
-        "popularity": null,
-        "posted_at": "2026-10-01 03:42:00-05",
-        "thumbnail": "https://tn.hitomi.la/bigtn/9/ec/620560cf00c8d83c1a628f0c24112c7cfdf3e423a1ae4685305f98cca05ccec9.jpg",
-        "first_seen": "2026-10-01T09:29:00+00:00",
-        "last_seen": "2026-10-01T10:28:24+00:00"
-      },
-      "reason": "metadata_unverified",
-      "status": "pending",
-      "first_quarantined_at": "2026-10-01T09:29:00+00:00",
-      "updated_at": "2026-10-01T10:28:24+00:00"
+      "updated_at": "2026-10-01T11:27:17+00:00"
     },
     "hitomi:4223898": {
       "item": {
@@ -47769,12 +47720,12 @@
         "posted_at": "2026-10-01 04:51:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/8/09/b41e304cb1c12afb561507792ac884adbb318482e8273663cc919710398ba098.jpg",
         "first_seen": "2026-10-01T10:28:24+00:00",
-        "last_seen": "2026-10-01T10:28:24+00:00"
+        "last_seen": "2026-10-01T11:27:17+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-01T10:28:24+00:00",
-      "updated_at": "2026-10-01T10:28:24+00:00"
+      "updated_at": "2026-10-01T11:27:17+00:00"
     },
     "hitomi:4223981": {
       "item": {
@@ -47818,12 +47769,12 @@
         "posted_at": "2026-10-01 04:24:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/0/dd/1ed34c8147a21aefd652842bca1e62d9a4131f97eccdeab17d15a8f8109d3dd0.jpg",
         "first_seen": "2026-10-01T10:28:24+00:00",
-        "last_seen": "2026-10-01T10:28:24+00:00"
+        "last_seen": "2026-10-01T11:27:17+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-01T10:28:24+00:00",
-      "updated_at": "2026-10-01T10:28:24+00:00"
+      "updated_at": "2026-10-01T11:27:17+00:00"
     },
     "hitomi:4101911": {
       "item": {
@@ -48048,12 +47999,12 @@
         "posted_at": "2026-08-06 11:12:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/2/7b/1115bbe4269c695129bc77a1f9cffc07262e5b0dca3a8f73bf97dc88cf37e7b2.jpg",
         "first_seen": "2026-10-01T10:28:24+00:00",
-        "last_seen": "2026-10-01T10:28:24+00:00"
+        "last_seen": "2026-10-01T11:27:17+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-01T10:28:24+00:00",
-      "updated_at": "2026-10-01T10:28:24+00:00"
+      "updated_at": "2026-10-01T11:27:17+00:00"
     },
     "hitomi:4101521": {
       "item": {
@@ -48145,12 +48096,12 @@
         "posted_at": "2026-08-06 10:49:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/7/72/28b8eaf7ff55f14bfb18e25bb6776917c6335680a09a1930dda4b7934e027727.jpg",
         "first_seen": "2026-10-01T10:28:24+00:00",
-        "last_seen": "2026-10-01T10:28:24+00:00"
+        "last_seen": "2026-10-01T11:27:17+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-01T10:28:24+00:00",
-      "updated_at": "2026-10-01T10:28:24+00:00"
+      "updated_at": "2026-10-01T11:27:17+00:00"
     },
     "3hentai:3726983": {
       "item": {
@@ -48200,6 +48151,716 @@
       "status": "blocked",
       "first_quarantined_at": "2026-10-01T10:28:24+00:00",
       "updated_at": "2026-10-01T10:28:24+00:00"
+    },
+    "hitomi:4224107": {
+      "item": {
+        "uid": "hitomi:4224107",
+        "source": "hitomi",
+        "source_id": "4224107",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4224107.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "An An Natsume",
+        "title_jp": "An An Natsume",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [],
+        "pages": 7,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-01 05:57:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/d/d9/cccba29cbd6b9250b11ae41677d77c0bed202be1218c3f980f9a41693bf59d9d.jpg",
+        "first_seen": "2026-10-01T11:27:17+00:00",
+        "last_seen": "2026-10-01T11:27:17+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-01T11:27:17+00:00",
+      "updated_at": "2026-10-01T11:27:17+00:00"
+    },
+    "hitomi:4224100": {
+      "item": {
+        "uid": "hitomi:4224100",
+        "source": "hitomi",
+        "source_id": "4224100",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4224100.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "Kurakura Konchuuki Vol.3",
+        "title_jp": "くらくら昆虫記 Vol.3",
+        "language": "japanese",
+        "category": "manga",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [],
+        "pages": 187,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-01 05:47:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/6/73/68f53e3c66e96e22715a7ae60f90d64c67057ca21b7bfd88d7fc8605592ae736.jpg",
+        "first_seen": "2026-10-01T11:27:17+00:00",
+        "last_seen": "2026-10-01T11:27:17+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-01T11:27:17+00:00",
+      "updated_at": "2026-10-01T11:27:17+00:00"
+    },
+    "hitomi:4224097": {
+      "item": {
+        "uid": "hitomi:4224097",
+        "source": "hitomi",
+        "source_id": "4224097",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4224097.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "Kurakura Konchuuki Vol.2",
+        "title_jp": "くらくら昆虫記 Vol.2",
+        "language": "japanese",
+        "category": "manga",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [],
+        "pages": 187,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-01 05:43:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/a/60/e806f7446572251a69f9db60f0347901c2fe5eb3d61852f0dd74b8fd6257860a.jpg",
+        "first_seen": "2026-10-01T11:27:17+00:00",
+        "last_seen": "2026-10-01T11:27:17+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-01T11:27:17+00:00",
+      "updated_at": "2026-10-01T11:27:17+00:00"
+    },
+    "hitomi:4224093": {
+      "item": {
+        "uid": "hitomi:4224093",
+        "source": "hitomi",
+        "source_id": "4224093",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4224093.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T11:27:42+00:00",
+        "title": "Kurushii node Shika Kanjinai Wis'adel no Doku Rabu Junai",
+        "title_jp": "苦しいのでしか感じないウィシャデルのドクラブ純愛",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "sonna watashi"
+        ],
+        "groups": [],
+        "parodies": [
+          "arknights"
+        ],
+        "works": [
+          "arknights"
+        ],
+        "characters": [
+          "w"
+        ],
+        "tags": [
+          "female:anal",
+          "female:asphyxiation",
+          "female:deepthroat",
+          "female:fingering",
+          "female:horns",
+          "female:nakadashi",
+          "female:ryona",
+          "female:sex toys",
+          "female:sole female",
+          "male:sole male",
+          "female:squirting"
+        ],
+        "meta_tags": [
+          "artist:sonna watashi",
+          "work:arknights",
+          "character:w"
+        ],
+        "pages": 10,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-01 05:37:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/a/d4/66084bf335515bfeba37f17a2730dc2d38de5b73b8ce1a4a363035e9f731dd4a.jpg",
+        "first_seen": "2026-10-01T11:27:17+00:00",
+        "last_seen": "2026-10-01T11:27:17+00:00"
+      },
+      "reason": "blocked:ryona",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T11:27:17+00:00",
+      "updated_at": "2026-10-01T11:27:17+00:00"
+    },
+    "hitomi:4224092": {
+      "item": {
+        "uid": "hitomi:4224092",
+        "source": "hitomi",
+        "source_id": "4224092",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4224092.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "Kurakura Konchuuki Vol.1",
+        "title_jp": "くらくら昆虫記 Vol.1",
+        "language": "japanese",
+        "category": "manga",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [],
+        "pages": 189,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-01 05:36:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/f/12/9dcea689e91206b47c8277140e7abd8232d7f42f51a5634b943e911f8a7ea12f.jpg",
+        "first_seen": "2026-10-01T11:27:17+00:00",
+        "last_seen": "2026-10-01T11:27:17+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-01T11:27:17+00:00",
+      "updated_at": "2026-10-01T11:27:17+00:00"
+    },
+    "hitomi:4101405": {
+      "item": {
+        "uid": "hitomi:4101405",
+        "source": "hitomi",
+        "source_id": "4101405",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4101405.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T11:28:07+00:00",
+        "title": "Haka no Itami ni Kurabereba",
+        "title_jp": "ハカノイタミニクラベレバ",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "itano chiharu"
+        ],
+        "groups": [],
+        "parodies": [
+          "kyokou suiri"
+        ],
+        "works": [
+          "kyokou suiri"
+        ],
+        "characters": [
+          "kotoko iwanaga"
+        ],
+        "tags": [
+          "female:amputee",
+          "female:defloration",
+          "mosaic censorship",
+          "female:sole female",
+          "male:sole male",
+          "female:x-ray"
+        ],
+        "meta_tags": [
+          "artist:itano chiharu",
+          "work:kyokou suiri",
+          "character:kotoko iwanaga"
+        ],
+        "pages": 5,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-06 10:38:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/e/a0/2a7b5d93346c536f7c1ec58b90d042c1018c35f4dbd6f2306d0f20a3cc8a4a0e.jpg",
+        "first_seen": "2026-10-01T11:27:17+00:00",
+        "last_seen": "2026-10-01T11:27:17+00:00"
+      },
+      "reason": "blocked:amputee",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T11:27:17+00:00",
+      "updated_at": "2026-10-01T11:27:17+00:00"
+    },
+    "hitomi:4101293": {
+      "item": {
+        "uid": "hitomi:4101293",
+        "source": "hitomi",
+        "source_id": "4101293",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4101293.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T11:28:12+00:00",
+        "title": "薬味ロジック",
+        "title_jp": "薬味ロジック",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "yoshida wasabi"
+        ],
+        "groups": [],
+        "parodies": [
+          "zero kara hajimeru mahou no sho"
+        ],
+        "works": [
+          "zero kara hajimeru mahou no sho"
+        ],
+        "characters": [
+          "youhei"
+        ],
+        "tags": [
+          "male:furry",
+          "male:males only",
+          "missing cover",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:yoshida wasabi",
+          "work:zero kara hajimeru mahou no sho",
+          "character:youhei"
+        ],
+        "pages": 16,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-06 10:03:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/1/91/3f76b731e9eaeef4cad06130eb3b77aef65cd86792d448fd445cc70178670911.jpg",
+        "first_seen": "2026-10-01T11:27:17+00:00",
+        "last_seen": "2026-10-01T11:27:17+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T11:27:17+00:00",
+      "updated_at": "2026-10-01T11:27:17+00:00"
+    },
+    "hitomi:4101244": {
+      "item": {
+        "uid": "hitomi:4101244",
+        "source": "hitomi",
+        "source_id": "4101244",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4101244.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "（pulpawoelbo）自用",
+        "title_jp": "（pulpawoelbo）自用",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [
+          "pulpawoelbo"
+        ],
+        "groups": [],
+        "parodies": [
+          "bijin onna joushi takizawa-san"
+        ],
+        "works": [
+          "bijin onna joushi takizawa-san"
+        ],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [
+          "artist:pulpawoelbo",
+          "work:bijin onna joushi takizawa-san"
+        ],
+        "pages": 65,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-06 09:47:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/7/dd/e8e6295952050ba8e00f3e64fc54faef8bed9a2ece8364f49c7d338d09ae2dd7.jpg",
+        "first_seen": "2026-10-01T11:27:17+00:00",
+        "last_seen": "2026-10-01T11:27:17+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-01T11:27:17+00:00",
+      "updated_at": "2026-10-01T11:27:17+00:00"
+    },
+    "hitomi:4101206": {
+      "item": {
+        "uid": "hitomi:4101206",
+        "source": "hitomi",
+        "source_id": "4101206",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4101206.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "（pulpawoelbo）自用",
+        "title_jp": "（pulpawoelbo）自用",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [
+          "pulpawoelbo"
+        ],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [
+          "artist:pulpawoelbo"
+        ],
+        "pages": 238,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-06 09:35:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/9/41/00951d2ef740abae12b0e54d45615ae852f786c8f3da679873667d589bc51419.jpg",
+        "first_seen": "2026-10-01T11:27:17+00:00",
+        "last_seen": "2026-10-01T11:27:17+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-01T11:27:17+00:00",
+      "updated_at": "2026-10-01T11:27:17+00:00"
+    },
+    "hitomi:4101186": {
+      "item": {
+        "uid": "hitomi:4101186",
+        "source": "hitomi",
+        "source_id": "4101186",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4101186.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "（pulpawoelbo）自用",
+        "title_jp": "（pulpawoelbo）自用",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [
+          "pulpawoelbo"
+        ],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [
+          "artist:pulpawoelbo"
+        ],
+        "pages": 137,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-06 09:25:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/d/40/a02d99c2e51de65a332302bd782015bcdb01755dd74da9f8e7bc0141cae9940d.jpg",
+        "first_seen": "2026-10-01T11:27:17+00:00",
+        "last_seen": "2026-10-01T11:27:17+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-01T11:27:17+00:00",
+      "updated_at": "2026-10-01T11:27:17+00:00"
+    },
+    "hitomi:4101176": {
+      "item": {
+        "uid": "hitomi:4101176",
+        "source": "hitomi",
+        "source_id": "4101176",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4101176.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T11:28:17+00:00",
+        "title": "TRICKY TREAT - Bang Brave Bravern DJ",
+        "title_jp": "TRICKY TREAT - Bang Brave Bravern DJ",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "yuuki bakuhatsu bang bravern"
+        ],
+        "works": [
+          "yuuki bakuhatsu bang bravern"
+        ],
+        "characters": [
+          "isami ao",
+          "lewis smith"
+        ],
+        "tags": [
+          "male:anal",
+          "male:blowjob",
+          "male:condom",
+          "male:kissing",
+          "male:males only",
+          "male:masturbation",
+          "male:muscle",
+          "male:nakadashi",
+          "male:nipple stimulation",
+          "male:prostate massage",
+          "male:vampire",
+          "male:x-ray",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "work:yuuki bakuhatsu bang bravern",
+          "character:isami ao",
+          "character:lewis smith"
+        ],
+        "pages": 35,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-06 09:20:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/a/f5/2c1bffc96df31ea6fa9717021d294ddf28bfecf057e1843988e3581c599a9f5a.jpg",
+        "first_seen": "2026-10-01T11:27:17+00:00",
+        "last_seen": "2026-10-01T11:27:17+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T11:27:17+00:00",
+      "updated_at": "2026-10-01T11:27:17+00:00"
+    },
+    "hitomi:4101070": {
+      "item": {
+        "uid": "hitomi:4101070",
+        "source": "hitomi",
+        "source_id": "4101070",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4101070.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "ICHIZEN-RYUU",
+        "title_jp": "ICHIZEN-RYUU",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "blue archive",
+          "vocaloid"
+        ],
+        "works": [
+          "blue archive",
+          "vocaloid"
+        ],
+        "characters": [
+          "miku hatsune"
+        ],
+        "tags": [],
+        "meta_tags": [
+          "work:blue archive",
+          "work:vocaloid",
+          "character:miku hatsune"
+        ],
+        "pages": 12,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-06 08:40:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/b/2c/e88224f48dfdc7912dae826973df59021505c44b89d131e1d56a407c416e22cb.jpg",
+        "first_seen": "2026-10-01T11:27:17+00:00",
+        "last_seen": "2026-10-01T11:27:17+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-01T11:27:17+00:00",
+      "updated_at": "2026-10-01T11:27:17+00:00"
+    },
+    "3hentai:3726576": {
+      "item": {
+        "uid": "3hentai:3726576",
+        "source": "3hentai",
+        "source_id": "3726576",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/726576",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "726576",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-10-01T11:28:39+00:00",
+        "title": "[Starlit sky (Sanupi)] honey trip (Hypnosis Mic) [Digital]",
+        "title_jp": "[Starlit sky (Sanupi)] honey trip (Hypnosis Mic) [Digital]",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "hypnosis mic"
+        ],
+        "works": [
+          "hypnosis mic"
+        ],
+        "characters": [
+          "jiro yamada",
+          "saburo yamada"
+        ],
+        "tags": [
+          "language:japanese",
+          "males only",
+          "yaoi",
+          "japanese",
+          "sanupi"
+        ],
+        "meta_tags": [
+          "work:hypnosis mic",
+          "character:jiro yamada",
+          "character:saburo yamada"
+        ],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s1.3hentai.xyz/d1854507/thumb.jpg",
+        "first_seen": "2026-10-01T11:27:17+00:00",
+        "last_seen": "2026-10-01T11:27:17+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T11:27:17+00:00",
+      "updated_at": "2026-10-01T11:27:17+00:00"
+    },
+    "3hentai:3726567": {
+      "item": {
+        "uid": "3hentai:3726567",
+        "source": "3hentai",
+        "source_id": "3726567",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/726567",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "726567",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-10-01T11:28:40+00:00",
+        "title": "[Haadan (Non)] Adrenaline (Hypnosis Mic) [Digital]",
+        "title_jp": "[Haadan (Non)] Adrenaline (Hypnosis Mic) [Digital]",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "hypnosis mic"
+        ],
+        "works": [
+          "hypnosis mic"
+        ],
+        "characters": [
+          "jiro yamada",
+          "saburo yamada"
+        ],
+        "tags": [
+          "language:japanese",
+          "anal (male)",
+          "anal intercourse (male)",
+          "beauty mark (male)",
+          "brother",
+          "heterochromia (male)",
+          "incest (male)",
+          "males only",
+          "yaoi",
+          "japanese",
+          "non"
+        ],
+        "meta_tags": [
+          "work:hypnosis mic",
+          "character:jiro yamada",
+          "character:saburo yamada"
+        ],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s1.3hentai.xyz/d1854346/thumb.jpg",
+        "first_seen": "2026-10-01T11:27:17+00:00",
+        "last_seen": "2026-10-01T11:27:17+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T11:27:17+00:00",
+      "updated_at": "2026-10-01T11:27:17+00:00"
+    },
+    "3hentai:3726520": {
+      "item": {
+        "uid": "3hentai:3726520",
+        "source": "3hentai",
+        "source_id": "3726520",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/726520",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "726520",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-10-01T11:28:43+00:00",
+        "title": "アスナの寝取らせ報告(JP/EN/CN/KR) (Pixiv Fanbox)",
+        "title_jp": "アスナの寝取らせ報告(JP/EN/CN/KR) (Pixiv Fanbox)",
+        "language": "english",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "blue archive"
+        ],
+        "works": [
+          "blue archive"
+        ],
+        "characters": [
+          "asuna ichinose"
+        ],
+        "tags": [
+          "language:japanese",
+          "language:english",
+          "language:chinese",
+          "language:korean",
+          "anal (female)",
+          "big breasts (female)",
+          "body writing (female)",
+          "eye-covering bang (female)",
+          "halo (female)",
+          "mosaic censorship",
+          "nakadashi (female)",
+          "netorare (female)",
+          "schoolgirl uniform (female)",
+          "sex toys (female)",
+          "sole female",
+          "sole male",
+          "english",
+          "japanese",
+          "chinese",
+          "korean",
+          "miwerjooggetser"
+        ],
+        "meta_tags": [
+          "work:blue archive",
+          "character:asuna ichinose"
+        ],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s1.3hentai.xyz/d1853575/thumb.jpg",
+        "first_seen": "2026-10-01T11:27:17+00:00",
+        "last_seen": "2026-10-01T11:27:17+00:00"
+      },
+      "reason": "language",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T11:27:17+00:00",
+      "updated_at": "2026-10-01T11:27:17+00:00"
     }
   },
   "hitomi_attempts": {
@@ -50327,10 +50988,10 @@
   },
   "verified_checkpoints": {},
   "hitomi_host_retry_at": 1790868449.0,
-  "updated_at": "2026-10-01T10:28:24+00:00",
+  "updated_at": "2026-10-01T11:27:17+00:00",
   "last_audit": {
-    "last_run": "2026-10-01T10:28:24+00:00",
-    "eligible": 8985,
+    "last_run": "2026-10-01T11:27:17+00:00",
+    "eligible": 8989,
     "attempted": 0,
     "verified": 0,
     "restored": 0,
@@ -50339,6 +51000,6 @@
     "failed": 0,
     "stopped": true,
     "host_cooldown": true,
-    "remaining_source_rechecks": 9178
+    "remaining_source_rechecks": 9184
   }
 }
