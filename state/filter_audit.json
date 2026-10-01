@@ -46255,41 +46255,6 @@
       "first_quarantined_at": "2026-10-01T07:29:47+00:00",
       "updated_at": "2026-10-01T07:29:47+00:00"
     },
-    "hitomi:4223839": {
-      "item": {
-        "uid": "hitomi:4223839",
-        "source": "hitomi",
-        "source_id": "4223839",
-        "source_token": "",
-        "source_url": "https://hitomi.la/galleries/4223839.html",
-        "source_url_kind": "",
-        "resolved_gallery_id": "",
-        "filter_metadata_checked": "",
-        "filter_metadata_checked_at": "",
-        "title": "My Stitched PNG Renders 01",
-        "title_jp": "My Stitched PNG Renders 01",
-        "language": "japanese",
-        "category": "imageset",
-        "artists": [],
-        "groups": [],
-        "parodies": [],
-        "works": [],
-        "characters": [],
-        "tags": [],
-        "meta_tags": [],
-        "pages": 198,
-        "rating": null,
-        "popularity": null,
-        "posted_at": "2026-10-01 02:56:00-05",
-        "thumbnail": "https://tn.hitomi.la/bigtn/d/c8/e5c31e94b49fe8e3f967855dc3a145524354f5458de0cdc2ccb84b5aa938bc8d.jpg",
-        "first_seen": "2026-10-01T08:30:27+00:00",
-        "last_seen": "2026-10-01T09:29:00+00:00"
-      },
-      "reason": "metadata_unverified",
-      "status": "pending",
-      "first_quarantined_at": "2026-10-01T08:30:27+00:00",
-      "updated_at": "2026-10-01T09:29:00+00:00"
-    },
     "hitomi:4223793": {
       "item": {
         "uid": "hitomi:4223793",
@@ -46318,12 +46283,12 @@
         "posted_at": "2026-10-01 02:29:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/6/ca/328a8eb21e0166d96c4dc9eebc0857c49fbd46bb5c311da28452f92291ff7ca6.jpg",
         "first_seen": "2026-10-01T08:30:27+00:00",
-        "last_seen": "2026-10-01T09:29:00+00:00"
+        "last_seen": "2026-10-01T10:28:24+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-01T08:30:27+00:00",
-      "updated_at": "2026-10-01T09:29:00+00:00"
+      "updated_at": "2026-10-01T10:28:24+00:00"
     },
     "hitomi:4223785": {
       "item": {
@@ -46342,23 +46307,29 @@
         "category": "doujinshi",
         "artists": [],
         "groups": [],
-        "parodies": [],
-        "works": [],
+        "parodies": [
+          "sentimental graffiti"
+        ],
+        "works": [
+          "sentimental graffiti"
+        ],
         "characters": [],
         "tags": [],
-        "meta_tags": [],
+        "meta_tags": [
+          "work:sentimental graffiti"
+        ],
         "pages": 194,
         "rating": null,
         "popularity": null,
         "posted_at": "2026-10-01 02:26:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/1/ac/52833829f241ce90a56fb4b211f4dc3c41912034a9f60ac314ec55ef5f8ccac1.jpg",
         "first_seen": "2026-10-01T08:30:27+00:00",
-        "last_seen": "2026-10-01T09:29:00+00:00"
+        "last_seen": "2026-10-01T10:28:24+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-01T08:30:27+00:00",
-      "updated_at": "2026-10-01T09:29:00+00:00"
+      "updated_at": "2026-10-01T10:28:24+00:00"
     },
     "hitomi:4223754": {
       "item": {
@@ -46388,12 +46359,12 @@
         "posted_at": "2026-10-01 02:13:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/5/2c/df8448fae943dc60fae317df16f849337f9641c1c372197bbd2ca16c5620e2c5.jpg",
         "first_seen": "2026-10-01T08:30:27+00:00",
-        "last_seen": "2026-10-01T09:29:00+00:00"
+        "last_seen": "2026-10-01T10:28:24+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-01T08:30:27+00:00",
-      "updated_at": "2026-10-01T09:29:00+00:00"
+      "updated_at": "2026-10-01T10:28:24+00:00"
     },
     "hitomi:4223748": {
       "item": {
@@ -46423,12 +46394,12 @@
         "posted_at": "2026-10-01 02:05:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/0/9e/14d6c33c4b2ec635e8bd1b1a4c4137bb26247a0c8c2d14dfdb70fb5a17bed9e0.jpg",
         "first_seen": "2026-10-01T08:30:27+00:00",
-        "last_seen": "2026-10-01T09:29:00+00:00"
+        "last_seen": "2026-10-01T10:28:24+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-01T08:30:27+00:00",
-      "updated_at": "2026-10-01T09:29:00+00:00"
+      "updated_at": "2026-10-01T10:28:24+00:00"
     },
     "hitomi:4102915": {
       "item": {
@@ -47001,12 +46972,12 @@
         "posted_at": "2026-10-01 04:01:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/3/71/322620455d93324acbb072544ed8a3fc3d5827f2922c9e81c29c03376a3ad713.jpg",
         "first_seen": "2026-10-01T09:29:00+00:00",
-        "last_seen": "2026-10-01T09:29:00+00:00"
+        "last_seen": "2026-10-01T10:28:24+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-01T09:29:00+00:00",
-      "updated_at": "2026-10-01T09:29:00+00:00"
+      "updated_at": "2026-10-01T10:28:24+00:00"
     },
     "hitomi:4223939": {
       "item": {
@@ -47036,12 +47007,12 @@
         "posted_at": "2026-10-01 03:53:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/e/c6/a17f1025cdc44e618326039ad8b4d585f2c69be9c61787ca35810bbd15f16c6e.jpg",
         "first_seen": "2026-10-01T09:29:00+00:00",
-        "last_seen": "2026-10-01T09:29:00+00:00"
+        "last_seen": "2026-10-01T10:28:24+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-01T09:29:00+00:00",
-      "updated_at": "2026-10-01T09:29:00+00:00"
+      "updated_at": "2026-10-01T10:28:24+00:00"
     },
     "hitomi:4223928": {
       "item": {
@@ -47087,12 +47058,12 @@
         "posted_at": "2026-10-01 03:42:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/9/ec/620560cf00c8d83c1a628f0c24112c7cfdf3e423a1ae4685305f98cca05ccec9.jpg",
         "first_seen": "2026-10-01T09:29:00+00:00",
-        "last_seen": "2026-10-01T09:29:00+00:00"
+        "last_seen": "2026-10-01T10:28:24+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-01T09:29:00+00:00",
-      "updated_at": "2026-10-01T09:29:00+00:00"
+      "updated_at": "2026-10-01T10:28:24+00:00"
     },
     "hitomi:4223898": {
       "item": {
@@ -47103,31 +47074,43 @@
         "source_url": "https://hitomi.la/galleries/4223898.html",
         "source_url_kind": "",
         "resolved_gallery_id": "",
-        "filter_metadata_checked": "",
-        "filter_metadata_checked_at": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T10:28:54+00:00",
         "title": "四葉の戦姫クローバーローゼ外伝 クローバーコバルト編",
         "title_jp": "四葉の戦姫クローバーローゼ外伝 クローバーコバルト編",
         "language": "japanese",
         "category": "doujinshi",
         "artists": [],
-        "groups": [],
+        "groups": [
+          "koeda shouten"
+        ],
         "parodies": [],
         "works": [],
         "characters": [],
-        "tags": [],
-        "meta_tags": [],
+        "tags": [
+          "full color",
+          "female:gloves",
+          "female:magical girl",
+          "multi-work series",
+          "female:ryona",
+          "female:schoolgirl uniform",
+          "female:transformation"
+        ],
+        "meta_tags": [
+          "group:koeda shouten"
+        ],
         "pages": 64,
         "rating": null,
         "popularity": null,
         "posted_at": "2026-10-01 03:28:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/a/77/dfea5263875af9b8a2cccf17e3dfc60e5937f254a4d2cf934ce4c684b02f377a.jpg",
         "first_seen": "2026-10-01T09:29:00+00:00",
-        "last_seen": "2026-10-01T09:29:00+00:00"
+        "last_seen": "2026-10-01T10:28:24+00:00"
       },
-      "reason": "metadata_unverified",
-      "status": "pending",
+      "reason": "blocked:ryona",
+      "status": "blocked",
       "first_quarantined_at": "2026-10-01T09:29:00+00:00",
-      "updated_at": "2026-10-01T09:29:00+00:00"
+      "updated_at": "2026-10-01T10:28:24+00:00"
     },
     "hitomi:4223856": {
       "item": {
@@ -47707,6 +47690,516 @@
       "status": "blocked",
       "first_quarantined_at": "2026-10-01T09:29:00+00:00",
       "updated_at": "2026-10-01T09:29:00+00:00"
+    },
+    "ehentai:4223856": {
+      "item": {
+        "uid": "ehentai:4223856",
+        "source": "ehentai",
+        "source_id": "4223856",
+        "source_token": "132a9effcd",
+        "source_url": "https://e-hentai.org/g/4223856/132a9effcd/",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "[Momofukudo] 僕は堀田先輩の甘マゾわんこ♡",
+        "title_jp": "【桃瀬ふく子】僕は堀田先輩の甘マゾわんこ♡",
+        "language": "japanese",
+        "category": "Doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "language:japanese",
+          "male:yaoi"
+        ],
+        "meta_tags": [],
+        "pages": 31,
+        "rating": 1.89,
+        "popularity": null,
+        "posted_at": "2026-10-01T08:09:32+00:00",
+        "thumbnail": "https://ehgt.org/w/02/683/39088-u2b3np87.webp",
+        "first_seen": "2026-10-01T10:28:24+00:00",
+        "last_seen": "2026-10-01T10:28:24+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T10:28:24+00:00",
+      "updated_at": "2026-10-01T10:28:24+00:00"
+    },
+    "hitomi:4224036": {
+      "item": {
+        "uid": "hitomi:4224036",
+        "source": "hitomi",
+        "source_id": "4224036",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4224036.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "Dirty Pair no Gangbang",
+        "title_jp": "ダーティペアの大乱交",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "yanagawa rio"
+        ],
+        "groups": [
+          "guruguru honpo"
+        ],
+        "parodies": [
+          "dirty pair"
+        ],
+        "works": [
+          "dirty pair"
+        ],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [
+          "artist:yanagawa rio",
+          "group:guruguru honpo",
+          "work:dirty pair"
+        ],
+        "pages": 18,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-01 04:51:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/8/09/b41e304cb1c12afb561507792ac884adbb318482e8273663cc919710398ba098.jpg",
+        "first_seen": "2026-10-01T10:28:24+00:00",
+        "last_seen": "2026-10-01T10:28:24+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-01T10:28:24+00:00",
+      "updated_at": "2026-10-01T10:28:24+00:00"
+    },
+    "hitomi:4223981": {
+      "item": {
+        "uid": "hitomi:4223981",
+        "source": "hitomi",
+        "source_id": "4223981",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4223981.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "skeb",
+        "title_jp": "skeb",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "numuhe"
+        ],
+        "groups": [],
+        "parodies": [
+          "fate grand order"
+        ],
+        "works": [
+          "fate grand order"
+        ],
+        "characters": [
+          "gudako",
+          "hakunon"
+        ],
+        "tags": [],
+        "meta_tags": [
+          "artist:numuhe",
+          "work:fate grand order",
+          "character:gudako",
+          "character:hakunon"
+        ],
+        "pages": 4,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-01 04:24:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/0/dd/1ed34c8147a21aefd652842bca1e62d9a4131f97eccdeab17d15a8f8109d3dd0.jpg",
+        "first_seen": "2026-10-01T10:28:24+00:00",
+        "last_seen": "2026-10-01T10:28:24+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-01T10:28:24+00:00",
+      "updated_at": "2026-10-01T10:28:24+00:00"
+    },
+    "hitomi:4101911": {
+      "item": {
+        "uid": "hitomi:4101911",
+        "source": "hitomi",
+        "source_id": "4101911",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4101911.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "PUMPKINPAN",
+        "title_jp": "PUMPKINPAN",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "pokemon"
+        ],
+        "works": [
+          "pokemon"
+        ],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [
+          "work:pokemon"
+        ],
+        "pages": 21,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-06 13:56:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/c/46/07312ac5268e800a25518fe2e75ab0c43cf47f99ed0995cb048146035cbc646c.jpg",
+        "first_seen": "2026-10-01T10:28:24+00:00",
+        "last_seen": "2026-10-01T10:28:24+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-01T10:28:24+00:00",
+      "updated_at": "2026-10-01T10:28:24+00:00"
+    },
+    "hitomi:4101838": {
+      "item": {
+        "uid": "hitomi:4101838",
+        "source": "hitomi",
+        "source_id": "4101838",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4101838.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T10:29:10+00:00",
+        "title": "温泉♨みかんリク受付中",
+        "title_jp": "温泉♨みかんリク受付中",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "touhou project"
+        ],
+        "works": [
+          "touhou project"
+        ],
+        "characters": [
+          "reimu hakurei"
+        ],
+        "tags": [
+          "female:omorashi",
+          "female:scat",
+          "female:urination"
+        ],
+        "meta_tags": [
+          "work:touhou project",
+          "character:reimu hakurei"
+        ],
+        "pages": 471,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-06 13:27:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/2/b0/d93d7ba8ba8284d188126c3eda8f436454c314f441326dfa1d1818262c30ab02.jpg",
+        "first_seen": "2026-10-01T10:28:24+00:00",
+        "last_seen": "2026-10-01T10:28:24+00:00"
+      },
+      "reason": "blocked:female:scat",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T10:28:24+00:00",
+      "updated_at": "2026-10-01T10:28:24+00:00"
+    },
+    "hitomi:4101671": {
+      "item": {
+        "uid": "hitomi:4101671",
+        "source": "hitomi",
+        "source_id": "4101671",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4101671.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "Lunacle (Patreon)_prat1",
+        "title_jp": "ルナクル",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [
+          "lunacle"
+        ],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [
+          "artist:lunacle"
+        ],
+        "pages": 231,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-06 12:14:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/e/d0/4aa0f1829f197d4eced07c5e5117107cdd89d6436ea56a982d4ccfb6effd3d0e.jpg",
+        "first_seen": "2026-10-01T10:28:24+00:00",
+        "last_seen": "2026-10-01T10:28:24+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-01T10:28:24+00:00",
+      "updated_at": "2026-10-01T10:28:24+00:00"
+    },
+    "hitomi:4101542": {
+      "item": {
+        "uid": "hitomi:4101542",
+        "source": "hitomi",
+        "source_id": "4101542",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4101542.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T10:29:16+00:00",
+        "title": "Otokonokoparadaisu Yukemuri Yarimoku Ryokan-hen",
+        "title_jp": "オトコノコパラダイス湯けむりヤリモク旅館編",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [
+          "silver radish"
+        ],
+        "groups": [
+          "hagurumarokuro"
+        ],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "female:anal",
+          "male:anal",
+          "female:anal intercourse",
+          "male:anal intercourse",
+          "male:big penis",
+          "male:crossdressing",
+          "male:dark skin",
+          "male:dickgirl on male",
+          "group",
+          "male:group",
+          "male:josou seme",
+          "male:lingerie",
+          "female:male on dickgirl",
+          "male:ponytail",
+          "female:rimjob",
+          "female:shemale",
+          "female:sole dickgirl",
+          "male:tomgirl",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:silver radish",
+          "group:hagurumarokuro",
+          "work:original"
+        ],
+        "pages": 305,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-06 11:20:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/a/4f/678f7537a88ed1585ecde8dd95fad6c4b7fe879bf951ef2e0e887eb7fe57f4fa.jpg",
+        "first_seen": "2026-10-01T10:28:24+00:00",
+        "last_seen": "2026-10-01T10:28:24+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T10:28:24+00:00",
+      "updated_at": "2026-10-01T10:28:24+00:00"
+    },
+    "hitomi:4101524": {
+      "item": {
+        "uid": "hitomi:4101524",
+        "source": "hitomi",
+        "source_id": "4101524",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4101524.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "bilibili部分收藏集",
+        "title_jp": "bilibili部分收藏集",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [],
+        "pages": 198,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-06 11:12:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/2/7b/1115bbe4269c695129bc77a1f9cffc07262e5b0dca3a8f73bf97dc88cf37e7b2.jpg",
+        "first_seen": "2026-10-01T10:28:24+00:00",
+        "last_seen": "2026-10-01T10:28:24+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-01T10:28:24+00:00",
+      "updated_at": "2026-10-01T10:28:24+00:00"
+    },
+    "hitomi:4101521": {
+      "item": {
+        "uid": "hitomi:4101521",
+        "source": "hitomi",
+        "source_id": "4101521",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4101521.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T10:29:20+00:00",
+        "title": "Kuzu Onzoushi ga Maid no Toilet ni sarete Jinsei Shuuryou",
+        "title_jp": "クズ御曹司がメイドのトイレにされて人生終了",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "kuloamaki"
+        ],
+        "groups": [
+          "little mantis"
+        ],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "female:beauty mark",
+          "male:cbt",
+          "male:chastity belt",
+          "male:coprophagia",
+          "female:farting",
+          "female:femdom",
+          "female:hairy",
+          "female:maid",
+          "mosaic censorship",
+          "male:pegging",
+          "male:piss drinking",
+          "female:scat",
+          "female:strap-on",
+          "female:urination"
+        ],
+        "meta_tags": [
+          "artist:kuloamaki",
+          "group:little mantis",
+          "work:original"
+        ],
+        "pages": 132,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-06 11:10:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/1/e4/cbd09888de377d47d29bb7e6dda90cbf7fa31a9abc6f481757f9aa8e4500ee41.jpg",
+        "first_seen": "2026-10-01T10:28:24+00:00",
+        "last_seen": "2026-10-01T10:28:24+00:00"
+      },
+      "reason": "blocked:farting",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T10:28:24+00:00",
+      "updated_at": "2026-10-01T10:28:24+00:00"
+    },
+    "hitomi:4101460": {
+      "item": {
+        "uid": "hitomi:4101460",
+        "source": "hitomi",
+        "source_id": "4101460",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4101460.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "杂图",
+        "title_jp": "杂图",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [],
+        "pages": 336,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-06 10:49:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/7/72/28b8eaf7ff55f14bfb18e25bb6776917c6335680a09a1930dda4b7934e027727.jpg",
+        "first_seen": "2026-10-01T10:28:24+00:00",
+        "last_seen": "2026-10-01T10:28:24+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-01T10:28:24+00:00",
+      "updated_at": "2026-10-01T10:28:24+00:00"
+    },
+    "3hentai:3726983": {
+      "item": {
+        "uid": "3hentai:3726983",
+        "source": "3hentai",
+        "source_id": "3726983",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/726983",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "726983",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-10-01T10:29:49+00:00",
+        "title": "[LUXsumildo] League of Legends ①",
+        "title_jp": "[LUXsumildo] League of Legends ①",
+        "language": "english",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "league of legends"
+        ],
+        "works": [
+          "league of legends"
+        ],
+        "characters": [],
+        "tags": [
+          "language:japanese",
+          "language:english",
+          "language:korean",
+          "english",
+          "japanese",
+          "korean",
+          "luxsumildo"
+        ],
+        "meta_tags": [
+          "work:league of legends"
+        ],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s1.3hentai.xyz/d1858036/thumb.jpg",
+        "first_seen": "2026-10-01T10:28:24+00:00",
+        "last_seen": "2026-10-01T10:28:24+00:00"
+      },
+      "reason": "language",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T10:28:24+00:00",
+      "updated_at": "2026-10-01T10:28:24+00:00"
     }
   },
   "hitomi_attempts": {
@@ -49834,10 +50327,10 @@
   },
   "verified_checkpoints": {},
   "hitomi_host_retry_at": 1790868449.0,
-  "updated_at": "2026-10-01T09:29:00+00:00",
+  "updated_at": "2026-10-01T10:28:24+00:00",
   "last_audit": {
-    "last_run": "2026-10-01T09:29:00+00:00",
-    "eligible": 8981,
+    "last_run": "2026-10-01T10:28:24+00:00",
+    "eligible": 8985,
     "attempted": 0,
     "verified": 0,
     "restored": 0,
@@ -49846,6 +50339,6 @@
     "failed": 0,
     "stopped": true,
     "host_cooldown": true,
-    "remaining_source_rechecks": 9174
+    "remaining_source_rechecks": 9178
   }
 }
