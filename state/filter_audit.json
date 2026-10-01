@@ -55271,12 +55271,12 @@
         "posted_at": "2026-10-01 12:43:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/7/06/ad20787d0934dd932a0a4df6c8a5ddb0faa0fbd8c671bf98829a1936dcbea067.jpg",
         "first_seen": "2026-10-01T18:31:56+00:00",
-        "last_seen": "2026-10-01T18:31:56+00:00"
+        "last_seen": "2026-10-01T19:26:55+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-01T18:31:56+00:00",
-      "updated_at": "2026-10-01T18:31:56+00:00"
+      "updated_at": "2026-10-01T19:26:55+00:00"
     },
     "hitomi:4224851": {
       "item": {
@@ -55310,12 +55310,12 @@
         "posted_at": "2026-10-01 12:39:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/8/01/3ecc571240b77ffd6177ff9b3b24fb1c492fe5b2866642147c8f632cab707018.jpg",
         "first_seen": "2026-10-01T18:31:56+00:00",
-        "last_seen": "2026-10-01T18:31:56+00:00"
+        "last_seen": "2026-10-01T19:26:55+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-01T18:31:56+00:00",
-      "updated_at": "2026-10-01T18:31:56+00:00"
+      "updated_at": "2026-10-01T19:26:55+00:00"
     },
     "hitomi:4224837": {
       "item": {
@@ -55345,12 +55345,12 @@
         "posted_at": "2026-10-01 12:27:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/7/aa/bf4fb7163255c6dc7c24afe3e2d4808c34d639097248872cffd7a7aed4d4eaa7.jpg",
         "first_seen": "2026-10-01T18:31:56+00:00",
-        "last_seen": "2026-10-01T18:31:56+00:00"
+        "last_seen": "2026-10-01T19:26:55+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-01T18:31:56+00:00",
-      "updated_at": "2026-10-01T18:31:56+00:00"
+      "updated_at": "2026-10-01T19:26:55+00:00"
     },
     "hitomi:4224811": {
       "item": {
@@ -55445,47 +55445,12 @@
         "posted_at": "2026-10-01 12:12:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/c/cb/52a9059727bdffe1e5376e466ed2a212cb21c0ed0dd56080ab4b7e0911cc9cbc.jpg",
         "first_seen": "2026-10-01T18:31:56+00:00",
-        "last_seen": "2026-10-01T18:31:56+00:00"
+        "last_seen": "2026-10-01T19:26:55+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-01T18:31:56+00:00",
-      "updated_at": "2026-10-01T18:31:56+00:00"
-    },
-    "hitomi:4224772": {
-      "item": {
-        "uid": "hitomi:4224772",
-        "source": "hitomi",
-        "source_id": "4224772",
-        "source_token": "",
-        "source_url": "https://hitomi.la/galleries/4224772.html",
-        "source_url_kind": "",
-        "resolved_gallery_id": "",
-        "filter_metadata_checked": "",
-        "filter_metadata_checked_at": "",
-        "title": "黒猫桃園",
-        "title_jp": "黒猫桃園",
-        "language": "japanese",
-        "category": "imageset",
-        "artists": [],
-        "groups": [],
-        "parodies": [],
-        "works": [],
-        "characters": [],
-        "tags": [],
-        "meta_tags": [],
-        "pages": 20,
-        "rating": null,
-        "popularity": null,
-        "posted_at": "2026-10-01 12:01:00-05",
-        "thumbnail": "https://tn.hitomi.la/bigtn/7/98/8a78b512354788ea3754904960e8b75e47073bd1692b895d501d7c12aba95987.jpg",
-        "first_seen": "2026-10-01T18:31:56+00:00",
-        "last_seen": "2026-10-01T18:31:56+00:00"
-      },
-      "reason": "metadata_unverified",
-      "status": "pending",
-      "first_quarantined_at": "2026-10-01T18:31:56+00:00",
-      "updated_at": "2026-10-01T18:31:56+00:00"
+      "updated_at": "2026-10-01T19:26:55+00:00"
     },
     "hitomi:4224768": {
       "item": {
@@ -55504,23 +55469,29 @@
         "category": "imageset",
         "artists": [],
         "groups": [],
-        "parodies": [],
-        "works": [],
+        "parodies": [
+          "blue archive"
+        ],
+        "works": [
+          "blue archive"
+        ],
         "characters": [],
         "tags": [],
-        "meta_tags": [],
+        "meta_tags": [
+          "work:blue archive"
+        ],
         "pages": 267,
         "rating": null,
         "popularity": null,
         "posted_at": "2026-10-01 11:57:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/9/1d/0335c017b7c49afda5edf9c066c85f9aeed11af2e5fe09e72dbdf296f6b801d9.jpg",
         "first_seen": "2026-10-01T18:31:56+00:00",
-        "last_seen": "2026-10-01T18:31:56+00:00"
+        "last_seen": "2026-10-01T19:26:55+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-01T18:31:56+00:00",
-      "updated_at": "2026-10-01T18:31:56+00:00"
+      "updated_at": "2026-10-01T19:26:55+00:00"
     },
     "hitomi:4224715": {
       "item": {
@@ -55731,12 +55702,12 @@
         "posted_at": "2026-08-04 19:52:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/6/12/7a396193468eb0fdcf36841a0433fcc130a15233018583f7455b6660fc02b126.jpg",
         "first_seen": "2026-10-01T18:31:56+00:00",
-        "last_seen": "2026-10-01T18:31:56+00:00"
+        "last_seen": "2026-10-01T19:26:55+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-01T18:31:56+00:00",
-      "updated_at": "2026-10-01T18:31:56+00:00"
+      "updated_at": "2026-10-01T19:26:55+00:00"
     },
     "hitomi:4097762": {
       "item": {
@@ -56056,6 +56027,1649 @@
       "status": "blocked",
       "first_quarantined_at": "2026-10-01T18:31:56+00:00",
       "updated_at": "2026-10-01T18:31:56+00:00"
+    },
+    "ehentai:4224811": {
+      "item": {
+        "uid": "ehentai:4224811",
+        "source": "ehentai",
+        "source_id": "4224811",
+        "source_token": "a7cf35deec",
+        "source_url": "https://e-hentai.org/g/4224811/a7cf35deec/",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "[Minor Boy] Bishimai Dorei Seikatsu [Chinese]",
+        "title_jp": "[まいなぁぼぉい] 美姉妹奴隷生活 [中国翻訳]",
+        "language": "japanese",
+        "category": "Manga",
+        "artists": [
+          "minor boy"
+        ],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "language:chinese",
+          "language:japanese",
+          "language:translated",
+          "artist:minor boy",
+          "male:bbm",
+          "male:dilf",
+          "female:big ass",
+          "female:big breasts",
+          "female:blackmail",
+          "female:bondage",
+          "female:enema",
+          "female:filming",
+          "female:fingering",
+          "female:humiliation",
+          "female:leotard",
+          "female:rape",
+          "female:scat",
+          "female:slave",
+          "other:full censorship",
+          "other:multi-work series",
+          "other:rough translation",
+          "other:story arc",
+          "other:tankoubon"
+        ],
+        "meta_tags": [
+          "artist:minor boy"
+        ],
+        "pages": 230,
+        "rating": 0.5,
+        "popularity": null,
+        "posted_at": "2026-10-01T17:13:38+00:00",
+        "thumbnail": "https://ehgt.org/w/02/685/73972-8i2hz0i0.webp",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:female:scat",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4224936": {
+      "item": {
+        "uid": "hitomi:4224936",
+        "source": "hitomi",
+        "source_id": "4224936",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4224936.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:25+00:00",
+        "title": "Maihime Chigoku no Ori Hachi",
+        "title_jp": "舞姫恥獄の檻 八",
+        "language": "japanese",
+        "category": "manga",
+        "artists": [
+          "minor boy"
+        ],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "female:anal",
+          "female:big breasts",
+          "female:bondage",
+          "group",
+          "female:hairy",
+          "mosaic censorship",
+          "female:pillory",
+          "rough translation",
+          "female:scat",
+          "female:sex toys",
+          "tankoubon"
+        ],
+        "meta_tags": [
+          "artist:minor boy"
+        ],
+        "pages": 83,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-01 13:40:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/4/40/a1820ff5b5ac64eb78a961ac36da8f7bc7c51672e85db0b0f0371ed7b0cec404.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:female:scat",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4224905": {
+      "item": {
+        "uid": "hitomi:4224905",
+        "source": "hitomi",
+        "source_id": "4224905",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4224905.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "Irishion",
+        "title_jp": "Irishion",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [],
+        "pages": 863,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-01 13:07:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/7/cf/c522f999dcce6b65f2aa384c18823875b9098d88516993c36e2452ca64ce0cf7.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097552": {
+      "item": {
+        "uid": "hitomi:4097552",
+        "source": "hitomi",
+        "source_id": "4097552",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097552.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:45+00:00",
+        "title": "烈ヒロくんと研究モブおじさんズのえっちな本",
+        "title_jp": "烈ヒロくんと研究モブおじさんズのえっちな本",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "kirigakure takaya"
+        ],
+        "groups": [
+          "aniki otokodou"
+        ],
+        "parodies": [
+          "danball senki"
+        ],
+        "works": [
+          "danball senki"
+        ],
+        "characters": [],
+        "tags": [
+          "male:ahegao",
+          "male:anal",
+          "male:anal intercourse",
+          "male:blowjob",
+          "digital",
+          "male:males only",
+          "male:nakadashi",
+          "male:rape",
+          "male:stockings",
+          "male:sweating",
+          "male:tomgirl",
+          "male:urethra insertion",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:kirigakure takaya",
+          "group:aniki otokodou",
+          "work:danball senki"
+        ],
+        "pages": 21,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 17:29:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/b/5c/b3a637564f9367b5af7a004f99664ecec7b9c2783f138f7e71553eeee1b9d5cb.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097533": {
+      "item": {
+        "uid": "hitomi:4097533",
+        "source": "hitomi",
+        "source_id": "4097533",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097533.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:47+00:00",
+        "title": "あいつは褌ボーイ",
+        "title_jp": "あいつは褌ボーイ",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "kirigakure takaya"
+        ],
+        "groups": [
+          "aniki otokodou"
+        ],
+        "parodies": [
+          "inazuma eleven"
+        ],
+        "works": [
+          "inazuma eleven"
+        ],
+        "characters": [
+          "ichirouta kazemaru",
+          "mamoru endou"
+        ],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "beach",
+          "male:crossdressing",
+          "male:dark skin",
+          "digital",
+          "male:eye-covering bang",
+          "male:fundoshi",
+          "male:kodomo doushi",
+          "kodomo only",
+          "male:males only",
+          "male:tomgirl",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:kirigakure takaya",
+          "group:aniki otokodou",
+          "work:inazuma eleven",
+          "character:ichirouta kazemaru",
+          "character:mamoru endou"
+        ],
+        "pages": 38,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 17:15:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/b/19/7a6751eb891af9fb0d021b4d36c5720ead7c38529fd60c084a8ab47dd79b419b.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097525": {
+      "item": {
+        "uid": "hitomi:4097525",
+        "source": "hitomi",
+        "source_id": "4097525",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097525.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:48+00:00",
+        "title": "きりがくれたかや",
+        "title_jp": "きりがくれたかや",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "kirigakure takaya"
+        ],
+        "groups": [
+          "aniki otokodou"
+        ],
+        "parodies": [
+          "inazuma eleven"
+        ],
+        "works": [
+          "inazuma eleven"
+        ],
+        "characters": [
+          "ichirouta kazemaru",
+          "mamoru endou"
+        ],
+        "tags": [
+          "male:anal",
+          "digital",
+          "male:eye-covering bang",
+          "male:males only",
+          "male:masturbation",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:kirigakure takaya",
+          "group:aniki otokodou",
+          "work:inazuma eleven",
+          "character:ichirouta kazemaru",
+          "character:mamoru endou"
+        ],
+        "pages": 22,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 17:11:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/5/1b/f696cc44e1bd24e83898d1745fcfbecd4d1eb4b9670c27c7cdc6ff9bab5f21b5.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097521": {
+      "item": {
+        "uid": "hitomi:4097521",
+        "source": "hitomi",
+        "source_id": "4097521",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097521.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:48+00:00",
+        "title": "Tokubetsu Kyuukou Mementos",
+        "title_jp": "特別急行メメントス",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "kirigakure takaya"
+        ],
+        "groups": [
+          "aniki otokodou"
+        ],
+        "parodies": [
+          "persona 5"
+        ],
+        "works": [
+          "persona 5"
+        ],
+        "characters": [
+          "akira kurusu"
+        ],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "digital",
+          "male:gang rape",
+          "male:males only",
+          "male:nakadashi",
+          "male:rape",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:kirigakure takaya",
+          "group:aniki otokodou",
+          "work:persona 5",
+          "character:akira kurusu"
+        ],
+        "pages": 26,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 17:08:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/5/e7/f18b1e406331a3d7d4780dbbb4179e9972f28621e5f62e7e34619375b1acee75.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097519": {
+      "item": {
+        "uid": "hitomi:4097519",
+        "source": "hitomi",
+        "source_id": "4097519",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097519.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:48+00:00",
+        "title": "おうち収納のススメ",
+        "title_jp": "おうち収納のススメ",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "kirigakure takaya"
+        ],
+        "groups": [
+          "aniki otokodou"
+        ],
+        "parodies": [
+          "pretty rhythm"
+        ],
+        "works": [
+          "pretty rhythm"
+        ],
+        "characters": [
+          "kakeru juuouin",
+          "taiga kougami"
+        ],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "digital",
+          "male:glasses",
+          "male:males only",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:kirigakure takaya",
+          "group:aniki otokodou",
+          "work:pretty rhythm",
+          "character:kakeru juuouin",
+          "character:taiga kougami"
+        ],
+        "pages": 21,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 17:05:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/b/55/089725c55376cf2dd93901dea92318da0079397ada5395ba22ce8ef28b83b55b.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097516": {
+      "item": {
+        "uid": "hitomi:4097516",
+        "source": "hitomi",
+        "source_id": "4097516",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097516.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:49+00:00",
+        "title": "Tomodachi Ijiri",
+        "title_jp": "トモダチイジリ",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "kirigakure takaya"
+        ],
+        "groups": [
+          "aniki otokodou"
+        ],
+        "parodies": [
+          "inazuma eleven go"
+        ],
+        "works": [
+          "inazuma eleven go"
+        ],
+        "characters": [
+          "masaki kariya",
+          "tenma matsukaze"
+        ],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "male:blowjob",
+          "digital",
+          "male:kodomo doushi",
+          "kodomo only",
+          "male:males only",
+          "male:prostate massage",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:kirigakure takaya",
+          "group:aniki otokodou",
+          "work:inazuma eleven go",
+          "character:masaki kariya",
+          "character:tenma matsukaze"
+        ],
+        "pages": 30,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 17:01:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/5/05/0da67964fcbd4a51c511f57457f35bf32601ad2d383e6dfa5f3446b1a2079055.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097511": {
+      "item": {
+        "uid": "hitomi:4097511",
+        "source": "hitomi",
+        "source_id": "4097511",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097511.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:50+00:00",
+        "title": "私の彼はハチワレソックス",
+        "title_jp": "私の彼はハチワレソックス",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "kirigakure takaya"
+        ],
+        "groups": [
+          "aniki otokodou"
+        ],
+        "parodies": [
+          "persona 5"
+        ],
+        "works": [
+          "persona 5"
+        ],
+        "characters": [
+          "akira kurusu",
+          "morgana"
+        ],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "male:bestiality",
+          "male:cat",
+          "digital",
+          "male:males only",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:kirigakure takaya",
+          "group:aniki otokodou",
+          "work:persona 5",
+          "character:akira kurusu",
+          "character:morgana"
+        ],
+        "pages": 17,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 16:57:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/4/39/4f8f50d6077b0b58339428cf181ba3d73851364ad6c14e908ef8a5932a83d394.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097510": {
+      "item": {
+        "uid": "hitomi:4097510",
+        "source": "hitomi",
+        "source_id": "4097510",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097510.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:50+00:00",
+        "title": "一線の向こう",
+        "title_jp": "一線の向こう",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "kirigakure takaya"
+        ],
+        "groups": [
+          "aniki otokodou"
+        ],
+        "parodies": [
+          "pretty rhythm"
+        ],
+        "works": [
+          "pretty rhythm"
+        ],
+        "characters": [
+          "kakeru juuouin",
+          "taiga kougami"
+        ],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "male:blowjob",
+          "digital",
+          "male:glasses",
+          "male:males only",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:kirigakure takaya",
+          "group:aniki otokodou",
+          "work:pretty rhythm",
+          "character:kakeru juuouin",
+          "character:taiga kougami"
+        ],
+        "pages": 30,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 16:51:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/9/f9/79b5bd543b8ef197a197dd7424f57d6f07905d28d9f7ca51b5b37ce070698f99.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097507": {
+      "item": {
+        "uid": "hitomi:4097507",
+        "source": "hitomi",
+        "source_id": "4097507",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097507.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:50+00:00",
+        "title": "ATTACH! Tenma-kun",
+        "title_jp": "ATTACH!てんまくん",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "kirigakure takaya"
+        ],
+        "groups": [
+          "aniki otokodou"
+        ],
+        "parodies": [
+          "inazuma eleven go"
+        ],
+        "works": [
+          "inazuma eleven go"
+        ],
+        "characters": [
+          "tenma matsukaze"
+        ],
+        "tags": [
+          "digital",
+          "male:males only",
+          "male:otokofutanari",
+          "male:shota",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:kirigakure takaya",
+          "group:aniki otokodou",
+          "work:inazuma eleven go",
+          "character:tenma matsukaze"
+        ],
+        "pages": 29,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 16:48:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/7/cd/1a9fa9c03608c9348bcf437cbb3a8ca0d8c2966c899a79e2618a38f6f25c8cd7.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097502": {
+      "item": {
+        "uid": "hitomi:4097502",
+        "source": "hitomi",
+        "source_id": "4097502",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097502.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:51+00:00",
+        "title": "DE-10",
+        "title_jp": "DE-10",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "kirigakure takaya"
+        ],
+        "groups": [
+          "aniki otokodou"
+        ],
+        "parodies": [
+          "inazuma eleven"
+        ],
+        "works": [
+          "inazuma eleven"
+        ],
+        "characters": [
+          "ichirouta kazemaru"
+        ],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "male:blowjob",
+          "digital",
+          "male:eye-covering bang",
+          "male:group",
+          "male:males only",
+          "male:nipple stimulation",
+          "male:rape",
+          "male:shota",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:kirigakure takaya",
+          "group:aniki otokodou",
+          "work:inazuma eleven",
+          "character:ichirouta kazemaru"
+        ],
+        "pages": 77,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 16:42:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/2/8e/ab43fce94563de69d13af87eb6af3571996111cda09eb150e8b2dd1be71828e2.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097501": {
+      "item": {
+        "uid": "hitomi:4097501",
+        "source": "hitomi",
+        "source_id": "4097501",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097501.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:51+00:00",
+        "title": "Tokimeki! High Grade Fundoshi Matsuri! Aratame",
+        "title_jp": "ときめき!ハイグレード褌祭り!改",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "kirigakure takaya"
+        ],
+        "groups": [
+          "aniki otokodou"
+        ],
+        "parodies": [
+          "pretty rhythm"
+        ],
+        "works": [
+          "pretty rhythm"
+        ],
+        "characters": [
+          "kakeru juuouin",
+          "taiga kougami"
+        ],
+        "tags": [
+          "male:blowjob",
+          "digital",
+          "male:frottage",
+          "male:fundoshi",
+          "male:glasses",
+          "male:males only",
+          "no penetration",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:kirigakure takaya",
+          "group:aniki otokodou",
+          "work:pretty rhythm",
+          "character:kakeru juuouin",
+          "character:taiga kougami"
+        ],
+        "pages": 18,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 16:41:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/6/c1/2238d05abfc11cd721f1204dc97e921672b9b46f3a5619afdc84cbed27052c16.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097495": {
+      "item": {
+        "uid": "hitomi:4097495",
+        "source": "hitomi",
+        "source_id": "4097495",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097495.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:52+00:00",
+        "title": "いないこだれだ",
+        "title_jp": "いないこだれだ",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "kirigakure takaya"
+        ],
+        "groups": [],
+        "parodies": [
+          "inazuma eleven",
+          "inazuma eleven go"
+        ],
+        "works": [
+          "inazuma eleven",
+          "inazuma eleven go"
+        ],
+        "characters": [
+          "tenma matsukaze"
+        ],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "male:crying",
+          "digital",
+          "male:humiliation",
+          "male:incest",
+          "male:males only",
+          "male:oyakodon",
+          "male:rape",
+          "male:schoolboy uniform",
+          "male:shota",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:kirigakure takaya",
+          "work:inazuma eleven",
+          "work:inazuma eleven go",
+          "character:tenma matsukaze"
+        ],
+        "pages": 28,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 16:33:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/1/16/e2d5e3ca81fd2d0112bd8c0ac369941a3ceca04ad603ff406878a3e5b0a56161.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097486": {
+      "item": {
+        "uid": "hitomi:4097486",
+        "source": "hitomi",
+        "source_id": "4097486",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097486.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:52+00:00",
+        "title": "特別急行メメントス2",
+        "title_jp": "特別急行メメントス2",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "kirigakure takaya"
+        ],
+        "groups": [
+          "aniki otokodou"
+        ],
+        "parodies": [
+          "persona 5"
+        ],
+        "works": [
+          "persona 5"
+        ],
+        "characters": [
+          "akira kurusu"
+        ],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "male:chikan",
+          "digital",
+          "male:group",
+          "male:humiliation",
+          "male:males only",
+          "male:mmm threesome",
+          "male:nakadashi",
+          "male:rape",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:kirigakure takaya",
+          "group:aniki otokodou",
+          "work:persona 5",
+          "character:akira kurusu"
+        ],
+        "pages": 26,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 16:28:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/9/93/5878b1f3b28674a25239b61b51a799b05d5f397cd1b6843bccd12866f9e10939.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097485": {
+      "item": {
+        "uid": "hitomi:4097485",
+        "source": "hitomi",
+        "source_id": "4097485",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097485.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:52+00:00",
+        "title": "俺と相棒の迷宮○時間スペシャル",
+        "title_jp": "俺と相棒の迷宮○時間スペシャル",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "kirigakure takaya"
+        ],
+        "groups": [
+          "aniki otokodou"
+        ],
+        "parodies": [
+          "persona 4"
+        ],
+        "works": [
+          "persona 4"
+        ],
+        "characters": [
+          "yosuke hanamura",
+          "yuu narukami"
+        ],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "male:blowjob",
+          "digital",
+          "male:exhibitionism",
+          "male:males only",
+          "male:schoolboy uniform",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:kirigakure takaya",
+          "group:aniki otokodou",
+          "work:persona 4",
+          "character:yosuke hanamura",
+          "character:yuu narukami"
+        ],
+        "pages": 12,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 16:24:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/e/6c/6368c0b9e8832139831e48ca13b10f542e1a2a1c2ffc55000d48842d5e8866ce.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097482": {
+      "item": {
+        "uid": "hitomi:4097482",
+        "source": "hitomi",
+        "source_id": "4097482",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097482.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:53+00:00",
+        "title": "ALPHA R.U.S.H.",
+        "title_jp": "霞vsAlpha-152",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "bowalia"
+        ],
+        "groups": [],
+        "parodies": [
+          "dead or alive"
+        ],
+        "works": [
+          "dead or alive"
+        ],
+        "characters": [
+          "kasumi"
+        ],
+        "tags": [
+          "female:big breasts",
+          "female:blood",
+          "female:clone",
+          "female:females only",
+          "female:kunoichi",
+          "female:muscle",
+          "no penetration",
+          "female:ponytail",
+          "female:ryona",
+          "female:snuff",
+          "female:stockings",
+          "female:trampling",
+          "female:urination",
+          "female:wrestling"
+        ],
+        "meta_tags": [
+          "artist:bowalia",
+          "work:dead or alive",
+          "character:kasumi"
+        ],
+        "pages": 6,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 16:22:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/a/7c/a0ee0993bcca36cbdc434491f8ac984cd5c63c925ce7c13ca063c1080dc7d7ca.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:blood",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097478": {
+      "item": {
+        "uid": "hitomi:4097478",
+        "source": "hitomi",
+        "source_id": "4097478",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097478.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "YASIO0",
+        "title_jp": "YASIO0",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [],
+        "pages": 76,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 16:21:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/3/ae/49adac797fa4e30ab49db4d45f59aa78e199250622e6fd92dcdec2ab1ac0aae3.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097476": {
+      "item": {
+        "uid": "hitomi:4097476",
+        "source": "hitomi",
+        "source_id": "4097476",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097476.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:54+00:00",
+        "title": "P3綾時受痴漢電車 主受もあるよ",
+        "title_jp": "P3綾時受痴漢電車 主受もあるよ",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "kirigakure takaya"
+        ],
+        "groups": [
+          "aniki otokodou"
+        ],
+        "parodies": [
+          "persona 3"
+        ],
+        "works": [
+          "persona 3"
+        ],
+        "characters": [
+          "makoto yuuki"
+        ],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "male:beauty mark",
+          "male:chikan",
+          "male:crossdressing",
+          "digital",
+          "male:exposed clothing",
+          "male:eye-covering bang",
+          "male:frottage",
+          "male:garter belt",
+          "male:group",
+          "male:hidden sex",
+          "male:humiliation",
+          "male:maid",
+          "male:males only",
+          "male:mmm threesome",
+          "male:nakadashi",
+          "male:stockings",
+          "male:tomgirl",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:kirigakure takaya",
+          "group:aniki otokodou",
+          "work:persona 3",
+          "character:makoto yuuki"
+        ],
+        "pages": 19,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 16:20:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/2/8a/d29ac0450373357670b58e2199830efdd048ee56f810479086e4f3d7896e68a2.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097475": {
+      "item": {
+        "uid": "hitomi:4097475",
+        "source": "hitomi",
+        "source_id": "4097475",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097475.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:54+00:00",
+        "title": "おつきさまかぞえうた-満-",
+        "title_jp": "おつきさまかぞえうた-満-",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "kirigakure takaya"
+        ],
+        "groups": [
+          "aniki otokodou"
+        ],
+        "parodies": [
+          "persona 3"
+        ],
+        "works": [
+          "persona 3"
+        ],
+        "characters": [
+          "makoto yuuki"
+        ],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "male:beauty mark",
+          "digital",
+          "male:eye-covering bang",
+          "male:males only",
+          "multi-work series",
+          "male:nakadashi",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:kirigakure takaya",
+          "group:aniki otokodou",
+          "work:persona 3",
+          "character:makoto yuuki"
+        ],
+        "pages": 39,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 16:18:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/a/29/923f2609df25e8985998ff83ddd2b999278f5b1ba1c3b8c03a58729d342d529a.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097470": {
+      "item": {
+        "uid": "hitomi:4097470",
+        "source": "hitomi",
+        "source_id": "4097470",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097470.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:54+00:00",
+        "title": "Otsuki-sama Kazoeuta",
+        "title_jp": "おつきさまかぞえうた",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "kirigakure takaya"
+        ],
+        "groups": [
+          "aniki otokodou"
+        ],
+        "parodies": [
+          "persona",
+          "persona 3"
+        ],
+        "works": [
+          "persona",
+          "persona 3"
+        ],
+        "characters": [
+          "makoto yuuki"
+        ],
+        "tags": [
+          "male:beauty mark",
+          "digital",
+          "male:eye-covering bang",
+          "male:males only",
+          "male:masturbation",
+          "multi-work series",
+          "male:schoolboy uniform",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:kirigakure takaya",
+          "group:aniki otokodou",
+          "work:persona",
+          "work:persona 3",
+          "character:makoto yuuki"
+        ],
+        "pages": 25,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 16:13:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/7/da/91239432bd035cd5fb2721cf1f4f2a1c8c7781cc23397520d9e8ae104a36bda7.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097460": {
+      "item": {
+        "uid": "hitomi:4097460",
+        "source": "hitomi",
+        "source_id": "4097460",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097460.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:55+00:00",
+        "title": "箱庭の兄弟",
+        "title_jp": "箱庭の兄弟",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "satsuki fumi"
+        ],
+        "groups": [
+          "bakuchi jinsei sp"
+        ],
+        "parodies": [
+          "kimetsu no yaiba"
+        ],
+        "works": [
+          "kimetsu no yaiba"
+        ],
+        "characters": [
+          "giyuu tomioka",
+          "tanjirou kamado"
+        ],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "digital",
+          "male:males only",
+          "male:nakadashi",
+          "male:scar",
+          "male:tomgirl",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:satsuki fumi",
+          "group:bakuchi jinsei sp",
+          "work:kimetsu no yaiba",
+          "character:giyuu tomioka",
+          "character:tanjirou kamado"
+        ],
+        "pages": 21,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 16:03:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/d/ca/f820719e607c27a963e5f0292d965ba8690cb38fe56941fb0cbc4148c155dcad.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097451": {
+      "item": {
+        "uid": "hitomi:4097451",
+        "source": "hitomi",
+        "source_id": "4097451",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097451.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:56+00:00",
+        "title": "君と寄り添う夢の涯",
+        "title_jp": "君と寄り添う夢の涯",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "toya mayu"
+        ],
+        "groups": [
+          "nmtk"
+        ],
+        "parodies": [
+          "kimetsu no yaiba"
+        ],
+        "works": [
+          "kimetsu no yaiba"
+        ],
+        "characters": [
+          "kyojuro rengoku",
+          "tanjirou kamado"
+        ],
+        "tags": [
+          "digital",
+          "male:eyepatch",
+          "male:males only",
+          "male:scar",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:toya mayu",
+          "group:nmtk",
+          "work:kimetsu no yaiba",
+          "character:kyojuro rengoku",
+          "character:tanjirou kamado"
+        ],
+        "pages": 104,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 15:53:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/5/c8/5bcf0d5baa6845be2ac5c3261fb7f0da4a0bb0f618091390a68c8db4c476ec85.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097445": {
+      "item": {
+        "uid": "hitomi:4097445",
+        "source": "hitomi",
+        "source_id": "4097445",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097445.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:56+00:00",
+        "title": "Houkago Goki Kan",
+        "title_jp": "放課後ゴキ姦",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "female:bbw",
+          "female:bestiality",
+          "female:big ass",
+          "male:big penis",
+          "female:insect",
+          "male:insect",
+          "female:nakadashi",
+          "female:schoolgirl uniform",
+          "female:sole female",
+          "variant set"
+        ],
+        "meta_tags": [
+          "work:original"
+        ],
+        "pages": 20,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 15:42:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/7/bd/5b46203fedce8df6def05db706774dd4a0ded3a55cb620b8577f437a87b7dbd7.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:insect:insect",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097443": {
+      "item": {
+        "uid": "hitomi:4097443",
+        "source": "hitomi",
+        "source_id": "4097443",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097443.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:56+00:00",
+        "title": "[mrmrm",
+        "title_jp": "[mrmrm",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "disney twisted-wonderland"
+        ],
+        "works": [
+          "disney twisted-wonderland"
+        ],
+        "characters": [
+          "floyd leech",
+          "jade leech"
+        ],
+        "tags": [
+          "male:business suit",
+          "digital",
+          "male:exposed clothing",
+          "male:group",
+          "male:heterochromia",
+          "male:males only",
+          "male:mmm threesome",
+          "male:twins",
+          "male:unusual teeth",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "work:disney twisted-wonderland",
+          "character:floyd leech",
+          "character:jade leech"
+        ],
+        "pages": 77,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 15:41:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/2/ef/d2458e22dd45686a6152bb67d9b0ee1b8ec0a7d1ee7470c2a93ac41b9f727ef2.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097440": {
+      "item": {
+        "uid": "hitomi:4097440",
+        "source": "hitomi",
+        "source_id": "4097440",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097440.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:57+00:00",
+        "title": "EDIT -cassino Sairoku Shuu 3-",
+        "title_jp": "EDIT-cassino再録集3-",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "magarikoji lily"
+        ],
+        "groups": [
+          "cassino"
+        ],
+        "parodies": [
+          "neon genesis evangelion"
+        ],
+        "works": [
+          "neon genesis evangelion"
+        ],
+        "characters": [
+          "kaworu nagisa",
+          "shinji ikari"
+        ],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "male:blowjob",
+          "male:males only",
+          "online tora matsuri 2020 summer",
+          "male:schoolboy uniform",
+          "soushuuhen",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:magarikoji lily",
+          "group:cassino",
+          "work:neon genesis evangelion",
+          "character:kaworu nagisa",
+          "character:shinji ikari"
+        ],
+        "pages": 160,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 15:36:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/d/31/c59f87bdb25b596f7ebc376a9c26b23c8e52558a43980aaab72d1b227b80e31d.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
+    },
+    "hitomi:4097438": {
+      "item": {
+        "uid": "hitomi:4097438",
+        "source": "hitomi",
+        "source_id": "4097438",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4097438.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-01T19:27:57+00:00",
+        "title": "[mrmrm",
+        "title_jp": "[mrmrm",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "disney twisted-wonderland"
+        ],
+        "works": [
+          "disney twisted-wonderland"
+        ],
+        "characters": [
+          "azul ashengrotto",
+          "floyd leech",
+          "jade leech"
+        ],
+        "tags": [
+          "male:ahegao",
+          "male:anal",
+          "male:anal intercourse",
+          "male:blowjob",
+          "male:business suit",
+          "digital",
+          "male:glasses",
+          "male:group",
+          "male:heterochromia",
+          "male:males only",
+          "male:mmm threesome",
+          "male:nakadashi",
+          "male:twins",
+          "male:unusual teeth",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "work:disney twisted-wonderland",
+          "character:azul ashengrotto",
+          "character:floyd leech",
+          "character:jade leech"
+        ],
+        "pages": 134,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-04 15:34:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/9/ef/2a04935ba342d23003a3a9ea442d76f89628d7a6abcb5888a8e162353afacef9.jpg",
+        "first_seen": "2026-10-01T19:26:55+00:00",
+        "last_seen": "2026-10-01T19:26:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-01T19:26:55+00:00",
+      "updated_at": "2026-10-01T19:26:55+00:00"
     }
   },
   "hitomi_attempts": {
@@ -58356,10 +59970,10 @@
   },
   "verified_checkpoints": {},
   "hitomi_host_retry_at": 1790911750.0,
-  "updated_at": "2026-10-01T18:31:56+00:00",
+  "updated_at": "2026-10-01T19:26:55+00:00",
   "last_audit": {
-    "last_run": "2026-10-01T18:31:56+00:00",
-    "eligible": 9146,
+    "last_run": "2026-10-01T19:26:55+00:00",
+    "eligible": 9153,
     "attempted": 0,
     "verified": 0,
     "restored": 0,
@@ -58368,6 +59982,6 @@
     "failed": 0,
     "stopped": true,
     "host_cooldown": true,
-    "remaining_source_rechecks": 9207
+    "remaining_source_rechecks": 9208
   }
 }
