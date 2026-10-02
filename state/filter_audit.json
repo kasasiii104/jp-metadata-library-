@@ -73796,6 +73796,643 @@
       "status": "blocked",
       "first_quarantined_at": "2026-10-02T17:27:05+00:00",
       "updated_at": "2026-10-02T17:27:05+00:00"
+    },
+    "hitomi:4226951": {
+      "item": {
+        "uid": "hitomi:4226951",
+        "source": "hitomi",
+        "source_id": "4226951",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4226951.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "Krolik (decensored)",
+        "title_jp": "Krolik (decensored)",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [
+          "eonsang"
+        ],
+        "groups": [],
+        "parodies": [
+          "girls frontline"
+        ],
+        "works": [
+          "girls frontline"
+        ],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [
+          "artist:eonsang",
+          "work:girls frontline"
+        ],
+        "pages": 2,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-02 12:59:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/a/08/fe9ce98e2f144eab7cb2cecd32a245aeed732d5e487a795a810f6ee33e45308a.jpg",
+        "first_seen": "2026-10-02T18:30:55+00:00",
+        "last_seen": "2026-10-02T18:30:55+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-02T18:30:55+00:00",
+      "updated_at": "2026-10-02T18:30:55+00:00"
+    },
+    "hitomi:4226924": {
+      "item": {
+        "uid": "hitomi:4226924",
+        "source": "hitomi",
+        "source_id": "4226924",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4226924.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-02T18:31:29+00:00",
+        "title": "FUCK THE LIGHTER!",
+        "title_jp": "FUCK THE LIGHTER!",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "habemaru"
+        ],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "male:furry",
+          "male:males only",
+          "male:muscle",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:habemaru"
+        ],
+        "pages": 27,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-02 12:40:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/3/20/9de3e6339ef85ddf11b0a5852531ba80359f5da4f531e62ae0069f6c42800203.jpg",
+        "first_seen": "2026-10-02T18:30:55+00:00",
+        "last_seen": "2026-10-02T18:30:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-02T18:30:55+00:00",
+      "updated_at": "2026-10-02T18:30:55+00:00"
+    },
+    "hitomi:4226876": {
+      "item": {
+        "uid": "hitomi:4226876",
+        "source": "hitomi",
+        "source_id": "4226876",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4226876.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "Personal collection dump 56",
+        "title_jp": "Personal collection dump 56",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [],
+        "pages": 492,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-02 12:17:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/7/b4/b2ac89a1caf24c1752d54bfa3c3fc840e86c6e31f4d90de2a999fa6828e84b47.jpg",
+        "first_seen": "2026-10-02T18:30:55+00:00",
+        "last_seen": "2026-10-02T18:30:55+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-02T18:30:55+00:00",
+      "updated_at": "2026-10-02T18:30:55+00:00"
+    },
+    "hitomi:4226875": {
+      "item": {
+        "uid": "hitomi:4226875",
+        "source": "hitomi",
+        "source_id": "4226875",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4226875.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "Personal collection dump 55",
+        "title_jp": "Personal collection dump 55",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [],
+        "pages": 1075,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-02 12:17:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/9/af/3d29967c1725307346ceb8360867a689f4f42f7a9aec9da45357363dc33faaf9.jpg",
+        "first_seen": "2026-10-02T18:30:55+00:00",
+        "last_seen": "2026-10-02T18:30:55+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-02T18:30:55+00:00",
+      "updated_at": "2026-10-02T18:30:55+00:00"
+    },
+    "hitomi:4226874": {
+      "item": {
+        "uid": "hitomi:4226874",
+        "source": "hitomi",
+        "source_id": "4226874",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4226874.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "Personal collection dump 54",
+        "title_jp": "Personal collection dump 54",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [],
+        "pages": 1481,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-02 12:17:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/8/a5/c6b14f6876b5b0d556bb9ad47cbd9675d7630650225397ef2a2f55ed42ab8a58.jpg",
+        "first_seen": "2026-10-02T18:30:55+00:00",
+        "last_seen": "2026-10-02T18:30:55+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-02T18:30:55+00:00",
+      "updated_at": "2026-10-02T18:30:55+00:00"
+    },
+    "hitomi:4226873": {
+      "item": {
+        "uid": "hitomi:4226873",
+        "source": "hitomi",
+        "source_id": "4226873",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4226873.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "Personal collection dump 53",
+        "title_jp": "Personal collection dump 53",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [],
+        "pages": 1679,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-02 12:17:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/5/4f/0aded2369efddf48f1d50ee57c0b5c55f4b42e0fbdb5a2d6d6635c05c48944f5.jpg",
+        "first_seen": "2026-10-02T18:30:55+00:00",
+        "last_seen": "2026-10-02T18:30:55+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-02T18:30:55+00:00",
+      "updated_at": "2026-10-02T18:30:55+00:00"
+    },
+    "hitomi:4226855": {
+      "item": {
+        "uid": "hitomi:4226855",
+        "source": "hitomi",
+        "source_id": "4226855",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4226855.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "Artist:Bendedede",
+        "title_jp": "Artist:Bendedede",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "deltarune",
+          "kirby",
+          "sailor moon",
+          "super mario brothers",
+          "undertale"
+        ],
+        "works": [
+          "deltarune",
+          "kirby",
+          "sailor moon",
+          "super mario brothers",
+          "undertale"
+        ],
+        "characters": [
+          "adeleine",
+          "kou seiya",
+          "kou taiki",
+          "kou yaten",
+          "sailor chibi moon",
+          "sailor jupiter",
+          "sailor mars",
+          "sailor mercury",
+          "sailor moon",
+          "sailor neptune",
+          "sailor pluto",
+          "sailor saturn",
+          "sailor uranus",
+          "sailor venus",
+          "tuxedo mask"
+        ],
+        "tags": [],
+        "meta_tags": [
+          "work:deltarune",
+          "work:kirby",
+          "work:sailor moon",
+          "work:super mario brothers",
+          "work:undertale",
+          "character:adeleine",
+          "character:kou seiya",
+          "character:kou taiki",
+          "character:kou yaten",
+          "character:sailor chibi moon",
+          "character:sailor jupiter",
+          "character:sailor mars",
+          "character:sailor mercury",
+          "character:sailor moon",
+          "character:sailor neptune",
+          "character:sailor pluto",
+          "character:sailor saturn",
+          "character:sailor uranus",
+          "character:sailor venus",
+          "character:tuxedo mask"
+        ],
+        "pages": 1074,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-02 12:10:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/8/8f/6902f706325a1ee7b41a08853f9b77311ea99ed067e0f72b5fde7ef5068138f8.jpg",
+        "first_seen": "2026-10-02T18:30:55+00:00",
+        "last_seen": "2026-10-02T18:30:55+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-02T18:30:55+00:00",
+      "updated_at": "2026-10-02T18:30:55+00:00"
+    },
+    "hitomi:4086697": {
+      "item": {
+        "uid": "hitomi:4086697",
+        "source": "hitomi",
+        "source_id": "4086697",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4086697.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-02T18:31:48+00:00",
+        "title": "The Young Master Wants to Be Petted!",
+        "title_jp": "坊ちゃんはなでられたい!",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "jujutsu kaisen"
+        ],
+        "works": [
+          "jujutsu kaisen"
+        ],
+        "characters": [
+          "satoru gojo",
+          "suguru geto"
+        ],
+        "tags": [
+          "male:fox",
+          "male:kemonomimi",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "work:jujutsu kaisen",
+          "character:satoru gojo",
+          "character:suguru geto"
+        ],
+        "pages": 25,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-30 04:14:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/b/1a/a3df98d27a68239c7296bb19ca4bfd1749f55ed563be27c70832ab7374d3b1ab.jpg",
+        "first_seen": "2026-10-02T18:30:55+00:00",
+        "last_seen": "2026-10-02T18:30:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-02T18:30:55+00:00",
+      "updated_at": "2026-10-02T18:30:55+00:00"
+    },
+    "hitomi:4086543": {
+      "item": {
+        "uid": "hitomi:4086543",
+        "source": "hitomi",
+        "source_id": "4086543",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4086543.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-02T18:31:50+00:00",
+        "title": "NASTY ALICE",
+        "title_jp": "NASTY ALICE",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "dokonoko"
+        ],
+        "groups": [],
+        "parodies": [
+          "axis powers hetalia"
+        ],
+        "works": [
+          "axis powers hetalia"
+        ],
+        "characters": [
+          "america",
+          "france"
+        ],
+        "tags": [
+          "male:males only",
+          "male:shota",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:dokonoko",
+          "work:axis powers hetalia",
+          "character:america",
+          "character:france"
+        ],
+        "pages": 18,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-30 01:43:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/5/81/0508a7d1e0a396f8b736f9f3df781c8d2ac8da2cf7bc801f8fb2a374fc589815.jpg",
+        "first_seen": "2026-10-02T18:30:55+00:00",
+        "last_seen": "2026-10-02T18:30:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-02T18:30:55+00:00",
+      "updated_at": "2026-10-02T18:30:55+00:00"
+    },
+    "hitomi:4086539": {
+      "item": {
+        "uid": "hitomi:4086539",
+        "source": "hitomi",
+        "source_id": "4086539",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4086539.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-02T18:31:50+00:00",
+        "title": "Dame na Otona ni Nacchau yo",
+        "title_jp": "ダメな大人になっちゃうよ",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "iwaki soyogo"
+        ],
+        "groups": [
+          "hobby hobby"
+        ],
+        "parodies": [
+          "axis powers hetalia"
+        ],
+        "works": [
+          "axis powers hetalia"
+        ],
+        "characters": [
+          "america",
+          "france"
+        ],
+        "tags": [
+          "male:bbm",
+          "male:males only",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:iwaki soyogo",
+          "group:hobby hobby",
+          "work:axis powers hetalia",
+          "character:america",
+          "character:france"
+        ],
+        "pages": 30,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-30 01:43:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/6/ae/a5b2942329593c3046be1eb0797392a90b0d0853b30ee632ff81de2cde02dae6.jpg",
+        "first_seen": "2026-10-02T18:30:55+00:00",
+        "last_seen": "2026-10-02T18:30:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-02T18:30:55+00:00",
+      "updated_at": "2026-10-02T18:30:55+00:00"
+    },
+    "hitomi:4086533": {
+      "item": {
+        "uid": "hitomi:4086533",
+        "source": "hitomi",
+        "source_id": "4086533",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4086533.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-02T18:31:50+00:00",
+        "title": "Joubu na Karada",
+        "title_jp": "丈夫なからだ",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "gotou"
+        ],
+        "groups": [
+          "bed sabaku"
+        ],
+        "parodies": [
+          "axis powers hetalia"
+        ],
+        "works": [
+          "axis powers hetalia"
+        ],
+        "characters": [
+          "prussia",
+          "spain"
+        ],
+        "tags": [
+          "male:amputee",
+          "male:males only"
+        ],
+        "meta_tags": [
+          "artist:gotou",
+          "group:bed sabaku",
+          "work:axis powers hetalia",
+          "character:prussia",
+          "character:spain"
+        ],
+        "pages": 26,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-30 01:42:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/3/2c/3306bc726bd43c0fbe9583588a7ca4836364bf59b9a302f0bb1c2085433332c3.jpg",
+        "first_seen": "2026-10-02T18:30:55+00:00",
+        "last_seen": "2026-10-02T18:30:55+00:00"
+      },
+      "reason": "blocked:amputee",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-02T18:30:55+00:00",
+      "updated_at": "2026-10-02T18:30:55+00:00"
+    },
+    "hitomi:4086529": {
+      "item": {
+        "uid": "hitomi:4086529",
+        "source": "hitomi",
+        "source_id": "4086529",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4086529.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-02T18:31:51+00:00",
+        "title": "Konna ni Kawaii Kuni ga Prussia no Wake ga Nai",
+        "title_jp": "こんなに可愛い国がプロイセンのワケが無い",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "axis powers hetalia"
+        ],
+        "works": [
+          "axis powers hetalia"
+        ],
+        "characters": [
+          "france",
+          "prussia",
+          "spain"
+        ],
+        "tags": [
+          "male:males only",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "work:axis powers hetalia",
+          "character:france",
+          "character:prussia",
+          "character:spain"
+        ],
+        "pages": 18,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-30 01:42:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/5/05/0e2821a294832cc0405cf81f61605dd81071cb2e71a888e6eaa38851c15b0055.jpg",
+        "first_seen": "2026-10-02T18:30:55+00:00",
+        "last_seen": "2026-10-02T18:30:55+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-02T18:30:55+00:00",
+      "updated_at": "2026-10-02T18:30:55+00:00"
+    },
+    "hitomi:4086379": {
+      "item": {
+        "uid": "hitomi:4086379",
+        "source": "hitomi",
+        "source_id": "4086379",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4086379.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-02T18:31:55+00:00",
+        "title": "Various Galgame Feet-Femdom Collection Part 1",
+        "title_jp": "Various Galgame Feet-Femdom Collection Part 1",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "male:anal",
+          "male:bondage",
+          "female:bride",
+          "male:cbt",
+          "female:denki anma",
+          "female:facesitting",
+          "female:farting",
+          "female:femdom",
+          "female:foot licking",
+          "female:footjob",
+          "female:handjob",
+          "female:maid",
+          "male:nipple stimulation",
+          "female:nurse",
+          "male:prostate massage",
+          "male:sex toys",
+          "female:sister",
+          "male:spanking",
+          "female:stockings",
+          "female:tabi socks",
+          "female:teacher",
+          "female:urination",
+          "male:urination",
+          "male:x-ray"
+        ],
+        "meta_tags": [],
+        "pages": 1999,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-29 23:35:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/8/d4/e47d1949ff838300f807c6ec2cd80b70c889a58ccea3ed26e4c80756c39c5d48.jpg",
+        "first_seen": "2026-10-02T18:30:55+00:00",
+        "last_seen": "2026-10-02T18:30:55+00:00"
+      },
+      "reason": "blocked:farting",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-02T18:30:55+00:00",
+      "updated_at": "2026-10-02T18:30:55+00:00"
     }
   },
   "hitomi_attempts": {
@@ -76426,10 +77063,10 @@
   },
   "verified_checkpoints": {},
   "hitomi_host_retry_at": 1791001672.0,
-  "updated_at": "2026-10-02T17:27:05+00:00",
+  "updated_at": "2026-10-02T18:30:55+00:00",
   "last_audit": {
-    "last_run": "2026-10-02T17:27:05+00:00",
-    "eligible": 9206,
+    "last_run": "2026-10-02T18:30:55+00:00",
+    "eligible": 9208,
     "attempted": 0,
     "verified": 0,
     "restored": 0,
@@ -76438,6 +77075,6 @@
     "failed": 0,
     "stopped": true,
     "host_cooldown": true,
-    "remaining_source_rechecks": 9273
+    "remaining_source_rechecks": 9279
   }
 }
