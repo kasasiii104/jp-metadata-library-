@@ -72206,41 +72206,6 @@
       "first_quarantined_at": "2026-10-02T14:29:56+00:00",
       "updated_at": "2026-10-02T14:29:56+00:00"
     },
-    "hitomi:4226407": {
-      "item": {
-        "uid": "hitomi:4226407",
-        "source": "hitomi",
-        "source_id": "4226407",
-        "source_token": "",
-        "source_url": "https://hitomi.la/galleries/4226407.html",
-        "source_url_kind": "",
-        "resolved_gallery_id": "",
-        "filter_metadata_checked": "",
-        "filter_metadata_checked_at": "",
-        "title": "Okaa-san ga Kossetsu Shita no de Musuko no Ore ga Kaigo Suru! Sono 3",
-        "title_jp": "お母さんが骨折したので息子のオレが介護する！その3",
-        "language": "japanese",
-        "category": "doujinshi",
-        "artists": [],
-        "groups": [],
-        "parodies": [],
-        "works": [],
-        "characters": [],
-        "tags": [],
-        "meta_tags": [],
-        "pages": 52,
-        "rating": null,
-        "popularity": null,
-        "posted_at": "2026-10-02 08:24:00-05",
-        "thumbnail": "https://tn.hitomi.la/bigtn/b/44/4857d8009a946009703080a0b67ea471eec35d11576cbb2aef285d8eaaaf944b.jpg",
-        "first_seen": "2026-10-02T14:29:56+00:00",
-        "last_seen": "2026-10-02T14:29:56+00:00"
-      },
-      "reason": "metadata_unverified",
-      "status": "pending",
-      "first_quarantined_at": "2026-10-02T14:29:56+00:00",
-      "updated_at": "2026-10-02T14:29:56+00:00"
-    },
     "hitomi:4088608": {
       "item": {
         "uid": "hitomi:4088608",
@@ -72890,6 +72855,336 @@
       "status": "blocked",
       "first_quarantined_at": "2026-10-02T14:29:56+00:00",
       "updated_at": "2026-10-02T14:29:56+00:00"
+    },
+    "hitomi:4226572": {
+      "item": {
+        "uid": "hitomi:4226572",
+        "source": "hitomi",
+        "source_id": "4226572",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4226572.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "heart some bread 03",
+        "title_jp": "heart some bread 03",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "sasaoka gungu"
+        ],
+        "groups": [
+          "heart some bread"
+        ],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [
+          "artist:sasaoka gungu",
+          "group:heart some bread"
+        ],
+        "pages": 11,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-02 09:49:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/f/11/5ee065d67c17977dd42f60b97c60374254a7b5df0032ab9c39c0c44d5858711f.jpg",
+        "first_seen": "2026-10-02T15:29:28+00:00",
+        "last_seen": "2026-10-02T15:29:28+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-02T15:29:28+00:00",
+      "updated_at": "2026-10-02T15:29:28+00:00"
+    },
+    "hitomi:4226569": {
+      "item": {
+        "uid": "hitomi:4226569",
+        "source": "hitomi",
+        "source_id": "4226569",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4226569.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "heart some bread 05",
+        "title_jp": "heart some bread 05",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "sasaoka gungu"
+        ],
+        "groups": [
+          "heart some bread"
+        ],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [
+          "artist:sasaoka gungu",
+          "group:heart some bread"
+        ],
+        "pages": 12,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-02 09:49:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/d/ce/20d58211b579f107d5ca3a8acfc3ef436eebc487caa7f5253b9d985f4a886ced.jpg",
+        "first_seen": "2026-10-02T15:29:28+00:00",
+        "last_seen": "2026-10-02T15:29:28+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-02T15:29:28+00:00",
+      "updated_at": "2026-10-02T15:29:28+00:00"
+    },
+    "hitomi:4226568": {
+      "item": {
+        "uid": "hitomi:4226568",
+        "source": "hitomi",
+        "source_id": "4226568",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4226568.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "heart some bread 06",
+        "title_jp": "heart some bread 06",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "sasaoka gungu"
+        ],
+        "groups": [
+          "heart some bread"
+        ],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [
+          "artist:sasaoka gungu",
+          "group:heart some bread"
+        ],
+        "pages": 13,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-02 09:48:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/6/0d/3170c6c07ea28d4b780d0acde84798f17ddbafddaf00a9de44a482a9039010d6.jpg",
+        "first_seen": "2026-10-02T15:29:28+00:00",
+        "last_seen": "2026-10-02T15:29:28+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-02T15:29:28+00:00",
+      "updated_at": "2026-10-02T15:29:28+00:00"
+    },
+    "hitomi:4226567": {
+      "item": {
+        "uid": "hitomi:4226567",
+        "source": "hitomi",
+        "source_id": "4226567",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4226567.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "heart some bread 07α",
+        "title_jp": "heart some bread 07α",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "sasaoka gungu"
+        ],
+        "groups": [
+          "heart some bread"
+        ],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [
+          "artist:sasaoka gungu",
+          "group:heart some bread"
+        ],
+        "pages": 12,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-02 09:48:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/3/49/bd033d76b8efe87cea0478fa6465910b282f6430672a4b4fb0befa2e54cf4493.jpg",
+        "first_seen": "2026-10-02T15:29:28+00:00",
+        "last_seen": "2026-10-02T15:29:28+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-02T15:29:28+00:00",
+      "updated_at": "2026-10-02T15:29:28+00:00"
+    },
+    "hitomi:4087851": {
+      "item": {
+        "uid": "hitomi:4087851",
+        "source": "hitomi",
+        "source_id": "4087851",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4087851.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "Jiyuu Sensei 55119522",
+        "title_jp": "Jiyuu Sensei 55119522",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [],
+        "pages": 122,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-30 18:21:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/a/0c/a411bae1dc9c8d20b47079c87049a5639205212f2e83c9d1c36f8af76c6e90ca.jpg",
+        "first_seen": "2026-10-02T15:29:28+00:00",
+        "last_seen": "2026-10-02T15:29:28+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-02T15:29:28+00:00",
+      "updated_at": "2026-10-02T15:29:28+00:00"
+    },
+    "hitomi:4087817": {
+      "item": {
+        "uid": "hitomi:4087817",
+        "source": "hitomi",
+        "source_id": "4087817",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4087817.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "SHINARIKA396",
+        "title_jp": "SHINARIKA396",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [],
+        "pages": 23,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-30 18:01:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/6/93/c9de6f22f9aefa206cdf2d197d7b3de38750cdd3e0352d26ee277c453dbab936.jpg",
+        "first_seen": "2026-10-02T15:29:28+00:00",
+        "last_seen": "2026-10-02T15:29:28+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-02T15:29:28+00:00",
+      "updated_at": "2026-10-02T15:29:28+00:00"
+    },
+    "hitomi:4087776": {
+      "item": {
+        "uid": "hitomi:4087776",
+        "source": "hitomi",
+        "source_id": "4087776",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4087776.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-02T15:30:15+00:00",
+        "title": "BABY vol.85 異国特集",
+        "title_jp": "BABY vol.85 異国特集",
+        "language": "japanese",
+        "category": "manga",
+        "artists": [
+          "inasaku",
+          "mimi",
+          "mitsuko"
+        ],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "anthology",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:inasaku",
+          "artist:mimi",
+          "artist:mitsuko"
+        ],
+        "pages": 254,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-30 17:11:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/4/0b/3bf22b7921668a3560c47ed3b60bf776694efaad45fc0f1950a5fe08c745c0b4.jpg",
+        "first_seen": "2026-10-02T15:29:28+00:00",
+        "last_seen": "2026-10-02T15:29:28+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-02T15:29:28+00:00",
+      "updated_at": "2026-10-02T15:29:28+00:00"
+    },
+    "hitomi:4087438": {
+      "item": {
+        "uid": "hitomi:4087438",
+        "source": "hitomi",
+        "source_id": "4087438",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4087438.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-02T15:30:20+00:00",
+        "title": "すかんくごっこ",
+        "title_jp": "すかんくごっこ",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "aimo"
+        ],
+        "groups": [],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "female:farting"
+        ],
+        "meta_tags": [
+          "artist:aimo",
+          "work:original"
+        ],
+        "pages": 10,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-30 11:58:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/1/94/57b5ea71906a23606a54ac81ace1633864fe2202d05688a7a4b9b8f2a790b941.jpg",
+        "first_seen": "2026-10-02T15:29:28+00:00",
+        "last_seen": "2026-10-02T15:29:28+00:00"
+      },
+      "reason": "blocked:farting",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-02T15:29:28+00:00",
+      "updated_at": "2026-10-02T15:29:28+00:00"
     }
   },
   "hitomi_attempts": {
@@ -75386,10 +75681,10 @@
   },
   "verified_checkpoints": {},
   "hitomi_host_retry_at": 1790958453.0,
-  "updated_at": "2026-10-02T14:29:56+00:00",
+  "updated_at": "2026-10-02T15:29:28+00:00",
   "last_audit": {
-    "last_run": "2026-10-02T14:29:56+00:00",
-    "eligible": 9223,
+    "last_run": "2026-10-02T15:29:28+00:00",
+    "eligible": 9229,
     "attempted": 0,
     "verified": 0,
     "restored": 0,
@@ -75398,6 +75693,6 @@
     "failed": 0,
     "stopped": true,
     "host_cooldown": true,
-    "remaining_source_rechecks": 9281
+    "remaining_source_rechecks": 9286
   }
 }
