@@ -141,6 +141,23 @@ def blocked_reason(item: dict[str, Any]) -> str:
         if matched:
             return f"blocked:title:{NORMALIZED_BLOCK_ALIASES.get(term, term)}"
 
+    # Hitomi occasionally exposes a content warning/descriptor only in the
+    # gallery title while its structured tag list omits the same term. Scan
+    # titles as a second line of defence. English block terms use token
+    # boundaries so short terms such as "bl" cannot match ordinary words.
+    title_text = unicodedata.normalize(
+        "NFKC", f"{item.get('title', '')} {item.get('title_jp', '')}"
+    ).lower()
+    for term in sorted(NORMALIZED_BLOCK_TAGS, key=len, reverse=True):
+        if not term:
+            continue
+        if re.search(r"[ぁ-んァ-ン一-龯々〆ヵヶ蟲]", term):
+            matched = term in title_text
+        else:
+            matched = bool(re.search(rf"(?<![a-z0-9]){re.escape(term)}(?![a-z0-9])", title_text))
+        if matched:
+            return f"blocked:title:{term}"
+
     insect = insect_block_reason(item)
     if insect:
         return insect
