@@ -54,6 +54,12 @@ def _json_from_endpoints(session, urls, select, attempts):
             challenge = response.headers.get("cf-mitigated", "").lower() == "challenge"
             attempt.update(http_status=code, content_type=mime,
                            challenge=challenge, login_redirect=False)
+            # Keep only coarse provider diagnostics. Never record cookies,
+            # response bodies, redirect query strings, or client identifiers.
+            attempt["server"] = response.headers.get("Server", "")[:80]
+            attempt["cf_ray_present"] = bool(response.headers.get("CF-Ray"))
+            attempt["cf_mitigated"] = response.headers.get("cf-mitigated", "")[:40]
+            attempt["via_present"] = bool(response.headers.get("Via"))
             if response.headers.get("Retry-After"):
                 attempt["retry_after"] = response.headers["Retry-After"][:80]
             if challenge or code in {401, 403, 429}:

@@ -69,6 +69,8 @@ class NhentaiTests(unittest.TestCase):
         self.assertEqual(attempt['reason'], 'site_unavailable')
         self.assertFalse(attempt['challenge'])
         self.assertFalse(attempt['login_redirect'])
+        self.assertIn('server', attempt)
+        self.assertFalse(attempt['cf_ray_present'])
         self.assertFalse(report['ready_for_integration'])
         self.assertEqual(self.session.get.call_count, 1)
 
