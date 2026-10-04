@@ -1,10 +1,10 @@
 name: Content filter regression tests
 on:
   pull_request:
-    paths: ["crawler.py", "config.py", "sources/**", "tests/**", ".github/workflows/**"]
+    paths: ["crawler.py", "config.py", "sources/**", "tests/**", "tools/probe_nhentai.py", ".github/workflows/**"]
   push:
     branches: [main]
-    paths: ["crawler.py", "config.py", "sources/**", "tests/**", ".github/workflows/test.yml"]
+    paths: ["crawler.py", "config.py", "sources/**", "tests/**", "tools/probe_nhentai.py", ".github/workflows/test.yml"]
 permissions:
   contents: read
 jobs:
@@ -16,6 +16,7 @@ jobs:
           sparse-checkout: |
             sources
             tests
+            tools
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
