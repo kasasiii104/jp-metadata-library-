@@ -183,6 +183,29 @@ class ContentFilterTests(unittest.TestCase):
             c.main(audit_only=True)
         fetch.assert_not_called()
 
+    def test_removed_or_malformed_galleries_do_not_pause_the_entire_source(self):
+        self.save_items([self.item(str(num)) for num in range(9000001, 9000005)])
+        failures = [RuntimeError('HTTP 404'), RuntimeError('HTTP 410'), ValueError('malformed metadata'), self.fresh('9000004')]
+        with patch.object(c, 'HITOMI_FILTER_AUDIT_LIMIT', 4), \
+             patch.object(hitomi, 'fetch_filter_metadata', side_effect=failures) as fetch:
+            c.main(audit_only=True)
+        self.assertEqual(fetch.call_count, 4)
+        state = self.state()
+        self.assertFalse(state['last_audit']['stopped'])
+        self.assertEqual(state['last_audit']['verified'], 1)
+        self.assertEqual(state['last_audit']['failed_reasons'], {'http_404': 1, 'http_410': 1, 'metadata_invalid': 1})
+        self.assertNotIn('hitomi_host_retry_at', state)
+
+    def test_existing_unknown_host_cooldown_is_preserved(self):
+        self.save_items([self.item()])
+        future = c._timestamp(c.now_iso()) + 3600
+        c.save_json(c.FILTER_STATE_FILE, {'hitomi_host_retry_at': future})
+        with patch.object(c, 'HITOMI_FILTER_AUDIT_LIMIT', 1), \
+             patch.object(hitomi, 'fetch_filter_metadata') as fetch:
+            c.main(audit_only=True)
+        fetch.assert_not_called()
+        self.assertEqual(self.state()['hitomi_host_retry_at'], future)
+
     def test_restoration_checkpoint_survives_interrupted_catalog_write(self):
         self.save_items([self.item(tags=[])])
         c.main(audit_only=True)
