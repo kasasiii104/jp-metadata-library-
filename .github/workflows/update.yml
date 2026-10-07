@@ -22,12 +22,16 @@ permissions:
 
 concurrency:
   group: japanese-metadata-library-v2
-  cancel-in-progress: false
+  # A queued Pages job must not hold the hourly collector indefinitely.
+  # Keep this group stable so a new run also releases an older stalled run.
+  cancel-in-progress: true
 
 jobs:
   update:
     runs-on: ubuntu-latest
     timeout-minutes: 55
+    outputs:
+      pages_artifact: ${{ steps.pages_artifact.outputs.name }}
 
     steps:
       - uses: actions/checkout@v4
@@ -83,9 +87,9 @@ jobs:
           RUN_FILTER_AUDIT_ONLY: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[filter-audit]') }}
         run: |
           if [ "$RUN_FILTER_AUDIT_ONLY" = "true" ]; then
-            HITOMI_FILTER_AUDIT_LIMIT=500 python crawler.py --audit-filters-only
+            HITOMI_FILTER_AUDIT_LIMIT=500 python -u crawler.py --audit-filters-only
           else
-            python crawler.py
+            python -u crawler.py
           fi
 
       - name: Cache 3Hentai thumbnails locally
@@ -123,17 +127,24 @@ jobs:
             echo "No data changes"
           else
             git commit -m "Update metadata library"
+            git pull --rebase origin main
             git push
           fi
 
+      - name: Select Pages artifact for this attempt
+        id: pages_artifact
+        run: echo "name=github-pages-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" >> "$GITHUB_OUTPUT"
+
       - uses: actions/upload-pages-artifact@v4
         with:
+          name: ${{ steps.pages_artifact.outputs.name }}
           path: docs
 
   deploy:
     needs: update
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     environment:
       name: github-pages
@@ -142,3 +153,5 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: ${{ needs.update.outputs.pages_artifact }}
