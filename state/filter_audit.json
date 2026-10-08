@@ -109921,12 +109921,12 @@
         "posted_at": "2026-10-07 13:35:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/1/4f/fb01e9d0837ac72f6c452f280c8a508dc318658d3524ceb58c8ac65b0c9a04f1.jpg",
         "first_seen": "2026-10-07T19:32:05+00:00",
-        "last_seen": "2026-10-08T08:30:57+00:00"
+        "last_seen": "2026-10-08T21:28:03+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-07T19:32:05+00:00",
-      "updated_at": "2026-10-08T08:30:57+00:00"
+      "updated_at": "2026-10-08T21:28:03+00:00"
     },
     "hitomi:4238300": {
       "item": {
@@ -110133,12 +110133,12 @@
         "posted_at": "2026-07-22 16:59:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/5/9a/dde5d722a1c8d14a26ae06b8a242172bb4440c887ee57bb1638e67e8699c99a5.jpg",
         "first_seen": "2026-10-07T19:32:05+00:00",
-        "last_seen": "2026-10-08T08:30:57+00:00"
+        "last_seen": "2026-10-08T21:28:03+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-07T19:32:05+00:00",
-      "updated_at": "2026-10-08T08:30:57+00:00"
+      "updated_at": "2026-10-08T21:28:03+00:00"
     },
     "hitomi:4070303": {
       "item": {
@@ -110172,12 +110172,12 @@
         "posted_at": "2026-07-22 16:52:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/c/b6/538cfe9382dd3289e9526a766f561a2ca89869cafe6d22f853a201d1978abb6c.jpg",
         "first_seen": "2026-10-07T19:32:05+00:00",
-        "last_seen": "2026-10-08T08:30:57+00:00"
+        "last_seen": "2026-10-08T21:28:03+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-07T19:32:05+00:00",
-      "updated_at": "2026-10-08T08:30:57+00:00"
+      "updated_at": "2026-10-08T21:28:03+00:00"
     },
     "hitomi:4070163": {
       "item": {
@@ -118936,12 +118936,12 @@
         "posted_at": "2026-07-20 01:37:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/3/60/64a1e8c73197e83a1f8ad96cec0fd4db83e56650ce001f4395035646e8f30603.jpg",
         "first_seen": "2026-10-08T07:31:14+00:00",
-        "last_seen": "2026-10-08T08:30:57+00:00"
+        "last_seen": "2026-10-08T21:28:03+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-08T07:31:14+00:00",
-      "updated_at": "2026-10-08T08:30:57+00:00"
+      "updated_at": "2026-10-08T21:28:03+00:00"
     },
     "hitomi:4065013": {
       "item": {
@@ -127858,12 +127858,12 @@
         "posted_at": "2026-10-08 14:38:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/9/00/d1f89a31b3a8ad9cf063e648e7cac7cc3d22f3302f77203cb542be70e4f9f009.jpg",
         "first_seen": "2026-10-08T20:30:26+00:00",
-        "last_seen": "2026-10-08T20:30:26+00:00"
+        "last_seen": "2026-10-08T21:28:03+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-08T20:30:26+00:00",
-      "updated_at": "2026-10-08T20:30:26+00:00"
+      "updated_at": "2026-10-08T21:28:03+00:00"
     },
     "hitomi:4240705": {
       "item": {
@@ -127897,12 +127897,12 @@
         "posted_at": "2026-10-08 14:38:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/a/b4/891899fc3d54798d7504bdbb1ebfc5c698d49d418a23ab078d819881b4a79b4a.jpg",
         "first_seen": "2026-10-08T20:30:26+00:00",
-        "last_seen": "2026-10-08T20:30:26+00:00"
+        "last_seen": "2026-10-08T21:28:03+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-08T20:30:26+00:00",
-      "updated_at": "2026-10-08T20:30:26+00:00"
+      "updated_at": "2026-10-08T21:28:03+00:00"
     },
     "hitomi:4060631": {
       "item": {
@@ -128080,6 +128080,883 @@
       "status": "blocked",
       "first_quarantined_at": "2026-10-08T20:30:26+00:00",
       "updated_at": "2026-10-08T20:30:26+00:00"
+    },
+    "hitomi:4218973": {
+      "item": {
+        "uid": "hitomi:4218973",
+        "source": "hitomi",
+        "source_id": "4218973",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4218973.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-08T21:28:39+00:00",
+        "title": "The secret is exposed, leading to a lewd turn of events",
+        "title_jp": "秘密がバレてスケベな展開に",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "konbu plus"
+        ],
+        "groups": [
+          "ham."
+        ],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "male:anal",
+          "male:bbm",
+          "male:chastity belt",
+          "digital",
+          "male:gag",
+          "male:glasses",
+          "male:handjob",
+          "male:males only",
+          "male:onahole",
+          "male:prostate massage",
+          "male:sex toys",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:konbu plus",
+          "group:ham.",
+          "work:original"
+        ],
+        "pages": 27,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-09-28 17:14:00-05",
+        "thumbnail": "thumbs/hitomi/4218973.webp",
+        "first_seen": "2026-09-28T23:23:59+00:00",
+        "last_seen": "2026-10-08T21:28:03+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-08T21:28:03+00:00",
+      "updated_at": "2026-10-08T21:28:03+00:00"
+    },
+    "hitomi:4127475": {
+      "item": {
+        "uid": "hitomi:4127475",
+        "source": "hitomi",
+        "source_id": "4127475",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4127475.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-08T21:29:07+00:00",
+        "title": "EXTRA PIC26",
+        "title_jp": "EXTRA PIC26",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [
+          "rounds chen"
+        ],
+        "groups": [],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "female:blindfold",
+          "female:bodystocking",
+          "female:bondage",
+          "female:exposed clothing",
+          "female:gag",
+          "female:gloves",
+          "female:harness",
+          "female:machine",
+          "female:masked face",
+          "female:nipple piercing",
+          "female:piercing",
+          "female:stockings",
+          "female:torture",
+          "uncensored",
+          "variant set"
+        ],
+        "meta_tags": [
+          "artist:rounds chen",
+          "work:original"
+        ],
+        "pages": 61,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-08-17 21:40:00-05",
+        "thumbnail": "thumbs/hitomi/4127475.webp",
+        "first_seen": "2026-09-29T01:24:28+00:00",
+        "last_seen": "2026-10-08T21:28:03+00:00"
+      },
+      "reason": "blocked:torture",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-08T21:28:03+00:00",
+      "updated_at": "2026-10-08T21:28:03+00:00"
+    },
+    "hitomi:4219186": {
+      "item": {
+        "uid": "hitomi:4219186",
+        "source": "hitomi",
+        "source_id": "4219186",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4219186.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-08T21:29:09+00:00",
+        "title": "Nicotine and Pokochin",
+        "title_jp": "ニコチンとポコチン",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "konbu plus"
+        ],
+        "groups": [
+          "ham."
+        ],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "male:anal",
+          "male:bbm",
+          "male:blowjob",
+          "male:condom",
+          "digital",
+          "male:glasses",
+          "male:males only",
+          "male:thick eyebrows",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:konbu plus",
+          "group:ham.",
+          "work:original"
+        ],
+        "pages": 27,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-09-28 20:00:00-05",
+        "thumbnail": "thumbs/hitomi/4219186.webp",
+        "first_seen": "2026-09-29T01:24:28+00:00",
+        "last_seen": "2026-10-08T21:28:03+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-08T21:28:03+00:00",
+      "updated_at": "2026-10-08T21:28:03+00:00"
+    },
+    "hitomi:4240819": {
+      "item": {
+        "uid": "hitomi:4240819",
+        "source": "hitomi",
+        "source_id": "4240819",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4240819.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "ハルナちゃんの素足を洗ってくれる絵",
+        "title_jp": "ハルナちゃんの素足を洗ってくれる絵",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "eggutarto"
+        ],
+        "groups": [],
+        "parodies": [
+          "blue archive"
+        ],
+        "works": [
+          "blue archive"
+        ],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [
+          "artist:eggutarto",
+          "work:blue archive"
+        ],
+        "pages": 6,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-08 15:37:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/1/ff/95dd7d00ab1f23c401cddee9daa716c4ee0f1827e9619878f2e89a4ba533eff1.jpg",
+        "first_seen": "2026-10-08T21:28:03+00:00",
+        "last_seen": "2026-10-08T21:28:03+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-08T21:28:03+00:00",
+      "updated_at": "2026-10-08T21:28:03+00:00"
+    },
+    "hitomi:4240811": {
+      "item": {
+        "uid": "hitomi:4240811",
+        "source": "hitomi",
+        "source_id": "4240811",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4240811.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "Nemigami By Saechimiya Part 2",
+        "title_jp": "Nemigami By Saechimiya Part 2",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [],
+        "pages": 1,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-08 15:35:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/8/42/0aa894c7d12aed29b3ea99732ede9625a195dc014028ca38754fe617c60fb428.jpg",
+        "first_seen": "2026-10-08T21:28:03+00:00",
+        "last_seen": "2026-10-08T21:28:03+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-08T21:28:03+00:00",
+      "updated_at": "2026-10-08T21:28:03+00:00"
+    },
+    "hitomi:4240806": {
+      "item": {
+        "uid": "hitomi:4240806",
+        "source": "hitomi",
+        "source_id": "4240806",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4240806.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "Nemigami By Saechimiya",
+        "title_jp": "Nemigami By Saechimiya",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [],
+        "pages": 1,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-08 15:31:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/8/42/0aa894c7d12aed29b3ea99732ede9625a195dc014028ca38754fe617c60fb428.jpg",
+        "first_seen": "2026-10-08T21:28:03+00:00",
+        "last_seen": "2026-10-08T21:28:03+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-08T21:28:03+00:00",
+      "updated_at": "2026-10-08T21:28:03+00:00"
+    },
+    "hitomi:4240776": {
+      "item": {
+        "uid": "hitomi:4240776",
+        "source": "hitomi",
+        "source_id": "4240776",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4240776.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-08T21:29:44+00:00",
+        "title": "Toda Ken",
+        "title_jp": "とだ研",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [
+          "toda ken"
+        ],
+        "groups": [],
+        "parodies": [
+          "blue archive",
+          "princess connect",
+          "the idolmaster"
+        ],
+        "works": [
+          "blue archive",
+          "princess connect",
+          "the idolmaster"
+        ],
+        "characters": [
+          "arisu tachibana",
+          "futari gotou",
+          "hoshino takanashi",
+          "kaoru ryuzaki",
+          "kisaki ryuuge",
+          "kokkoro",
+          "kyouka hikawa",
+          "miria akagi",
+          "misogi hodaka",
+          "momoka sakurai",
+          "shigure ui"
+        ],
+        "tags": [
+          "male:bald",
+          "female:loli",
+          "female:scat",
+          "female:urination"
+        ],
+        "meta_tags": [
+          "artist:toda ken",
+          "work:blue archive",
+          "work:princess connect",
+          "work:the idolmaster",
+          "character:arisu tachibana",
+          "character:futari gotou",
+          "character:hoshino takanashi",
+          "character:kaoru ryuzaki",
+          "character:kisaki ryuuge",
+          "character:kokkoro",
+          "character:kyouka hikawa",
+          "character:miria akagi",
+          "character:misogi hodaka",
+          "character:momoka sakurai",
+          "character:shigure ui"
+        ],
+        "pages": 425,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-08 15:06:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/e/f4/0cbf2f2f696822574b98cc2fcd1d0edbf3a9c7aa04d909dc7bca4abd06686f4e.jpg",
+        "first_seen": "2026-10-08T21:28:03+00:00",
+        "last_seen": "2026-10-08T21:28:03+00:00"
+      },
+      "reason": "blocked:female:scat",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-08T21:28:03+00:00",
+      "updated_at": "2026-10-08T21:28:03+00:00"
+    },
+    "hitomi:4060324": {
+      "item": {
+        "uid": "hitomi:4060324",
+        "source": "hitomi",
+        "source_id": "4060324",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4060324.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-08T21:30:27+00:00",
+        "title": "Gyuuma Ou to Chi Chi",
+        "title_jp": "牛魔王とチチ",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "amedama akihito"
+        ],
+        "groups": [],
+        "parodies": [
+          "dragon ball"
+        ],
+        "works": [
+          "dragon ball"
+        ],
+        "characters": [
+          "chi chi",
+          "ox-king"
+        ],
+        "tags": [
+          "male:bbm",
+          "female:coprophagia",
+          "female:daughter",
+          "male:dilf",
+          "male:facial hair",
+          "full color",
+          "incest",
+          "female:loli",
+          "mosaic censorship",
+          "female:pregnant",
+          "male:scat",
+          "male:sole male",
+          "female:toddlercon",
+          "female:vaginal birth",
+          "female:vomit"
+        ],
+        "meta_tags": [
+          "artist:amedama akihito",
+          "work:dragon ball",
+          "character:chi chi",
+          "character:ox-king"
+        ],
+        "pages": 8,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-17 20:27:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/8/51/b20567c45bf43c5e7ef8b6cf3eab837b1e028b40371a14b3855b9d17c5aaa518.jpg",
+        "first_seen": "2026-10-08T21:28:03+00:00",
+        "last_seen": "2026-10-08T21:28:03+00:00"
+      },
+      "reason": "blocked:male:scat",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-08T21:28:03+00:00",
+      "updated_at": "2026-10-08T21:28:03+00:00"
+    },
+    "hitomi:4060308": {
+      "item": {
+        "uid": "hitomi:4060308",
+        "source": "hitomi",
+        "source_id": "4060308",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4060308.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-08T21:30:29+00:00",
+        "title": "Sabireta Eigakan ni Haittara datta Ken",
+        "title_jp": "寂れた映画館に入ったらだった件",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "serizawa nae"
+        ],
+        "groups": [],
+        "parodies": [
+          "hikaru ga shinda natsu"
+        ],
+        "works": [
+          "hikaru ga shinda natsu"
+        ],
+        "characters": [
+          "hikaru indo",
+          "yoshiki tsujinaka"
+        ],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "male:beauty mark",
+          "male:males only",
+          "male:nakadashi",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:serizawa nae",
+          "work:hikaru ga shinda natsu",
+          "character:hikaru indo",
+          "character:yoshiki tsujinaka"
+        ],
+        "pages": 16,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-17 20:07:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/6/b2/47824185397c97d5e3a77ce43f92bb12c0b482946301b94c64b8e5e8741fbb26.jpg",
+        "first_seen": "2026-10-08T21:28:03+00:00",
+        "last_seen": "2026-10-08T21:28:03+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-08T21:28:03+00:00",
+      "updated_at": "2026-10-08T21:28:03+00:00"
+    },
+    "hitomi:4060207": {
+      "item": {
+        "uid": "hitomi:4060207",
+        "source": "hitomi",
+        "source_id": "4060207",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4060207.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-08T21:30:38+00:00",
+        "title": "The Flesh Festival Vol.2 / 《肉祭榭》:下卷",
+        "title_jp": "《榭肉祭》:下卷",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "hakuyagen",
+          "waysin",
+          "yuanyuan"
+        ],
+        "groups": [
+          "hijinzou"
+        ],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "male:ahegao",
+          "male:anal",
+          "male:anal intercourse",
+          "male:bondage",
+          "male:cbt",
+          "male:crying",
+          "goudoushi",
+          "male:males only",
+          "male:masturbation",
+          "multi-work series",
+          "male:navel fuck",
+          "male:rape",
+          "male:sex toys",
+          "male:shota",
+          "male:tentacles",
+          "male:tickling",
+          "male:urethra insertion",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:hakuyagen",
+          "artist:waysin",
+          "artist:yuanyuan",
+          "group:hijinzou",
+          "work:original"
+        ],
+        "pages": 194,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-17 19:26:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/0/47/0e45ecc200db62bd39a6e1fdd7f6f922dd253b137f6df524d2cb39f905f04470.jpg",
+        "first_seen": "2026-10-08T21:28:03+00:00",
+        "last_seen": "2026-10-08T21:28:03+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-08T21:28:03+00:00",
+      "updated_at": "2026-10-08T21:28:03+00:00"
+    },
+    "hitomi:4060136": {
+      "item": {
+        "uid": "hitomi:4060136",
+        "source": "hitomi",
+        "source_id": "4060136",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4060136.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-08T21:30:47+00:00",
+        "title": "Kateikyoushi (Sensei)  wa Mada Oshierarena",
+        "title_jp": "家庭教師〈せんせい〉はまだ教えられない",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "unii"
+        ],
+        "groups": [
+          "akanenomi"
+        ],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "c107",
+          "male:males only",
+          "male:shota",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:unii",
+          "group:akanenomi",
+          "work:original"
+        ],
+        "pages": 28,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-17 18:48:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/4/27/ad2079addc859b759e0c287fb0694aedf7e66a9f2ec9c4c2e93258129d020274.jpg",
+        "first_seen": "2026-10-08T21:28:03+00:00",
+        "last_seen": "2026-10-08T21:28:03+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-08T21:28:03+00:00",
+      "updated_at": "2026-10-08T21:28:03+00:00"
+    },
+    "hitomi:4060088": {
+      "item": {
+        "uid": "hitomi:4060088",
+        "source": "hitomi",
+        "source_id": "4060088",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4060088.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-08T21:30:53+00:00",
+        "title": "November 2025 + December 2025 (2025-11 + 2025-12) rewards (uncensored)",
+        "title_jp": "November 2025 + December 2025 (2025-11 + 2025-12) rewards (uncensored)",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [
+          "beater"
+        ],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "male:blowjob",
+          "male:bunny boy",
+          "male:catboy",
+          "male:exhibitionism",
+          "male:furry",
+          "male:kemonomimi",
+          "male:kodomo doushi",
+          "kodomo only",
+          "male:males only",
+          "male:shota",
+          "uncensored",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:beater"
+        ],
+        "pages": 69,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-17 18:21:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/f/e3/7c47ae0016244464207a3c5930c12aa566adff713635e8bcb6c33bfb4bad8e3f.jpg",
+        "first_seen": "2026-10-08T21:28:03+00:00",
+        "last_seen": "2026-10-08T21:28:03+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-08T21:28:03+00:00",
+      "updated_at": "2026-10-08T21:28:03+00:00"
+    },
+    "hitomi:4060028": {
+      "item": {
+        "uid": "hitomi:4060028",
+        "source": "hitomi",
+        "source_id": "4060028",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4060028.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-08T21:30:59+00:00",
+        "title": "Teacher Marunomi's Special Class!",
+        "title_jp": "まるのみ先生の特別授業！",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "female:anal",
+          "female:analphagia",
+          "female:cockphagia",
+          "female:full-packaged futanari",
+          "female:futanari",
+          "female:giantess",
+          "female:snuff",
+          "female:tall girl",
+          "female:unbirth",
+          "female:vore",
+          "male:vore",
+          "female:weight gain"
+        ],
+        "meta_tags": [
+          "work:original"
+        ],
+        "pages": 43,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-17 17:27:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/a/d5/6655cc4eead530bae2a46dfc2e6bb9fd5426215d5a0842f5e14a6aec02785d5a.jpg",
+        "first_seen": "2026-10-08T21:28:03+00:00",
+        "last_seen": "2026-10-08T21:28:03+00:00"
+      },
+      "reason": "blocked:snuff",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-08T21:28:03+00:00",
+      "updated_at": "2026-10-08T21:28:03+00:00"
+    },
+    "hitomi:4059987": {
+      "item": {
+        "uid": "hitomi:4059987",
+        "source": "hitomi",
+        "source_id": "4059987",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4059987.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-08T21:31:00+00:00",
+        "title": "Chiteijin no Kareshi ga Ore no Kaeri o Machikamaete Iru.",
+        "title_jp": "地底人の彼氏がオレの帰りを待ち構えている。",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "hiragi moyuru"
+        ],
+        "groups": [
+          "pioneer99"
+        ],
+        "parodies": [
+          "shinkansen henkei robo shinkalion"
+        ],
+        "works": [
+          "shinkansen henkei robo shinkalion"
+        ],
+        "characters": [
+          "hayato hayasugi",
+          "seiryu"
+        ],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "bokutachi shinkakei 4",
+          "male:crossdressing",
+          "male:eye-covering bang",
+          "male:kodomo doushi",
+          "kodomo only",
+          "male:lingerie",
+          "male:males only",
+          "male:shota",
+          "male:stockings",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:hiragi moyuru",
+          "group:pioneer99",
+          "work:shinkansen henkei robo shinkalion",
+          "character:hayato hayasugi",
+          "character:seiryu"
+        ],
+        "pages": 32,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-17 16:59:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/8/eb/c37820fffe3fbcfc269fa2d9157b351ea002280d0e217bdcce3578b4ff6d0eb8.jpg",
+        "first_seen": "2026-10-08T21:28:03+00:00",
+        "last_seen": "2026-10-08T21:28:03+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-08T21:28:03+00:00",
+      "updated_at": "2026-10-08T21:28:03+00:00"
+    },
+    "3hentai:3699175": {
+      "item": {
+        "uid": "3hentai:3699175",
+        "source": "3hentai",
+        "source_id": "3699175",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/699175",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "699175",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-10-08T21:31:17+00:00",
+        "title": "[AMAIKURI (Matsuko Maro)] Kantan dakara Muzukashii (Disney: Twisted-Wonderland) [Digital]",
+        "title_jp": "[AMAIKURI (Matsuko Maro)] Kantan dakara Muzukashii (Disney: Twisted-Wonderland) [Digital]",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "disney twisted-wonderland"
+        ],
+        "works": [
+          "disney twisted-wonderland"
+        ],
+        "characters": [
+          "jamil viper",
+          "kalim al-asim"
+        ],
+        "tags": [
+          "language:japanese",
+          "males only",
+          "yaoi",
+          "japanese"
+        ],
+        "meta_tags": [
+          "work:disney twisted-wonderland",
+          "character:jamil viper",
+          "character:kalim al-asim"
+        ],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s9.3hentai.xyz/d1561509/thumb.jpg",
+        "first_seen": "2026-10-08T21:28:03+00:00",
+        "last_seen": "2026-10-08T21:28:03+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-08T21:28:03+00:00",
+      "updated_at": "2026-10-08T21:28:03+00:00"
+    },
+    "3hentai:3699112": {
+      "item": {
+        "uid": "3hentai:3699112",
+        "source": "3hentai",
+        "source_id": "3699112",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/699112",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "699112",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-10-08T21:31:22+00:00",
+        "title": "Ano Hi no Kiss wo Mou Ichido",
+        "title_jp": "Ano Hi no Kiss wo Mou Ichido",
+        "language": "japanese",
+        "category": "manga",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "language:japanese",
+          "yaoi",
+          "japanese"
+        ],
+        "meta_tags": [],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s9.3hentai.xyz/d1561211/thumb.jpg",
+        "first_seen": "2026-10-08T21:28:03+00:00",
+        "last_seen": "2026-10-08T21:28:03+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-08T21:28:03+00:00",
+      "updated_at": "2026-10-08T21:28:03+00:00"
     }
   },
   "hitomi_attempts": {
@@ -133098,16 +133975,16 @@
       "retry_at": 1791444725.0
     },
     "hitomi:4070303": {
-      "last_attempt": 1791448257.0,
-      "retry_at": 1791491457.0
+      "last_attempt": 1791494883.0,
+      "retry_at": 1791538083.0
     },
     "hitomi:4070307": {
-      "last_attempt": 1791448257.0,
-      "retry_at": 1791491457.0
+      "last_attempt": 1791494883.0,
+      "retry_at": 1791538083.0
     },
     "hitomi:4238327": {
-      "last_attempt": 1791448257.0,
-      "retry_at": 1791491457.0
+      "last_attempt": 1791494883.0,
+      "retry_at": 1791538083.0
     },
     "hitomi:4213346": {
       "last_attempt": 1791404871.0,
@@ -134214,8 +135091,8 @@
       "retry_at": 1791487874.0
     },
     "hitomi:4065042": {
-      "last_attempt": 1791448257.0,
-      "retry_at": 1791491457.0
+      "last_attempt": 1791494883.0,
+      "retry_at": 1791538083.0
     },
     "hitomi:4150407": {
       "last_attempt": 1791448257.0,
@@ -134712,22 +135589,57 @@
     "hitomi:4218912": {
       "last_attempt": 1791491426.0,
       "retry_at": 1791534626.0
+    },
+    "hitomi:4240705": {
+      "last_attempt": 1791494883.0,
+      "retry_at": 1791538083.0
+    },
+    "hitomi:4240708": {
+      "last_attempt": 1791494883.0,
+      "retry_at": 1791538083.0
+    },
+    "hitomi:4218973": {
+      "last_attempt": 1791494883.0,
+      "retry_at": 1791538083.0
+    },
+    "hitomi:4219034": {
+      "last_attempt": 1791494883.0,
+      "failures": 1,
+      "reason": "http_404",
+      "retry_at": 1791538083.0
+    },
+    "hitomi:4127475": {
+      "last_attempt": 1791494883.0,
+      "retry_at": 1791538083.0
+    },
+    "hitomi:4219186": {
+      "last_attempt": 1791494883.0,
+      "retry_at": 1791538083.0
+    },
+    "hitomi:4126885": {
+      "last_attempt": 1791494883.0,
+      "failures": 1,
+      "reason": "metadata_invalid",
+      "retry_at": 1791538083.0
     }
   },
   "verified_checkpoints": {},
   "hitomi_host_retry_at": 1791097387.0,
-  "updated_at": "2026-10-08T20:30:26+00:00",
+  "updated_at": "2026-10-08T21:28:03+00:00",
   "last_audit": {
-    "last_run": "2026-10-08T20:30:26+00:00",
-    "eligible": 4286,
+    "last_run": "2026-10-08T21:28:03+00:00",
+    "eligible": 4157,
     "attempted": 200,
-    "verified": 190,
-    "restored": 1,
-    "blocked": 1,
-    "unverified": 9,
-    "failed": 0,
-    "failed_reasons": {},
+    "verified": 189,
+    "restored": 0,
+    "blocked": 3,
+    "unverified": 6,
+    "failed": 2,
+    "failed_reasons": {
+      "http_404": 1,
+      "metadata_invalid": 1
+    },
     "stopped": false,
-    "remaining_source_rechecks": 4898
+    "remaining_source_rechecks": 4762
   }
 }
