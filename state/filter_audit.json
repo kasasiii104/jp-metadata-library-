@@ -108622,12 +108622,12 @@
         "posted_at": "2026-10-07 11:37:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/c/a8/60db8035be5535e3f598863cd71e563f6738e65cb2e629022005b94d9df9fa8c.jpg",
         "first_seen": "2026-10-07T17:28:53+00:00",
-        "last_seen": "2026-10-07T19:32:05+00:00"
+        "last_seen": "2026-10-08T07:31:14+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-07T17:28:53+00:00",
-      "updated_at": "2026-10-07T19:32:05+00:00"
+      "updated_at": "2026-10-08T07:31:14+00:00"
     },
     "hitomi:4238135": {
       "item": {
@@ -108648,12 +108648,20 @@
           "usagi tosame"
         ],
         "groups": [],
-        "parodies": [],
-        "works": [],
-        "characters": [],
+        "parodies": [
+          "princess connect"
+        ],
+        "works": [
+          "princess connect"
+        ],
+        "characters": [
+          "neneka utsushimi"
+        ],
         "tags": [],
         "meta_tags": [
-          "artist:usagi tosame"
+          "artist:usagi tosame",
+          "work:princess connect",
+          "character:neneka utsushimi"
         ],
         "pages": 2,
         "rating": null,
@@ -108661,51 +108669,12 @@
         "posted_at": "2026-10-07 11:30:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/2/89/39761a05d8233994b847fe51e743fe864b60e22de3d4d90028fc8fd9aa396892.jpg",
         "first_seen": "2026-10-07T17:28:53+00:00",
-        "last_seen": "2026-10-07T18:36:25+00:00"
+        "last_seen": "2026-10-08T07:31:14+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-07T17:28:53+00:00",
-      "updated_at": "2026-10-07T18:36:25+00:00"
-    },
-    "hitomi:4238133": {
-      "item": {
-        "uid": "hitomi:4238133",
-        "source": "hitomi",
-        "source_id": "4238133",
-        "source_token": "",
-        "source_url": "https://hitomi.la/galleries/4238133.html",
-        "source_url_kind": "",
-        "resolved_gallery_id": "",
-        "filter_metadata_checked": "",
-        "filter_metadata_checked_at": "",
-        "title": "彼氏の為にコスプレしてくれるネネカさん",
-        "title_jp": "彼氏の為にコスプレしてくれるネネカさん",
-        "language": "japanese",
-        "category": "artistcg",
-        "artists": [
-          "usagi tosame"
-        ],
-        "groups": [],
-        "parodies": [],
-        "works": [],
-        "characters": [],
-        "tags": [],
-        "meta_tags": [
-          "artist:usagi tosame"
-        ],
-        "pages": 3,
-        "rating": null,
-        "popularity": null,
-        "posted_at": "2026-10-07 11:29:00-05",
-        "thumbnail": "https://tn.hitomi.la/bigtn/2/4d/6f5b648a29fc9b88ecfa23681781f74a71fbed639ce88850bb89e026cc61c4d2.jpg",
-        "first_seen": "2026-10-07T17:28:53+00:00",
-        "last_seen": "2026-10-07T18:36:25+00:00"
-      },
-      "reason": "metadata_unverified",
-      "status": "pending",
-      "first_quarantined_at": "2026-10-07T17:28:53+00:00",
-      "updated_at": "2026-10-07T18:36:25+00:00"
+      "updated_at": "2026-10-08T07:31:14+00:00"
     },
     "hitomi:4238129": {
       "item": {
@@ -108726,12 +108695,20 @@
           "usagi tosame"
         ],
         "groups": [],
-        "parodies": [],
-        "works": [],
-        "characters": [],
+        "parodies": [
+          "princess connect"
+        ],
+        "works": [
+          "princess connect"
+        ],
+        "characters": [
+          "neneka utsushimi"
+        ],
         "tags": [],
         "meta_tags": [
-          "artist:usagi tosame"
+          "artist:usagi tosame",
+          "work:princess connect",
+          "character:neneka utsushimi"
         ],
         "pages": 4,
         "rating": null,
@@ -108739,12 +108716,12 @@
         "posted_at": "2026-10-07 11:28:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/4/29/b811c0b1f9ffd0fcd4f767f07c8051a81f1aadc7ae491a7e6fa956328da01294.jpg",
         "first_seen": "2026-10-07T17:28:53+00:00",
-        "last_seen": "2026-10-07T18:36:25+00:00"
+        "last_seen": "2026-10-08T07:31:14+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-07T17:28:53+00:00",
-      "updated_at": "2026-10-07T18:36:25+00:00"
+      "updated_at": "2026-10-08T07:31:14+00:00"
     },
     "hitomi:4238104": {
       "item": {
@@ -108824,12 +108801,12 @@
         "posted_at": "2026-10-07 11:18:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/8/5e/b05bfe8bb052c06bf808498996746af24bab464b2b626edd797964c5a88235e8.jpg",
         "first_seen": "2026-10-07T17:28:53+00:00",
-        "last_seen": "2026-10-07T18:36:25+00:00"
+        "last_seen": "2026-10-08T07:31:14+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-07T17:28:53+00:00",
-      "updated_at": "2026-10-07T18:36:25+00:00"
+      "updated_at": "2026-10-08T07:31:14+00:00"
     },
     "hitomi:4238086": {
       "item": {
@@ -117883,41 +117860,6 @@
       "first_quarantined_at": "2026-10-08T05:28:13+00:00",
       "updated_at": "2026-10-08T05:28:13+00:00"
     },
-    "hitomi:4239139": {
-      "item": {
-        "uid": "hitomi:4239139",
-        "source": "hitomi",
-        "source_id": "4239139",
-        "source_token": "",
-        "source_url": "https://hitomi.la/galleries/4239139.html",
-        "source_url_kind": "",
-        "resolved_gallery_id": "",
-        "filter_metadata_checked": "",
-        "filter_metadata_checked_at": "",
-        "title": "M Hakase",
-        "title_jp": "M博士🔞",
-        "language": "japanese",
-        "category": "imageset",
-        "artists": [],
-        "groups": [],
-        "parodies": [],
-        "works": [],
-        "characters": [],
-        "tags": [],
-        "meta_tags": [],
-        "pages": 298,
-        "rating": null,
-        "popularity": null,
-        "posted_at": "2026-10-07 23:45:00-05",
-        "thumbnail": "https://tn.hitomi.la/bigtn/4/be/4590c8809fe7e9254d027068564ca4905e0230c89ad1e9434ba2c3d22fb35be4.jpg",
-        "first_seen": "2026-10-08T05:28:13+00:00",
-        "last_seen": "2026-10-08T06:34:54+00:00"
-      },
-      "reason": "metadata_unverified",
-      "status": "pending",
-      "first_quarantined_at": "2026-10-08T05:28:13+00:00",
-      "updated_at": "2026-10-08T06:34:54+00:00"
-    },
     "hitomi:4239118": {
       "item": {
         "uid": "hitomi:4239118",
@@ -118779,12 +118721,12 @@
         "posted_at": "2026-07-20 04:47:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/f/08/f2d1a1139834213ad747755244553e6cd8d68a4418e624fcee0c18c02225b08f.jpg",
         "first_seen": "2026-10-08T06:34:54+00:00",
-        "last_seen": "2026-10-08T06:34:54+00:00"
+        "last_seen": "2026-10-08T07:31:14+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-08T06:34:54+00:00",
-      "updated_at": "2026-10-08T06:34:54+00:00"
+      "updated_at": "2026-10-08T07:31:14+00:00"
     },
     "hitomi:4065225": {
       "item": {
@@ -118876,12 +118818,12 @@
         "posted_at": "2026-07-20 04:03:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/1/db/002417818367870926426e79638e008933feb8834202ae6c35c712c257ae4db1.jpg",
         "first_seen": "2026-10-08T06:34:54+00:00",
-        "last_seen": "2026-10-08T06:34:54+00:00"
+        "last_seen": "2026-10-08T07:31:14+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-08T06:34:54+00:00",
-      "updated_at": "2026-10-08T06:34:54+00:00"
+      "updated_at": "2026-10-08T07:31:14+00:00"
     },
     "hitomi:4065162": {
       "item": {
@@ -118911,12 +118853,12 @@
         "posted_at": "2026-07-20 03:34:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/f/ae/25eb9291d9a25269eb7d4e0985896ff72dce7806b768651e5efe59b5a2f17aef.jpg",
         "first_seen": "2026-10-08T06:34:54+00:00",
-        "last_seen": "2026-10-08T06:34:54+00:00"
+        "last_seen": "2026-10-08T07:31:14+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-08T06:34:54+00:00",
-      "updated_at": "2026-10-08T06:34:54+00:00"
+      "updated_at": "2026-10-08T07:31:14+00:00"
     },
     "hitomi:4065154": {
       "item": {
@@ -119296,12 +119238,474 @@
         "posted_at": "2026-07-20 02:30:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/6/c5/1b5cc23a93ef93496dc73812c8f4de77d0f2023e76259022ced378c337c3dc56.jpg",
         "first_seen": "2026-10-08T06:34:54+00:00",
-        "last_seen": "2026-10-08T06:34:54+00:00"
+        "last_seen": "2026-10-08T07:31:14+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-08T06:34:54+00:00",
-      "updated_at": "2026-10-08T06:34:54+00:00"
+      "updated_at": "2026-10-08T07:31:14+00:00"
+    },
+    "hitomi:4216067": {
+      "item": {
+        "uid": "hitomi:4216067",
+        "source": "hitomi",
+        "source_id": "4216067",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4216067.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-08T07:31:57+00:00",
+        "title": "MANEATER",
+        "title_jp": "MANEATER",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "female:big breasts",
+          "female:loli",
+          "male:shota",
+          "female:sole female",
+          "female:twintails",
+          "female:vore"
+        ],
+        "meta_tags": [],
+        "pages": 40,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-09-27 07:35:00-05",
+        "thumbnail": "thumbs/hitomi/4216067.webp",
+        "first_seen": "2026-09-27T14:23:04+00:00",
+        "last_seen": "2026-10-08T07:31:14+00:00"
+      },
+      "reason": "blocked:vore",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-08T07:31:14+00:00",
+      "updated_at": "2026-10-08T07:31:14+00:00"
+    },
+    "hitomi:4065095": {
+      "item": {
+        "uid": "hitomi:4065095",
+        "source": "hitomi",
+        "source_id": "4065095",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4065095.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-08T07:32:43+00:00",
+        "title": "魔女裁判",
+        "title_jp": "魔女裁判",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [
+          "hunitarehu"
+        ],
+        "groups": [],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "female:bondage",
+          "classroom",
+          "female:slave",
+          "female:torture",
+          "female:whip"
+        ],
+        "meta_tags": [
+          "artist:hunitarehu",
+          "work:original"
+        ],
+        "pages": 21,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-20 02:28:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/4/b9/1e8c5a8a7a2fdf78c08fe6ce783987b9aded7d741fff15007dad5732ccceab94.jpg",
+        "first_seen": "2026-10-08T07:31:14+00:00",
+        "last_seen": "2026-10-08T07:31:14+00:00"
+      },
+      "reason": "blocked:torture",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-08T07:31:14+00:00",
+      "updated_at": "2026-10-08T07:31:14+00:00"
+    },
+    "hitomi:4065042": {
+      "item": {
+        "uid": "hitomi:4065042",
+        "source": "hitomi",
+        "source_id": "4065042",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4065042.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "三花栗鼠",
+        "title_jp": "三花栗鼠",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [],
+        "pages": 5,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-20 01:37:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/3/60/64a1e8c73197e83a1f8ad96cec0fd4db83e56650ce001f4395035646e8f30603.jpg",
+        "first_seen": "2026-10-08T07:31:14+00:00",
+        "last_seen": "2026-10-08T07:31:14+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-08T07:31:14+00:00",
+      "updated_at": "2026-10-08T07:31:14+00:00"
+    },
+    "hitomi:4065013": {
+      "item": {
+        "uid": "hitomi:4065013",
+        "source": "hitomi",
+        "source_id": "4065013",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4065013.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-08T07:32:49+00:00",
+        "title": "School of Hellions: Hot Lady Lynching Side Story",
+        "title_jp": "School of Hellions: Hot Lady Lynching Side Story",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [
+          "onna ni yoru onna e no ryoujoku"
+        ],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "female:bdsm",
+          "female:bondage",
+          "female:enema",
+          "female:females only",
+          "full color",
+          "female:humiliation",
+          "female:scat",
+          "female:sex toys",
+          "female:torture"
+        ],
+        "meta_tags": [
+          "group:onna ni yoru onna e no ryoujoku",
+          "work:original"
+        ],
+        "pages": 36,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-20 01:22:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/e/6a/7da72d15f0dee118f27d52514935a13f73e11fc57959bc4b58e3a7c5b144e6ae.jpg",
+        "first_seen": "2026-10-08T07:31:14+00:00",
+        "last_seen": "2026-10-08T07:31:14+00:00"
+      },
+      "reason": "blocked:female:scat",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-08T07:31:14+00:00",
+      "updated_at": "2026-10-08T07:31:14+00:00"
+    },
+    "hitomi:4065012": {
+      "item": {
+        "uid": "hitomi:4065012",
+        "source": "hitomi",
+        "source_id": "4065012",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4065012.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-08T07:32:49+00:00",
+        "title": "School of Hellions: Hot Lady Lynching 7",
+        "title_jp": "School of Hellions: Hot Lady Lynching 7",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [
+          "onna ni yoru onna e no ryoujoku"
+        ],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "female:bdsm",
+          "female:bondage",
+          "female:enema",
+          "female:humiliation",
+          "female:scat",
+          "female:shibari",
+          "female:torture"
+        ],
+        "meta_tags": [
+          "group:onna ni yoru onna e no ryoujoku",
+          "work:original"
+        ],
+        "pages": 29,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-20 01:22:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/2/c7/4b1415efe01e21ff8b0463422e1fd8d4df8b9d3d96e2aa0031f817b84cb7ec72.jpg",
+        "first_seen": "2026-10-08T07:31:14+00:00",
+        "last_seen": "2026-10-08T07:31:14+00:00"
+      },
+      "reason": "blocked:female:scat",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-08T07:31:14+00:00",
+      "updated_at": "2026-10-08T07:31:14+00:00"
+    },
+    "hitomi:4065011": {
+      "item": {
+        "uid": "hitomi:4065011",
+        "source": "hitomi",
+        "source_id": "4065011",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4065011.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-08T07:32:49+00:00",
+        "title": "School of Hellions: Hot Lady Lynching 3",
+        "title_jp": "School of Hellions: Hot Lady Lynching 3",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [
+          "onna ni yoru onna e no ryoujoku"
+        ],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "female:bdsm",
+          "female:bondage",
+          "female:enema",
+          "female:humiliation",
+          "female:scat",
+          "female:torture"
+        ],
+        "meta_tags": [
+          "group:onna ni yoru onna e no ryoujoku",
+          "work:original"
+        ],
+        "pages": 26,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-20 01:22:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/d/3f/e6f1250e491515125d42c33661cd9e6a1a9ee23132400d10c07633bc836dc3fd.jpg",
+        "first_seen": "2026-10-08T07:31:14+00:00",
+        "last_seen": "2026-10-08T07:31:14+00:00"
+      },
+      "reason": "blocked:female:scat",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-08T07:31:14+00:00",
+      "updated_at": "2026-10-08T07:31:14+00:00"
+    },
+    "hitomi:4065000": {
+      "item": {
+        "uid": "hitomi:4065000",
+        "source": "hitomi",
+        "source_id": "4065000",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4065000.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-08T07:32:50+00:00",
+        "title": "Tales of the Crossdressing Prettyboy Academy 2",
+        "title_jp": "生徒が全員男の娘の学校の物語2",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [
+          "blueheart"
+        ],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "female:big breasts",
+          "male:blowjob",
+          "male:dickgirl on male",
+          "group",
+          "male:mesuiki",
+          "female:shemale",
+          "male:tomgirl",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "group:blueheart",
+          "work:original"
+        ],
+        "pages": 11,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-20 01:12:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/5/15/868f45dcdae123190b10a33ebc638b5478b8f6ae1a610994d0b030cada329155.jpg",
+        "first_seen": "2026-10-08T07:31:14+00:00",
+        "last_seen": "2026-10-08T07:31:14+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-08T07:31:14+00:00",
+      "updated_at": "2026-10-08T07:31:14+00:00"
+    },
+    "hitomi:4064813": {
+      "item": {
+        "uid": "hitomi:4064813",
+        "source": "hitomi",
+        "source_id": "4064813",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4064813.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-08T07:33:08+00:00",
+        "title": "Gekishiro - Pigma's Training",
+        "title_jp": "げきしろ - Pigma's Training",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [
+          "gekishiro"
+        ],
+        "groups": [],
+        "parodies": [
+          "star fox"
+        ],
+        "works": [
+          "star fox"
+        ],
+        "characters": [
+          "fox mccloud",
+          "pigma dengar"
+        ],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "male:bbm",
+          "male:big penis",
+          "male:body modification",
+          "male:bondage",
+          "male:breast expansion",
+          "male:chastity belt",
+          "male:collar",
+          "male:condom",
+          "male:crossdressing",
+          "male:drugs",
+          "male:feminization",
+          "male:fox boy",
+          "female:furry",
+          "male:furry",
+          "male:males only",
+          "male:mind break",
+          "male:nakadashi",
+          "male:penis reduction",
+          "male:pig man",
+          "male:rape",
+          "female:shemale",
+          "male:stockings",
+          "male:syringe",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:gekishiro",
+          "work:star fox",
+          "character:fox mccloud",
+          "character:pigma dengar"
+        ],
+        "pages": 44,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-19 22:35:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/8/83/a3878373b54cad53a98f2cb5a204eb3fea1218d9402308cb419482fd3c7bb838.jpg",
+        "first_seen": "2026-10-08T07:31:14+00:00",
+        "last_seen": "2026-10-08T07:31:14+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-08T07:31:14+00:00",
+      "updated_at": "2026-10-08T07:31:14+00:00"
+    },
+    "3hentai:3703702": {
+      "item": {
+        "uid": "3hentai:3703702",
+        "source": "3hentai",
+        "source_id": "3703702",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/703702",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "703702",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-10-08T07:33:34+00:00",
+        "title": "【mokopokoDJ】Happy New Year!! [COMM] - Chili 🌶️2 DL｜钟离公子",
+        "title_jp": "【mokopokoDJ】Happy New Year!! [COMM] - Chili 🌶️2 DL｜钟离公子",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "genshin impact"
+        ],
+        "works": [
+          "genshin impact"
+        ],
+        "characters": [],
+        "tags": [
+          "language:japanese",
+          "animated",
+          "males only",
+          "yaoi",
+          "japanese"
+        ],
+        "meta_tags": [
+          "work:genshin impact"
+        ],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s2.3hentai.xyz/d1597019/thumb.jpg",
+        "first_seen": "2026-10-08T07:31:14+00:00",
+        "last_seen": "2026-10-08T07:31:14+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-08T07:31:14+00:00",
+      "updated_at": "2026-10-08T07:31:14+00:00"
     }
   },
   "hitomi_attempts": {
@@ -124240,24 +124644,20 @@
       "retry_at": 1791437333.0
     },
     "hitomi:4238096": {
-      "last_attempt": 1791398185.0,
-      "retry_at": 1791441385.0
+      "last_attempt": 1791444674.0,
+      "retry_at": 1791487874.0
     },
     "hitomi:4238129": {
-      "last_attempt": 1791398185.0,
-      "retry_at": 1791441385.0
-    },
-    "hitomi:4238133": {
-      "last_attempt": 1791398185.0,
-      "retry_at": 1791441385.0
+      "last_attempt": 1791444674.0,
+      "retry_at": 1791487874.0
     },
     "hitomi:4238135": {
-      "last_attempt": 1791398185.0,
-      "retry_at": 1791441385.0
+      "last_attempt": 1791444674.0,
+      "retry_at": 1791487874.0
     },
     "hitomi:4238161": {
-      "last_attempt": 1791398185.0,
-      "retry_at": 1791441385.0
+      "last_attempt": 1791444674.0,
+      "retry_at": 1791487874.0
     },
     "hitomi:4212862": {
       "last_attempt": 1791398185.0,
@@ -125265,10 +125665,6 @@
       "last_attempt": 1791441294.0,
       "retry_at": 1791484494.0
     },
-    "hitomi:4239139": {
-      "last_attempt": 1791441294.0,
-      "retry_at": 1791484494.0
-    },
     "hitomi:4153850": {
       "last_attempt": 1791441294.0,
       "failures": 1,
@@ -125318,25 +125714,183 @@
       "failures": 1,
       "reason": "metadata_invalid",
       "retry_at": 1791484494.0
+    },
+    "hitomi:4065096": {
+      "last_attempt": 1791444674.0,
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4065162": {
+      "last_attempt": 1791444674.0,
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4065204": {
+      "last_attempt": 1791444674.0,
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4065248": {
+      "last_attempt": 1791444674.0,
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4151829": {
+      "last_attempt": 1791444674.0,
+      "failures": 1,
+      "reason": "metadata_invalid",
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4151831": {
+      "last_attempt": 1791444674.0,
+      "failures": 1,
+      "reason": "metadata_invalid",
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4151837": {
+      "last_attempt": 1791444674.0,
+      "failures": 1,
+      "reason": "metadata_invalid",
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4151838": {
+      "last_attempt": 1791444674.0,
+      "failures": 1,
+      "reason": "metadata_invalid",
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4151847": {
+      "last_attempt": 1791444674.0,
+      "failures": 1,
+      "reason": "metadata_invalid",
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4151850": {
+      "last_attempt": 1791444674.0,
+      "failures": 1,
+      "reason": "metadata_invalid",
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4151851": {
+      "last_attempt": 1791444674.0,
+      "failures": 1,
+      "reason": "metadata_invalid",
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4152039": {
+      "last_attempt": 1791444674.0,
+      "failures": 1,
+      "reason": "metadata_invalid",
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4152040": {
+      "last_attempt": 1791444674.0,
+      "failures": 1,
+      "reason": "metadata_invalid",
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4152041": {
+      "last_attempt": 1791444674.0,
+      "failures": 1,
+      "reason": "metadata_invalid",
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4152042": {
+      "last_attempt": 1791444674.0,
+      "failures": 1,
+      "reason": "metadata_invalid",
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4215942": {
+      "last_attempt": 1791444674.0,
+      "failures": 1,
+      "reason": "metadata_invalid",
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4215954": {
+      "last_attempt": 1791444674.0,
+      "failures": 1,
+      "reason": "metadata_invalid",
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4215968": {
+      "last_attempt": 1791444674.0,
+      "failures": 1,
+      "reason": "http_404",
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4215998": {
+      "last_attempt": 1791444674.0,
+      "failures": 1,
+      "reason": "metadata_invalid",
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4150912": {
+      "last_attempt": 1791444674.0,
+      "failures": 1,
+      "reason": "metadata_invalid",
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4151677": {
+      "last_attempt": 1791444674.0,
+      "failures": 1,
+      "reason": "metadata_invalid",
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4151708": {
+      "last_attempt": 1791444674.0,
+      "failures": 1,
+      "reason": "http_404",
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4216062": {
+      "last_attempt": 1791444674.0,
+      "failures": 1,
+      "reason": "metadata_invalid",
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4216066": {
+      "last_attempt": 1791444674.0,
+      "failures": 1,
+      "reason": "metadata_invalid",
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4216067": {
+      "last_attempt": 1791444674.0,
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4216193": {
+      "last_attempt": 1791444674.0,
+      "failures": 1,
+      "reason": "metadata_invalid",
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4216215": {
+      "last_attempt": 1791444674.0,
+      "failures": 1,
+      "reason": "metadata_invalid",
+      "retry_at": 1791487874.0
+    },
+    "hitomi:4216282": {
+      "last_attempt": 1791444674.0,
+      "failures": 1,
+      "reason": "metadata_invalid",
+      "retry_at": 1791487874.0
     }
   },
   "verified_checkpoints": {},
   "hitomi_host_retry_at": 1791097387.0,
-  "updated_at": "2026-10-08T06:34:54+00:00",
+  "updated_at": "2026-10-08T07:31:14+00:00",
   "last_audit": {
-    "last_run": "2026-10-08T06:34:54+00:00",
-    "eligible": 5560,
+    "last_run": "2026-10-08T07:31:14+00:00",
+    "eligible": 5429,
     "attempted": 200,
-    "verified": 188,
+    "verified": 168,
     "restored": 1,
-    "blocked": 2,
-    "unverified": 3,
-    "failed": 7,
+    "blocked": 1,
+    "unverified": 8,
+    "failed": 23,
     "failed_reasons": {
-      "metadata_invalid": 6,
-      "http_404": 1
+      "metadata_invalid": 21,
+      "http_404": 2
     },
     "stopped": false,
-    "remaining_source_rechecks": 6234
+    "remaining_source_rechecks": 6113
   }
 }
