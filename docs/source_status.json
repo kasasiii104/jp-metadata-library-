@@ -1,19 +1,19 @@
 {
   "ehentai": {
-    "status": "empty",
+    "status": "ok",
     "discovered": 50,
-    "accepted_raw": 0,
+    "accepted_raw": 1,
     "message": "",
-    "last_attempt": "2026-10-11T16:26:56+00:00",
-    "accepted": 0,
+    "last_attempt": "2026-10-11T17:26:03+00:00",
+    "accepted": 1,
     "blocked": 0,
     "blocked_reasons": {},
-    "last_success": "2026-10-11T14:26:45+00:00",
+    "last_success": "2026-10-11T17:26:03+00:00",
     "artists_found": 0,
     "groups_found": 0,
-    "works_found": 0,
-    "characters_found": 0,
-    "tagged_items": 0,
+    "works_found": 1,
+    "characters_found": 1,
+    "tagged_items": 1,
     "pagination_mode": "global-latest+japanese-next-cursor",
     "latest_pages_fetched": 2,
     "backfill_pages_requested": 4,
@@ -29,21 +29,21 @@
         "requested_cursor": "<latest>",
         "final_url": "https://e-hentai.org/",
         "found_count": 25,
-        "first_gid": "4247118",
-        "last_gid": "4247092",
-        "next_cursor": "4247092",
+        "first_gid": "4247294",
+        "last_gid": "4247268",
+        "next_cursor": "4247268",
         "unique_new_count": 25,
         "repeated_page": false
       },
       {
         "stage": "latest-global:2",
         "query_mode": "global-latest",
-        "requested_cursor": "4247092",
-        "final_url": "https://e-hentai.org/?next=4247092",
+        "requested_cursor": "4247268",
+        "final_url": "https://e-hentai.org/?next=4247268",
         "found_count": 25,
-        "first_gid": "4247091",
-        "last_gid": "4247065",
-        "next_cursor": "4247065",
+        "first_gid": "4247267",
+        "last_gid": "4247234",
+        "next_cursor": "4247234",
         "unique_new_count": 25,
         "repeated_page": false
       }
@@ -51,11 +51,11 @@
     "latest_mode": "global-feed+gdata-language-filter",
     "backfill_mode": "japanese-search-next-cursor",
     "metadata_resolved": 50,
-    "japanese_items": 0,
+    "japanese_items": 1,
     "latest_global_discovered": 50,
     "latest_metadata_found": 50,
-    "latest_japanese_found": 0,
-    "latest_non_japanese_skipped": 50,
+    "latest_japanese_found": 1,
+    "latest_non_japanese_skipped": 49,
     "backfill_japanese_found": 0
   },
   "hitomi": {
@@ -64,44 +64,44 @@
     "accepted_raw": 90,
     "latest_ids": 30,
     "backfill_ids": 60,
-    "total_index": 557339,
+    "total_index": 557343,
     "resource_base": "https://ltn.gold-usergeneratedcontent.net",
     "used_hosts": {
       "https://ltn.gold-usergeneratedcontent.net": 90
     },
     "index_url": "https://ltn.gold-usergeneratedcontent.net/n/index-japanese.nozomi",
     "message": "",
-    "last_attempt": "2026-10-11T16:26:56+00:00",
-    "accepted": 75,
-    "blocked": 15,
+    "last_attempt": "2026-10-11T17:26:03+00:00",
+    "accepted": 78,
+    "blocked": 12,
     "blocked_reasons": {
-      "metadata_unverified": 8,
+      "blocked:insect:insect": 3,
+      "metadata_unverified": 4,
       "blocked:amputee": 1,
-      "blocked:male:yaoi": 3,
-      "blocked:snuff": 1,
-      "blocked:ryona": 2
+      "language": 1,
+      "blocked:male:yaoi": 3
     },
-    "last_success": "2026-10-11T16:26:56+00:00",
+    "last_success": "2026-10-11T17:26:03+00:00",
     "thumbnails_found": 90,
     "thumbnails_missing": 0,
     "thumbnail_samples": [
-      "4247364: https://tn.hitomi.la/bigtn/3/b2/76455cb676569d1f90305ed75a6ae3810bf804ab1ef96604657f44d36842ab23.jpg",
-      "4247358: https://tn.hitomi.la/bigtn/6/f3/10ea4b0038fffcb30f96de1254687d90052c7698b734bc38c0e743be5488df36.jpg",
-      "4247318: https://tn.hitomi.la/bigtn/d/30/373b55b7617a48f2f547ee36038a0a82126fc6a869ffbb2956a196d33051730d.jpg"
+      "4247408: https://tn.hitomi.la/bigtn/8/5e/5767d5c41c06e41543abdc90ba9767136c0d45d51a779a55e539cf6b72a0d5e8.jpg",
+      "4247406: https://tn.hitomi.la/bigtn/a/75/3b529e532edb8a5ce32a26ec61b17a0d0519ef46fb3ce5067be1da775ef7975a.jpg",
+      "4247405: https://tn.hitomi.la/bigtn/e/73/fbc5c1650bb3c04391b262338e93ea819c3b01007ebc4bf832f2ec3f9ecc673e.jpg"
     ],
     "thumbnail_cache": {
-      "attempted": 57,
-      "cached": 57,
-      "reused": 20044,
+      "attempted": 59,
+      "cached": 59,
+      "reused": 20101,
       "failed": 0,
       "pending": 0,
       "failures": []
     },
-    "artists_found": 47,
-    "groups_found": 26,
+    "artists_found": 60,
+    "groups_found": 14,
     "works_found": 75,
-    "characters_found": 50,
-    "tagged_items": 82
+    "characters_found": 48,
+    "tagged_items": 86
   },
   "3hentai": {
     "status": "ok",
@@ -110,7 +110,8 @@
     "browse_mode": "browse-query-page",
     "detail_errors": 0,
     "languages_detected": {
-      "japanese": 60
+      "japanese": 58,
+      "english": 2
     },
     "language_evidence": {
       "missing": 2
@@ -121,15 +122,17 @@
     ],
     "thumbnails_found": 60,
     "thumbnails_missing": 0,
-    "debug": "page=1 candidates=23 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=1&sort=recent | page=2 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=2&sort=recent | page=1165 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=1165&sort=recent",
+    "debug": "page=1 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=1&sort=recent | page=2 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=2&sort=recent | page=1168 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=1168&sort=recent",
     "message": "",
-    "last_attempt": "2026-10-11T16:26:56+00:00",
-    "accepted": 57,
-    "blocked": 3,
+    "last_attempt": "2026-10-11T17:26:03+00:00",
+    "accepted": 41,
+    "blocked": 19,
     "blocked_reasons": {
-      "blocked:yaoi": 3
+      "blocked:yaoi": 16,
+      "language": 2,
+      "blocked:insect:parasite": 1
     },
-    "last_success": "2026-10-11T16:26:56+00:00",
+    "last_success": "2026-10-11T17:26:03+00:00",
     "api_base": "http://127.0.0.1:3000",
     "jandapress_http": 200,
     "search_key": "language:japanese",
@@ -137,18 +140,18 @@
       "mode": "public-search-exact-title+gallery",
       "attempted": 12,
       "cached": 12,
-      "reused": 4302,
+      "reused": 4314,
       "failed": 0,
-      "pending": 2033,
+      "pending": 2060,
       "resolved_search_fallbacks": 0,
       "rate_limited": false,
       "upstream_unavailable": false,
       "samples": [
-        "3667485: https://s9.3hentai.xyz/d1107520/thumb.jpg -> thumbs/3hentai/3667485.webp",
-        "3665845: https://s1.3hentai.xyz/d1107442/thumb.jpg -> thumbs/3hentai/3665845.webp",
-        "3665843: https://s9.3hentai.xyz/d1107438/thumb.jpg -> thumbs/3hentai/3665843.webp",
-        "3665841: https://s9.3hentai.xyz/d1107457/thumb.jpg -> thumbs/3hentai/3665841.webp",
-        "3665840: https://s9.3hentai.xyz/d1107456/thumb.jpg -> thumbs/3hentai/3665840.webp"
+        "3763624: https://s1.3hentai.xyz/d2479961/thumb.jpg -> thumbs/3hentai/3763624.webp",
+        "3763604: https://s1.3hentai.xyz/d2479908/thumb.jpg -> thumbs/3hentai/3763604.webp",
+        "3763594: https://s1.3hentai.xyz/d2479567/thumb.jpg -> thumbs/3hentai/3763594.webp",
+        "3763589: https://s1.3hentai.xyz/d2479554/thumb.jpg -> thumbs/3hentai/3763589.webp",
+        "3763554: https://s1.3hentai.xyz/d2479815/thumb.jpg -> thumbs/3hentai/3763554.webp"
       ],
       "failures": []
     },
@@ -157,16 +160,16 @@
     "direct_source_urls": 60,
     "search_fallback_urls": 0,
     "source_url_samples": [
-      "3762689 [direct]: https://3hentai.net/d/762689",
-      "3762679 [direct]: https://3hentai.net/d/762679",
-      "3762674 [direct]: https://3hentai.net/d/762674",
-      "3762614 [direct]: https://3hentai.net/d/762614",
-      "3762589 [direct]: https://3hentai.net/d/762589"
+      "3763624 [direct]: https://3hentai.net/d/763624",
+      "3763604 [direct]: https://3hentai.net/d/763604",
+      "3763594 [direct]: https://3hentai.net/d/763594",
+      "3763589 [direct]: https://3hentai.net/d/763589",
+      "3763554 [direct]: https://3hentai.net/d/763554"
     ],
     "3hentai_debug_samples": [
       {
-        "id_guess": "3762689",
-        "title_guess": "[あぶぶ] サイトウ (ポケットモンスター ソード・シールド)",
+        "id_guess": "3763624",
+        "title_guess": "[820] 57 [Korean]",
         "top_level_keys": [
           "title",
           "id"
@@ -179,13 +182,13 @@
         "image_like_values": [],
         "real_gallery_url": "",
         "best_thumbnail_url": "",
-        "normalized_source_id": "3762689",
+        "normalized_source_id": "3763624",
         "normalized_source_url_kind": "search",
-        "normalized_source_url": "https://3hentai.net/search?q=%5B%E3%81%82%E3%81%B6%E3%81%B6%5D+%E3%82%B5%E3%82%A4%E3%83%88%E3%82%A6+%28%E3%83%9D%E3%82%B1%E3%83%83%E3%83%88%E3%83%A2%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%BC+%E3%82%BD%E3%83%BC%E3%83%89%E3%83%BB%E3%82%B7%E3%83%BC%E3%83%AB%E3%83%89%29"
+        "normalized_source_url": "https://3hentai.net/search?q=%5B820%5D+57+%5BKorean%5D"
       },
       {
-        "id_guess": "3762679",
-        "title_guess": "[skai] INA PLAY (Hololive)",
+        "id_guess": "3763604",
+        "title_guess": "[Love-Saber] Solo Leveling",
         "top_level_keys": [
           "title",
           "id"
@@ -198,13 +201,13 @@
         "image_like_values": [],
         "real_gallery_url": "",
         "best_thumbnail_url": "",
-        "normalized_source_id": "3762679",
+        "normalized_source_id": "3763604",
         "normalized_source_url_kind": "search",
-        "normalized_source_url": "https://3hentai.net/search?q=%5Bskai%5D+INA+PLAY+%28Hololive%29"
+        "normalized_source_url": "https://3hentai.net/search?q=%5BLove-Saber%5D+Solo+Leveling"
       },
       {
-        "id_guess": "3762674",
-        "title_guess": "[skai] Mummy Mococo (Hololive)",
+        "id_guess": "3763594",
+        "title_guess": "[仁人] ナンジャモ (ポケットモンスター スカーレット・バイオレット)",
         "top_level_keys": [
           "title",
           "id"
@@ -217,9 +220,9 @@
         "image_like_values": [],
         "real_gallery_url": "",
         "best_thumbnail_url": "",
-        "normalized_source_id": "3762674",
+        "normalized_source_id": "3763594",
         "normalized_source_url_kind": "search",
-        "normalized_source_url": "https://3hentai.net/search?q=%5Bskai%5D+Mummy+Mococo+%28Hololive%29"
+        "normalized_source_url": "https://3hentai.net/search?q=%5B%E4%BB%81%E4%BA%BA%5D+%E3%83%8A%E3%83%B3%E3%82%B8%E3%83%A3%E3%83%A2+%28%E3%83%9D%E3%82%B1%E3%83%83%E3%83%88%E3%83%A2%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%BC+%E3%82%B9%E3%82%AB%E3%83%BC%E3%83%AC%E3%83%83%E3%83%88%E3%83%BB%E3%83%90%E3%82%A4%E3%82%AA%E3%83%AC%E3%83%83%E3%83%88%29"
       }
     ],
     "debug_sample_count": 3,
@@ -231,14 +234,14 @@
     "get_debug_rate_limited": false,
     "get_probe_enriched_items": 0,
     "direct_html_mode": "public-search-card-enrichment",
-    "direct_html_cards": 73,
+    "direct_html_cards": 75,
     "direct_html_enriched": 60,
     "direct_html_pages": [
       {
         "page": 1,
         "http_status": 200,
         "final_url": "https://3hentai.net/search?q=language%3Ajapanese&page=1&sort=recent",
-        "cards": 23,
+        "cards": 25,
         "error": ""
       },
       {
@@ -249,9 +252,9 @@
         "error": ""
       },
       {
-        "page": 1165,
+        "page": 1168,
         "http_status": 200,
-        "final_url": "https://3hentai.net/search?q=language%3Ajapanese&page=1165&sort=recent",
+        "final_url": "https://3hentai.net/search?q=language%3Ajapanese&page=1168&sort=recent",
         "cards": 25,
         "error": ""
       }
@@ -262,11 +265,11 @@
     "gallery_metadata_failed": 0,
     "gallery_metadata_stopped": false,
     "gallery_metadata_samples": [
-      "3762689: tags=9 artists=0 groups=0 category=doujinshi",
-      "3762679: tags=7 artists=0 groups=0 category=doujinshi",
-      "3762674: tags=12 artists=0 groups=0 category=doujinshi",
-      "3762614: tags=14 artists=0 groups=0 category=doujinshi",
-      "3762589: tags=9 artists=0 groups=0 category=manga"
+      "3763624: tags=6 artists=0 groups=0 category=doujinshi",
+      "3763604: tags=6 artists=0 groups=0 category=doujinshi",
+      "3763594: tags=9 artists=0 groups=0 category=doujinshi",
+      "3763589: tags=10 artists=0 groups=0 category=doujinshi",
+      "3763554: tags=11 artists=0 groups=0 category=doujinshi"
     ],
     "gallery_metadata_failures": [],
     "existing_filter_audit_mode": "public-gallery-metadata",
@@ -291,8 +294,8 @@
     "tagged_items": 60,
     "artists_found": 0,
     "groups_found": 0,
-    "works_found": 45,
-    "characters_found": 45,
+    "works_found": 42,
+    "characters_found": 37,
     "skipped": "hitomi-filter-audit-only"
   },
   "filters": {
@@ -325,25 +328,27 @@
       ]
     },
     "hitomi_existing_audit": {
-      "last_run": "2026-10-11T16:26:56+00:00",
-      "eligible": 203,
+      "last_run": "2026-10-11T17:26:03+00:00",
+      "eligible": 359,
       "attempted": 200,
-      "verified": 1,
-      "restored": 1,
+      "verified": 2,
+      "restored": 2,
       "blocked": 0,
-      "unverified": 199,
-      "failed": 0,
-      "failed_reasons": {},
+      "unverified": 197,
+      "failed": 1,
+      "failed_reasons": {
+        "http_404": 1
+      },
       "stopped": false,
-      "remaining_source_rechecks": 1580
+      "remaining_source_rechecks": 1578
     },
     "quarantined_pending_by_source": {
-      "hitomi": 904
+      "hitomi": 902
     },
     "quarantined_blocked_by_source": {
-      "hitomi": 1777,
+      "hitomi": 1784,
       "ehentai": 101,
-      "3hentai": 677,
+      "3hentai": 696,
       "asmhentai": 2
     },
     "held_existing_unverified": 0
@@ -374,7 +379,7 @@
     "tagged_items": 8,
     "thumbnail_urls": 8,
     "message": "",
-    "last_attempt": "2026-10-11T16:26:56+00:00",
+    "last_attempt": "2026-10-11T17:26:03+00:00",
     "accepted": 76,
     "blocked": 2,
     "blocked_reasons": {
@@ -393,10 +398,10 @@
     "probe_rows": 0,
     "detail_attempts": 8,
     "detail_success": 8,
-    "last_success": "2026-10-11T16:26:56+00:00",
-    "detail_cursor": 8,
-    "detail_cursor_next": 16,
+    "last_success": "2026-10-11T17:26:03+00:00",
+    "detail_cursor": 16,
+    "detail_cursor_next": 24,
     "detail_candidates": 80
   },
-  "updated_at": "2026-10-11T16:26:56+00:00"
+  "updated_at": "2026-10-11T17:26:03+00:00"
 }
