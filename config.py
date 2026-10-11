@@ -13,6 +13,12 @@ FILTER_STATE_FILE = ROOT / "state" / "filter_audit.json"
 REQUEST_TIMEOUT = 30
 USER_AGENT = "Japanese-Metadata-Library/1.6 (+GitHub Actions; metadata-only)"
 
+# nHentai remains disabled in crawler.SOURCES until its read-only probe succeeds.
+NH_LATEST_PAGES = int(os.environ.get("NH_LATEST_PAGES", "1"))
+NH_BACKFILL_PAGES = int(os.environ.get("NH_BACKFILL_PAGES", "0"))
+NH_MAX_DETAILS_PER_RUN = int(os.environ.get("NH_MAX_DETAILS_PER_RUN", "3"))
+NH_REQUEST_DELAY_SEC = float(os.environ.get("NH_REQUEST_DELAY_SEC", "1"))
+
 # E-Hentai: latest + historical backfill every run.
 EH_LATEST_PAGES = int(os.environ.get("EH_LATEST_PAGES", "2"))
 EH_BACKFILL_PAGES = int(os.environ.get("EH_BACKFILL_PAGES", "4"))

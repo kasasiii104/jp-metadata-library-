@@ -1,10 +1,10 @@
 name: Content filter regression tests
 on:
   pull_request:
-    paths: ["crawler.py", "config.py", "sources/**", "tests/**", ".github/workflows/**"]
+    paths: ["crawler.py", "config.py", "sources/**", "tests/**", "tools/probe_nhentai.py", ".github/workflows/**"]
   push:
     branches: [main]
-    paths: ["crawler.py", "config.py", "sources/**", "tests/**", ".github/workflows/test.yml"]
+    paths: ["crawler.py", "config.py", "sources/**", "tests/**", "tools/probe_nhentai.py", ".github/workflows/test.yml"]
 permissions:
   contents: read
 jobs:
@@ -16,8 +16,18 @@ jobs:
           sparse-checkout: |
             sources
             tests
+            tools
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
       - run: python -m unittest discover -s tests -v
+      - name: Run one bounded nHentai live probe
+        continue-on-error: true
+        run: python tools/probe_nhentai.py --report test-results/nhentai-probe.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nhentai-live-probe
+          path: test-results/nhentai-probe.json
+          if-no-files-found: warn

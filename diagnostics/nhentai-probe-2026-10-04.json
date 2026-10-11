@@ -1,0 +1,27 @@
+{
+  "checked_at": "2026-10-04T05:28:52+00:00",
+  "mode": "metadata-only; one search page; at most three detail lookups",
+  "collector": {
+    "status": "error",
+    "discovered": 0,
+    "accepted_raw": 0,
+    "search_metadata_used": 0,
+    "detail_requests": 0,
+    "metadata_unverified": 0,
+    "stopped": true,
+    "attempts": [
+      {
+        "url": "https://nhentai.net/api/v2/search?query=language%3Ajapanese&sort=date&page=1",
+        "http_status": 200,
+        "content_type": "text/html",
+        "challenge": false,
+        "login_redirect": false,
+        "reason": "site_unavailable"
+      }
+    ],
+    "message": "https://nhentai.net/api/v2/search?query=language%3Ajapanese&sort=date&page=1: HTTP 200 site_unavailable"
+  },
+  "eligible_after_filters": 0,
+  "rejected_reasons": {},
+  "ready_for_integration": false
+}
