@@ -175135,14 +175135,16 @@
         "filter_metadata_checked_at": "",
         "title": "Mesu Gaki Ririka-chan Wakarase Keikaku 4",
         "title_jp": "Mesu Gaki Ririka-chan Wakarase Keikaku 4",
-        "language": "japanese",
+        "language": "english",
         "category": "doujinshi",
         "artists": [],
         "groups": [],
         "parodies": [],
         "works": [],
         "characters": [],
-        "tags": [],
+        "tags": [
+          "rough translation"
+        ],
         "meta_tags": [],
         "pages": 13,
         "rating": null,
@@ -175150,12 +175152,12 @@
         "posted_at": "2026-10-11 05:21:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/0/cc/66f1aa5e1fa87f2a16ed6bc70752579eae9d784a882540dc2cc04b1f85f38cc0.jpg",
         "first_seen": "2026-10-11T11:25:29+00:00",
-        "last_seen": "2026-10-11T11:25:29+00:00"
+        "last_seen": "2026-10-11T12:31:49+00:00"
       },
-      "reason": "metadata_unverified",
-      "status": "pending",
+      "reason": "language",
+      "status": "blocked",
       "first_quarantined_at": "2026-10-11T11:25:29+00:00",
-      "updated_at": "2026-10-11T11:25:29+00:00"
+      "updated_at": "2026-10-11T12:31:49+00:00"
     },
     "hitomi:4246561": {
       "item": {
@@ -175619,12 +175621,12 @@
         "posted_at": "2026-07-06 05:48:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/f/66/48d13dacfe8f27e4333f054669ccd968b0c5a42b08e73ed633247781aa4ec66f.jpg",
         "first_seen": "2026-10-11T11:25:29+00:00",
-        "last_seen": "2026-10-11T11:25:29+00:00"
+        "last_seen": "2026-10-11T12:31:49+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-11T11:25:29+00:00",
-      "updated_at": "2026-10-11T11:25:29+00:00"
+      "updated_at": "2026-10-11T12:31:49+00:00"
     },
     "hitomi:4034619": {
       "item": {
@@ -175971,6 +175973,705 @@
       "status": "blocked",
       "first_quarantined_at": "2026-10-11T11:25:29+00:00",
       "updated_at": "2026-10-11T11:25:29+00:00"
+    },
+    "ehentai:4246580": {
+      "item": {
+        "uid": "ehentai:4246580",
+        "source": "ehentai",
+        "source_id": "4246580",
+        "source_token": "8376f9e3a4",
+        "source_url": "https://e-hentai.org/g/4246580/8376f9e3a4/",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "[Tobuchikara (Toriki Cooya)] Nikubenki Yobigun",
+        "title_jp": "[飛ぶちから] 肉便器予備軍",
+        "language": "japanese",
+        "category": "Doujinshi",
+        "artists": [
+          "toriki cooya"
+        ],
+        "groups": [
+          "tobuchikara"
+        ],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "language:japanese",
+          "group:tobuchikara",
+          "artist:toriki cooya",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:toriki cooya",
+          "group:tobuchikara"
+        ],
+        "pages": 22,
+        "rating": 0.5,
+        "popularity": null,
+        "posted_at": "2026-10-11T10:24:46+00:00",
+        "thumbnail": "https://ehgt.org/w/02/708/33037-9fy7r3ro.webp",
+        "first_seen": "2026-10-11T12:31:49+00:00",
+        "last_seen": "2026-10-11T12:31:49+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-11T12:31:49+00:00",
+      "updated_at": "2026-10-11T12:31:49+00:00"
+    },
+    "hitomi:4246729": {
+      "item": {
+        "uid": "hitomi:4246729",
+        "source": "hitomi",
+        "source_id": "4246729",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4246729.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-11T12:33:07+00:00",
+        "title": "2025-12 Given - Uenoyama Ritsuka x Satō Mafuyu",
+        "title_jp": "2025-12 Given - Uenoyama Ritsuka x Satō Mafuyu",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [],
+        "groups": [
+          "penguin frontier"
+        ],
+        "parodies": [
+          "given"
+        ],
+        "works": [
+          "given"
+        ],
+        "characters": [],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "male:males only",
+          "male:muscle",
+          "male:nakadashi",
+          "male:sweating",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "group:penguin frontier",
+          "work:given"
+        ],
+        "pages": 11,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-11 06:42:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/6/4a/50b02d2e94ebaed9815557e2168e1d6df1b40f31e0502d90e02d35491b5cb4a6.jpg",
+        "first_seen": "2026-10-11T12:31:49+00:00",
+        "last_seen": "2026-10-11T12:31:49+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-11T12:31:49+00:00",
+      "updated_at": "2026-10-11T12:31:49+00:00"
+    },
+    "hitomi:4246728": {
+      "item": {
+        "uid": "hitomi:4246728",
+        "source": "hitomi",
+        "source_id": "4246728",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4246728.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "Ohisashiburi（2023 ~ 2026-10-7）",
+        "title_jp": "お久しぶり ちんぽ王国（2023 ~ 2026-10-7）",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [],
+        "pages": 295,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-11 06:41:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/b/2c/5e7b878abbe065b92474baa16419e73ab52da2f3f203a4d4c273eba7a73912cb.jpg",
+        "first_seen": "2026-10-11T12:31:49+00:00",
+        "last_seen": "2026-10-11T12:31:49+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-11T12:31:49+00:00",
+      "updated_at": "2026-10-11T12:31:49+00:00"
+    },
+    "hitomi:4246701": {
+      "item": {
+        "uid": "hitomi:4246701",
+        "source": "hitomi",
+        "source_id": "4246701",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4246701.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "EOS / Persica 1",
+        "title_jp": "EOS / Persica 1",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [
+          "eonsang"
+        ],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [
+          "artist:eonsang"
+        ],
+        "pages": 3,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-11 06:28:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/b/44/1ef456e2181ee08aefd429e275da4075ae97007e7a020d5f2ec4ffebf6b8744b.jpg",
+        "first_seen": "2026-10-11T12:31:49+00:00",
+        "last_seen": "2026-10-11T12:31:49+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-10-11T12:31:49+00:00",
+      "updated_at": "2026-10-11T12:31:49+00:00"
+    },
+    "hitomi:4246645": {
+      "item": {
+        "uid": "hitomi:4246645",
+        "source": "hitomi",
+        "source_id": "4246645",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4246645.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-11T12:33:13+00:00",
+        "title": "Magnum Domination",
+        "title_jp": "マグナムドミネート",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "male:shota",
+          "male:yaoi"
+        ],
+        "meta_tags": [],
+        "pages": 55,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-11 06:00:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/a/a5/5e643e6d52d6dc6a2bfe6a29ad6ce7a40503e8ce71da6eca626c491f0cce3a5a.jpg",
+        "first_seen": "2026-10-11T12:31:49+00:00",
+        "last_seen": "2026-10-11T12:31:49+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-11T12:31:49+00:00",
+      "updated_at": "2026-10-11T12:31:49+00:00"
+    },
+    "hitomi:4246604": {
+      "item": {
+        "uid": "hitomi:4246604",
+        "source": "hitomi",
+        "source_id": "4246604",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4246604.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-11T12:33:13+00:00",
+        "title": "ikitteru kuso gaki no zinsei bukkowasu honn",
+        "title_jp": "イキッてるクソガキの人生ブッ壊す本。",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "toriki cooya"
+        ],
+        "groups": [
+          "tobuchikara"
+        ],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "male:shota",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:toriki cooya",
+          "group:tobuchikara"
+        ],
+        "pages": 48,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-11 05:38:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/2/05/a5e85009e3bb43129ad653d365a945d69f7eab9c3e3d10b5984820ebaaa33052.jpg",
+        "first_seen": "2026-10-11T12:31:49+00:00",
+        "last_seen": "2026-10-11T12:31:49+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-11T12:31:49+00:00",
+      "updated_at": "2026-10-11T12:31:49+00:00"
+    },
+    "hitomi:4246595": {
+      "item": {
+        "uid": "hitomi:4246595",
+        "source": "hitomi",
+        "source_id": "4246595",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4246595.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-11T12:33:13+00:00",
+        "title": "CRASH GO!",
+        "title_jp": "CRASH GO!",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "toriki cooya"
+        ],
+        "groups": [
+          "tobuchikara"
+        ],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "male:males only",
+          "male:shota",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:toriki cooya",
+          "group:tobuchikara"
+        ],
+        "pages": 32,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-10-11 05:30:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/9/70/81794942a7c866dcb8496cd381856b2c028a8604aea8b8299e8f5e44994ae709.jpg",
+        "first_seen": "2026-10-11T12:31:49+00:00",
+        "last_seen": "2026-10-11T12:31:49+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-11T12:31:49+00:00",
+      "updated_at": "2026-10-11T12:31:49+00:00"
+    },
+    "hitomi:4034601": {
+      "item": {
+        "uid": "hitomi:4034601",
+        "source": "hitomi",
+        "source_id": "4034601",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4034601.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-11T12:33:27+00:00",
+        "title": "Hero Ijime",
+        "title_jp": "ヒーローいじめ",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [
+          "uruonurun"
+        ],
+        "groups": [],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "male:males only",
+          "male:muscle",
+          "variant set",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:uruonurun",
+          "work:original"
+        ],
+        "pages": 10,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-06 05:26:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/d/3f/357c59fc698fe465c4dc1dbd7ddf06c418b43461bf740cf9320de657695983fd.jpg",
+        "first_seen": "2026-10-11T12:31:49+00:00",
+        "last_seen": "2026-10-11T12:31:49+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-11T12:31:49+00:00",
+      "updated_at": "2026-10-11T12:31:49+00:00"
+    },
+    "hitomi:4034502": {
+      "item": {
+        "uid": "hitomi:4034502",
+        "source": "hitomi",
+        "source_id": "4034502",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4034502.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-11T12:33:30+00:00",
+        "title": "エキキャベ２（2009 05 22~2026 01 08）",
+        "title_jp": "エキキャベ２（2009 05 22~2026 01 08）",
+        "language": "japanese",
+        "category": "imageset",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "female:amputee",
+          "female:big breasts",
+          "female:dismantling",
+          "female:robot",
+          "female:x-ray"
+        ],
+        "meta_tags": [],
+        "pages": 704,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-06 04:18:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/1/da/f909d9cbe6433ef5aad4cf69efe6676b46cdba25d4cddbf64b10927fe4affda1.jpg",
+        "first_seen": "2026-10-11T12:31:49+00:00",
+        "last_seen": "2026-10-11T12:31:49+00:00"
+      },
+      "reason": "blocked:amputee",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-11T12:31:49+00:00",
+      "updated_at": "2026-10-11T12:31:49+00:00"
+    },
+    "hitomi:4034406": {
+      "item": {
+        "uid": "hitomi:4034406",
+        "source": "hitomi",
+        "source_id": "4034406",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4034406.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-11T12:33:36+00:00",
+        "title": "配達員拘束",
+        "title_jp": "配達員拘束",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [
+          "uruonurun"
+        ],
+        "groups": [],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "male:bondage",
+          "male:males only",
+          "male:muscle",
+          "variant set",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:uruonurun",
+          "work:original"
+        ],
+        "pages": 16,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-06 03:03:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/7/f2/0281c4c906ab74b1f8cfbb88c7d9d3f8691ada59be9d8212c86eba90d31c8f27.jpg",
+        "first_seen": "2026-10-11T12:31:49+00:00",
+        "last_seen": "2026-10-11T12:31:49+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-11T12:31:49+00:00",
+      "updated_at": "2026-10-11T12:31:49+00:00"
+    },
+    "hitomi:4034399": {
+      "item": {
+        "uid": "hitomi:4034399",
+        "source": "hitomi",
+        "source_id": "4034399",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4034399.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-11T12:33:37+00:00",
+        "title": "縛り",
+        "title_jp": "縛り",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [
+          "uruonurun"
+        ],
+        "groups": [],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "male:bondage",
+          "male:males only",
+          "male:muscle",
+          "variant set",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:uruonurun",
+          "work:original"
+        ],
+        "pages": 7,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-06 02:50:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/c/66/1ead052925f8956e45686b048618ee50b69ef94e91280109b7377de23377866c.jpg",
+        "first_seen": "2026-10-11T12:31:49+00:00",
+        "last_seen": "2026-10-11T12:31:49+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-11T12:31:49+00:00",
+      "updated_at": "2026-10-11T12:31:49+00:00"
+    },
+    "hitomi:4034359": {
+      "item": {
+        "uid": "hitomi:4034359",
+        "source": "hitomi",
+        "source_id": "4034359",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4034359.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-11T12:33:38+00:00",
+        "title": "Otokonoko Collection ~ Yas Yas Horny 2025-nendo made ~",
+        "title_jp": "おとこの娘これくしょん ～Yas Yas Horny 2025年度マデ～",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [
+          "yas yas horny"
+        ],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "male:anal",
+          "male:anal intercourse",
+          "male:crossdressing",
+          "male:shota",
+          "male:small penis",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "group:yas yas horny",
+          "work:original"
+        ],
+        "pages": 79,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-06 02:28:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/9/2f/355d11978c55b388ed194ccd22b9d01871ce0693b3f4bda9929039401a45c2f9.jpg",
+        "first_seen": "2026-10-11T12:31:49+00:00",
+        "last_seen": "2026-10-11T12:31:49+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-11T12:31:49+00:00",
+      "updated_at": "2026-10-11T12:31:49+00:00"
+    },
+    "hitomi:4034346": {
+      "item": {
+        "uid": "hitomi:4034346",
+        "source": "hitomi",
+        "source_id": "4034346",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4034346.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-10-11T12:33:38+00:00",
+        "title": "Andoroid wa Boshi de Tsugau Yume o Miru ka? + Omake",
+        "title_jp": "アンドロイドは母子でツガウ夢を見るか？+ おまけ",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [
+          "muru no honbako"
+        ],
+        "parodies": [
+          "original"
+        ],
+        "works": [
+          "original"
+        ],
+        "characters": [],
+        "tags": [
+          "female:ahegao",
+          "female:amputee",
+          "female:anal",
+          "female:anal intercourse",
+          "male:armpit licking",
+          "female:asphyxiation",
+          "female:ball caressing",
+          "female:ball sucking",
+          "female:beauty mark",
+          "female:big areolae",
+          "female:big breasts",
+          "male:big penis",
+          "female:bite mark",
+          "female:blowjob",
+          "female:blowjob face",
+          "female:breast feeding",
+          "female:bunny girl",
+          "female:catgirl",
+          "female:cervix penetration",
+          "female:collar",
+          "female:cowgirl",
+          "female:cunnilingus",
+          "female:defloration",
+          "female:dog girl",
+          "female:eye-covering bang",
+          "male:eye-covering bang",
+          "female:facesitting",
+          "female:fingering",
+          "female:gaping",
+          "female:guro",
+          "female:handjob",
+          "female:huge breasts",
+          "male:huge penis",
+          "female:impregnation",
+          "incest",
+          "inseki",
+          "female:kemonomimi",
+          "female:kissing",
+          "female:lactation",
+          "female:leg lock",
+          "female:milf",
+          "female:mother",
+          "female:nakadashi",
+          "female:nipple stimulation",
+          "female:paizuri",
+          "female:pasties",
+          "female:petplay",
+          "female:pregnant",
+          "female:rimjob",
+          "female:robot",
+          "female:sex toys",
+          "male:shota",
+          "male:smalldom",
+          "female:snuff",
+          "male:sole male",
+          "female:squirting",
+          "female:stockings",
+          "female:stomach deformation",
+          "story arc",
+          "female:swimsuit",
+          "female:tail plug",
+          "female:unusual pupils",
+          "female:very long hair",
+          "male:virginity",
+          "female:x-ray"
+        ],
+        "meta_tags": [
+          "group:muru no honbako",
+          "work:original"
+        ],
+        "pages": 124,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-07-06 02:12:00-05",
+        "thumbnail": "https://tn.hitomi.la/bigtn/c/be/a4e35e05baa6c5753fe59c086c064b7582155acaeb58979aa42b21bd2758abec.jpg",
+        "first_seen": "2026-10-11T12:31:49+00:00",
+        "last_seen": "2026-10-11T12:31:49+00:00"
+      },
+      "reason": "blocked:amputee",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-11T12:31:49+00:00",
+      "updated_at": "2026-10-11T12:31:49+00:00"
+    },
+    "3hentai:3667092": {
+      "item": {
+        "uid": "3hentai:3667092",
+        "source": "3hentai",
+        "source_id": "3667092",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/667092",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "667092",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-10-11T12:33:55+00:00",
+        "title": "(Katte Kogarete Honki no Koi JB2023) [Wabiro (Satsuki)] Sukida nante Ienai Jou (Boku no Hero Academia)",
+        "title_jp": "(Katte Kogarete Honki no Koi JB2023) [Wabiro (Satsuki)] Sukida nante Ienai Jou (Boku no Hero Academia)",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "my hero academia | boku no hero academia"
+        ],
+        "works": [
+          "my hero academia | boku no hero academia"
+        ],
+        "characters": [],
+        "tags": [
+          "language:japanese",
+          "males only",
+          "yaoi",
+          "japanese"
+        ],
+        "meta_tags": [
+          "work:my hero academia | boku no hero academia"
+        ],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s9.3hentai.xyz/d1114814/thumb.jpg",
+        "first_seen": "2026-10-11T12:31:49+00:00",
+        "last_seen": "2026-10-11T12:31:49+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-10-11T12:31:49+00:00",
+      "updated_at": "2026-10-11T12:31:49+00:00"
     }
   },
   "hitomi_attempts": {
@@ -178749,68 +179450,68 @@
       "retry_at": 1791736059.0
     },
     "hitomi:4206632": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4206689": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4206721": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4206765": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4206810": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4206853": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4206856": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4206865": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4207049": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4207112": {
       "last_attempt": 1791149902.0,
       "retry_at": 1791193102.0
     },
     "hitomi:4206331": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4231519": {
       "last_attempt": 1791692859.0,
@@ -178825,106 +179526,106 @@
       "retry_at": 1791736059.0
     },
     "hitomi:4205467": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4205523": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4205524": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4205527": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4205540": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4205607": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4205692": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4205699": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4205899": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4205922": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4205993": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4205051": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4205140": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4205161": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4205171": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4204141": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4204179": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4078605": {
       "last_attempt": 1791692859.0,
@@ -178935,10 +179636,10 @@
       "retry_at": 1791736059.0
     },
     "hitomi:4204306": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4078420": {
       "last_attempt": 1791692859.0,
@@ -178953,140 +179654,140 @@
       "retry_at": 1791250393.0
     },
     "hitomi:4203618": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4203619": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4203778": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4203900": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4203926": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4203156": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4203164": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4203242": {
       "last_attempt": 1791160593.0,
       "retry_at": 1791203793.0
     },
     "hitomi:4203300": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4203389": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4203415": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4203501": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4203513": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4202578": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4202707": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4202993": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4203007": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4203011": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4203035": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4203039": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4202134": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4202142": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4202154": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4077748": {
       "last_attempt": 1791692859.0,
@@ -179101,22 +179802,22 @@
       "retry_at": 1791736059.0
     },
     "hitomi:4202343": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4207333": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4207348": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4201862": {
       "last_attempt": 1791163618.0,
@@ -179131,20 +179832,20 @@
       "retry_at": 1791206818.0
     },
     "hitomi:4201927": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4202023": {
       "last_attempt": 1791163618.0,
       "retry_at": 1791206818.0
     },
     "hitomi:4207413": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4207459": {
       "last_attempt": 1791163618.0,
@@ -179155,154 +179856,154 @@
       "retry_at": 1791206818.0
     },
     "hitomi:4207480": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4207482": {
       "last_attempt": 1791163618.0,
       "retry_at": 1791206818.0
     },
     "hitomi:4201529": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4201530": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4201531": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4201532": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4201656": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4201662": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4201677": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4201689": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4201745": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4201812": {
       "last_attempt": 1791163618.0,
       "retry_at": 1791206818.0
     },
     "hitomi:4201840": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4207571": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4201205": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4201381": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4201383": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4201493": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4207650": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4207667": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4207669": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4207671": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4200484": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4200735": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4201025": {
       "last_attempt": 1791163618.0,
       "retry_at": 1791206818.0
     },
     "hitomi:4200056": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4077267": {
       "last_attempt": 1791692859.0,
@@ -179323,320 +180024,320 @@
       "retry_at": 1791210461.0
     },
     "hitomi:4200337": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4199620": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4199629": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4199633": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4199659": {
       "last_attempt": 1791167261.0,
       "retry_at": 1791210461.0
     },
     "hitomi:4199838": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4199855": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4199961": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4207952": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4207975": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4199227": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4199237": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4199239": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4199240": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4199241": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4199247": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4199397": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4199399": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4199403": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4199404": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4199489": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4199609": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4208070": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4198992": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4198999": {
       "last_attempt": 1791167261.0,
       "retry_at": 1791210461.0
     },
     "hitomi:4199029": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4199103": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4199151": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4199152": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4199166": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4199175": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4198086": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4198196": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4198243": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4198481": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4198634": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4208215": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4208234": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4197601": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4197710": {
       "last_attempt": 1791170937.0,
       "retry_at": 1791214137.0
     },
     "hitomi:4197715": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4197748": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4197756": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4197760": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "http_404",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4197786": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4208387": {
       "last_attempt": 1791170937.0,
       "retry_at": 1791214137.0
     },
     "hitomi:4197047": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4197189": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4197276": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4197277": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4197300": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4208410": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4208411": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4208412": {
-      "last_attempt": 1791635417.0,
-      "failures": 2,
+      "last_attempt": 1791721909.0,
+      "failures": 3,
       "reason": "metadata_invalid",
-      "retry_at": 1791721817.0
+      "retry_at": 1791894709.0
     },
     "hitomi:4208413": {
       "last_attempt": 1791642320.0,
@@ -184387,24 +185088,33 @@
       "failures": 1,
       "reason": "http_404",
       "retry_at": 1791761129.0
+    },
+    "hitomi:4034634": {
+      "last_attempt": 1791721909.0,
+      "retry_at": 1791765109.0
+    },
+    "hitomi:4246571": {
+      "last_attempt": 1791721909.0,
+      "retry_at": 1791765109.0
     }
   },
   "verified_checkpoints": {},
   "hitomi_host_retry_at": 1791097387.0,
-  "updated_at": "2026-10-11T11:25:29+00:00",
+  "updated_at": "2026-10-11T12:31:49+00:00",
   "last_audit": {
-    "last_run": "2026-10-11T11:25:29+00:00",
-    "eligible": 40,
-    "attempted": 40,
-    "verified": 29,
-    "restored": 2,
-    "blocked": 0,
-    "unverified": 10,
-    "failed": 1,
+    "last_run": "2026-10-11T12:31:49+00:00",
+    "eligible": 130,
+    "attempted": 130,
+    "verified": 0,
+    "restored": 0,
+    "blocked": 1,
+    "unverified": 1,
+    "failed": 128,
     "failed_reasons": {
-      "http_404": 1
+      "metadata_invalid": 98,
+      "http_404": 30
     },
     "stopped": false,
-    "remaining_source_rechecks": 1566
+    "remaining_source_rechecks": 1567
   }
 }
