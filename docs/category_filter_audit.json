@@ -1,0 +1,27 @@
+{
+  "policy": "blocked:category:ehentai:non-h",
+  "checked_at": "2026-10-15T15:49:05+00:00",
+  "dry_run": false,
+  "before": 37846,
+  "removed": 213,
+  "after": 37633,
+  "remaining_ehentai_non_h": 0,
+  "before_by_source": {
+    "3hentai": 8293,
+    "asmhentai": 78,
+    "ehentai": 4392,
+    "hentaifox": 12,
+    "hitomi": 25071
+  },
+  "after_by_source": {
+    "3hentai": 8293,
+    "asmhentai": 78,
+    "ehentai": 4179,
+    "hentaifox": 12,
+    "hitomi": 25071
+  },
+  "retained_metadata_sha256": "0e08d2245074b3a6e2af7f033df8d12ae77f053ba81a627ea1c58e4ad096d995",
+  "crawl_state_sha256": "8ce4571ba28c345386afb6c5ced7d7ee3d1862e34543eaa8ff6dfae0eea95431",
+  "source_status_sha256": "69f4725ec7cb32740d612661f6a16e26287fee3d29a30162f66881bd7e3d59cb",
+  "verified": true
+}
