@@ -103,7 +103,22 @@ def insect_block_reason(item: dict[str, Any]) -> str:
     return ""
 
 
+EHENTAI_NON_H_REASON = "blocked:category:ehentai:non-h"
+
+
+def is_ehentai_non_h(item: dict[str, Any]) -> bool:
+    """Match only E-Hentai's category, never titles, tags or other sources."""
+    source = str(item.get("source") or "").strip().casefold()
+    if source != "ehentai":
+        return False
+    category = unicodedata.normalize("NFKC", str(item.get("category") or "")).casefold()
+    category = re.sub(r"[\s_\-‐‑‒–—−]+", "", category)
+    return category == "nonh"
+
+
 def blocked_reason(item: dict[str, Any]) -> str:
+    if is_ehentai_non_h(item):
+        return EHENTAI_NON_H_REASON
     if normalized_language(item.get("language", "")) != "japanese":
         return "language"
 
