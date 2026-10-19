@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import hashlib
+import html
 import json
 import re
 import sys
@@ -104,6 +105,32 @@ def insect_block_reason(item: dict[str, Any]) -> str:
 
 
 EHENTAI_NON_H_REASON = "blocked:category:ehentai:non-h"
+R18G_REASON = "blocked:r18g"
+R18G_PATTERN = re.compile(r"(?<![a-z0-9])r[\s_\-‐‑‒–—−]*18[\s_\-‐‑‒–—−]*g(?![a-z0-9])")
+IDENTITY_TAG_NAMESPACES = {"artist", "group", "parody", "character", "work", "series", "language", "cosplayer", "uploader"}
+
+
+def _r18g_text(value: Any) -> str:
+    value = unicodedata.normalize("NFKC", html.unescape(str(value or ""))).casefold()
+    return re.sub(r"[\u200b\u200c\u200d\u2060\ufeff]", "", value)
+
+
+def r18g_match_fields(item: dict[str, Any]) -> list[str]:
+    """Explicit content labels only; no image analysis or creator-name matching."""
+    fields = [name for name in ("category", "title", "title_jp")
+              if R18G_PATTERN.search(_r18g_text(item.get(name)))]
+    tags = item.get("tags") or []
+    if isinstance(tags, str):
+        tags = [tags]
+    for raw in tags:
+        tag = _r18g_text(raw)
+        namespace, separator, value = tag.partition(":")
+        if separator and namespace.strip() in IDENTITY_TAG_NAMESPACES:
+            continue
+        if R18G_PATTERN.search(value if separator else tag):
+            fields.append("tags")
+            break
+    return fields
 
 
 def is_ehentai_non_h(item: dict[str, Any]) -> bool:
@@ -117,6 +144,8 @@ def is_ehentai_non_h(item: dict[str, Any]) -> bool:
 
 
 def blocked_reason(item: dict[str, Any]) -> str:
+    if r18g_match_fields(item):
+        return R18G_REASON
     if is_ehentai_non_h(item):
         return EHENTAI_NON_H_REASON
     if normalized_language(item.get("language", "")) != "japanese":
@@ -251,11 +280,15 @@ def unverified_hitomi(item: dict[str, Any], *, fresh: bool = False) -> bool:
 
 
 def publication_reason(item: dict, *, fresh: bool = False) -> str:
+    reason = blocked_reason(item)
+    # A confirmed content warning must not become a retryable metadata hold.
+    if reason == R18G_REASON:
+        return reason
     if item.get("source") == "hitomi" and (
         not item.get("language") or not (item.get("title") or item.get("title_jp"))
     ):
         return "metadata_unverified"
-    return blocked_reason(item) or ("metadata_unverified" if unverified_hitomi(item, fresh=fresh) else "")
+    return reason or ("metadata_unverified" if unverified_hitomi(item, fresh=fresh) else "")
 
 
 def quarantine_item(store: dict, item: dict, reason: str, stamp: str) -> None:
@@ -606,6 +639,8 @@ def main(*, audit_only: bool = False) -> int:
             saved_block = records.get(uid, {})
             if saved_block.get("status") == "blocked":
                 reason = saved_block["reason"]
+            elif r18g_match_fields(raw):
+                reason = R18G_REASON
             elif name == "3hentai" and raw.get("filter_metadata_checked") != "3hentai-gallery-v1":
                 reason = "metadata_unverified"
             else:
@@ -701,6 +736,7 @@ def main(*, audit_only: bool = False) -> int:
     save_json(STATE_FILE, state)
     status_store["filters"] = {
         "content_filters": "enabled",
+        "r18g_filter": "enabled",
         "insect_filter": "enabled",
         "insect_terms": len(NORMALIZED_INSECT_TAGS),
         "purged_existing_blocked": purged_existing_blocked,

@@ -1,10 +1,10 @@
 name: Content filter regression tests
 on:
   pull_request:
-    paths: ["crawler.py", "config.py", "sources/**", "tests/**", "tools/purge_ehentai_non_h.py", ".github/workflows/**"]
+    paths: ["crawler.py", "config.py", "sources/**", "tests/**", "tools/purge_*.py", ".github/workflows/**"]
   push:
     branches: [main]
-    paths: ["crawler.py", "config.py", "sources/**", "tests/**", "tools/purge_ehentai_non_h.py", ".github/workflows/test.yml"]
+    paths: ["crawler.py", "config.py", "sources/**", "tests/**", "tools/purge_*.py", ".github/workflows/test.yml"]
 permissions:
   contents: read
 jobs:
