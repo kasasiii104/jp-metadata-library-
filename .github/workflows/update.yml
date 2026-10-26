@@ -10,7 +10,6 @@ on:
       - "tools/**"
       - "requirements.txt"
       - ".github/workflows/update.yml"
-      - "docs/index.html"
       - "docs/app.js"
   schedule:
     - cron: "17 * * * *"
@@ -33,6 +32,7 @@ jobs:
       PURGE_EHENTAI_NON_H: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[purge-ehentai-non-h]') }}
       PURGE_R18G: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[purge-r18g]') }}
       OFFLINE_FILTER_PURGE: ${{ github.event_name == 'push' && (contains(github.event.head_commit.message, '[purge-ehentai-non-h]') || contains(github.event.head_commit.message, '[purge-r18g]')) }}
+      FAST_PAGES_ONLY: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '[crawl-now]') && !contains(github.event.head_commit.message, '[filter-audit]') && !contains(github.event.head_commit.message, '[purge-ehentai-non-h]') && !contains(github.event.head_commit.message, '[purge-r18g]') }}
     outputs:
       pages_artifact: ${{ steps.pages_artifact.outputs.name }}
 
@@ -62,11 +62,11 @@ jobs:
         run: node --check docs/app.js
 
       - name: Install Hitomi thumbnail resolver
-        if: env.OFFLINE_FILTER_PURGE != 'true'
+        if: env.OFFLINE_FILTER_PURGE != 'true' && env.FAST_PAGES_ONLY != 'true'
         run: npm install --no-save node-hitomi@9.2.0
 
       - name: Start local Jandapress for metadata sources
-        if: env.OFFLINE_FILTER_PURGE != 'true'
+        if: env.OFFLINE_FILTER_PURGE != 'true' && env.FAST_PAGES_ONLY != 'true'
         continue-on-error: true
         run: |
           docker pull ghcr.io/sinkaroid/jandapress:latest
@@ -86,6 +86,7 @@ jobs:
           exit 0
 
       - name: Update metadata
+        if: env.FAST_PAGES_ONLY != 'true'
         env:
           JANDAPRESS_URL: "http://127.0.0.1:3000"
           HENTAI3_SEARCH_KEY: "language:japanese"
@@ -107,21 +108,21 @@ jobs:
           fi
 
       - name: Cache 3Hentai thumbnails locally
-        if: env.OFFLINE_FILTER_PURGE != 'true'
+        if: env.OFFLINE_FILTER_PURGE != 'true' && env.FAST_PAGES_ONLY != 'true'
         env:
           HENTAI3_THUMB_LIMIT: "12"
           HENTAI3_THUMB_DELAY_SEC: "2.0"
         run: python tools/cache_3hentai_thumbs.py
 
       - name: Cache ASMHentai thumbnails locally
-        if: env.OFFLINE_FILTER_PURGE != 'true'
+        if: env.OFFLINE_FILTER_PURGE != 'true' && env.FAST_PAGES_ONLY != 'true'
         env:
           ASMHENTAI_THUMB_LIMIT: "80"
           ASMHENTAI_THUMB_DELAY_SEC: "0.4"
         run: python tools/cache_asmhentai_thumbs.py
 
       - name: Cache Hitomi thumbnails locally
-        if: env.OFFLINE_FILTER_PURGE != 'true'
+        if: env.OFFLINE_FILTER_PURGE != 'true' && env.FAST_PAGES_ONLY != 'true'
         env:
           HITOMI_THUMB_LIMIT: "110"
           HITOMI_THUMB_DELAY_MS: "120"
@@ -134,7 +135,7 @@ jobs:
         run: python tools/verify_pages_bundle.py
 
       - name: Show Jandapress diagnostics
-        if: always() && env.OFFLINE_FILTER_PURGE != 'true'
+        if: always() && env.OFFLINE_FILTER_PURGE != 'true' && env.FAST_PAGES_ONLY != 'true'
         run: |
           echo "--- Jandapress logs ---"
           docker logs --tail 100 jandapress 2>/dev/null || true
