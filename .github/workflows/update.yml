@@ -130,6 +130,9 @@ jobs:
       - name: Build lightweight Pages catalog
         run: python tools/build_public_catalog.py
 
+      - name: Verify Pages bundle
+        run: python tools/verify_pages_bundle.py
+
       - name: Show Jandapress diagnostics
         if: always() && env.OFFLINE_FILTER_PURGE != 'true'
         run: |
