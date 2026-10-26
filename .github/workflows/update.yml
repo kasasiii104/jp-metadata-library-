@@ -11,6 +11,7 @@ on:
       - "requirements.txt"
       - ".github/workflows/update.yml"
       - "docs/index.html"
+      - "docs/app.js"
   schedule:
     - cron: "17 * * * *"
   workflow_dispatch:
@@ -22,8 +23,6 @@ permissions:
 
 concurrency:
   group: japanese-metadata-library-v2
-  # A queued Pages job must not hold the hourly collector indefinitely.
-  # Keep this group stable so a new run also releases an older stalled run.
   cancel-in-progress: true
 
 jobs:
@@ -58,6 +57,10 @@ jobs:
       - name: Verify content filters
         run: python -m unittest discover -s tests -v
 
+      - name: Verify frontend syntax
+        if: env.OFFLINE_FILTER_PURGE != 'true'
+        run: node --check docs/app.js
+
       - name: Install Hitomi thumbnail resolver
         if: env.OFFLINE_FILTER_PURGE != 'true'
         run: npm install --no-save node-hitomi@9.2.0
@@ -71,7 +74,6 @@ jobs:
           docker run -d --name jandapress -p 3000:3000 \
             -e USER_AGENT="Japanese-Metadata-Library/1.7 GitHub-Actions" \
             ghcr.io/sinkaroid/jandapress:latest
-
           for i in $(seq 1 30); do
             if curl -fsS http://127.0.0.1:3000/ >/dev/null 2>&1; then
               echo "Jandapress is ready"
@@ -79,7 +81,6 @@ jobs:
             fi
             sleep 2
           done
-
           echo "Jandapress did not become ready"
           docker logs --tail 80 jandapress || true
           exit 0
@@ -139,9 +140,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
           git add docs state/filter_audit.json
-
           if git diff --cached --quiet; then
             echo "No data changes"
           else
@@ -164,11 +163,9 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 10
-
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
