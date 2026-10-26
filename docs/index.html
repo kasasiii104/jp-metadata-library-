@@ -10,11 +10,12 @@
 header{position:sticky;top:0;z-index:20;background:rgba(15,15,15,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:calc(10px + env(safe-area-inset-top)) 12px 10px}.top{display:flex;align-items:center;gap:10px}.brand{font-weight:800}.status{margin-left:auto;color:var(--muted);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.search{display:flex;gap:8px;margin-top:10px}.search input{flex:1;min-width:0;border:1px solid #333;border-radius:20px;background:#151515;color:#fff;padding:11px 14px;font-size:16px}.btn{border:0;background:var(--panel2);color:#fff;border-radius:10px;min-height:42px;padding:0 13px}.chips{display:flex;gap:8px;overflow-x:auto;padding-top:10px;scrollbar-width:none}.chip{white-space:nowrap;border:0;background:#282828;color:#fff;border-radius:9px;padding:8px 12px}.chip.on{background:#eee;color:#111}
 main{padding:14px 12px calc(90px + env(safe-area-inset-bottom));max-width:1500px;margin:auto}.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.toolbar select{background:#1d1d1d;color:#fff;border:1px solid #333;border-radius:9px;padding:9px}.count{color:var(--muted);font-size:12px;margin-left:auto}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 10px}@media(min-width:720px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(min-width:1000px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}@media(min-width:1400px){.grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
 .card{min-width:0}.thumb{position:relative;display:block;width:100%;aspect-ratio:3/4;background:#191919;border-radius:10px;overflow:hidden}.thumb img{width:100%;height:100%;object-fit:cover;display:block}.ph{display:flex;align-items:center;justify-content:center;width:100%;height:100%;color:#777;font-size:12px}.source,.dupe,.favmark{position:absolute;background:rgba(0,0,0,.78);padding:3px 6px;border-radius:5px;font-size:10px}.source{left:6px;top:6px;max-width:78%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dupe{left:6px;bottom:6px}.favmark{right:6px;top:6px}.body{position:relative;padding:8px 32px 0 2px}.title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:#fff;text-decoration:none;font-size:14px;font-weight:650;line-height:1.35}.meta{margin:4px 0 0;color:var(--muted);font-size:11px}.facetline{display:flex;gap:5px;overflow-x:auto;margin-top:6px;scrollbar-width:none}.facet{display:inline-flex;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:#242424;border:1px solid #333;border-radius:999px;padding:4px 8px;color:#ccc;font-size:10px}.more{position:absolute;right:0;top:0;width:34px;height:34px;border:0;background:transparent;color:#aaa;font-size:20px}.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:50px 0}.active-filter{border:1px solid #444;background:#252525;color:#fff;border-radius:999px;padding:7px 10px;font-size:11px;margin-bottom:10px}.loadrow{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:22px}.load{border:0;background:#2a2a2a;color:#fff;padding:12px 18px;border-radius:10px}.source-status{font-size:11px;color:#999;line-height:1.5;margin-top:12px}.sheet-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:50}.sheet-bg.on{display:block}.sheet{display:none;position:fixed;left:0;right:0;bottom:0;z-index:60;background:#202020;border-radius:16px 16px 0 0;padding:12px 14px calc(18px + env(safe-area-inset-bottom));max-height:75vh;overflow:auto}.sheet.on{display:block}.sheet button,.sheet a{display:block;width:100%;min-height:48px;padding:12px;border:0;background:transparent;color:#fff;text-align:left;text-decoration:none;border-bottom:1px solid #2d2d2d}.detailblock{padding:8px 12px;border-bottom:1px solid #2d2d2d}.detailtitle{font-size:11px;color:#888;margin-bottom:6px}.detailchips{display:flex;gap:6px;flex-wrap:wrap}.detailchips .facet{font-size:11px;padding:5px 9px}
+.fallback-note{margin:0 0 12px;padding:10px 12px;border:1px solid #333;background:#171717;border-radius:10px;color:#bbb;font-size:12px;line-height:1.5}.fallback-card .body{padding-right:2px}
 </style>
 </head>
 <body>
 <header>
-  <div class="top"><div class="brand">日本語メタデータ</div><div id="status" class="status">起動中…</div></div>
+  <div class="top"><div class="brand">日本語メタデータ</div><div id="status" class="status"><!-- FALLBACK_STATUS_START -->最新作品を表示中<!-- FALLBACK_STATUS_END --></div></div>
   <div class="search"><input id="q" type="search" placeholder="タイトル・作品・キャラクター・タグで検索" autocomplete="off"><button id="favBtn" class="btn" type="button">★</button></div>
   <div class="chips">
     <button class="chip on" data-source="all">すべて</button><button class="chip" data-source="ehentai">E-Hentai</button><button class="chip" data-source="hitomi">Hitomi</button><button class="chip" data-source="3hentai">3Hentai</button><button class="chip" data-source="asmhentai">ASMHentai</button>
@@ -30,11 +31,46 @@ main{padding:14px 12px calc(90px + env(safe-area-inset-bottom));max-width:1500px
     <span id="count" class="count"></span>
   </div>
   <button id="activeFacet" class="active-filter" type="button" hidden></button>
-  <div id="grid" class="grid"><div class="empty">読み込み中…</div></div>
-  <div class="loadrow"><button id="loadMore" class="load" type="button">次の作品を読み込む</button><button id="loadAll" class="load" type="button">全件読み込む</button></div>
+
+  <section id="fallback">
+    <p class="fallback-note">最新作品を直接表示しています。検索・絞り込みの読み込みに失敗した場合でも、ここから作品一覧を確認できます。</p>
+    <div class="grid" id="fallbackGrid">
+<!-- FALLBACK_CARDS_START -->
+<div class="empty">最新作品を準備しています…</div>
+<!-- FALLBACK_CARDS_END -->
+    </div>
+  </section>
+
+  <div id="grid" class="grid" hidden><div class="empty">読み込み中…</div></div>
+  <div class="loadrow" hidden><button id="loadMore" class="load" type="button">次の作品を読み込む</button><button id="loadAll" class="load" type="button">全件読み込む</button></div>
   <div id="sourceStatus" class="source-status"></div>
 </main>
 <div id="sheetBg" class="sheet-bg"></div><div id="sheet" class="sheet"></div>
-<script src="app.js?v=20261026-1" defer></script>
+<script src="app.js?v=20261026-2" defer></script>
+<script>
+(() => {
+  const status = document.getElementById('status');
+  const fallback = document.getElementById('fallback');
+  const grid = document.getElementById('grid');
+  const loadrow = document.querySelector('.loadrow');
+  if (!status || !fallback || !grid || !loadrow) return;
+  const sync = () => {
+    const text = status.textContent || '';
+    const ready = text.startsWith('更新 ');
+    if (ready) {
+      fallback.hidden = true;
+      grid.hidden = false;
+      loadrow.hidden = false;
+    } else if (text.startsWith('起動失敗')) {
+      fallback.hidden = false;
+      grid.hidden = true;
+      loadrow.hidden = true;
+    }
+  };
+  new MutationObserver(sync).observe(status, {childList:true, subtree:true, characterData:true});
+  sync();
+})();
+</script>
+<noscript><style>#fallback{display:block!important}#grid,.loadrow{display:none!important}</style></noscript>
 </body>
 </html>

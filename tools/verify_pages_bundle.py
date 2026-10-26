@@ -48,7 +48,6 @@ def main() -> int:
 
     if total != item_count:
         fail(f"chunk total {total} != manifest item_count {item_count}")
-    # Guard against accidentally returning to a huge startup payload.
     if first_two_bytes > 5 * 1024 * 1024:
         fail(f"initial two chunks are too large: {first_two_bytes} bytes")
 
@@ -61,9 +60,24 @@ def main() -> int:
     if re.search(r"fetch\(\s*['\"]data\.json", app):
         fail("app.js still fetches the full data.json")
 
+    # The page must remain useful even if JavaScript, manifest, or chunk loading
+    # fails in a user's browser. The public builder injects real current cards
+    # into a separate fallback section before deployment.
+    if "FALLBACK_CARDS_START" not in html or "FALLBACK_CARDS_END" not in html:
+        fail("static fallback markers are missing")
+    fallback_cards = len(re.findall(r'class=["\']card fallback-card["\']', html))
+    expected_fallback = min(item_count, 40)
+    if fallback_cards != expected_fallback:
+        fail(f"fallback cards {fallback_cards} != expected {expected_fallback}")
+    if 'id="fallback"' not in html or 'id="grid" class="grid" hidden' not in html:
+        fail("fallback/dynamic grid visibility guard is missing")
+    if "MutationObserver" not in html or "起動失敗" not in html:
+        fail("fallback visibility guard is missing")
+
     print(
         f"Pages bundle OK: items={item_count} chunks={chunk_count} "
-        f"chunk_size={chunk_size} startup_bytes={first_two_bytes}"
+        f"chunk_size={chunk_size} startup_bytes={first_two_bytes} "
+        f"fallback_cards={fallback_cards}"
     )
     return 0
 
