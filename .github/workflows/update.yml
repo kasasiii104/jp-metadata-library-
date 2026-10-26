@@ -126,6 +126,9 @@ jobs:
           HITOMI_THUMB_DELAY_MS: "120"
         run: node tools/cache_hitomi_thumbs.mjs
 
+      - name: Build lightweight Pages catalog
+        run: python tools/build_public_catalog.py
+
       - name: Show Jandapress diagnostics
         if: always() && env.OFFLINE_FILTER_PURGE != 'true'
         run: |
