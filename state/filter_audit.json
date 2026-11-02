@@ -3679,12 +3679,12 @@
         "posted_at": "2026-09-25 01:10:00-05",
         "thumbnail": "thumbs/hitomi/4211216.webp",
         "first_seen": "2026-09-25T07:25:40+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4210962": {
       "item": {
@@ -3864,12 +3864,12 @@
         "posted_at": "2026-09-24 16:37:00-05",
         "thumbnail": "thumbs/hitomi/4210441.webp",
         "first_seen": "2026-09-24T22:24:18+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4210361": {
       "item": {
@@ -3899,12 +3899,12 @@
         "posted_at": "2026-09-24 15:01:00-05",
         "thumbnail": "thumbs/hitomi/4210361.webp",
         "first_seen": "2026-09-24T21:23:43+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4210356": {
       "item": {
@@ -3969,12 +3969,12 @@
         "posted_at": "2026-09-24 14:03:00-05",
         "thumbnail": "thumbs/hitomi/4210280.webp",
         "first_seen": "2026-09-24T20:25:48+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4210263": {
       "item": {
@@ -4161,12 +4161,12 @@
         "posted_at": "2026-09-24 10:22:00-05",
         "thumbnail": "thumbs/hitomi/4209927.webp",
         "first_seen": "2026-09-24T16:26:37+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4209891": {
       "item": {
@@ -4700,7 +4700,7 @@
         "posted_at": "2026-09-23 08:08:00-05",
         "thumbnail": "thumbs/hitomi/4207616.webp",
         "first_seen": "2026-09-23T14:25:58+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00",
         "works": [],
         "meta_tags": [
           "artist:toriniku"
@@ -4709,7 +4709,7 @@
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4207608": {
       "item": {
@@ -4735,7 +4735,7 @@
         "posted_at": "2026-09-23 08:03:00-05",
         "thumbnail": "thumbs/hitomi/4207608.webp",
         "first_seen": "2026-09-23T14:25:58+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00",
         "works": [],
         "meta_tags": [
           "artist:toriniku"
@@ -4744,7 +4744,7 @@
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4207605": {
       "item": {
@@ -5084,7 +5084,7 @@
         "posted_at": "2026-09-22 10:37:00-05",
         "thumbnail": "thumbs/hitomi/4205829.webp",
         "first_seen": "2026-09-23T09:02:36+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00",
         "works": [
           "touhou project"
         ],
@@ -5095,7 +5095,7 @@
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4205801": {
       "item": {
@@ -5262,7 +5262,7 @@
         "posted_at": "2026-09-21 18:59:00-05",
         "thumbnail": "thumbs/hitomi/4204588.webp",
         "first_seen": "2026-09-23T09:28:15+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00",
         "works": [],
         "meta_tags": [
           "artist:hibietto"
@@ -5271,7 +5271,7 @@
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4204420": {
       "item": {
@@ -5295,14 +5295,14 @@
         "posted_at": "2026-09-21 16:30:00-05",
         "thumbnail": "thumbs/hitomi/4204420.webp",
         "first_seen": "2026-09-23T09:28:15+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00",
         "works": [],
         "meta_tags": []
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4204273": {
       "item": {
@@ -5328,7 +5328,7 @@
         "posted_at": "2026-09-21 14:54:00-05",
         "thumbnail": "thumbs/hitomi/4204273.webp",
         "first_seen": "2026-09-23T09:28:15+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00",
         "works": [
           "nintama rantarou"
         ],
@@ -5339,7 +5339,7 @@
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4204169": {
       "item": {
@@ -5594,7 +5594,7 @@
         "posted_at": "2026-09-21 10:18:00-05",
         "thumbnail": "thumbs/hitomi/4203874.webp",
         "first_seen": "2026-09-23T09:48:07+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00",
         "works": [
           "vocaloid"
         ],
@@ -5607,7 +5607,7 @@
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4203252": {
       "item": {
@@ -5640,7 +5640,7 @@
         "posted_at": "2026-09-21 03:31:00-05",
         "thumbnail": "thumbs/hitomi/4203252.webp",
         "first_seen": "2026-09-23T09:58:09+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00",
         "works": [
           "the idolmaster"
         ],
@@ -5656,7 +5656,7 @@
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4202770": {
       "item": {
@@ -5731,7 +5731,7 @@
         "posted_at": "2026-09-20 14:31:00-05",
         "thumbnail": "thumbs/hitomi/4202272.webp",
         "first_seen": "2026-09-23T11:24:21+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00",
         "works": [
           "my hero academia"
         ],
@@ -5747,7 +5747,7 @@
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4201888": {
       "item": {
@@ -5771,14 +5771,14 @@
         "posted_at": "2026-09-20 10:58:00-05",
         "thumbnail": "thumbs/hitomi/4201888.webp",
         "first_seen": "2026-09-23T12:29:20+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00",
         "works": [],
         "meta_tags": []
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4201224": {
       "item": {
@@ -5802,14 +5802,14 @@
         "posted_at": "2026-09-20 05:23:00-05",
         "thumbnail": "thumbs/hitomi/4201224.webp",
         "first_seen": "2026-09-23T14:25:58+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00",
         "works": [],
         "meta_tags": []
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4201157": {
       "item": {
@@ -8805,12 +8805,12 @@
         "posted_at": "2026-09-11 13:21:00-05",
         "thumbnail": "thumbs/hitomi/4183842.webp",
         "first_seen": "2026-09-24T14:25:52+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4183803": {
       "item": {
@@ -8840,12 +8840,12 @@
         "posted_at": "2026-09-11 12:41:00-05",
         "thumbnail": "thumbs/hitomi/4183803.webp",
         "first_seen": "2026-09-24T14:25:52+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4183604": {
       "item": {
@@ -8888,12 +8888,12 @@
         "posted_at": "2026-09-11 11:20:00-05",
         "thumbnail": "thumbs/hitomi/4183604.webp",
         "first_seen": "2026-09-24T14:25:52+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4183357": {
       "item": {
@@ -8923,12 +8923,12 @@
         "posted_at": "2026-09-11 09:29:00-05",
         "thumbnail": "thumbs/hitomi/4183357.webp",
         "first_seen": "2026-09-24T15:26:05+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4183331": {
       "item": {
@@ -8972,12 +8972,12 @@
         "posted_at": "2026-09-11 09:19:00-05",
         "thumbnail": "thumbs/hitomi/4183331.webp",
         "first_seen": "2026-09-24T15:26:05+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4183256": {
       "item": {
@@ -9007,12 +9007,12 @@
         "posted_at": "2026-09-11 08:42:00-05",
         "thumbnail": "thumbs/hitomi/4183256.webp",
         "first_seen": "2026-09-24T16:26:37+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4183184": {
       "item": {
@@ -9042,12 +9042,12 @@
         "posted_at": "2026-09-11 07:55:00-05",
         "thumbnail": "thumbs/hitomi/4183184.webp",
         "first_seen": "2026-09-24T16:26:37+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4183118": {
       "item": {
@@ -9089,12 +9089,12 @@
         "posted_at": "2026-09-11 07:12:00-05",
         "thumbnail": "thumbs/hitomi/4183118.webp",
         "first_seen": "2026-09-24T16:26:37+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4182893": {
       "item": {
@@ -9124,12 +9124,12 @@
         "posted_at": "2026-09-11 04:08:00-05",
         "thumbnail": "thumbs/hitomi/4182893.webp",
         "first_seen": "2026-09-24T16:26:37+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4182178": {
       "item": {
@@ -9159,12 +9159,12 @@
         "posted_at": "2026-09-10 17:53:00-05",
         "thumbnail": "thumbs/hitomi/4182178.webp",
         "first_seen": "2026-09-24T18:27:44+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4182108": {
       "item": {
@@ -9194,12 +9194,12 @@
         "posted_at": "2026-09-10 16:02:00-05",
         "thumbnail": "thumbs/hitomi/4182108.webp",
         "first_seen": "2026-09-24T18:27:44+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4182047": {
       "item": {
@@ -9229,12 +9229,12 @@
         "posted_at": "2026-09-10 14:53:00-05",
         "thumbnail": "thumbs/hitomi/4182047.webp",
         "first_seen": "2026-09-24T18:27:44+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4182028": {
       "item": {
@@ -9270,12 +9270,12 @@
         "posted_at": "2026-09-10 14:27:00-05",
         "thumbnail": "thumbs/hitomi/4182028.webp",
         "first_seen": "2026-09-24T18:27:44+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4181922": {
       "item": {
@@ -9441,12 +9441,12 @@
         "posted_at": "2026-09-09 18:00:00-05",
         "thumbnail": "thumbs/hitomi/4180216.webp",
         "first_seen": "2026-09-24T21:23:43+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4180212": {
       "item": {
@@ -9485,12 +9485,12 @@
         "posted_at": "2026-09-09 17:57:00-05",
         "thumbnail": "thumbs/hitomi/4180212.webp",
         "first_seen": "2026-09-24T21:23:43+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4180209": {
       "item": {
@@ -9520,12 +9520,12 @@
         "posted_at": "2026-09-09 17:55:00-05",
         "thumbnail": "thumbs/hitomi/4180209.webp",
         "first_seen": "2026-09-24T21:23:43+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4180169": {
       "item": {
@@ -9573,12 +9573,12 @@
         "posted_at": "2026-09-09 17:04:00-05",
         "thumbnail": "thumbs/hitomi/4180169.webp",
         "first_seen": "2026-09-24T21:23:43+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4180161": {
       "item": {
@@ -9617,12 +9617,12 @@
         "posted_at": "2026-09-09 16:57:00-05",
         "thumbnail": "thumbs/hitomi/4180161.webp",
         "first_seen": "2026-09-24T21:23:43+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4180138": {
       "item": {
@@ -9652,12 +9652,12 @@
         "posted_at": "2026-09-09 16:46:00-05",
         "thumbnail": "thumbs/hitomi/4180138.webp",
         "first_seen": "2026-09-24T21:23:43+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4180134": {
       "item": {
@@ -9687,12 +9687,12 @@
         "posted_at": "2026-09-09 16:40:00-05",
         "thumbnail": "thumbs/hitomi/4180134.webp",
         "first_seen": "2026-09-24T21:23:43+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4179630": {
       "item": {
@@ -9739,12 +9739,12 @@
         "posted_at": "2026-09-09 11:14:00-05",
         "thumbnail": "thumbs/hitomi/4179630.webp",
         "first_seen": "2026-09-24T22:24:18+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4179622": {
       "item": {
@@ -9791,12 +9791,12 @@
         "posted_at": "2026-09-09 11:12:00-05",
         "thumbnail": "thumbs/hitomi/4179622.webp",
         "first_seen": "2026-09-24T22:24:18+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4179610": {
       "item": {
@@ -9849,12 +9849,12 @@
         "posted_at": "2026-09-09 11:07:00-05",
         "thumbnail": "thumbs/hitomi/4179610.webp",
         "first_seen": "2026-09-24T22:24:18+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4179521": {
       "item": {
@@ -9884,12 +9884,12 @@
         "posted_at": "2026-09-09 10:29:00-05",
         "thumbnail": "thumbs/hitomi/4179521.webp",
         "first_seen": "2026-09-24T22:24:18+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4179314": {
       "item": {
@@ -9919,12 +9919,12 @@
         "posted_at": "2026-09-09 08:51:00-05",
         "thumbnail": "thumbs/hitomi/4179314.webp",
         "first_seen": "2026-09-24T23:22:52+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4179189": {
       "item": {
@@ -9954,12 +9954,12 @@
         "posted_at": "2026-09-09 07:08:00-05",
         "thumbnail": "thumbs/hitomi/4179189.webp",
         "first_seen": "2026-09-24T23:22:52+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4179130": {
       "item": {
@@ -9989,12 +9989,12 @@
         "posted_at": "2026-09-09 06:11:00-05",
         "thumbnail": "thumbs/hitomi/4179130.webp",
         "first_seen": "2026-09-24T23:22:52+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4179064": {
       "item": {
@@ -10030,12 +10030,12 @@
         "posted_at": "2026-09-09 05:33:00-05",
         "thumbnail": "thumbs/hitomi/4179064.webp",
         "first_seen": "2026-09-24T23:22:52+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4178818": {
       "item": {
@@ -10071,12 +10071,12 @@
         "posted_at": "2026-09-09 01:07:00-05",
         "thumbnail": "thumbs/hitomi/4178818.webp",
         "first_seen": "2026-09-25T00:32:18+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4178795": {
       "item": {
@@ -10168,12 +10168,12 @@
         "posted_at": "2026-09-09 00:53:00-05",
         "thumbnail": "thumbs/hitomi/4178793.webp",
         "first_seen": "2026-09-25T00:32:18+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4178091": {
       "item": {
@@ -10225,12 +10225,12 @@
         "posted_at": "2026-09-08 15:14:00-05",
         "thumbnail": "thumbs/hitomi/4178091.webp",
         "first_seen": "2026-09-25T02:23:28+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4177690": {
       "item": {
@@ -10269,12 +10269,12 @@
         "posted_at": "2026-09-08 10:27:00-05",
         "thumbnail": "thumbs/hitomi/4177690.webp",
         "first_seen": "2026-09-25T03:23:10+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4176779": {
       "item": {
@@ -10304,12 +10304,12 @@
         "posted_at": "2026-09-07 21:29:00-05",
         "thumbnail": "thumbs/hitomi/4176779.webp",
         "first_seen": "2026-09-25T04:25:24+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4176549": {
       "item": {
@@ -10339,12 +10339,12 @@
         "posted_at": "2026-09-07 18:56:00-05",
         "thumbnail": "thumbs/hitomi/4176549.webp",
         "first_seen": "2026-09-25T05:23:43+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4176069": {
       "item": {
@@ -10374,12 +10374,12 @@
         "posted_at": "2026-09-07 12:18:00-05",
         "thumbnail": "thumbs/hitomi/4176069.webp",
         "first_seen": "2026-09-25T05:23:43+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4175919": {
       "item": {
@@ -10418,12 +10418,12 @@
         "posted_at": "2026-09-07 10:59:00-05",
         "thumbnail": "thumbs/hitomi/4175919.webp",
         "first_seen": "2026-09-25T06:29:54+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4175617": {
       "item": {
@@ -10462,12 +10462,12 @@
         "posted_at": "2026-09-07 08:39:00-05",
         "thumbnail": "thumbs/hitomi/4175617.webp",
         "first_seen": "2026-09-25T06:29:54+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4175568": {
       "item": {
@@ -10509,12 +10509,12 @@
         "posted_at": "2026-09-07 08:22:00-05",
         "thumbnail": "thumbs/hitomi/4175568.webp",
         "first_seen": "2026-09-25T07:25:40+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4175252": {
       "item": {
@@ -10548,12 +10548,12 @@
         "posted_at": "2026-09-07 05:22:00-05",
         "thumbnail": "thumbs/hitomi/4175252.webp",
         "first_seen": "2026-09-25T07:25:40+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4175060": {
       "item": {
@@ -10610,12 +10610,12 @@
         "posted_at": "2026-09-07 03:33:00-05",
         "thumbnail": "thumbs/hitomi/4175060.webp",
         "first_seen": "2026-09-25T08:26:52+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4173948": {
       "item": {
@@ -10649,12 +10649,12 @@
         "posted_at": "2026-09-06 12:50:00-05",
         "thumbnail": "thumbs/hitomi/4173948.webp",
         "first_seen": "2026-09-25T10:25:06+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4173943": {
       "item": {
@@ -10703,12 +10703,12 @@
         "posted_at": "2026-09-06 12:47:00-05",
         "thumbnail": "thumbs/hitomi/4173943.webp",
         "first_seen": "2026-09-25T10:25:06+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4173215": {
       "item": {
@@ -10826,12 +10826,12 @@
         "posted_at": "2026-09-06 04:59:00-05",
         "thumbnail": "thumbs/hitomi/4172992.webp",
         "first_seen": "2026-09-25T12:29:54+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-09-29T11:26:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4172142": {
       "item": {
@@ -64040,12 +64040,12 @@
         "posted_at": "2026-08-01 14:39:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/7/7f/4b7bca5b1b64ac882cf9d561063e10dcfc6aa0caed492e8268d32e4c4e05b7f7.jpg",
         "first_seen": "2026-10-02T07:28:58+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T07:28:58+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4091602": {
       "item": {
@@ -64517,12 +64517,12 @@
         "posted_at": "2026-08-01 12:12:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/0/75/dd88822468f62528cf395dc4723959e9a583560ebc76ffcab896eb253eb46750.jpg",
         "first_seen": "2026-10-02T07:28:58+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T07:28:58+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4091289": {
       "item": {
@@ -65462,12 +65462,12 @@
         "posted_at": "2026-10-02 03:34:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/1/5d/be9577ee39b02d9b449f05bb4c0baa86039d338362178673e9d54d094cda55d1.jpg",
         "first_seen": "2026-10-02T09:28:35+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T09:28:35+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4090669": {
       "item": {
@@ -65497,12 +65497,12 @@
         "posted_at": "2026-08-01 05:49:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/2/2d/e2dd5125d6fb521a00eafffd13e151bd91bffe1d99ac90210767a83aa195e2d2.jpg",
         "first_seen": "2026-10-02T09:28:35+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T09:28:35+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4090631": {
       "item": {
@@ -65536,12 +65536,12 @@
         "posted_at": "2026-08-01 05:18:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/d/f4/edfeccecc6585a8004cbb6bd331270d7e61494cfd11318b5651499d41768df4d.jpg",
         "first_seen": "2026-10-02T09:28:35+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T09:28:35+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4090489": {
       "item": {
@@ -66239,12 +66239,12 @@
         "posted_at": "2026-08-01 00:40:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/1/87/51b559a1d0daf33f5fbe35408d70e2344d2e5738ec02a37f40b489a4c340e871.jpg",
         "first_seen": "2026-10-02T10:26:47+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T10:26:47+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4090111": {
       "item": {
@@ -66395,12 +66395,12 @@
         "posted_at": "2026-07-31 22:40:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/b/9f/597f505dfcf9b8bb0e17703a34c72d409ee7687268f23d822b781f2d75db09fb.jpg",
         "first_seen": "2026-10-02T10:26:47+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T10:26:47+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "3hentai:3719774": {
       "item": {
@@ -66912,12 +66912,12 @@
         "posted_at": "2026-07-31 15:53:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/e/ac/fdf674beb4acc4c19d746aed22c99d8d4fe1fe1be0706e36b0f1ade42139eace.jpg",
         "first_seen": "2026-10-02T11:25:57+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T11:25:57+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4089594": {
       "item": {
@@ -68519,12 +68519,12 @@
         "posted_at": "2026-07-31 05:37:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/c/9c/6b3d9a72bcfcf610eb4729583c3cd60ecfed9baffe171319c62ec4d90146f9cc.jpg",
         "first_seen": "2026-10-02T14:29:56+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T14:29:56+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4088594": {
       "item": {
@@ -69169,12 +69169,12 @@
         "posted_at": "2026-07-30 18:21:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/a/0c/a411bae1dc9c8d20b47079c87049a5639205212f2e83c9d1c36f8af76c6e90ca.jpg",
         "first_seen": "2026-10-02T15:29:28+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T15:29:28+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4087817": {
       "item": {
@@ -69204,12 +69204,12 @@
         "posted_at": "2026-07-30 18:01:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/6/93/c9de6f22f9aefa206cdf2d197d7b3de38750cdd3e0352d26ee277c453dbab936.jpg",
         "first_seen": "2026-10-02T15:29:28+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T15:29:28+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4087776": {
       "item": {
@@ -69397,12 +69397,12 @@
         "posted_at": "2026-10-02 10:20:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/5/06/6c069fd2db12394dc4a260cc874e1d2619ff7cde7ceffe09ac5a91decb9ad065.jpg",
         "first_seen": "2026-10-02T16:27:52+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T16:27:52+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4087228": {
       "item": {
@@ -69455,12 +69455,12 @@
         "posted_at": "2026-07-30 10:10:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/4/2a/d9063e1357bc6f31a42bb6cbbac58d0e279fc5a891eeb3ebdb107116d5d1d2a4.jpg",
         "first_seen": "2026-10-02T16:27:52+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T16:27:52+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4087044": {
       "item": {
@@ -69559,12 +69559,12 @@
         "posted_at": "2026-07-30 07:58:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/8/17/2efa6a57b4bf65b6c6e9d79d7881ad1150cb48b234bdc26c5a7b9c65b0617178.jpg",
         "first_seen": "2026-10-02T16:27:52+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T16:27:52+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4226779": {
       "item": {
@@ -69697,12 +69697,12 @@
         "posted_at": "2026-07-30 06:48:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/8/a6/02927704ccce151af9d5a2dabe7e51c6ff6b528d22b2a9c2db46a38914e69a68.jpg",
         "first_seen": "2026-10-02T17:27:05+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T17:27:05+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4086911": {
       "item": {
@@ -70110,12 +70110,12 @@
         "posted_at": "2026-07-30 06:04:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/b/9d/a36b13c3cf1bde9819b5a6d836be3c9f6e54a6cf115b4d884655487ab47119db.jpg",
         "first_seen": "2026-10-02T17:27:05+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T17:27:05+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4086833": {
       "item": {
@@ -70830,12 +70830,12 @@
         "posted_at": "2026-10-02 12:10:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/8/8f/6902f706325a1ee7b41a08853f9b77311ea99ed067e0f72b5fde7ef5068138f8.jpg",
         "first_seen": "2026-10-02T18:30:55+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T18:30:55+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4086697": {
       "item": {
@@ -71368,12 +71368,12 @@
         "posted_at": "2026-07-29 15:40:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/0/05/8f2e257a0ba8de623847e8168b5ba725e9b160301e27e63d3ea4da708f219050.jpg",
         "first_seen": "2026-10-02T19:27:43+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T19:27:43+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4085910": {
       "item": {
@@ -71409,12 +71409,12 @@
         "posted_at": "2026-07-29 15:39:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/f/21/d3691e75606f69b60be49e182ecb6de54e5859f64d9b4980dfedebcbc83b321f.jpg",
         "first_seen": "2026-10-02T19:27:43+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T19:27:43+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4085900": {
       "item": {
@@ -71448,12 +71448,12 @@
         "posted_at": "2026-07-29 15:36:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/9/de/2995759e716c519e8e0e296d9379ba009c5f7e7c266ab6cfe8f6643cb2af7de9.jpg",
         "first_seen": "2026-10-02T19:27:43+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T19:27:43+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4085882": {
       "item": {
@@ -71878,12 +71878,12 @@
         "posted_at": "2026-07-29 13:55:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/7/45/d6f617be6138e3e2e92eda2dcb0e8f4464ca4a9b10c12b5b9ef12e90e6cb9457.jpg",
         "first_seen": "2026-10-02T20:25:15+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T20:25:15+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4085736": {
       "item": {
@@ -73213,12 +73213,12 @@
         "posted_at": "2026-10-02 16:44:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/e/09/1403805ced489fbc0e009c21fd85b61ab9cddf6b491fad142723e6371aaff09e.jpg",
         "first_seen": "2026-10-02T22:25:11+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T22:25:11+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4227191": {
       "item": {
@@ -73257,12 +73257,12 @@
         "posted_at": "2026-10-02 16:41:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/c/25/3340cac39c65638b95385e01d081631fbc0ae58b149441fa3dd87386845f425c.jpg",
         "first_seen": "2026-10-02T22:25:11+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T22:25:11+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4227169": {
       "item": {
@@ -73744,12 +73744,12 @@
         "posted_at": "2026-10-02 17:59:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/a/c6/50096c91161c84f2ddfce659f304b41147282f6176d748fcd51e9560808f4c6a.jpg",
         "first_seen": "2026-10-02T23:22:33+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T23:22:33+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4227271": {
       "item": {
@@ -73792,12 +73792,12 @@
         "posted_at": "2026-10-02 17:36:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/c/4c/b5ec1d334e12696a54581f5d7cdd594778ff79fc9ea9b803549abddee6ed34cc.jpg",
         "first_seen": "2026-10-02T23:22:33+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T23:22:33+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4227268": {
       "item": {
@@ -73870,12 +73870,12 @@
         "posted_at": "2026-10-02 17:25:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/f/cf/ef373fcf3e05c685619d70b3878a0ddea77f66c0b7bd399728c9ec85d9ac4cff.jpg",
         "first_seen": "2026-10-02T23:22:33+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T23:22:33+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4227247": {
       "item": {
@@ -73905,12 +73905,12 @@
         "posted_at": "2026-10-02 17:20:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/f/19/e8e39df8dc47959817e7b6b908fc76626fe5ef2f009aa164b7bf86b12ea9c19f.jpg",
         "first_seen": "2026-10-02T23:22:33+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-02T23:22:33+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4084660": {
       "item": {
@@ -75705,12 +75705,12 @@
         "posted_at": "2026-07-28 07:18:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/3/47/1cbcc606dfb6db2517936f6fcc79f0e5febb7318ce3d535e92e0b53c578ce473.jpg",
         "first_seen": "2026-10-03T02:31:53+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-03T02:31:53+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4082651": {
       "item": {
@@ -77179,12 +77179,12 @@
         "posted_at": "2026-07-28 05:24:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/4/f6/76ad2af6583c7f795069fcdb37f5b5fcb8862a4a71e963e1d361de4a4e0f6f64.jpg",
         "first_seen": "2026-10-03T03:31:54+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-03T03:31:54+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4082398": {
       "item": {
@@ -77214,12 +77214,12 @@
         "posted_at": "2026-07-28 05:06:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/7/af/0d12c2a55bd5d455e356b4ef1f378471a8f700c737f6dad24cfd89e77c05aaf7.jpg",
         "first_seen": "2026-10-03T03:31:54+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-03T03:31:54+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4082374": {
       "item": {
@@ -77967,12 +77967,12 @@
         "posted_at": "2026-10-02 22:21:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/0/0c/8f04627af86b09dcd03152f93715d8a160fe16620cbfa83cfeef69f1addf80c0.jpg",
         "first_seen": "2026-10-03T04:26:53+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-03T04:26:53+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4082366": {
       "item": {
@@ -78937,12 +78937,12 @@
         "posted_at": "2026-07-28 00:10:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/c/72/88747356bf447635e2120e0dc266777b4d42d169b44cd5b3f524f46fcc53372c.jpg",
         "first_seen": "2026-10-03T04:26:53+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-03T04:26:53+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4081958": {
       "item": {
@@ -79673,12 +79673,12 @@
         "posted_at": "2026-10-02 23:09:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/3/86/5ad0513287c93be4369bddaeeb94e89ad326353c550ed9bf80ad301dfc4dc863.jpg",
         "first_seen": "2026-10-03T05:34:32+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-03T05:34:32+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4227756": {
       "item": {
@@ -83615,12 +83615,12 @@
         "posted_at": "2026-10-03 03:09:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/6/9f/2b55dacd55d803c5271de9ffe469af26841bf1e120a00cec84790234b8d2d9f6.jpg",
         "first_seen": "2026-10-03T09:26:56+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-03T09:26:56+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4080537": {
       "item": {
@@ -83650,12 +83650,12 @@
         "posted_at": "2026-07-27 09:58:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/4/57/2eed9f51cec94cae46764fb34fedf9cf98d6e5e41a55e307d5d635d2d77ec574.jpg",
         "first_seen": "2026-10-03T09:26:56+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-03T09:26:56+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4080536": {
       "item": {
@@ -83755,12 +83755,12 @@
         "posted_at": "2026-07-27 09:52:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/8/e5/960992bbb51c9f2782f95d53cf733b84624da2d7837e7e3dabda5a0bdb2f3e58.jpg",
         "first_seen": "2026-10-03T09:26:56+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-03T09:26:56+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4080520": {
       "item": {
@@ -86741,12 +86741,12 @@
         "posted_at": "2026-10-03 07:51:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/e/5d/1d68c7a5bfeffea1be9e40ca749e491e8999a671683b861719b40d223727d5de.jpg",
         "first_seen": "2026-10-03T14:34:02+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-03T14:34:02+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4228322": {
       "item": {
@@ -86832,12 +86832,12 @@
         "posted_at": "2026-10-03 06:54:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/8/e9/e1dc59ca155ebdaff5d7bd666c1f7714080a11d6a652f815a648abb9f4118e98.jpg",
         "first_seen": "2026-10-03T14:34:02+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-03T14:34:02+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4228289": {
       "item": {
@@ -86915,12 +86915,12 @@
         "posted_at": "2026-10-03 05:34:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/9/85/0fe9d0477d174ffffeec9b286ac65cc2d49c871d46c5d4ca4912728511495859.jpg",
         "first_seen": "2026-10-03T14:34:02+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-03T14:34:02+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4228168": {
       "item": {
@@ -87003,12 +87003,12 @@
         "posted_at": "2026-07-26 21:49:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/9/b1/35531807c0c0927b1a2606af818a08be991509fd0763d4cb9b3a6f00eab2db19.jpg",
         "first_seen": "2026-10-03T14:34:02+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-03T14:34:02+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "3hentai:3755204": {
       "item": {
@@ -87588,12 +87588,12 @@
         "posted_at": "2026-10-03 13:18:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/8/78/309b2325c0c135b121c7fdd0c00e007e82b2609802dc756893816cc7b7fc1788.jpg",
         "first_seen": "2026-10-03T19:03:07+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-03T19:03:07+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4228911": {
       "item": {
@@ -87957,12 +87957,12 @@
         "posted_at": "2026-10-03 10:39:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/8/6a/9243f98700e5b3c313fe25f6093c31b2436743908ca8a9a8a82d8950f31216a8.jpg",
         "first_seen": "2026-10-03T19:03:07+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-03T19:03:07+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4079348": {
       "item": {
@@ -88151,12 +88151,12 @@
         "posted_at": "2026-07-26 20:08:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/4/7d/e639f18325af4ada63c41bb6a9930bc033fd302170a3437f09e790a9604107d4.jpg",
         "first_seen": "2026-10-03T19:03:07+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-03T19:03:07+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "3hentai:3756264": {
       "item": {
@@ -88873,12 +88873,12 @@
         "posted_at": "2026-10-03 21:49:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/5/0c/3b99417175a32ea85f5486f13f047ef4e83b424145bf1e01c2487d54c805e0c5.jpg",
         "first_seen": "2026-10-04T05:17:30+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-04T05:17:30+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4229644": {
       "item": {
@@ -89643,12 +89643,12 @@
         "posted_at": "2026-10-04 03:15:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/0/4a/0d62b6958f44ceda5dc8022d3bece6214ad89c089dd88a2a2ce6cd8b217984a0.jpg",
         "first_seen": "2026-10-04T11:04:46+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-04T11:04:46+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4230174": {
       "item": {
@@ -90030,12 +90030,12 @@
         "posted_at": "2026-07-26 16:30:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/d/ec/fec31fb249f01d76372874d8cc5052c37d834e5e88d34effd6ec4350f9dedecd.jpg",
         "first_seen": "2026-10-04T11:04:46+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-04T11:04:46+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4079006": {
       "item": {
@@ -91507,12 +91507,12 @@
         "posted_at": "2026-10-04 15:17:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/6/d5/776e199e3fb056cdc5c0fb49bf9be968a234581ee9008df0b492495a151d4d56.jpg",
         "first_seen": "2026-10-04T21:38:22+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-04T21:38:22+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4231576": {
       "item": {
@@ -91765,12 +91765,12 @@
         "posted_at": "2026-07-26 14:05:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/5/fd/2c2c605cabb9b918491359e62daf88b046e91aa38555ef25439045900071efd5.jpg",
         "first_seen": "2026-10-04T22:25:36+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-04T22:25:36+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4078741": {
       "item": {
@@ -92339,12 +92339,12 @@
         "posted_at": "2026-07-26 11:18:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/3/94/e6b59d3974338e6c0274a4cd882bd534c90332d1af10b650633367ec317c1943.jpg",
         "first_seen": "2026-10-04T22:25:36+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-04T22:25:36+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "3hentai:3650030": {
       "item": {
@@ -93333,12 +93333,12 @@
         "posted_at": "2026-07-26 03:59:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/2/1f/b8c46c2d35cd5a7045491a580ab4aeb7b1b8490cefd601980c3c6f32dd5ea1f2.jpg",
         "first_seen": "2026-10-05T00:36:33+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-05T00:36:33+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4077748": {
       "item": {
@@ -93368,12 +93368,12 @@
         "posted_at": "2026-07-26 03:17:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/9/70/6e89569381a548b041a1351c32506f46574b29ec96593825519ad48e0b006709.jpg",
         "first_seen": "2026-10-05T00:36:33+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-05T00:36:33+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4077692": {
       "item": {
@@ -94422,12 +94422,12 @@
         "posted_at": "2026-07-26 02:20:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/1/22/ad1e7bf08c723e86cb54e7c468890ea93e5671da239a69177891488c841cc221.jpg",
         "first_seen": "2026-10-05T01:26:58+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-05T01:26:58+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4077606": {
       "item": {
@@ -94780,12 +94780,12 @@
         "posted_at": "2026-07-25 21:37:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/c/36/b4e943aab8aae6a41ae65f2f964a5923da6db0a52e456a4a24ca4769149be36c.jpg",
         "first_seen": "2026-10-05T01:26:58+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-05T01:26:58+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4077246": {
       "item": {
@@ -95388,12 +95388,12 @@
         "posted_at": "2026-07-25 17:25:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/c/23/2e080ab5c89b19447930582d59956e774442e3a2d0508d474281aa38abf5f23c.jpg",
         "first_seen": "2026-10-05T03:28:57+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-05T03:28:57+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4076952": {
       "item": {
@@ -95723,12 +95723,12 @@
         "posted_at": "2026-07-25 14:37:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/1/bc/f9ae1ae400bc7ec33cb9646a17ecc8fa21ec5d8bd33f12ba1262c973aa3e0bc1.jpg",
         "first_seen": "2026-10-05T03:28:57+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-05T03:28:57+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4076793": {
       "item": {
@@ -95764,12 +95764,12 @@
         "posted_at": "2026-07-25 14:21:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/4/1b/d31e1a82b167c5df4ac97ce7acf3afee2f3e286b2f04540832f1f4b9815be1b4.jpg",
         "first_seen": "2026-10-05T03:28:57+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-05T03:28:57+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4076790": {
       "item": {
@@ -96021,12 +96021,12 @@
         "posted_at": "2026-07-25 13:48:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/c/18/9881483017a36006fde4267e25eabc615019e9cd73a3f43657004123f3b0118c.jpg",
         "first_seen": "2026-10-05T04:29:59+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-05T04:29:59+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4076677": {
       "item": {
@@ -96126,12 +96126,12 @@
         "posted_at": "2026-07-25 12:42:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/5/d6/5cf8e7e775eda78af3c00ce83412f8c69851b83bf03f72c17a4a93be6c618d65.jpg",
         "first_seen": "2026-10-05T04:29:59+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-05T04:29:59+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4076558": {
       "item": {
@@ -96170,12 +96170,12 @@
         "posted_at": "2026-07-25 12:22:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/3/0e/a6640b1180d4165b0af75b337a2bb22a64cf7e3e84622378c5bc9d3cafd2a0e3.jpg",
         "first_seen": "2026-10-05T04:29:59+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-05T04:29:59+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4076534": {
       "item": {
@@ -96380,12 +96380,12 @@
         "posted_at": "2026-07-25 10:54:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/f/63/3e3685e2c310e365872f41041b741fcfa0a1bf1bb13729b0cec4c8edcc68d63f.jpg",
         "first_seen": "2026-10-05T04:29:59+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-05T04:29:59+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "3hentai:3712206": {
       "item": {
@@ -96704,12 +96704,12 @@
         "posted_at": "2026-07-25 09:34:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/d/bb/bca9d4e5e47b015e25e9260be8de416c91827cb84072b45c2036505918edfbbd.jpg",
         "first_seen": "2026-10-05T05:30:39+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-05T05:30:39+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4076200": {
       "item": {
@@ -96808,12 +96808,12 @@
         "posted_at": "2026-07-25 09:00:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/4/b0/d22675f86e2b16e2048eca04f7c3ae37ce40e40a58ecf882df9b35410c427b04.jpg",
         "first_seen": "2026-10-05T05:30:39+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-05T05:30:39+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4076066": {
       "item": {
@@ -96909,12 +96909,12 @@
         "posted_at": "2026-07-25 06:52:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/1/1c/112f5b83cd6aae08e4a9de758e18a0cdd2f88b9415e33fb1163889d24a5821c1.jpg",
         "first_seen": "2026-10-05T05:30:39+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-05T05:30:39+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4075682": {
       "item": {
@@ -96948,12 +96948,12 @@
         "posted_at": "2026-07-25 04:32:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/f/da/359ad2a0c0479a7ed8041005ead041c91886fee06c04dc5f10c4793840c54daf.jpg",
         "first_seen": "2026-10-05T05:30:39+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-05T05:30:39+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4075679": {
       "item": {
@@ -97172,12 +97172,12 @@
         "posted_at": "2026-07-25 03:06:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/2/86/1e779a8aac165d35082bfb8309a8e751322cf441faa689b88cb2fc83d6398862.jpg",
         "first_seen": "2026-10-05T06:37:51+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-05T06:37:51+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4075557": {
       "item": {
@@ -97334,12 +97334,12 @@
         "posted_at": "2026-07-25 02:14:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/3/da/88e09a2700269112feb567628d40c6c8b1c46f7158178ae800a0dc0709246da3.jpg",
         "first_seen": "2026-10-05T06:37:51+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-05T06:37:51+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4075516": {
       "item": {
@@ -97889,12 +97889,12 @@
         "posted_at": "2026-07-25 00:15:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/a/93/05fd7df9657fdfd57a64522775fd0cf56ec4281de5d10c1559491fc1e294193a.jpg",
         "first_seen": "2026-10-05T06:37:51+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-05T06:37:51+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4075289": {
       "item": {
@@ -99236,12 +99236,12 @@
         "posted_at": "2026-07-24 15:52:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/2/65/7199fdb24050fc4d046ddf916c0b2e41864df1b9092a95e49e33b15f7d7ba652.jpg",
         "first_seen": "2026-10-05T08:31:48+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-05T08:31:48+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4074585": {
       "item": {
@@ -99280,12 +99280,12 @@
         "posted_at": "2026-07-24 15:40:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/b/ab/8e43a03563bd1a1e1ef670b3aa79430847c65a2d3560c425d1feb4b9746afabb.jpg",
         "first_seen": "2026-10-05T08:31:48+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-05T08:31:48+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4074548": {
       "item": {
@@ -100731,12 +100731,12 @@
         "posted_at": "2026-07-24 10:16:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/2/67/d15be4b53b001d436e8b277de25f5a4ecd949c68634dcaea7a2e087190beb672.jpg",
         "first_seen": "2026-10-05T09:31:58+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-05T09:31:58+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "3hentai:3710594": {
       "item": {
@@ -102701,12 +102701,12 @@
         "posted_at": "2026-09-24 12:06:00-05",
         "thumbnail": "thumbs/hitomi/4210123.webp",
         "first_seen": "2026-09-24T18:27:44+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-05T13:33:13+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "3hentai:3709614": {
       "item": {
@@ -290000,12 +290000,12 @@
         "posted_at": "2026-10-16 17:51:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/6/6a/36cc778d8cf75395606770e62fcbd0eb397bb918b09b2f8d6b493808e12c46a6.jpg",
         "first_seen": "2026-10-16T23:33:53+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-16T23:33:53+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4259356": {
       "item": {
@@ -290611,12 +290611,12 @@
         "posted_at": "2026-10-16 20:39:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/a/e5/80e2d2e59c91a59deb5509999328e4d46418c0ba6e11cc470ac46a0244960e5a.jpg",
         "first_seen": "2026-10-17T04:20:48+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-17T04:20:48+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:3980384": {
       "item": {
@@ -290646,12 +290646,12 @@
         "posted_at": "2026-06-09 09:50:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/b/80/b05871b3e0b94dc46249d6e10aa9ec9d8d5a7f84642e6968059c57229421e80b.jpg",
         "first_seen": "2026-10-17T04:20:48+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-17T04:20:48+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:3980343": {
       "item": {
@@ -293318,12 +293318,12 @@
         "posted_at": "2026-10-17 15:36:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/6/15/b90cc6f8bff3b4d789a54ec6f3b34238c697416ef44776d001fb6d498a542156.jpg",
         "first_seen": "2026-10-17T22:16:19+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-17T22:16:19+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4262030": {
       "item": {
@@ -293364,12 +293364,12 @@
         "posted_at": "2026-10-17 15:03:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/b/d0/61671c29554f5cd9ab6793dab405b711cf7062b21989f651c9fb4371f2517d0b.jpg",
         "first_seen": "2026-10-17T22:16:19+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-17T22:16:19+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4262015": {
       "item": {
@@ -294382,12 +294382,12 @@
         "posted_at": "2026-06-09 00:26:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/5/b8/e1ce651f7546f3cf06f2bfb1e2dd424f41f6a967f122c1c9e9987f8e2f4d3b85.jpg",
         "first_seen": "2026-10-18T00:03:28+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-18T00:03:28+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:3979834": {
       "item": {
@@ -302985,12 +302985,12 @@
         "posted_at": "2026-10-19 21:16:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/9/90/3f5d02c55c0c368542f350146a20c8c39afea5c775ca09350becdb10c3695909.jpg",
         "first_seen": "2026-10-20T04:43:57+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-20T04:43:57+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4268201": {
       "item": {
@@ -303061,12 +303061,12 @@
         "posted_at": "2026-10-19 20:52:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/a/e8/89901aa16119bda3aec7529d8fab22bedffe01f74015fa7ae7ec589018140e8a.jpg",
         "first_seen": "2026-10-20T04:43:57+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-20T04:43:57+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4268123": {
       "item": {
@@ -303102,12 +303102,12 @@
         "posted_at": "2026-10-19 20:29:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/6/94/ad0786a4dc7c2e75a39c787fb72d3d927bb378b93952e02131d6ba216b2cb946.jpg",
         "first_seen": "2026-10-20T04:43:57+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-20T04:43:57+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4268094": {
       "item": {
@@ -303137,12 +303137,12 @@
         "posted_at": "2026-10-19 20:20:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/e/ac/e4698adcd3a082c4ad00f6639b727eaa864f3254b64e789a53a0594274deface.jpg",
         "first_seen": "2026-10-20T04:43:57+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-20T04:43:57+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4268034": {
       "item": {
@@ -303237,12 +303237,12 @@
         "posted_at": "2026-10-19 19:13:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/2/a0/2fb2c70f563459c102438695ce7775b863ba9d85c427b9b75f611e95d21b7a02.jpg",
         "first_seen": "2026-10-20T04:43:57+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-20T04:43:57+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "3hentai:3623121": {
       "item": {
@@ -308087,12 +308087,12 @@
         "posted_at": "2026-10-20 23:30:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/2/30/f3c4ee397593fbca0407ef65c3c5438a31c85a3a694061027023efc05b1c9302.jpg",
         "first_seen": "2026-10-21T06:00:04+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-21T06:00:04+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4270761": {
       "item": {
@@ -308360,12 +308360,12 @@
         "posted_at": "2026-10-20 21:05:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/7/bc/377b3dd4d993cfbceec9d08a9a00676da29a569187bedec827d959cc3066abc7.jpg",
         "first_seen": "2026-10-21T06:00:04+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-21T06:00:04+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4270591": {
       "item": {
@@ -310077,12 +310077,12 @@
         "posted_at": "2026-06-07 12:17:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/8/90/5ac0cd5ef76f53488a8cc3d48cc24659df1d38f1e35d8d895e976b5f6333e908.jpg",
         "first_seen": "2026-10-21T11:42:46+00:00",
-        "last_seen": "2026-11-01T02:10:57+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-21T11:42:46+00:00",
-      "updated_at": "2026-11-01T02:10:57+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:3977709": {
       "item": {
@@ -311022,12 +311022,12 @@
         "posted_at": "2026-06-07 10:00:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/c/7a/a95bf118a918fc187f60cd5fef21a04c0a5afa11bbee5764e8c4f7ab033a87ac.jpg",
         "first_seen": "2026-10-21T17:08:26+00:00",
-        "last_seen": "2026-11-01T20:28:51+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-21T17:08:26+00:00",
-      "updated_at": "2026-11-01T20:28:51+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:3977499": {
       "item": {
@@ -311063,12 +311063,12 @@
         "posted_at": "2026-06-07 10:00:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/c/13/4bdaf9fbb711c97bfda73551e94d47a530d8fa34bb79184b3ce425c3abfab13c.jpg",
         "first_seen": "2026-10-21T17:08:26+00:00",
-        "last_seen": "2026-11-01T20:28:51+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-21T17:08:26+00:00",
-      "updated_at": "2026-11-01T20:28:51+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:3977497": {
       "item": {
@@ -311104,12 +311104,12 @@
         "posted_at": "2026-06-07 10:00:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/8/34/7775098298514a241bc9fd02a0693b07b36780bb080b276a224da146057e5348.jpg",
         "first_seen": "2026-10-21T17:08:26+00:00",
-        "last_seen": "2026-11-01T20:28:51+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-21T17:08:26+00:00",
-      "updated_at": "2026-11-01T20:28:51+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:3977496": {
       "item": {
@@ -311145,12 +311145,12 @@
         "posted_at": "2026-06-07 10:00:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/5/a0/d7c3c1b40fc62a6d7026626f71228e38a8eba2bc2ff6682220a24ec35186da05.jpg",
         "first_seen": "2026-10-21T17:08:26+00:00",
-        "last_seen": "2026-11-01T20:28:51+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-21T17:08:26+00:00",
-      "updated_at": "2026-11-01T20:28:51+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:3977495": {
       "item": {
@@ -311186,12 +311186,12 @@
         "posted_at": "2026-06-07 10:00:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/a/7f/ac37f5dfaf369e0b1b32708751f35dc385520a9f6bc06223712629596c1927fa.jpg",
         "first_seen": "2026-10-21T17:08:26+00:00",
-        "last_seen": "2026-11-01T20:28:51+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-21T17:08:26+00:00",
-      "updated_at": "2026-11-01T20:28:51+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:3977455": {
       "item": {
@@ -314179,12 +314179,12 @@
         "posted_at": "2026-06-07 11:38:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/6/d5/741fe54f4190ad9a5c06297cf3c106bd81e2b240dd206b4055158db53106dd56.jpg",
         "first_seen": "2026-10-22T10:07:58+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-22T10:07:58+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "3hentai:3620729": {
       "item": {
@@ -316058,12 +316058,12 @@
         "posted_at": "2026-10-23 05:37:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/9/d0/1088e30430379be04df1c9f8efa854a27340365c7b6b0580556e807ad7eaad09.jpg",
         "first_seen": "2026-10-23T13:22:21+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-23T13:22:21+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4275389": {
       "item": {
@@ -318262,12 +318262,12 @@
         "posted_at": "2026-10-24 08:13:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/e/8e/17da0df3ca787ec3315548823b5192eaf42d7d82584f1f50dbaaf809de0758ee.jpg",
         "first_seen": "2026-10-24T14:29:24+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-24T14:29:24+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "3hentai:3610606": {
       "item": {
@@ -319462,12 +319462,12 @@
         "posted_at": "2026-10-24 21:59:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/1/73/72c3eff264e92e6d0eb97c05f3ff16ed35b7bf8126e7aad54a2c4a854dd0a731.jpg",
         "first_seen": "2026-10-25T06:03:44+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-25T06:03:44+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4280821": {
       "item": {
@@ -319629,12 +319629,12 @@
         "posted_at": "2026-10-25 05:51:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/3/8c/90aac25d694451da3d762d6a800961ff556d8f80de840fbc4f938550fd98f8c3.jpg",
         "first_seen": "2026-10-25T11:19:51+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-25T11:19:51+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4280772": {
       "item": {
@@ -319719,12 +319719,12 @@
         "posted_at": "2026-10-25 04:44:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/7/03/a4fe551749cdb38fd296b998de34892d2603cbc06ae32ed9e4fa8ccf2e8e2037.jpg",
         "first_seen": "2026-10-25T11:19:51+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-25T11:19:51+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4280674": {
       "item": {
@@ -319758,12 +319758,12 @@
         "posted_at": "2026-10-25 04:34:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/3/af/1270aad1810c22cac15e0af035a68d66af788813d7b14a85782edc059c6d8af3.jpg",
         "first_seen": "2026-10-25T11:19:51+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-25T11:19:51+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4280659": {
       "item": {
@@ -319793,12 +319793,12 @@
         "posted_at": "2026-10-25 04:24:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/7/a0/b1eafd1bdf8359e2ab86cfdbdb1d26b87ceffee29fed50c9ef991b8ac9903a07.jpg",
         "first_seen": "2026-10-25T11:19:51+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-25T11:19:51+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4280654": {
       "item": {
@@ -319828,12 +319828,12 @@
         "posted_at": "2026-10-25 04:21:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/9/3a/5955e1c9c6036c22b27491f2eda04a6970561ca3e6cbd51c4ffd84b88a6e83a9.jpg",
         "first_seen": "2026-10-25T11:19:51+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-25T11:19:51+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4280648": {
       "item": {
@@ -319863,12 +319863,12 @@
         "posted_at": "2026-10-25 04:17:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/2/6a/44395a59cf2eb5251c3e7d00fbf6ef3cee78b33e73df96a6255740f160e626a2.jpg",
         "first_seen": "2026-10-25T11:19:51+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-25T11:19:51+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4280632": {
       "item": {
@@ -319898,12 +319898,12 @@
         "posted_at": "2026-10-25 04:09:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/e/5b/822d6cd2a9bfdfa57d6738a864997ead23b35eabfbc459d28b4171a6e9c705be.jpg",
         "first_seen": "2026-10-25T11:19:51+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-25T11:19:51+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4280600": {
       "item": {
@@ -319933,12 +319933,12 @@
         "posted_at": "2026-10-25 03:48:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/6/28/9316bf49bcc841b50efa222ff2399c33afa35299b19ad4c4042054ec4bb5a286.jpg",
         "first_seen": "2026-10-25T11:19:51+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-25T11:19:51+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4280578": {
       "item": {
@@ -319968,12 +319968,12 @@
         "posted_at": "2026-10-25 03:39:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/c/cf/852149065afe9aa26cfadf847b2d6a246f057d869dfabb468119bc98006a5cfc.jpg",
         "first_seen": "2026-10-25T11:19:51+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-25T11:19:51+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4280569": {
       "item": {
@@ -320032,45 +320032,6 @@
       "status": "blocked",
       "first_quarantined_at": "2026-10-25T11:19:51+00:00",
       "updated_at": "2026-10-25T11:19:51+00:00"
-    },
-    "hitomi:4280519": {
-      "item": {
-        "uid": "hitomi:4280519",
-        "source": "hitomi",
-        "source_id": "4280519",
-        "source_token": "",
-        "source_url": "https://hitomi.la/galleries/4280519.html",
-        "source_url_kind": "",
-        "resolved_gallery_id": "",
-        "filter_metadata_checked": "",
-        "filter_metadata_checked_at": "",
-        "title": "露出でポン！",
-        "title_jp": "露出でポン！",
-        "language": "japanese",
-        "category": "manga",
-        "artists": [
-          "kiitigo no yoshitatu"
-        ],
-        "groups": [],
-        "parodies": [],
-        "works": [],
-        "characters": [],
-        "tags": [],
-        "meta_tags": [
-          "artist:kiitigo no yoshitatu"
-        ],
-        "pages": 179,
-        "rating": null,
-        "popularity": null,
-        "posted_at": "2026-10-25 02:42:00-05",
-        "thumbnail": "https://tn.hitomi.la/bigtn/1/7a/c3d4022881c88b753f7f97d4039fbc0071fd1cdac192e4291817e9f8e336b7a1.jpg",
-        "first_seen": "2026-10-25T11:19:51+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
-      },
-      "reason": "metadata_unverified",
-      "status": "pending",
-      "first_quarantined_at": "2026-10-25T11:19:51+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
     },
     "3hentai:3611401": {
       "item": {
@@ -322497,12 +322458,12 @@
         "posted_at": "2026-10-25 18:17:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/3/5d/13c3601ae58fb577d5786407a695f44a5ab057888b589aa3d6f53d6c4dc215d3.jpg",
         "first_seen": "2026-10-26T00:19:00+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-26T00:19:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4282021": {
       "item": {
@@ -322769,12 +322730,12 @@
         "posted_at": "2026-10-25 17:16:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/e/b5/148368543c641d5e18804b081a7aa9466f0af075ea241b806a8a5c5c021c9b5e.jpg",
         "first_seen": "2026-10-26T00:19:00+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-26T00:19:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:3975197": {
       "item": {
@@ -322857,12 +322818,12 @@
         "posted_at": "2026-06-06 02:13:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/8/eb/e9a6535dd9d41f0ba67a6681802018abeafa78f662c6de1878924ef1e0844eb8.jpg",
         "first_seen": "2026-10-26T00:19:00+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-26T00:19:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:3975148": {
       "item": {
@@ -322901,12 +322862,12 @@
         "posted_at": "2026-06-06 02:13:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/c/d8/7b6f4232d9d23ea268452abec94ee6b86abc9f9b6297bcb3d0c3524e2b00ed8c.jpg",
         "first_seen": "2026-10-26T00:19:00+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-26T00:19:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:3975146": {
       "item": {
@@ -322945,12 +322906,12 @@
         "posted_at": "2026-06-06 02:13:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/3/46/3205b86b00e7f233e2335eb1ad53a7826d87f8bf23d75c161c522b8952bb9463.jpg",
         "first_seen": "2026-10-26T00:19:00+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-26T00:19:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:3975144": {
       "item": {
@@ -322989,12 +322950,12 @@
         "posted_at": "2026-06-06 02:13:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/b/35/5dc7de711943b2cc30a4430231fc85978dd904f764cb71c6d60aa0c2f05cf35b.jpg",
         "first_seen": "2026-10-26T00:19:00+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-26T00:19:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:3975143": {
       "item": {
@@ -323033,12 +322994,12 @@
         "posted_at": "2026-06-06 02:13:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/c/c4/71aea64b94a4182305a45e4a3cdadda22c047e7aacfb7aac68609cc1f1c9dc4c.jpg",
         "first_seen": "2026-10-26T00:19:00+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-26T00:19:00+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:3975142": {
       "item": {
@@ -323077,12 +323038,12 @@
         "posted_at": "2026-06-06 02:13:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/e/68/874270cce99c63a1fe18538f3ff8b0b1904729c1fecd5318f23964d8d92b768e.jpg",
         "first_seen": "2026-10-26T00:19:00+00:00",
-        "last_seen": "2026-10-31T13:37:34+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-26T00:19:00+00:00",
-      "updated_at": "2026-10-31T13:37:34+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:3975141": {
       "item": {
@@ -323121,12 +323082,12 @@
         "posted_at": "2026-06-06 02:13:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/8/83/9cbed843ca98dfb068a1cef6f86b0fe8ad0921026c494ee2a3b9f3d76ee3b838.jpg",
         "first_seen": "2026-10-26T00:19:00+00:00",
-        "last_seen": "2026-10-31T13:37:34+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-26T00:19:00+00:00",
-      "updated_at": "2026-10-31T13:37:34+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:3975140": {
       "item": {
@@ -323165,12 +323126,12 @@
         "posted_at": "2026-06-06 02:13:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/5/ea/0740a3e2b58bdf748142d5167c21ddc4e5bb031806079acf0dafe3f28605dea5.jpg",
         "first_seen": "2026-10-26T00:19:00+00:00",
-        "last_seen": "2026-10-31T13:37:34+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-26T00:19:00+00:00",
-      "updated_at": "2026-10-31T13:37:34+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "3hentai:3610007": {
       "item": {
@@ -323522,12 +323483,12 @@
         "posted_at": "2026-10-25 22:24:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/a/84/a88ce13c811ba53a9bffbdb92b9d2855d81c7ba4e5267efb91924b66dcd4484a.jpg",
         "first_seen": "2026-10-26T04:24:19+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-26T04:24:19+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4282427": {
       "item": {
@@ -323618,12 +323579,12 @@
         "posted_at": "2026-06-06 02:13:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/9/20/16db56b2e91a72c6d105742a1eab40a4f2ebc553b318c846d5c6a6bcad248209.jpg",
         "first_seen": "2026-10-26T04:24:19+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-26T04:24:19+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:3975136": {
       "item": {
@@ -323662,12 +323623,12 @@
         "posted_at": "2026-06-06 02:12:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/4/3b/f9c727119746fb8518d1fea3a6ca0f03b4d72669ce5dbbc4e38c23e95d6433b4.jpg",
         "first_seen": "2026-10-26T04:24:19+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-26T04:24:19+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:3974902": {
       "item": {
@@ -323770,12 +323731,12 @@
         "posted_at": "2026-06-05 22:58:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/5/4a/ec7ad4b64bd86b169979fd7ea139f6cf9d3fe4bc77ee12976b1ba1ca44c804a5.jpg",
         "first_seen": "2026-10-26T04:24:19+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-26T04:24:19+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:3974714": {
       "item": {
@@ -323857,12 +323818,12 @@
         "posted_at": "2026-06-05 20:32:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/a/98/e91cfa011a3ccd0424f5dd51f164c157500564ea1c1ed0c123e4ab46594ad98a.jpg",
         "first_seen": "2026-10-26T04:24:19+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-26T04:24:19+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:3974552": {
       "item": {
@@ -325926,12 +325887,12 @@
         "posted_at": "2026-10-26 11:38:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/d/2b/17a9ab87d4ff86b0abf9f45c00fc61b8b44c5f7a7f3b732b4119388a7210e2bd.jpg",
         "first_seen": "2026-10-26T19:15:30+00:00",
-        "last_seen": "2026-10-31T13:37:34+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-26T19:15:30+00:00",
-      "updated_at": "2026-10-31T13:37:34+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4283428": {
       "item": {
@@ -325961,12 +325922,12 @@
         "posted_at": "2026-10-26 10:46:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/3/6a/3ce1eef1c3ae5639bfccf12a03f66e6668ed29fad046710d449cea195aa0d6a3.jpg",
         "first_seen": "2026-10-26T19:15:30+00:00",
-        "last_seen": "2026-10-31T13:37:34+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-26T19:15:30+00:00",
-      "updated_at": "2026-10-31T13:37:34+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4283422": {
       "item": {
@@ -326121,12 +326082,12 @@
         "posted_at": "2026-10-26 10:31:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/b/90/e788aab5de7ac0294ce855d98be75ab8c759b39bbdc89bbca0921c167e3c890b.jpg",
         "first_seen": "2026-10-26T19:15:30+00:00",
-        "last_seen": "2026-10-31T13:37:34+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-26T19:15:30+00:00",
-      "updated_at": "2026-10-31T13:37:34+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "3hentai:3775660": {
       "item": {
@@ -329614,12 +329575,12 @@
         "posted_at": "2026-10-27 15:03:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/a/f8/b2ed1c2af8660f6e6a2767638269dddd58ea572f0473290e56bb4eb491c19f8a.jpg",
         "first_seen": "2026-10-27T23:45:11+00:00",
-        "last_seen": "2026-10-31T13:37:34+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-27T23:45:11+00:00",
-      "updated_at": "2026-10-31T13:37:34+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4286053": {
       "item": {
@@ -329763,12 +329724,12 @@
         "posted_at": "2026-10-27 23:40:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/a/cc/deb785d43cd49244990da7757e02d56faa8aa40fdf93106200bf24c9835d4cca.jpg",
         "first_seen": "2026-10-28T05:34:55+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-28T05:34:55+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4286711": {
       "item": {
@@ -329804,12 +329765,12 @@
         "posted_at": "2026-10-27 23:39:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/a/f1/3376d34f8dd4e3f4a872c2bac76d31cc55eb5db7e51da8c73662bfb06f0a2f1a.jpg",
         "first_seen": "2026-10-28T05:34:55+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-28T05:34:55+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4286703": {
       "item": {
@@ -329851,12 +329812,12 @@
         "posted_at": "2026-10-27 23:37:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/c/f0/778d181eb105e99e63d718e3899cc0a7671ed6d5cc0d79281dfc9c699057cf0c.jpg",
         "first_seen": "2026-10-28T05:34:55+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-28T05:34:55+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4286697": {
       "item": {
@@ -329901,12 +329862,12 @@
         "posted_at": "2026-10-27 23:36:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/5/b4/1f4897727d83690fa44b07e689ca75fad9d766c039934c40f64609593c864b45.jpg",
         "first_seen": "2026-10-28T05:34:55+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-28T05:34:55+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4286694": {
       "item": {
@@ -329998,12 +329959,12 @@
         "posted_at": "2026-10-27 22:52:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/9/3a/f9050919e1ebf06fb9f08de63eb439b81689ca0c1b639270e5aa439c6af0e3a9.jpg",
         "first_seen": "2026-10-28T05:34:55+00:00",
-        "last_seen": "2026-10-31T18:30:53+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-28T05:34:55+00:00",
-      "updated_at": "2026-10-31T18:30:53+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4287323": {
       "item": {
@@ -332037,12 +331998,12 @@
         "posted_at": "2026-10-29 10:48:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/3/d9/f38fe99b94aa9a6daf12be5f7f79b114a28b70b86be78299aebf06fcca439d93.jpg",
         "first_seen": "2026-10-29T16:54:28+00:00",
-        "last_seen": "2026-10-31T13:37:34+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-29T16:54:28+00:00",
-      "updated_at": "2026-10-31T13:37:34+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4290216": {
       "item": {
@@ -332081,12 +332042,12 @@
         "posted_at": "2026-10-29 10:39:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/b/ef/726edc74db763dc3a9f73da73d8fdbc505858834bfa8901a423a7e652438befb.jpg",
         "first_seen": "2026-10-29T16:54:28+00:00",
-        "last_seen": "2026-10-31T13:37:34+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-29T16:54:28+00:00",
-      "updated_at": "2026-10-31T13:37:34+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4290213": {
       "item": {
@@ -332128,12 +332089,12 @@
         "posted_at": "2026-10-29 10:39:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/a/1b/1afe1551377f1a6128ab51ea052b79d786e7b98e713903dd7241600072f331ba.jpg",
         "first_seen": "2026-10-29T16:54:28+00:00",
-        "last_seen": "2026-10-31T13:37:34+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-29T16:54:28+00:00",
-      "updated_at": "2026-10-31T13:37:34+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "hitomi:4290212": {
       "item": {
@@ -336054,12 +336015,12 @@
         "posted_at": "2026-10-30 23:50:00-05",
         "thumbnail": "https://tn.hitomi.la/bigtn/5/f6/239a9af5f536369732c88e45ce35e83b65c95c0dd821513cc5e341bbb0e4df65.jpg",
         "first_seen": "2026-10-31T06:57:50+00:00",
-        "last_seen": "2026-10-31T13:37:34+00:00"
+        "last_seen": "2026-11-02T00:39:44+00:00"
       },
       "reason": "metadata_unverified",
       "status": "pending",
       "first_quarantined_at": "2026-10-31T06:57:50+00:00",
-      "updated_at": "2026-10-31T13:37:34+00:00"
+      "updated_at": "2026-11-02T00:39:44+00:00"
     },
     "3hentai:3686561": {
       "item": {
@@ -339548,45 +339509,6 @@
       "first_quarantined_at": "2026-11-01T20:28:51+00:00",
       "updated_at": "2026-11-01T20:28:51+00:00"
     },
-    "hitomi:4297689": {
-      "item": {
-        "uid": "hitomi:4297689",
-        "source": "hitomi",
-        "source_id": "4297689",
-        "source_token": "",
-        "source_url": "https://hitomi.la/galleries/4297689.html",
-        "source_url_kind": "",
-        "resolved_gallery_id": "",
-        "filter_metadata_checked": "",
-        "filter_metadata_checked_at": "",
-        "title": "Egami 2026.06",
-        "title_jp": "Egami 2026.06",
-        "language": "japanese",
-        "category": "artistcg",
-        "artists": [
-          "egami"
-        ],
-        "groups": [],
-        "parodies": [],
-        "works": [],
-        "characters": [],
-        "tags": [],
-        "meta_tags": [
-          "artist:egami"
-        ],
-        "pages": 16,
-        "rating": null,
-        "popularity": null,
-        "posted_at": "2026-11-01 13:05:00-06",
-        "thumbnail": "https://tn.hitomi.la/bigtn/e/57/6fe007c76873217066fd25338bcc2163cde91584e752b2de7e10e959b5d3057e.jpg",
-        "first_seen": "2026-11-01T20:28:51+00:00",
-        "last_seen": "2026-11-01T20:28:51+00:00"
-      },
-      "reason": "metadata_unverified",
-      "status": "pending",
-      "first_quarantined_at": "2026-11-01T20:28:51+00:00",
-      "updated_at": "2026-11-01T20:28:51+00:00"
-    },
     "hitomi:4297667": {
       "item": {
         "uid": "hitomi:4297667",
@@ -340637,6 +340559,1006 @@
       "status": "blocked",
       "first_quarantined_at": "2026-11-01T20:28:51+00:00",
       "updated_at": "2026-11-01T20:28:51+00:00"
+    },
+    "hitomi:4298231": {
+      "item": {
+        "uid": "hitomi:4298231",
+        "source": "hitomi",
+        "source_id": "4298231",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4298231.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "[ZP [Shin'yūnanoni tomerarenai[Pokemon violet and scarlet )",
+        "title_jp": "[ZP [Shin'yūnanoni tomerarenai[Pokemon violet and scarlet )",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "pokemon"
+        ],
+        "works": [
+          "pokemon"
+        ],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [
+          "work:pokemon"
+        ],
+        "pages": 4,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-11-01 18:14:00-06",
+        "thumbnail": "https://tn.hitomi.la/bigtn/0/b0/4445a4d18c3aaf0170e488066b4ecbafea5b95e3a30b9b38ec9f8ba682a92b00.jpg",
+        "first_seen": "2026-11-02T00:39:44+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-11-02T00:39:44+00:00",
+      "updated_at": "2026-11-02T00:39:44+00:00"
+    },
+    "hitomi:4298213": {
+      "item": {
+        "uid": "hitomi:4298213",
+        "source": "hitomi",
+        "source_id": "4298213",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4298213.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-11-02T00:41:12+00:00",
+        "title": "Otokonoko HEAVEN Vol. 68",
+        "title_jp": "オトコのコHEAVEN Vol.68",
+        "language": "japanese",
+        "category": "manga",
+        "artists": [
+          "damekama",
+          "dousai",
+          "kaitou yuuhi",
+          "miyashita kitsune"
+        ],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "male:ahegao",
+          "male:anal",
+          "male:anal intercourse",
+          "anthology",
+          "male:blowjob",
+          "male:dark skin",
+          "digital",
+          "male:forced exposure",
+          "male:glasses",
+          "male:group",
+          "male:handjob",
+          "male:humiliation",
+          "male:males only",
+          "male:mmm threesome",
+          "male:nakadashi",
+          "male:phimosis",
+          "male:rape",
+          "male:sex toys",
+          "male:shota",
+          "male:small penis",
+          "male:tomgirl",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:damekama",
+          "artist:dousai",
+          "artist:kaitou yuuhi",
+          "artist:miyashita kitsune"
+        ],
+        "pages": 114,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-11-01 18:03:00-06",
+        "thumbnail": "https://tn.hitomi.la/bigtn/b/59/e51226acb3bebdf75bbc2c5a443d8789db19b351b52b94ea4420be158433959b.jpg",
+        "first_seen": "2026-11-02T00:39:44+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-11-02T00:39:44+00:00",
+      "updated_at": "2026-11-02T00:39:44+00:00"
+    },
+    "hitomi:4298112": {
+      "item": {
+        "uid": "hitomi:4298112",
+        "source": "hitomi",
+        "source_id": "4298112",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4298112.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "Egami 2026.09",
+        "title_jp": "Egami 2026.09",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [
+          "egami"
+        ],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [
+          "artist:egami"
+        ],
+        "pages": 18,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-11-01 17:04:00-06",
+        "thumbnail": "https://tn.hitomi.la/bigtn/0/7e/cc9d9add23a1301de6eadd01660a97bf61d65154417edac690d0efe1ed2497e0.jpg",
+        "first_seen": "2026-11-02T00:39:44+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-11-02T00:39:44+00:00",
+      "updated_at": "2026-11-02T00:39:44+00:00"
+    },
+    "hitomi:4298108": {
+      "item": {
+        "uid": "hitomi:4298108",
+        "source": "hitomi",
+        "source_id": "4298108",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4298108.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "斯德哥尔的绳缚故事《幌金绳（四）》",
+        "title_jp": "斯德哥尔的绳缚故事《幌金绳（四）》",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [],
+        "pages": 16,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-11-01 16:58:00-06",
+        "thumbnail": "https://tn.hitomi.la/bigtn/4/16/e43da9863d8306489ecea4fe152afd8acf0d479a8b95b471d43966cb96d8c164.jpg",
+        "first_seen": "2026-11-02T00:39:44+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-11-02T00:39:44+00:00",
+      "updated_at": "2026-11-02T00:39:44+00:00"
+    },
+    "hitomi:4298107": {
+      "item": {
+        "uid": "hitomi:4298107",
+        "source": "hitomi",
+        "source_id": "4298107",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4298107.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "hitomi-gallery-v2",
+        "filter_metadata_checked_at": "2026-11-02T00:41:16+00:00",
+        "title": "Ojōsama gakuen o taigaku shitakatta chūsotsu nīto 2",
+        "title_jp": "Ojōsama gakuen o taigaku shitakatta chūsotsu nīto",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [
+          "testame"
+        ],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [
+          "male:anal",
+          "male:schoolgirl uniform",
+          "male:teacher",
+          "male:tomgirl",
+          "male:yaoi"
+        ],
+        "meta_tags": [
+          "artist:testame"
+        ],
+        "pages": 14,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-11-01 16:56:00-06",
+        "thumbnail": "https://tn.hitomi.la/bigtn/6/77/c6b6dcd0b98e3064c6f16173078b8ed4be30448fa54d67a6cb8a1c47748ad776.jpg",
+        "first_seen": "2026-11-02T00:39:44+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00"
+      },
+      "reason": "blocked:male:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-11-02T00:39:44+00:00",
+      "updated_at": "2026-11-02T00:39:44+00:00"
+    },
+    "hitomi:4298104": {
+      "item": {
+        "uid": "hitomi:4298104",
+        "source": "hitomi",
+        "source_id": "4298104",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4298104.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "斯德哥尔的绳缚故事《幌金绳（四）下》",
+        "title_jp": "斯德哥尔的绳缚故事《幌金绳（四）下》",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [],
+        "pages": 15,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-11-01 16:51:00-06",
+        "thumbnail": "https://tn.hitomi.la/bigtn/b/5c/fa611ba465a2f628c1bd2a797f917803ad22f1484af155eee35dd41f927fa5cb.jpg",
+        "first_seen": "2026-11-02T00:39:44+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-11-02T00:39:44+00:00",
+      "updated_at": "2026-11-02T00:39:44+00:00"
+    },
+    "hitomi:4298088": {
+      "item": {
+        "uid": "hitomi:4298088",
+        "source": "hitomi",
+        "source_id": "4298088",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4298088.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "ikthrkおしっこぶっかけ",
+        "title_jp": "ikthrkおしっこぶっかけ",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [
+          "yufuck"
+        ],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [
+          "artist:yufuck"
+        ],
+        "pages": 4,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-11-01 16:42:00-06",
+        "thumbnail": "https://tn.hitomi.la/bigtn/b/ae/a46cfeebd0795e4e60bdc4791874cede11097e8388d00491afd0b474b7876aeb.jpg",
+        "first_seen": "2026-11-02T00:39:44+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-11-02T00:39:44+00:00",
+      "updated_at": "2026-11-02T00:39:44+00:00"
+    },
+    "hitomi:4298055": {
+      "item": {
+        "uid": "hitomi:4298055",
+        "source": "hitomi",
+        "source_id": "4298055",
+        "source_token": "",
+        "source_url": "https://hitomi.la/galleries/4298055.html",
+        "source_url_kind": "",
+        "resolved_gallery_id": "",
+        "filter_metadata_checked": "",
+        "filter_metadata_checked_at": "",
+        "title": "青木さん 上履きぶっかけ",
+        "title_jp": "青木さん 上履きぶっかけ",
+        "language": "japanese",
+        "category": "artistcg",
+        "artists": [
+          "yufuck"
+        ],
+        "groups": [],
+        "parodies": [],
+        "works": [],
+        "characters": [],
+        "tags": [],
+        "meta_tags": [
+          "artist:yufuck"
+        ],
+        "pages": 6,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "2026-11-01 16:24:00-06",
+        "thumbnail": "https://tn.hitomi.la/bigtn/1/06/2d711fc3f256bc637761278f909dcce8f1d2da5f68a8b25010b07ec669f06061.jpg",
+        "first_seen": "2026-11-02T00:39:44+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00"
+      },
+      "reason": "metadata_unverified",
+      "status": "pending",
+      "first_quarantined_at": "2026-11-02T00:39:44+00:00",
+      "updated_at": "2026-11-02T00:39:44+00:00"
+    },
+    "3hentai:3626940": {
+      "item": {
+        "uid": "3hentai:3626940",
+        "source": "3hentai",
+        "source_id": "3626940",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/626940",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "626940",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-11-02T00:41:57+00:00",
+        "title": "[GLUTAMIC:ACID (Tanunosuke)] The Fall of Muramasa 2 (Fate/Grand Order)",
+        "title_jp": "[GLUTAMIC:ACID (Tanunosuke)] The Fall of Muramasa 2 (Fate/Grand Order)",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "fate grand order"
+        ],
+        "works": [
+          "fate grand order"
+        ],
+        "characters": [
+          "muramasa"
+        ],
+        "tags": [
+          "language:japanese",
+          "anal (male)",
+          "anal intercourse (male)",
+          "blowjob (male)",
+          "bondage (male)",
+          "males only",
+          "multi-work series",
+          "muscle (male)",
+          "rape (male)",
+          "yaoi",
+          "japanese",
+          "tanunosuke"
+        ],
+        "meta_tags": [
+          "work:fate grand order",
+          "character:muramasa"
+        ],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s9.3hentai.xyz/d629906/thumb.jpg",
+        "first_seen": "2026-11-02T00:39:44+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-11-02T00:39:44+00:00",
+      "updated_at": "2026-11-02T00:39:44+00:00"
+    },
+    "3hentai:3626932": {
+      "item": {
+        "uid": "3hentai:3626932",
+        "source": "3hentai",
+        "source_id": "3626932",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/626932",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "626932",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-11-02T00:41:58+00:00",
+        "title": "[GLUTAMIC:ACID (Tanunosuke)] Homurabara no buraunī emiyashirō soku hame hon (Fate/stay night)",
+        "title_jp": "[GLUTAMIC:ACID (Tanunosuke)] Homurabara no buraunī emiyashirō soku hame hon (Fate/stay night)",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "fate stay night"
+        ],
+        "works": [
+          "fate stay night"
+        ],
+        "characters": [
+          "shirou emiya"
+        ],
+        "tags": [
+          "language:japanese",
+          "anal (male)",
+          "anal intercourse (male)",
+          "group (male)",
+          "males only",
+          "mmm threesome",
+          "muscle (male)",
+          "schoolboy uniform (male)",
+          "sex toys (male)",
+          "yaoi",
+          "japanese",
+          "tanunosuke"
+        ],
+        "meta_tags": [
+          "work:fate stay night",
+          "character:shirou emiya"
+        ],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s9.3hentai.xyz/d629902/thumb.jpg",
+        "first_seen": "2026-11-02T00:39:44+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-11-02T00:39:44+00:00",
+      "updated_at": "2026-11-02T00:39:44+00:00"
+    },
+    "3hentai:3626928": {
+      "item": {
+        "uid": "3hentai:3626928",
+        "source": "3hentai",
+        "source_id": "3626928",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/626928",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "626928",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-11-02T00:41:58+00:00",
+        "title": "[GLUTAMIC:ACID (Tanunosuke)] The Fall of Muramasa (Intro) (Fate/Grand Order)",
+        "title_jp": "[GLUTAMIC:ACID (Tanunosuke)] The Fall of Muramasa (Intro) (Fate/Grand Order)",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "fate grand order"
+        ],
+        "works": [
+          "fate grand order"
+        ],
+        "characters": [
+          "muramasa"
+        ],
+        "tags": [
+          "language:japanese",
+          "anal (male)",
+          "anal intercourse (male)",
+          "blowjob (male)",
+          "group (male)",
+          "handjob (male)",
+          "males only",
+          "mmm threesome",
+          "multi-work series",
+          "muscle (male)",
+          "yaoi",
+          "japanese",
+          "tanunosuke"
+        ],
+        "meta_tags": [
+          "work:fate grand order",
+          "character:muramasa"
+        ],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s9.3hentai.xyz/d629901/thumb.jpg",
+        "first_seen": "2026-11-02T00:39:44+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-11-02T00:39:44+00:00",
+      "updated_at": "2026-11-02T00:39:44+00:00"
+    },
+    "3hentai:3626924": {
+      "item": {
+        "uid": "3hentai:3626924",
+        "source": "3hentai",
+        "source_id": "3626924",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/626924",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "626924",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-11-02T00:41:59+00:00",
+        "title": "(SUPER26) [GLUTAMIC:ACID (Tanunosuke)] 1st Emiya Shirou-kun Muramasa Unofficial Fan Kansha-sai (Fate/stay night)",
+        "title_jp": "(SUPER26) [GLUTAMIC:ACID (Tanunosuke)] 1st Emiya Shirou-kun Muramasa Unofficial Fan Kansha-sai (Fate/stay night)",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "fate stay night"
+        ],
+        "works": [
+          "fate stay night"
+        ],
+        "characters": [
+          "shirou emiya"
+        ],
+        "tags": [
+          "language:japanese",
+          "anal (male)",
+          "anal intercourse (male)",
+          "chikan (male)",
+          "condom (male)",
+          "males only",
+          "multi-work series",
+          "muscle (male)",
+          "rape (male)",
+          "sex toys (male)",
+          "yaoi",
+          "japanese",
+          "tanunosuke"
+        ],
+        "meta_tags": [
+          "work:fate stay night",
+          "character:shirou emiya"
+        ],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s9.3hentai.xyz/d629889/thumb.jpg",
+        "first_seen": "2026-11-02T00:39:44+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-11-02T00:39:44+00:00",
+      "updated_at": "2026-11-02T00:39:44+00:00"
+    },
+    "3hentai:3626920": {
+      "item": {
+        "uid": "3hentai:3626920",
+        "source": "3hentai",
+        "source_id": "3626920",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/626920",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "626920",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-11-02T00:41:59+00:00",
+        "title": "[GLUTAMIC:ACID (Tanunosuke)] 2nd Emiya Shirou-kun Muramasa Unofficial Fan Kansha-sai (Fate/Grand Order)",
+        "title_jp": "[GLUTAMIC:ACID (Tanunosuke)] 2nd Emiya Shirou-kun Muramasa Unofficial Fan Kansha-sai (Fate/Grand Order)",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "fate stay night",
+          "fate grand order"
+        ],
+        "works": [
+          "fate stay night",
+          "fate grand order"
+        ],
+        "characters": [
+          "shirou emiya",
+          "muramasa"
+        ],
+        "tags": [
+          "language:japanese",
+          "anal (male)",
+          "anal intercourse (male)",
+          "fundoshi (male)",
+          "group (male)",
+          "males only",
+          "mmm threesome",
+          "multi-work series",
+          "muscle (male)",
+          "yaoi",
+          "japanese",
+          "tanunosuke"
+        ],
+        "meta_tags": [
+          "work:fate stay night",
+          "work:fate grand order",
+          "character:shirou emiya",
+          "character:muramasa"
+        ],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s9.3hentai.xyz/d629888/thumb.jpg",
+        "first_seen": "2026-11-02T00:39:44+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-11-02T00:39:44+00:00",
+      "updated_at": "2026-11-02T00:39:44+00:00"
+    },
+    "3hentai:3642244": {
+      "item": {
+        "uid": "3hentai:3642244",
+        "source": "3hentai",
+        "source_id": "3642244",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/642244",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "642244",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-11-02T00:42:00+00:00",
+        "title": "[＠szkn (Suzuki Sukyana)] Hyoryu Danchi (Drifting Home) [Digital]",
+        "title_jp": "[＠szkn (Suzuki Sukyana)] Hyoryu Danchi (Drifting Home) [Digital]",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "ame o tsugeru hyouryuu danchi | drifting home"
+        ],
+        "works": [
+          "ame o tsugeru hyouryuu danchi | drifting home"
+        ],
+        "characters": [
+          "kousuke kumagaya"
+        ],
+        "tags": [
+          "language:japanese",
+          "blowjob (male)",
+          "full color",
+          "males only",
+          "no penetration",
+          "shotacon",
+          "yaoi",
+          "japanese",
+          "suzuki sukyana"
+        ],
+        "meta_tags": [
+          "work:ame o tsugeru hyouryuu danchi | drifting home",
+          "character:kousuke kumagaya"
+        ],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s9.3hentai.xyz/d629886/thumb.jpg",
+        "first_seen": "2026-11-02T00:39:44+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-11-02T00:39:44+00:00",
+      "updated_at": "2026-11-02T00:39:44+00:00"
+    },
+    "3hentai:3626904": {
+      "item": {
+        "uid": "3hentai:3626904",
+        "source": "3hentai",
+        "source_id": "3626904",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/626904",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "626904",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-11-02T00:42:00+00:00",
+        "title": "(OPEN THE GATE! 4) [Mokumoku (Nika)] Hajimetedakara, (SK8 the Infinity)",
+        "title_jp": "(OPEN THE GATE! 4) [Mokumoku (Nika)] Hajimetedakara, (SK8 the Infinity)",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "sk8 the infinity"
+        ],
+        "works": [
+          "sk8 the infinity"
+        ],
+        "characters": [
+          "langa hasegawa",
+          "reki kyan"
+        ],
+        "tags": [
+          "language:japanese",
+          "males only",
+          "yaoi",
+          "japanese"
+        ],
+        "meta_tags": [
+          "work:sk8 the infinity",
+          "character:langa hasegawa",
+          "character:reki kyan"
+        ],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s9.3hentai.xyz/d629899/thumb.jpg",
+        "first_seen": "2026-11-02T00:39:44+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-11-02T00:39:44+00:00",
+      "updated_at": "2026-11-02T00:39:44+00:00"
+    },
+    "3hentai:3627180": {
+      "item": {
+        "uid": "3hentai:3627180",
+        "source": "3hentai",
+        "source_id": "3627180",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/627180",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "627180",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-11-02T00:42:02+00:00",
+        "title": "(Senka no Toki 36) [Kanenbutsu (Yuminari)] Tadaima to Okaeri (Touken Ranbu)",
+        "title_jp": "(Senka no Toki 36) [Kanenbutsu (Yuminari)] Tadaima to Okaeri (Touken Ranbu)",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "touken ranbu"
+        ],
+        "works": [
+          "touken ranbu"
+        ],
+        "characters": [
+          "mikazuki munechika",
+          "tsurumaru kuninaga"
+        ],
+        "tags": [
+          "language:japanese",
+          "kissing (male)",
+          "males only",
+          "yaoi",
+          "japanese"
+        ],
+        "meta_tags": [
+          "work:touken ranbu",
+          "character:mikazuki munechika",
+          "character:tsurumaru kuninaga"
+        ],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s9.3hentai.xyz/d629811/thumb.jpg",
+        "first_seen": "2026-11-02T00:39:44+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-11-02T00:39:44+00:00",
+      "updated_at": "2026-11-02T00:39:44+00:00"
+    },
+    "3hentai:3626868": {
+      "item": {
+        "uid": "3hentai:3626868",
+        "source": "3hentai",
+        "source_id": "3626868",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/626868",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "626868",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-11-02T00:42:07+00:00",
+        "title": "[Nyanpunikai (Neriume, Megane)] Passed Enough Strawberry Juice Black Label (Battle Spirits)",
+        "title_jp": "[Nyanpunikai (Neriume, Megane)] Passed Enough Strawberry Juice Black Label (Battle Spirits)",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "battle spirits"
+        ],
+        "works": [
+          "battle spirits"
+        ],
+        "characters": [
+          "dan bashin"
+        ],
+        "tags": [
+          "language:japanese",
+          "anal (male)",
+          "males only",
+          "rape (male)",
+          "shotacon",
+          "yaoi",
+          "japanese",
+          "neriume",
+          "megane"
+        ],
+        "meta_tags": [
+          "work:battle spirits",
+          "character:dan bashin"
+        ],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s9.3hentai.xyz/d629524/thumb.jpg",
+        "first_seen": "2026-11-02T00:39:44+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-11-02T00:39:44+00:00",
+      "updated_at": "2026-11-02T00:39:44+00:00"
+    },
+    "3hentai:3626832": {
+      "item": {
+        "uid": "3hentai:3626832",
+        "source": "3hentai",
+        "source_id": "3626832",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/626832",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "626832",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-11-02T00:42:07+00:00",
+        "title": "(SC2022 Aki 2nd) [ASTRA'S (Astra)] Tabi ni Deta nara... (Made in Abyss)",
+        "title_jp": "(SC2022 Aki 2nd) [ASTRA'S (Astra)] Tabi ni Deta nara... (Made in Abyss)",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "made in abyss"
+        ],
+        "works": [
+          "made in abyss"
+        ],
+        "characters": [],
+        "tags": [
+          "language:japanese",
+          "group (male)",
+          "handjob (male)",
+          "males only",
+          "masturbation (male)",
+          "no penetration",
+          "shotacon",
+          "yaoi",
+          "japanese",
+          "serizawa yuuji | astra"
+        ],
+        "meta_tags": [
+          "work:made in abyss"
+        ],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s9.3hentai.xyz/d629515/thumb.jpg",
+        "first_seen": "2026-11-02T00:39:44+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-11-02T00:39:44+00:00",
+      "updated_at": "2026-11-02T00:39:44+00:00"
+    },
+    "3hentai:3626576": {
+      "item": {
+        "uid": "3hentai:3626576",
+        "source": "3hentai",
+        "source_id": "3626576",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/626576",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "626576",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-11-02T00:42:08+00:00",
+        "title": "(Chou Yougen 2022) [CHRONUS cider (Jitsugetsu)] Song for XXX (Jujutsu Kaisen)",
+        "title_jp": "(Chou Yougen 2022) [CHRONUS cider (Jitsugetsu)] Song for XXX (Jujutsu Kaisen)",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "jujutsu kaisen"
+        ],
+        "works": [
+          "jujutsu kaisen"
+        ],
+        "characters": [
+          "yuuji itadori",
+          "satoru gojo"
+        ],
+        "tags": [
+          "language:japanese",
+          "males only",
+          "yaoi",
+          "japanese"
+        ],
+        "meta_tags": [
+          "work:jujutsu kaisen",
+          "character:yuuji itadori",
+          "character:satoru gojo"
+        ],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s9.3hentai.xyz/d629483/thumb.jpg",
+        "first_seen": "2026-11-02T00:39:44+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-11-02T00:39:44+00:00",
+      "updated_at": "2026-11-02T00:39:44+00:00"
+    },
+    "3hentai:3626572": {
+      "item": {
+        "uid": "3hentai:3626572",
+        "source": "3hentai",
+        "source_id": "3626572",
+        "source_token": "",
+        "source_url": "https://3hentai.net/d/626572",
+        "source_url_kind": "direct",
+        "resolved_gallery_id": "626572",
+        "filter_metadata_checked": "3hentai-gallery-v1",
+        "filter_metadata_checked_at": "2026-11-02T00:42:08+00:00",
+        "title": "(SUPER RTS!! 2022) [Komejigoku (Komenu)] Corazon (Haikyuu!!)",
+        "title_jp": "(SUPER RTS!! 2022) [Komejigoku (Komenu)] Corazon (Haikyuu!!)",
+        "language": "japanese",
+        "category": "doujinshi",
+        "artists": [],
+        "groups": [],
+        "parodies": [
+          "haikyuu"
+        ],
+        "works": [
+          "haikyuu"
+        ],
+        "characters": [
+          "keiji akaashi",
+          "koutaro bokuto"
+        ],
+        "tags": [
+          "language:japanese",
+          "anal (male)",
+          "anal intercourse (male)",
+          "males only",
+          "yaoi",
+          "japanese"
+        ],
+        "meta_tags": [
+          "work:haikyuu",
+          "character:keiji akaashi",
+          "character:koutaro bokuto"
+        ],
+        "pages": 0,
+        "rating": null,
+        "popularity": null,
+        "posted_at": "",
+        "thumbnail": "https://s9.3hentai.xyz/d629482/thumb.jpg",
+        "first_seen": "2026-11-02T00:39:44+00:00",
+        "last_seen": "2026-11-02T00:39:44+00:00"
+      },
+      "reason": "blocked:yaoi",
+      "status": "blocked",
+      "first_quarantined_at": "2026-11-02T00:39:44+00:00",
+      "updated_at": "2026-11-02T00:39:44+00:00"
     }
   },
   "hitomi_attempts": {
@@ -340679,8 +341601,8 @@
       "retry_at": 1793608131.0
     },
     "hitomi:4205829": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4204163": {
       "last_attempt": 1793485638.0,
@@ -340719,36 +341641,38 @@
       "retry_at": 1793744838.0
     },
     "hitomi:4204273": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4204420": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4204588": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4203874": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4203252": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4202770": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "failures": 1,
+      "reason": "metadata_invalid",
+      "retry_at": 1793623184.0
     },
     "hitomi:4202272": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4201888": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4207605": {
       "last_attempt": 1793485638.0,
@@ -340763,16 +341687,16 @@
       "retry_at": 1793744838.0
     },
     "hitomi:4201224": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4207608": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4207616": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4207618": {
       "last_attempt": 1793548780.0,
@@ -341137,16 +342061,16 @@
       "retry_at": 1793608131.0
     },
     "hitomi:4183604": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4183803": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4183842": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4183845": {
       "last_attempt": 1793393101.0,
@@ -341161,58 +342085,58 @@
       "retry_at": 1793744838.0
     },
     "hitomi:4183331": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4183357": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4182893": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4183118": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4183184": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4183256": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4209891": {
       "last_attempt": 1790771750.0,
       "retry_at": 1790814950.0
     },
     "hitomi:4209927": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4181922": {
-      "last_attempt": 1793310439.0,
-      "failures": 5,
+      "last_attempt": 1793579984.0,
+      "failures": 6,
       "reason": "metadata_invalid",
-      "retry_at": 1793569639.0
+      "retry_at": 1793839184.0
     },
     "hitomi:4182028": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4182047": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4182108": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4182178": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4210096": {
       "last_attempt": 1790771750.0,
@@ -341237,8 +342161,8 @@
       "retry_at": 1793652301.0
     },
     "hitomi:4210280": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4210356": {
       "last_attempt": 1793393101.0,
@@ -341247,84 +342171,84 @@
       "retry_at": 1793652301.0
     },
     "hitomi:4180134": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4180138": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4180161": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4180169": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4180209": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4180212": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4180216": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4210361": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4179521": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4179610": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4179622": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4179630": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4210441": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4179064": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4179130": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4179189": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4179314": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4178793": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4178818": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4178091": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4210724": {
       "last_attempt": 1793485638.0,
@@ -341333,20 +342257,20 @@
       "retry_at": 1793744838.0
     },
     "hitomi:4177690": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4176779": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4176069": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4176549": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4210962": {
       "last_attempt": 1793393101.0,
@@ -341355,28 +342279,28 @@
       "retry_at": 1793652301.0
     },
     "hitomi:4175617": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4175919": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4175252": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4175568": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4211216": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4175060": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4211387": {
       "last_attempt": 1793485638.0,
@@ -341391,12 +342315,12 @@
       "retry_at": 1793744838.0
     },
     "hitomi:4173943": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4173948": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4211539": {
       "last_attempt": 1793485638.0,
@@ -341405,8 +342329,8 @@
       "retry_at": 1793744838.0
     },
     "hitomi:4172992": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4173061": {
       "last_attempt": 1793485638.0,
@@ -343029,36 +343953,36 @@
       "retry_at": 1793608131.0
     },
     "hitomi:4091322": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4091603": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4090631": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4090669": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4226041": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4090013": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4090216": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4089616": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4226302": {
       "last_attempt": 1793393101.0,
@@ -343073,40 +343997,40 @@
       "retry_at": 1793644253.0
     },
     "hitomi:4088608": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4087817": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4087851": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4086997": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4087228": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4226646": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4086849": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4086915": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4226855": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4226874": {
       "last_attempt": 1793393101.0,
@@ -343127,52 +344051,52 @@
       "retry_at": 1793652301.0
     },
     "hitomi:4085900": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4085910": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4085912": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4085759": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4227109": {
       "last_attempt": 1791005672.0,
       "retry_at": 1791048872.0
     },
     "hitomi:4227191": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4227195": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4227247": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4227254": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4227268": {
       "last_attempt": 1791602834.0,
       "retry_at": 1791646034.0
     },
     "hitomi:4227271": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4227295": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4227344": {
       "last_attempt": 1793548780.0,
@@ -343181,50 +344105,50 @@
       "retry_at": 1793807980.0
     },
     "hitomi:4082653": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4082398": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4082423": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4082009": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4227677": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4227714": {
       "last_attempt": 1791148443.0,
       "retry_at": 1791191643.0
     },
     "hitomi:4227757": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4227766": {
-      "last_attempt": 1793310439.0,
-      "failures": 9,
+      "last_attempt": 1793579984.0,
+      "failures": 10,
       "reason": "metadata_invalid",
-      "retry_at": 1793569639.0
+      "retry_at": 1793839184.0
     },
     "hitomi:4227863": {
-      "last_attempt": 1793310439.0,
-      "failures": 9,
+      "last_attempt": 1793579984.0,
+      "failures": 10,
       "reason": "metadata_invalid",
-      "retry_at": 1793569639.0
+      "retry_at": 1793839184.0
     },
     "hitomi:4227877": {
-      "last_attempt": 1793310439.0,
-      "failures": 9,
+      "last_attempt": 1793579984.0,
+      "failures": 10,
       "reason": "metadata_invalid",
-      "retry_at": 1793569639.0
+      "retry_at": 1793839184.0
     },
     "hitomi:4227917": {
       "last_attempt": 1793393101.0,
@@ -343233,16 +344157,16 @@
       "retry_at": 1793652301.0
     },
     "hitomi:4080524": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4080537": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4228062": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4228094": {
       "last_attempt": 1793393101.0,
@@ -343251,32 +344175,32 @@
       "retry_at": 1793652301.0
     },
     "hitomi:4079482": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4228198": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4228290": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4228402": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4079303": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4228731": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4229018": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4229024": {
       "last_attempt": 1791111886.0,
@@ -343299,20 +344223,20 @@
       "retry_at": 1791155086.0
     },
     "hitomi:4229684": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4229800": {
       "last_attempt": 1791111886.0,
       "retry_at": 1791155086.0
     },
     "hitomi:4079066": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4230196": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4230235": {
       "last_attempt": 1793485638.0,
@@ -343401,8 +344325,8 @@
       "retry_at": 1793689070.0
     },
     "hitomi:4231601": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4205467": {
       "last_attempt": 1791895081.0,
@@ -343507,12 +344431,12 @@
       "retry_at": 1792154281.0
     },
     "hitomi:4078605": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4078867": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4204306": {
       "last_attempt": 1791895081.0,
@@ -343671,12 +344595,12 @@
       "retry_at": 1792154281.0
     },
     "hitomi:4077748": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4077816": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4231897": {
       "last_attempt": 1791782996.0,
@@ -343887,12 +344811,12 @@
       "retry_at": 1792154281.0
     },
     "hitomi:4077267": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4077640": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4232016": {
       "last_attempt": 1793524323.0,
@@ -344305,16 +345229,16 @@
       "retry_at": 1792168304.0
     },
     "hitomi:4076793": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4076808": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4076970": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4196166": {
       "last_attempt": 1791909104.0,
@@ -344461,20 +345385,20 @@
       "retry_at": 1792168304.0
     },
     "hitomi:4076366": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4076558": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4076622": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4076754": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4208926": {
       "last_attempt": 1791909104.0,
@@ -344531,20 +345455,20 @@
       "retry_at": 1792168304.0
     },
     "hitomi:4075682": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4075863": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4076156": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4076202": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4191815": {
       "last_attempt": 1791909104.0,
@@ -344565,16 +345489,16 @@
       "retry_at": 1792168304.0
     },
     "hitomi:4075357": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4075523": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4075574": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4191358": {
       "last_attempt": 1791909104.0,
@@ -344697,16 +345621,16 @@
       "retry_at": 1792168304.0
     },
     "hitomi:4074585": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4074603": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4074003": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4186305": {
       "last_attempt": 1791909104.0,
@@ -344841,8 +345765,8 @@
       "retry_at": 1793807980.0
     },
     "hitomi:4210123": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4210161": {
       "last_attempt": 1791909104.0,
@@ -347019,10 +347943,10 @@
       "retry_at": 1793689070.0
     },
     "hitomi:4240475": {
-      "last_attempt": 1793310439.0,
-      "failures": 8,
+      "last_attempt": 1793579984.0,
+      "failures": 9,
       "reason": "metadata_invalid",
-      "retry_at": 1793569639.0
+      "retry_at": 1793839184.0
     },
     "hitomi:4218595": {
       "last_attempt": 1791927442.0,
@@ -348349,16 +349273,16 @@
       "retry_at": 1793542257.0
     },
     "hitomi:4243763": {
-      "last_attempt": 1793310439.0,
-      "failures": 9,
+      "last_attempt": 1793579984.0,
+      "failures": 10,
       "reason": "metadata_invalid",
-      "retry_at": 1793569639.0
+      "retry_at": 1793839184.0
     },
     "hitomi:4243786": {
-      "last_attempt": 1793310439.0,
-      "failures": 9,
+      "last_attempt": 1793579984.0,
+      "failures": 10,
       "reason": "metadata_invalid",
-      "retry_at": 1793569639.0
+      "retry_at": 1793839184.0
     },
     "hitomi:4087075": {
       "last_attempt": 1791931069.0,
@@ -350959,16 +351883,16 @@
       "retry_at": 1793608131.0
     },
     "hitomi:4256437": {
-      "last_attempt": 1793310439.0,
-      "failures": 7,
+      "last_attempt": 1793579984.0,
+      "failures": 8,
       "reason": "http_404",
-      "retry_at": 1793569639.0
+      "retry_at": 1793839184.0
     },
     "hitomi:4256443": {
-      "last_attempt": 1793310439.0,
-      "failures": 7,
+      "last_attempt": 1793579984.0,
+      "failures": 8,
       "reason": "http_404",
-      "retry_at": 1793569639.0
+      "retry_at": 1793839184.0
     },
     "hitomi:3991303": {
       "last_attempt": 1793564931.0,
@@ -350987,10 +351911,10 @@
       "retry_at": 1792129090.0
     },
     "hitomi:4256513": {
-      "last_attempt": 1793310439.0,
-      "failures": 7,
+      "last_attempt": 1793579984.0,
+      "failures": 8,
       "reason": "http_404",
-      "retry_at": 1793569639.0
+      "retry_at": 1793839184.0
     },
     "hitomi:4256571": {
       "last_attempt": 1793564931.0,
@@ -351401,16 +352325,16 @@
       "retry_at": 1792236833.0
     },
     "hitomi:4259358": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:3980384": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4259622": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4260366": {
       "last_attempt": 1792244567.0,
@@ -351465,16 +352389,16 @@
       "retry_at": 1793713054.0
     },
     "hitomi:4262030": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4262064": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:3979859": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4262243": {
       "last_attempt": 1793453854.0,
@@ -351523,20 +352447,20 @@
       "retry_at": 1792987883.0
     },
     "hitomi:4265294": {
-      "last_attempt": 1793310439.0,
-      "failures": 6,
+      "last_attempt": 1793579984.0,
+      "failures": 7,
       "reason": "http_404",
-      "retry_at": 1793569639.0
+      "retry_at": 1793839184.0
     },
     "hitomi:4265297": {
       "last_attempt": 1793499057.0,
       "retry_at": 1793542257.0
     },
     "hitomi:4265300": {
-      "last_attempt": 1793310439.0,
-      "failures": 4,
+      "last_attempt": 1793579984.0,
+      "failures": 5,
       "reason": "http_404",
-      "retry_at": 1793569639.0
+      "retry_at": 1793839184.0
     },
     "hitomi:4265543": {
       "last_attempt": 1793349289.0,
@@ -351559,20 +352483,20 @@
       "retry_at": 1793608489.0
     },
     "hitomi:4268008": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4268094": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4268123": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4268165": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4268201": {
       "last_attempt": 1793393101.0,
@@ -351581,8 +352505,8 @@
       "retry_at": 1793652301.0
     },
     "hitomi:4268207": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4268752": {
       "last_attempt": 1793499057.0,
@@ -351609,16 +352533,16 @@
       "retry_at": 1792586312.0
     },
     "hitomi:4270595": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4270761": {
       "last_attempt": 1792582966.0,
       "retry_at": 1792626166.0
     },
     "hitomi:4270785": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:3977726": {
       "last_attempt": 1793499057.0,
@@ -351697,8 +352621,8 @@
       "retry_at": 1792706878.0
     },
     "hitomi:3977685": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4273379": {
       "last_attempt": 1793499057.0,
@@ -351725,8 +352649,8 @@
       "retry_at": 1793758257.0
     },
     "hitomi:4275408": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4276065": {
       "last_attempt": 1793499057.0,
@@ -351767,8 +352691,8 @@
       "retry_at": 1792895364.0
     },
     "hitomi:4278250": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4278922": {
       "last_attempt": 1793499057.0,
@@ -351797,58 +352721,54 @@
       "retry_at": 1793608131.0
     },
     "hitomi:4280068": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4280334": {
       "last_attempt": 1792927191.0,
       "retry_at": 1792970391.0
     },
-    "hitomi:4280519": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
-    },
     "hitomi:4280578": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4280600": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4280632": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4280648": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4280654": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4280659": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4280674": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4280701": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4280802": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4281074": {
-      "last_attempt": 1793310439.0,
-      "failures": 4,
+      "last_attempt": 1793579984.0,
+      "failures": 5,
       "reason": "metadata_invalid",
-      "retry_at": 1793569639.0
+      "retry_at": 1793839184.0
     },
     "hitomi:4281118": {
       "last_attempt": 1793499057.0,
@@ -351907,44 +352827,44 @@
       "retry_at": 1793608131.0
     },
     "hitomi:3975140": {
-      "last_attempt": 1793453854.0,
-      "retry_at": 1793497054.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:3975141": {
-      "last_attempt": 1793453854.0,
-      "retry_at": 1793497054.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:3975142": {
-      "last_attempt": 1793453854.0,
-      "retry_at": 1793497054.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:3975143": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:3975144": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:3975146": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:3975148": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:3975150": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4281995": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4282072": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4282318": {
       "last_attempt": 1793524323.0,
@@ -351959,24 +352879,24 @@
       "retry_at": 1793783523.0
     },
     "hitomi:3974705": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:3974869": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:3975136": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:3975137": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4282434": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4239908": {
       "last_attempt": 1792994940.0,
@@ -352087,16 +353007,16 @@
       "retry_at": 1793591980.0
     },
     "hitomi:4283406": {
-      "last_attempt": 1793453854.0,
-      "retry_at": 1793497054.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4283428": {
-      "last_attempt": 1793453854.0,
-      "retry_at": 1793497054.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4283528": {
-      "last_attempt": 1793453854.0,
-      "retry_at": 1793497054.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:3973182": {
       "last_attempt": 1793499057.0,
@@ -352193,28 +353113,28 @@
       "retry_at": 1793608131.0
     },
     "hitomi:4286066": {
-      "last_attempt": 1793453854.0,
-      "retry_at": 1793497054.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4286662": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4286697": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4286703": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4286711": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4286713": {
-      "last_attempt": 1793471453.0,
-      "retry_at": 1793514653.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4287285": {
       "last_attempt": 1793471453.0,
@@ -352299,16 +353219,16 @@
       "retry_at": 1793608131.0
     },
     "hitomi:4290213": {
-      "last_attempt": 1793453854.0,
-      "retry_at": 1793497054.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4290216": {
-      "last_attempt": 1793453854.0,
-      "retry_at": 1793497054.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4290237": {
-      "last_attempt": 1793453854.0,
-      "retry_at": 1793497054.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4290593": {
       "last_attempt": 1793471453.0,
@@ -352403,8 +353323,8 @@
       "retry_at": 1793608131.0
     },
     "hitomi:4293508": {
-      "last_attempt": 1793453854.0,
-      "retry_at": 1793497054.0
+      "last_attempt": 1793579984.0,
+      "retry_at": 1793623184.0
     },
     "hitomi:4294179": {
       "last_attempt": 1793471453.0,
@@ -352449,21 +353369,22 @@
   },
   "verified_checkpoints": {},
   "hitomi_host_retry_at": 1791097387.0,
-  "updated_at": "2026-11-01T20:28:51+00:00",
+  "updated_at": "2026-11-02T00:39:44+00:00",
   "last_audit": {
-    "last_run": "2026-11-01T20:28:51+00:00",
-    "eligible": 27913,
+    "last_run": "2026-11-02T00:39:44+00:00",
+    "eligible": 27970,
     "attempted": 200,
-    "verified": 1,
-    "restored": 1,
-    "blocked": 1,
-    "unverified": 191,
-    "failed": 7,
+    "verified": 2,
+    "restored": 2,
+    "blocked": 0,
+    "unverified": 184,
+    "failed": 14,
     "failed_reasons": {
-      "metadata_invalid": 7
+      "metadata_invalid": 9,
+      "http_404": 5
     },
     "stopped": false,
-    "remaining_source_rechecks": 28483
+    "remaining_source_rechecks": 28530
   },
   "ehentai_non_h_purge": {
     "policy": "blocked:category:ehentai:non-h",
