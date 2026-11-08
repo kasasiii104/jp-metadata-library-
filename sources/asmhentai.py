@@ -4,6 +4,8 @@ from urllib.parse import quote_plus
 
 import requests
 
+from sources.common import is_valid_source_id
+
 API_BASE = os.environ.get("JANDAPRESS_URL", "http://127.0.0.1:3000").rstrip("/")
 SEARCH_KEY = os.environ.get("ASMHENTAI_SEARCH_KEY", "japanese")
 SEARCH_KEYS = [x.strip() for x in os.environ.get("ASMHENTAI_SEARCH_KEYS", f"{SEARCH_KEY},日本語").split(",") if x.strip()]
@@ -99,7 +101,7 @@ def thumbnail_of(raw: dict) -> str:
 def normalize(raw: dict) -> dict | None:
     sid = clean(first(raw, "id", "gallery_id", "galleryId", "book", "source_id", "gid"))
     title = clean(first(raw, "title", "name", "pretty", "japanese", "english"))
-    if not sid or not title: return None
+    if not is_valid_source_id(sid, source="asmhentai") or not title: return None
     ts = tags(first(raw, "tags", "tag", "metadata"))
     if not is_japanese(raw, ts): return None
     try: pages = int(first(raw, "total", "pages", "page_count", "num_pages") or 0)
@@ -159,6 +161,8 @@ def collect(state: dict | None = None):
                 search_key_used = key
                 for raw in rows:
                     sid = clean(first(raw, "id", "gallery_id", "galleryId", "book", "source_id", "gid"))
+                    if not is_valid_source_id(sid, source="asmhentai"):
+                        continue
                     detail = {}
                     should_detail = detail_cursor <= candidate_index < detail_cursor + DETAIL_LIMIT
                     candidate_index += 1

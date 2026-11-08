@@ -7,7 +7,6 @@ bulk get traffic can cause upstream 429s.  Instead we visit the public gallery
 page at a low rate and cache one publicly exposed thumbnail locally.
 """
 import io
-import json
 import os
 import time
 import re
@@ -18,6 +17,10 @@ from urllib.parse import urljoin
 import requests
 from bs4 import BeautifulSoup
 from PIL import Image, ImageOps
+if __package__:
+    from .json_storage import load_json as load, save_json as save, validate_catalog, validate_source_mapping
+else:
+    from json_storage import load_json as load, save_json as save, validate_catalog, validate_source_mapping
 
 DATA = Path("docs/data.json")
 STATUS = Path("docs/source_status.json")
@@ -29,16 +32,13 @@ MAX_BYTES = int(os.environ.get("HENTAI3_THUMB_MAX_BYTES", str(15 * 1024 * 1024))
 TIMEOUT = 30
 
 
-def load(path: Path, default):
-    try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
-        return default
-
-
-def save(path: Path, obj) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(obj, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+def cache_destination(sid: str) -> Path:
+    """Resolve the fixed WebP destination and reject paths outside the cache."""
+    root = OUTDIR.resolve()
+    dest = (root / f"{sid}.webp").resolve()
+    if not dest.is_relative_to(root):
+        raise ValueError(f"thumbnail destination outside cache: {sid!r}")
+    return dest
 
 
 def absolute(base: str, value: str) -> str:
@@ -217,11 +217,12 @@ def download_thumbnail(session: requests.Session, urls: list[str]) -> tuple[byte
 
 
 def main() -> int:
-    if not DATA.exists():
+    if not DATA.exists() and not DATA.is_symlink():
         print("[3hentai-thumbs] docs/data.json not found")
         return 0
 
-    data = load(DATA, {"items": []})
+    data = load(DATA, {"items": []}, validate_catalog)
+    status = load(STATUS, {}, validate_source_mapping)
     items = [x for x in data.get("items", []) if isinstance(x, dict) and x.get("source") == "3hentai"]
     OUTDIR.mkdir(parents=True, exist_ok=True)
 
@@ -244,7 +245,12 @@ def main() -> int:
         if not sid:
             continue
         rel = f"thumbs/3hentai/{sid}.webp"
-        dest = Path("docs") / rel
+        try:
+            dest = cache_destination(sid)
+        except (ValueError, OSError, RuntimeError) as e:
+            failed += 1
+            print(f"[3hentai-thumbs] skipping {sid!r}: {e}")
+            continue
         if dest.exists() and dest.stat().st_size > 512:
             item["thumbnail"] = rel
             reused += 1
@@ -323,7 +329,6 @@ def main() -> int:
         time.sleep(max(0.0, DELAY))
 
     save(DATA, data)
-    status = load(STATUS, {})
     src = status.setdefault("3hentai", {})
     src["thumbnail_cache"] = {
         "mode": "public-search-exact-title+gallery",

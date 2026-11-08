@@ -21,7 +21,7 @@ from config import (
     HENTAI3_LATEST_PAGES,
     HENTAI3_MAX_GALLERIES_PER_RUN,
 )
-from sources.common import unique_strings
+from sources.common import is_valid_source_id, unique_strings
 
 API_BASE = os.environ.get("JANDAPRESS_URL", "http://127.0.0.1:3000").rstrip("/")
 SOURCE_BASE = "https://3hentai.net"
@@ -748,6 +748,8 @@ def _normalize(raw: dict, *, assumed_japanese: bool = False) -> dict | None:
         return None
 
     sid = _clean(ident)
+    if not is_valid_source_id(sid, source="3hentai"):
+        return None
     title = _clean(title)
     title_jp = _clean(_first(raw, "title_jp", "title_jpn", "japanese", "jp_title") or "")
 

@@ -1,4 +1,5 @@
 import json
+import logging
 import re
 import time
 import unicodedata
@@ -15,6 +16,14 @@ HEADERS = {
     "Accept-Language": "ja,en;q=0.8",
     "Accept": "text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8",
 }
+
+
+def is_valid_source_id(value: str, *, source: str = "") -> bool:
+    """Accept ASCII IDs without path/URL syntax; preserve opaque API IDs."""
+    if isinstance(value, str) and re.fullmatch(r"[A-Za-z0-9_-]+", value):
+        return True
+    logging.getLogger(__name__).warning("[%s] skipping invalid source_id %r", source, value)
+    return False
 
 
 def iso_from_unix(value: Any) -> str:

@@ -4,7 +4,7 @@ from urllib.parse import quote
 import requests
 
 from config import NH_BACKFILL_PAGES, NH_LATEST_PAGES, NH_MAX_DETAILS_PER_RUN
-from sources.common import iso_from_unix, safe_get, unique_strings
+from sources.common import is_valid_source_id, iso_from_unix, safe_get, unique_strings
 
 BASE = "https://nhentai.net"
 SEARCH_ENDPOINTS = [
@@ -97,7 +97,7 @@ def _extract_discovery_thumb(raw: dict[str, Any]) -> str:
 
 def _normalize(raw: dict[str, Any], discovered_thumb: str = "") -> dict[str, Any] | None:
     gid = str(raw.get("id") or "").strip()
-    if not gid:
+    if not is_valid_source_id(gid, source="nhentai"):
         return None
     titles = raw.get("title") if isinstance(raw.get("title"), dict) else {}
     tagmap = _tag_map(raw.get("tags") or [])
@@ -142,7 +142,7 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
             rows, _ = _search_page(session, page)
             for row in rows:
                 gid = str(row.get("id") or "").strip()
-                if not gid or gid in seen:
+                if not is_valid_source_id(gid, source="nhentai") or gid in seen:
                     continue
                 seen.add(gid)
                 discovered.append((gid, _extract_discovery_thumb(row)))

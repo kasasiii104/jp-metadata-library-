@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
+import copy
 import hashlib
 import html
-import json
 import re
 import sys
 import unicodedata
 from datetime import datetime, timezone, timedelta
-from pathlib import Path
 from typing import Any
 
 from config import (
@@ -27,7 +26,9 @@ from config import (
     HITOMI_FILTER_RETRY_SEC,
 )
 from sources import ehentai, hitomi, hentai3, asmhentai
-from sources.common import normalize_full_tag, normalize_tag, unique_strings, polite_sleep
+from sources.common import is_valid_source_id, normalize_full_tag, normalize_tag, unique_strings, polite_sleep
+from tools.json_storage import (load_json, save_json, validate_catalog,
+                                validate_source_mapping, validate_filter_store)
 
 SOURCES = {
     "ehentai": ehentai.collect,
@@ -46,25 +47,6 @@ ALLOWED_LANGUAGE_SET = {str(x).lower() for x in ALLOWED_LANGUAGES}
 
 def now_iso() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
-
-
-def load_json(path: Path, default):
-    if not path.exists():
-        return default
-    try:
-        with path.open("r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
-        return default
-
-
-def save_json(path: Path, payload) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_suffix(path.suffix + ".tmp")
-    with tmp.open("w", encoding="utf-8") as f:
-        json.dump(payload, f, ensure_ascii=False, indent=2)
-        f.write("\n")
-    tmp.replace(path)
 
 
 def normalized_language(value: str) -> str:
@@ -529,9 +511,10 @@ def main(*, audit_only: bool = False) -> int:
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
     stamp = now_iso()
 
-    data = load_json(DATA_FILE, {"items": []})
-    state = load_json(STATE_FILE, {})
-    filter_store = load_json(FILTER_STATE_FILE, {})
+    data = load_json(DATA_FILE, {"items": []}, validate_catalog)
+    state = load_json(STATE_FILE, {}, validate_source_mapping)
+    filter_store = load_json(FILTER_STATE_FILE, {}, validate_filter_store)
+    status_store = load_json(STATUS_FILE, {}, validate_source_mapping)
     for key in ("records", "hitomi_attempts", "verified_checkpoints"):
         if not isinstance(filter_store.get(key), dict):
             filter_store[key] = {}
@@ -602,9 +585,6 @@ def main(*, audit_only: bool = False) -> int:
 
     hitomi_audit = audit_existing_hitomi(existing, filter_store, stamp,
                                         (state.get("hitomi") or {}).get("resource_base", ""))
-    status_store = load_json(STATUS_FILE, {})
-    if not isinstance(status_store, dict):
-        status_store = {}
     status_store.pop("updated_at", None)
 
     for retired in RETIRED_SOURCES:
@@ -619,17 +599,24 @@ def main(*, audit_only: bool = False) -> int:
         print(f"[{name}] start")
         src_state = state.get(name) if isinstance(state.get(name), dict) else {}
         try:
-            raw_items, new_state, result = collector(src_state)
+            raw_items, new_state, result = collector(copy.deepcopy(src_state))
         except Exception as e:
             raw_items, new_state, result = [], src_state, {"status": "error", "message": str(e)}
 
-        state[name] = new_state
+        if result.get("status") == "ok":
+            state[name] = new_state
+        else:
+            state[name] = src_state
+            raw_items = []
+            print(f"[{name}] status={result.get('status')} のため結果を破棄")
         total_raw += len(raw_items)
         accepted = 0
         blocked = 0
         blocked_reasons: dict[str, int] = {}
 
         for raw in raw_items:
+            if not is_valid_source_id(str(raw.get("source_id") or ""), source=name):
+                continue
             if not raw.get("uid"):
                 continue
             # 3Hentai is fail-closed for newly discovered rows: if the public
@@ -688,6 +675,10 @@ def main(*, audit_only: bool = False) -> int:
             f"[{name}] raw={len(raw_items)} accepted={accepted} blocked={blocked} "
             f"status={result.get('status')}" + (f" message={msg}" if msg else "")
         )
+
+    if not audit_only and successful_sources == 0:
+        print("All sources failed; catalog and crawl state will not be saved.", file=sys.stderr)
+        return 1
 
     if isinstance(status_store.get("3hentai"), dict):
         status_store["3hentai"].update(h3_existing_audit)
@@ -757,9 +748,6 @@ def main(*, audit_only: bool = False) -> int:
     print(f"done: raw={total_raw}, accepted={total_accepted}, total={len(items)}, duplicate_groups={duplicate_group_count}")
     print(f"[Hitomi filter audit] {hitomi_audit}")
     print(f"[Filter quarantine] pending={pending_counts} blocked={blocked_counts}")
-    if not audit_only and successful_sources == 0 and not items:
-        print("All sources failed and there is no retained dataset.", file=sys.stderr)
-        return 1
     return 0
 
 
