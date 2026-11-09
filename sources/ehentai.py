@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 import re
 import time
 from typing import Any
@@ -6,7 +7,7 @@ from urllib.parse import parse_qs, urljoin, urlparse
 import requests
 from bs4 import BeautifulSoup
 
-from config import EH_BACKFILL_PAGES, EH_LATEST_PAGES, EH_MAX_GALLERIES_PER_RUN
+from config import EH_RETRY_LIMIT, EH_RETRY_MAX_FAILURES, EH_RETRY_QUEUE_MAX, EH_BACKFILL_PAGES, EH_LATEST_PAGES, EH_MAX_GALLERIES_PER_RUN
 from sources.common import absolute_url, iso_from_unix, safe_get, safe_post_json, unique_strings
 
 BASE = "https://e-hentai.org/"
@@ -149,7 +150,8 @@ def _normalize(meta: dict[str, Any]) -> dict[str, Any] | None:
     }
 
 
-def _metadata(session: requests.Session, refs: list[tuple[int, str]]) -> list[dict[str, Any]]:
+def _metadata(session: requests.Session, refs: list[tuple[int, str]],
+              failures: dict[str, str] | None = None) -> list[dict[str, Any]]:
     out: list[dict[str, Any]] = []
     for idx in range(0, len(refs), 25):
         batch = refs[idx : idx + 25]
@@ -160,10 +162,17 @@ def _metadata(session: requests.Session, refs: list[tuple[int, str]]) -> list[di
         }
         data = safe_post_json(session, API, payload)
         token_by_gid = {str(gid): token for gid, token in batch}
-        for raw in data.get("gmetadata") or []:
-            if isinstance(raw, dict) and not raw.get("token"):
-                raw = dict(raw)
-                raw["token"] = token_by_gid.get(str(raw.get("gid") or ""), "")
+        rows = {str(raw.get("gid") or ""): raw
+                for raw in data.get("gmetadata") or [] if isinstance(raw, dict)}
+        for gid, token in batch:
+            raw = rows.get(str(gid))
+            if raw is None or "error" in raw:
+                if failures is not None:
+                    failures[str(gid)] = str(raw.get("error")) if raw is not None else "missing gmetadata row"
+                continue
+            raw = dict(raw)
+            if not raw.get("token"):
+                raw["token"] = token_by_gid[str(gid)]
             item = _normalize(raw)
             if item:
                 out.append(item)
@@ -185,8 +194,34 @@ def _append_unique_refs(target: list[tuple[int, str]], page_refs: list[tuple[int
     return added
 
 
+def _retry_failure(queue: dict, exhausted: list, gid: str, error: str, **extra) -> bool:
+    """Record a failed attempt and retain at most 200 exhausted entries."""
+    entry = dict(queue.get(gid) or {})
+    entry.update(extra)
+    entry["failures"] = int(entry.get("failures", 0)) + 1
+    entry["last_error"] = str(error)[:300]
+    entry.setdefault("first_failed_at", datetime.now(timezone.utc).isoformat())
+    if entry["failures"] >= EH_RETRY_MAX_FAILURES or (
+        gid not in queue and len(queue) >= max(0, EH_RETRY_QUEUE_MAX)
+    ):
+        queue.pop(gid, None)
+        exhausted.append({"gid": gid, **entry})
+        exhausted[:] = exhausted[-200:]
+        return True
+    queue[gid] = entry
+    return False
+
+
 def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     state = dict(state or {})
+    queue = {gid: dict(entry) for gid, entry in (state.get("retry_refs") or {}).items()}
+    exhausted = list(state.get("retry_exhausted_refs") or [])
+    retry_queued = retry_succeeded = retry_exhausted = 0
+    for gid in list(queue)[max(0, EH_RETRY_QUEUE_MAX):]:
+        exhausted.append({"gid": gid, **queue.pop(gid)})
+        retry_exhausted += 1
+    exhausted = exhausted[-200:]
+    retry_gids = list(queue)[:max(0, EH_RETRY_LIMIT)]
     session = requests.Session()
     refs: list[tuple[int, str]] = []
     seen_refs: set[tuple[int, str]] = set()
@@ -314,12 +349,31 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
 
     all_items: list[dict] = []
     metadata_ok = True
-    if refs:
+    retry_refs = [(int(gid), queue[gid]["token"]) for gid in retry_gids]
+    retry_ref_set = set(retry_refs)
+    fresh_refs = [ref for ref in refs if ref not in retry_ref_set]
+    for requested, is_retry in ((retry_refs, True), (fresh_refs, False)):
+        if not requested:
+            continue
+        failures: dict[str, str] = {}
         try:
-            all_items = _metadata(session, refs)
+            all_items.extend(_metadata(session, requested, failures))
         except Exception as e:
             errors.append(f"gdata: {e}")
             metadata_ok = False
+            if not is_retry:
+                continue
+            failures = {str(gid): str(e) for gid, _ in requested}
+        for gid, token in requested:
+            key = str(gid)
+            if key in failures:
+                newly_failed = key not in queue
+                gave_up = _retry_failure(queue, exhausted, key, failures[key], token=token)
+                retry_queued += int(newly_failed and not gave_up)
+                retry_exhausted += int(gave_up)
+            elif key in queue:
+                queue.pop(key)
+                retry_succeeded += 1
 
     # Important: global newest is only a discovery mechanism. We still keep the
     # library Japanese-only by requiring the gdata language tag before return.
@@ -329,6 +383,10 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     backfill_japanese_found = sum(1 for x in items if str(x.get("source_id") or "") in backfill_gid_set)
 
     new_state = dict(state)
+    if queue or "retry_refs" in state:
+        new_state["retry_refs"] = queue
+    if exhausted or "retry_exhausted_refs" in state:
+        new_state["retry_exhausted_refs"] = exhausted
     new_state.pop("backfill_page", None)
     if metadata_ok and backfill_pages_fetched > 0 and not backfill_failed:
         if backfill_advance_cursor:
@@ -341,7 +399,12 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         new_state["backfill_next"] = saved_backfill_cursor
 
     status = {
-        "status": "ok" if items else ("error" if errors else "empty"),
+        "partial": bool(errors or retry_queued or queue or retry_exhausted),
+        "retry_queued": retry_queued,
+        "retry_queue_size": len(queue),
+        "retry_succeeded": retry_succeeded,
+        "retry_exhausted": retry_exhausted,
+        "status": "ok" if items or retry_succeeded else ("error" if errors else "empty"),
         "pagination_mode": "global-latest+japanese-next-cursor",
         "latest_mode": "global-feed+gdata-language-filter",
         "backfill_mode": "japanese-search-next-cursor",

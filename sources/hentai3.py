@@ -661,8 +661,10 @@ def enrich_existing_for_filter(items: list[dict], limit: int | None = None) -> d
         and x.get("filter_metadata_checked") != "3hentai-gallery-v1"
     ]
 
+    attempt_results = {}
     for item in targets[:limit]:
         attempted += 1
+        attempt_results[item["uid"]] = False
         page_url = _clean(item.get("source_url") or "")
         if "/search" in page_url:
             card, err, stop = _resolve_public_search_exact(session, page_url, _clean(item.get("title") or ""))
@@ -690,6 +692,7 @@ def enrich_existing_for_filter(items: list[dict], limit: int | None = None) -> d
         if meta and int(meta.get("evidence_count") or 0) > 0:
             _merge_gallery_metadata(item, meta, mark_checked=True)
             enriched += 1
+            attempt_results[item["uid"]] = item.get("filter_metadata_checked") == "3hentai-gallery-v1"
             if len(samples) < 5:
                 samples.append(f"{item.get('source_id')}: tags={len(item.get('tags') or [])} artists={len(item.get('artists') or [])}")
         else:
@@ -701,6 +704,7 @@ def enrich_existing_for_filter(items: list[dict], limit: int | None = None) -> d
 
     remaining = max(0, len(targets) - attempted)
     return {
+        "existing_filter_audit_results": attempt_results,
         "existing_filter_audit_mode": "public-gallery-metadata",
         "existing_filter_audit_attempted": attempted,
         "existing_filter_audit_enriched": enriched,
@@ -740,14 +744,14 @@ def _normalize(raw: dict, *, assumed_japanese: bool = False) -> dict | None:
     source_url = _find_real_gallery_url(raw)
     url_match = re.search(r"/d/(\d+)(?:/|$|[?#])", source_url or "", re.I)
 
-    ident = url_match.group(1) if url_match else _first(
+    ident = _first(
         raw, "gallery_id", "galleryId", "book", "source_id", "gid", "id"
     )
     title = _first(raw, "title", "name", "pretty", "english", "japanese")
-    if ident is None or not title:
+    if (ident is None and not url_match) or not title:
         return None
 
-    sid = _clean(ident)
+    sid = _clean(ident) if ident is not None else "g" + url_match.group(1)
     if not is_valid_source_id(sid, source="3hentai"):
         return None
     title = _clean(title)
@@ -800,6 +804,7 @@ def _normalize(raw: dict, *, assumed_japanese: bool = False) -> dict | None:
         "uid": f"3hentai:{sid}",
         "source": "3hentai",
         "source_id": sid,
+        "public_gallery_id": url_match.group(1) if url_match else "",
         "source_url": source_url,
         "source_url_kind": source_url_kind,
         "title": title,
@@ -944,6 +949,13 @@ def _probe_get_endpoint(session: requests.Session, sid: str) -> tuple[dict, dict
 def _merge_probe_detail(base: dict, detail: dict) -> bool:
     """Use successful sample detail data conservatively without changing UID."""
     changed = False
+    base_uid = base.get("uid") or f"3hentai:{base.get('source_id', '')}"
+    detail_uid = detail.get("uid") or f"3hentai:{detail.get('source_id', '')}"
+    if (re.fullmatch(r"3hentai:[0-9]+", base_uid)
+            and detail_uid == base_uid
+            and not base.get("public_gallery_id") and detail.get("public_gallery_id")):
+        base["public_gallery_id"] = detail["public_gallery_id"]
+        changed = True
     if detail.get("source_url_kind") == "direct" and detail.get("source_url"):
         if base.get("source_url") != detail.get("source_url") or base.get("source_url_kind") != "direct":
             base["source_url"] = detail["source_url"]
@@ -976,16 +988,24 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     except Exception as e:
         return [], state, {
             "status": "error",
+            "partial": True,
+            "backfill_page_before": backfill_page,
+            "backfill_page_after": backfill_page,
+            "backfill_pages_completed": 0,
+            "backfill_pages_failed": 0,
             "discovered": 0,
             "accepted_raw": 0,
             "api_base": API_BASE,
             "message": f"Jandapress unavailable: {e}",
         }
 
-    pages: list[int] = []
-    for p in list(range(1, HENTAI3_LATEST_PAGES + 1)) + list(range(backfill_page, backfill_page + HENTAI3_BACKFILL_PAGES)):
-        if p not in pages:
-            pages.append(p)
+    latest_pages = list(range(1, HENTAI3_LATEST_PAGES + 1))
+    history_pages = list(range(backfill_page, backfill_page + HENTAI3_BACKFILL_PAGES))
+    pages = latest_pages + [p for p in history_pages if p not in latest_pages]
+    completed_pages = set()
+    failed_pages = []
+    history_ids = set()
+    truncated = False
 
     candidates: dict[str, dict] = {}
     search_debug: list[str] = []
@@ -996,6 +1016,13 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     direct_html_cards_total = 0
 
     for page in pages:
+        if len(candidates) >= HENTAI3_MAX_GALLERIES_PER_RUN:
+            if page in history_pages and completed_pages.intersection(history_pages):
+                truncated = True
+                break
+            if page not in history_pages:
+                truncated = True
+                continue
         # Public HTML is used only to enrich the Jandapress search rows with
         # the verified /d/<gallery_id> link and public lazy thumbnail.  The
         # Jandapress ID remains the stable local UID for backward compatibility.
@@ -1003,10 +1030,15 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         direct_html_debug.append(direct_info)
         direct_html_cards_total += len(direct_cards)
         direct_by_title = {}
+        ambiguous_titles = set()
         for card in direct_cards:
             key = _title_key(card.get("title"))
-            if key and key not in direct_by_title:
+            if key in direct_by_title:
+                ambiguous_titles.add(key)
+            elif key:
                 direct_by_title[key] = card
+        for key in ambiguous_titles:
+            direct_by_title.pop(key, None)
 
         try:
             payload, final_url = _get_json(session, "/3hentai/search", {
@@ -1016,6 +1048,7 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
             })
             found = _find_candidate_dicts(payload)
             search_debug.append(f"page={page} candidates={len(found)} url={final_url}")
+            page_candidates = {}
             for obj in found:
                 if len(debug_raw_objects) < 3:
                     debug_raw_objects.append(obj)
@@ -1025,13 +1058,22 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
                 card = direct_by_title.get(_title_key(normalized.get("title")))
                 if card and _enrich_from_direct_card(normalized, card):
                     direct_html_enriched += 1
-                candidates[normalized["source_id"]] = normalized
-                if len(candidates) >= HENTAI3_MAX_GALLERIES_PER_RUN:
-                    break
+                page_candidates[normalized["source_id"]] = normalized
+            # Reserve any over-cap page for history. Latest rows recur every
+            # run, while history must retain a complete, contiguous boundary.
+            if (page not in history_pages
+                    and len(candidates.keys() | page_candidates.keys()) > HENTAI3_MAX_GALLERIES_PER_RUN):
+                truncated = True
+                continue
+            candidates.update(page_candidates)
+            if page in history_pages:
+                history_ids.update(page_candidates)
+            completed_pages.add(page)
         except Exception as e:
             errors.append(f"page={page}: {e}")
-        if len(candidates) >= HENTAI3_MAX_GALLERIES_PER_RUN:
-            break
+            if page in history_pages:
+                failed_pages.append(page)
+                break
         time.sleep(0.4)
 
     # If tag-query search unexpectedly yields no results, try a plain Japanese
@@ -1086,7 +1128,8 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     gallery_metadata_stopped = False
     gallery_metadata_samples: list[str] = []
     gallery_metadata_failures: list[str] = []
-    for sid, item in list(candidates.items())[:max(0, HENTAI3_GALLERY_METADATA_LIMIT)]:
+    metadata_order = sorted(candidates.items(), key=lambda pair: pair[0] not in history_ids)
+    for sid, item in metadata_order[:max(0, HENTAI3_GALLERY_METADATA_LIMIT)]:
         page_url = _clean(item.get("source_url") or "")
         if not re.search(r"/d/\d+(?:/|$|[?#])", page_url, re.I):
             continue
@@ -1124,7 +1167,7 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     # sequential get calls also trigger 429 upstream.  Search is sufficient
     # for discovery; thumbnails are resolved separately and slowly by the
     # local cache step.
-    for sid, item in list(candidates.items())[:HENTAI3_MAX_GALLERIES_PER_RUN]:
+    for sid, item in candidates.items():
         lang = item.get("language") or "missing"
         languages[lang] = languages.get(lang, 0) + 1
         if item.get("thumbnail"):
@@ -1134,11 +1177,19 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         items.append(item)
 
     new_state = dict(state)
-    if items or candidates:
-        new_state["backfill_page"] = backfill_page + HENTAI3_BACKFILL_PAGES
+    next_page = backfill_page
+    while next_page in completed_pages and next_page in history_pages:
+        next_page += 1
+    new_state["backfill_page"] = next_page
 
     status = {
         "status": "ok" if items else "error",
+        "partial": bool(errors or truncated or any(
+            x.get("filter_metadata_checked") != "3hentai-gallery-v1" for x in items)),
+        "backfill_page_before": backfill_page,
+        "backfill_page_after": next_page,
+        "backfill_pages_completed": next_page - backfill_page,
+        "backfill_pages_failed": len(failed_pages),
         "discovered": len(candidates),
         "accepted_raw": len(items),
         "api_base": API_BASE,

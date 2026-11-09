@@ -1,6 +1,7 @@
 """Fail-closed JSON loading and atomic catalog persistence."""
 import json
 import os
+import re
 import tempfile
 from pathlib import Path
 
@@ -20,7 +21,7 @@ def validate_catalog(value):
         seen_uids.add(item["uid"])
         # Schema upgrades preserve nullable scalar metadata from older rows.
         for key in ("language", "title", "title_jp", "category", "source_token",
-                    "source_url", "source_url_kind", "resolved_gallery_id",
+                    "source_url", "source_url_kind", "resolved_gallery_id", "public_gallery_id",
                     "posted_at", "thumbnail", "first_seen"):
             if key in item and item[key] is not None and not isinstance(item[key], str):
                 raise ValueError(f"catalog item {key} must be a string or null")
@@ -89,3 +90,31 @@ def save_json(path, payload):
         stream.flush()
         os.fsync(stream.fileno())
     os.replace(stream.name, path)
+
+
+def validate_hentai3_id_map(value):
+    validate_mapping(value)
+    if type(value.get("version")) is not int or value["version"] != 1:
+        raise ValueError("unsupported 3hentai ID map version")
+    if not isinstance(value.get("updated_at"), str):
+        raise ValueError("ID map updated_at must be a string")
+    namespaces = value.get("namespaces")
+    if not isinstance(namespaces, dict) or not namespaces or any(
+            not isinstance(k, str) or not isinstance(v, str) for k, v in namespaces.items()):
+        raise ValueError("ID map namespaces must contain descriptions")
+    pairs = value.get("public_to_internal")
+    if not isinstance(pairs, dict) or any(
+            not isinstance(k, str) or not re.fullmatch(r"[0-9]+", k)
+            or not isinstance(v, str) or not re.fullmatch(r"3hentai:[0-9]+", v)
+            for k, v in pairs.items()):
+        raise ValueError("invalid public/internal ID pair")
+    if not isinstance(value.get("migrations"), list):
+        raise ValueError("ID map migrations must be an array")
+    for entry in value["migrations"]:
+        if not isinstance(entry, dict) or any(not isinstance(entry.get(k), str) or not entry[k]
+                for k in ("old_uid", "new_uid", "reason", "store", "migrated_at")):
+            raise ValueError("invalid ID migration log")
+        if any(not re.fullmatch(r"3hentai:g?[0-9]+", entry[k]) for k in ("old_uid", "new_uid")):
+            raise ValueError("invalid migration UID")
+        if entry["store"] not in {"catalog", "records", "verified_checkpoints", "hentai3_attempts"}:
+            raise ValueError("invalid migration store")

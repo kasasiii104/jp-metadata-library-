@@ -3,6 +3,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 DOCS_DIR = ROOT / "docs"
+HENTAI3_ID_MAP_FILE = DOCS_DIR / "3hentai_id_map.json"
 DATA_FILE = DOCS_DIR / "data.json"
 STATE_FILE = DOCS_DIR / "crawl_state.json"
 STATUS_FILE = DOCS_DIR / "source_status.json"
@@ -17,10 +18,16 @@ USER_AGENT = "Japanese-Metadata-Library/1.6 (+GitHub Actions; metadata-only)"
 EH_LATEST_PAGES = int(os.environ.get("EH_LATEST_PAGES", "2"))
 EH_BACKFILL_PAGES = int(os.environ.get("EH_BACKFILL_PAGES", "4"))
 EH_MAX_GALLERIES_PER_RUN = int(os.environ.get("EH_MAX_GALLERIES_PER_RUN", "150"))
+EH_RETRY_LIMIT = int(os.environ.get("EH_RETRY_LIMIT", "25"))
+EH_RETRY_MAX_FAILURES = int(os.environ.get("EH_RETRY_MAX_FAILURES", "5"))
+EH_RETRY_QUEUE_MAX = int(os.environ.get("EH_RETRY_QUEUE_MAX", "2000"))
 
 # Hitomi: binary Japanese Nozomi index, fetched by byte range.
 HITOMI_LATEST_LIMIT = int(os.environ.get("HITOMI_LATEST_LIMIT", "30"))
 HITOMI_BACKFILL_LIMIT = int(os.environ.get("HITOMI_BACKFILL_LIMIT", "60"))
+HITOMI_RETRY_LIMIT = int(os.environ.get("HITOMI_RETRY_LIMIT", "30"))
+HITOMI_RETRY_MAX_FAILURES = int(os.environ.get("HITOMI_RETRY_MAX_FAILURES", "5"))
+HITOMI_RETRY_QUEUE_MAX = int(os.environ.get("HITOMI_RETRY_QUEUE_MAX", "2000"))
 HITOMI_FILTER_AUDIT_LIMIT = int(os.environ.get("HITOMI_FILTER_AUDIT_LIMIT", "200"))
 HITOMI_FILTER_AUDIT_DELAY_SEC = float(os.environ.get("HITOMI_FILTER_AUDIT_DELAY_SEC", "0.2"))
 HITOMI_FILTER_AUDIT_REFRESH_SEC = 7 * 86400

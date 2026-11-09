@@ -15,6 +15,7 @@ from config import (
     BLOCK_TAGS,
     BLOCK_TAG_ALIASES,
     DATA_FILE,
+    HENTAI3_ID_MAP_FILE,
     DOCS_DIR,
     KEEP_ITEMS,
     STATE_FILE,
@@ -25,10 +26,10 @@ from config import (
     HITOMI_FILTER_AUDIT_REFRESH_SEC,
     HITOMI_FILTER_RETRY_SEC,
 )
-from sources import ehentai, hitomi, hentai3, asmhentai
+from sources import ehentai, hitomi, hentai3, asmhentai, hentai3_ids
 from sources.common import is_valid_source_id, normalize_full_tag, normalize_tag, unique_strings, polite_sleep
 from tools.json_storage import (load_json, save_json, validate_catalog,
-                                validate_source_mapping, validate_filter_store)
+                                validate_source_mapping, validate_filter_store, validate_hentai3_id_map)
 
 SOURCES = {
     "ehentai": ehentai.collect,
@@ -196,6 +197,7 @@ def clean_item(item: dict[str, Any], stamp: str) -> dict[str, Any]:
         "source_url": str(item.get("source_url") or ""),
         "source_url_kind": str(item.get("source_url_kind") or ""),
         "resolved_gallery_id": str(item.get("resolved_gallery_id") or ""),
+        "public_gallery_id": str(item.get("public_gallery_id") or ""),
         "filter_metadata_checked": str(item.get("filter_metadata_checked") or ""),
         "filter_metadata_checked_at": str(item.get("filter_metadata_checked_at") or ""),
         "title": str(item.get("title") or "").strip(),
@@ -295,7 +297,8 @@ def _timestamp(value: str) -> float:
         return 0
 
 
-def audit_existing_hitomi(existing: dict, store: dict, stamp: str, preferred_base: str = "") -> dict:
+def audit_existing_hitomi(existing: dict, store: dict, stamp: str, preferred_base: str = "",
+                          restored_h3_uids: set[str] | None = None) -> dict:
     """Bounded, resumable audit; missing tags are checked before older records."""
     records = store.setdefault("records", {})
     attempts = store.setdefault("hitomi_attempts", {})
@@ -381,7 +384,8 @@ def audit_existing_hitomi(existing: dict, store: dict, stamp: str, preferred_bas
                 # Checkpoint source results, including safe restorations. The
                 # final public catalog is published only at the end of main().
                 store["verified_checkpoints"] = {uid: value for uid, value in existing.items()
-                    if value.get("source") == "hitomi" and value.get("filter_metadata_checked_at") == stamp}
+                    if (value.get("source") == "hitomi" and value.get("filter_metadata_checked_at") == stamp)
+                    or uid in (restored_h3_uids or set())}
                 save_json(FILTER_STATE_FILE, store)
             polite_sleep(HITOMI_FILTER_AUDIT_DELAY_SEC)
     return stats
@@ -515,9 +519,17 @@ def main(*, audit_only: bool = False) -> int:
     state = load_json(STATE_FILE, {}, validate_source_mapping)
     filter_store = load_json(FILTER_STATE_FILE, {}, validate_filter_store)
     status_store = load_json(STATUS_FILE, {}, validate_source_mapping)
-    for key in ("records", "hitomi_attempts", "verified_checkpoints"):
+    for key in ("records", "hitomi_attempts", "hentai3_attempts", "verified_checkpoints"):
         if not isinstance(filter_store.get(key), dict):
             filter_store[key] = {}
+    id_map_path = (HENTAI3_ID_MAP_FILE if HENTAI3_ID_MAP_FILE.parent == DOCS_DIR
+                   else DOCS_DIR / HENTAI3_ID_MAP_FILE.name)
+    id_map = load_json(id_map_path, hentai3_ids.empty_id_map(), validate_hentai3_id_map)
+    data["items"], id_migration = hentai3_ids.migrate(
+        data["items"], filter_store, id_map, stamp, merge_item)
+    if id_migration["total"]:
+        id_map["updated_at"] = stamp
+        save_json(id_map_path, id_map)
     records = filter_store["records"]
     existing_items = [
         upgrade_item_schema(x) for x in data.get("items", [])
@@ -526,21 +538,38 @@ def main(*, audit_only: bool = False) -> int:
     # Recover verified audit results if a previous job stopped after a
     # checkpoint but before writing the final catalog.
     existing_map = {x["uid"]: x for x in existing_items}
+    restored_h3_uids = set()
     for uid, saved in filter_store["verified_checkpoints"].items():
         if (records.get(uid, {}).get("status") != "blocked"
-                and saved.get("filter_metadata_checked") == hitomi.FILTER_METADATA_VERSION
-                and not unverified_hitomi(saved, fresh=True) and not blocked_reason(saved)):
+                and ((saved.get("filter_metadata_checked") == hitomi.FILTER_METADATA_VERSION
+                      and not unverified_hitomi(saved, fresh=True))
+                     or (saved.get("source") == "3hentai"
+                         and saved.get("filter_metadata_checked") == "3hentai-gallery-v1"))
+                and not blocked_reason(saved)):
             existing_map[uid] = merge_item(existing_map.get(uid), saved, stamp)
             records.pop(uid, None)
+            if saved.get("source") == "3hentai":
+                restored_h3_uids.add(uid)
     existing_items = list(existing_map.values())
     # Revision 19: 3Hentai historically had little/no tag metadata, so old
     # visible rows could not be evaluated by the common BL/guro/ryona/insect
     # filters.  Audit a bounded number of saved 3Hentai galleries every run,
     # then apply the same common filter to *all* retained rows.  This gradually
     # cleans the existing site without a one-off destructive reset.
+    h3_pending = {
+        uid: rec["item"] for uid, rec in records.items()
+        if rec.get("status") == "pending" and rec.get("item", {}).get("source") == "3hentai"
+    }
+    h3_targets = {x["uid"]: x for x in existing_items
+                  if x.get("source") == "3hentai"
+                  and x.get("filter_metadata_checked") != "3hentai-gallery-v1"}
+    h3_targets.update(h3_pending)
+    h3_attempts = filter_store["hentai3_attempts"]
+    h3_ordered = sorted(h3_targets.values(), key=lambda x:
+                        h3_attempts.get(x["uid"], {}).get("last_attempt", 0))
     try:
         h3_existing_audit = ({"skipped": "hitomi-filter-audit-only"} if audit_only else
-                             hentai3.enrich_existing_for_filter(existing_items))
+                             hentai3.enrich_existing_for_filter(h3_ordered))
     except Exception as e:
         h3_existing_audit = {
             "existing_filter_audit_mode": "public-gallery-metadata",
@@ -553,6 +582,34 @@ def main(*, audit_only: bool = False) -> int:
             "existing_filter_audit_samples": [],
             "existing_filter_audit_failures": [str(e)[:500]],
         }
+
+    if not audit_only:
+        for uid, success in h3_existing_audit.pop("existing_filter_audit_results", {}).items():
+            if success:
+                h3_attempts.pop(uid, None)
+            else:
+                h3_attempts[uid] = {"last_attempt": _timestamp(stamp),
+                                    "failures": h3_attempts.get(uid, {}).get("failures", 0) + 1}
+        restored = blocked = 0
+        for uid, item in h3_pending.items():
+            if item.get("filter_metadata_checked") != "3hentai-gallery-v1":
+                continue
+            reason = publication_reason(item, fresh=True)
+            if reason:
+                quarantine_item(filter_store, item, reason, stamp)
+                blocked += 1
+            else:
+                records.pop(uid, None)
+                existing_items = [x for x in existing_items if x["uid"] != uid]
+                existing_items.append(item)
+                restored_h3_uids.add(uid)
+                filter_store["verified_checkpoints"][uid] = dict(item)
+                restored += 1
+        h3_existing_audit.update({
+            "existing_filter_audit_pending_targets": len(h3_pending),
+            "existing_filter_audit_pending_restored": restored,
+            "existing_filter_audit_pending_blocked": blocked,
+        })
 
     retained_items: list[dict[str, Any]] = []
     purged_existing_blocked = 0
@@ -584,7 +641,8 @@ def main(*, audit_only: bool = False) -> int:
     existing = {x["uid"]: x for x in retained_items}
 
     hitomi_audit = audit_existing_hitomi(existing, filter_store, stamp,
-                                        (state.get("hitomi") or {}).get("resource_base", ""))
+                                        (state.get("hitomi") or {}).get("resource_base", ""),
+                                        restored_h3_uids)
     status_store.pop("updated_at", None)
 
     for retired in RETIRED_SOURCES:
@@ -615,6 +673,9 @@ def main(*, audit_only: bool = False) -> int:
         blocked_reasons: dict[str, int] = {}
 
         for raw in raw_items:
+            if name == "3hentai":
+                raw = hentai3_ids.normalize_incoming(
+                    raw, existing, filter_store, id_map, stamp, merge_item, id_migration)
             if not is_valid_source_id(str(raw.get("source_id") or ""), source=name):
                 continue
             if not raw.get("uid"):
@@ -623,25 +684,25 @@ def main(*, audit_only: bool = False) -> int:
             # gallery page did not yield filter-relevant metadata, do not add
             # the item yet. It can be discovered again on a later healthy run.
             uid = raw["uid"]
+            prior = existing.get(uid) or records.get(uid, {}).get("item")
+            merged = merge_item(prior, raw, stamp)
             saved_block = records.get(uid, {})
             if saved_block.get("status") == "blocked":
                 reason = saved_block["reason"]
             elif r18g_match_fields(raw):
                 reason = R18G_REASON
-            elif name == "3hentai" and raw.get("filter_metadata_checked") != "3hentai-gallery-v1":
+            elif name == "3hentai" and merged.get("filter_metadata_checked") != "3hentai-gallery-v1":
                 reason = "metadata_unverified"
             else:
-                reason = publication_reason(raw, fresh=True)
+                reason = publication_reason(merged if name == "3hentai" else raw, fresh=True)
             if reason:
                 blocked += 1
                 blocked_reasons[reason] = blocked_reasons.get(reason, 0) + 1
                 # Rejecting this response alone leaves the old catalog row
                 # visible. Remove it too and retain evidence outside docs.
-                prior = existing.pop(uid, None) or records.get(uid, {}).get("item")
-                quarantine_item(filter_store, merge_item(prior, raw, stamp), reason, stamp)
+                existing.pop(uid, None)
+                quarantine_item(filter_store, merged, reason, stamp)
                 continue
-            prior = existing.get(uid) or records.get(uid, {}).get("item")
-            merged = merge_item(prior, raw, stamp)
             reason = blocked_reason(merged)
             if reason:
                 existing.pop(uid, None)
@@ -680,6 +741,7 @@ def main(*, audit_only: bool = False) -> int:
         print("All sources failed; catalog and crawl state will not be saved.", file=sys.stderr)
         return 1
 
+    status_store.setdefault("3hentai", {})["id_migration"] = id_migration
     if isinstance(status_store.get("3hentai"), dict):
         status_store["3hentai"].update(h3_existing_audit)
         status_store["3hentai"]["purged_existing_this_run"] = purged_existing_3hentai
@@ -708,7 +770,8 @@ def main(*, audit_only: bool = False) -> int:
     filter_store["updated_at"] = stamp
     filter_store["last_audit"] = hitomi_audit
     filter_store["verified_checkpoints"] = {x["uid"]: x for x in items
-        if x.get("source") == "hitomi" and x.get("filter_metadata_checked_at") == stamp}
+        if (x.get("source") == "hitomi" and x.get("filter_metadata_checked_at") == stamp)
+        or x["uid"] in restored_h3_uids}
     save_json(FILTER_STATE_FILE, filter_store)
 
     save_json(DATA_FILE, {
@@ -724,8 +787,11 @@ def main(*, audit_only: bool = False) -> int:
         "held_existing_unverified": held_existing_unverified,
         "items": items,
     })
+    id_map["updated_at"] = stamp
+    save_json(id_map_path, id_map)
     save_json(STATE_FILE, state)
     status_store["filters"] = {
+        "id_migration": id_migration,
         "content_filters": "enabled",
         "r18g_filter": "enabled",
         "insect_filter": "enabled",

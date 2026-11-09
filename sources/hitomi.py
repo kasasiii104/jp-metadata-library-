@@ -5,7 +5,7 @@ from typing import Any
 import requests
 from bs4 import BeautifulSoup
 
-from config import HITOMI_BACKFILL_LIMIT, HITOMI_LATEST_LIMIT
+from config import HITOMI_RETRY_LIMIT, HITOMI_RETRY_MAX_FAILURES, HITOMI_RETRY_QUEUE_MAX, HITOMI_BACKFILL_LIMIT, HITOMI_LATEST_LIMIT
 from sources.common import absolute_url, parse_json_wrapped_js, safe_get, unique_strings
 
 # Hitomi moved resource delivery from ltn.hitomi.la to
@@ -299,8 +299,34 @@ def fetch_filter_metadata(session: requests.Session, gid: int, preferred_base: s
     return _normalize(gid, raw, "")
 
 
+def _retry_failure(queue: dict, exhausted: list, gid: str, error: str, **extra) -> bool:
+    """Record a failed attempt and retain at most 200 exhausted entries."""
+    entry = dict(queue.get(gid) or {})
+    entry.update(extra)
+    entry["failures"] = int(entry.get("failures", 0)) + 1
+    entry["last_error"] = str(error)[:300]
+    entry.setdefault("first_failed_at", datetime.now(timezone.utc).isoformat())
+    if entry["failures"] >= HITOMI_RETRY_MAX_FAILURES or (
+        gid not in queue and len(queue) >= max(0, HITOMI_RETRY_QUEUE_MAX)
+    ):
+        queue.pop(gid, None)
+        exhausted.append({"gid": gid, **entry})
+        exhausted[:] = exhausted[-200:]
+        return True
+    queue[gid] = entry
+    return False
+
+
 def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     state = dict(state or {})
+    queue = {gid: dict(entry) for gid, entry in (state.get("retry_ids") or {}).items()}
+    exhausted = list(state.get("retry_exhausted_ids") or [])
+    retry_queued = retry_succeeded = retry_exhausted = 0
+    for gid in list(queue)[max(0, HITOMI_RETRY_QUEUE_MAX):]:
+        exhausted.append({"gid": gid, **queue.pop(gid)})
+        retry_exhausted += 1
+    exhausted = exhausted[-200:]
+    retry_gids = list(queue)[:max(0, HITOMI_RETRY_LIMIT)]
     backfill_offset = int(state.get("backfill_offset") or HITOMI_LATEST_LIMIT)
     preferred_base = str(state.get("resource_base") or "") or None
     session = requests.Session()
@@ -337,12 +363,19 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     used_hosts: dict[str, int] = {}
     thumbnails_found = 0
     thumbnail_samples: list[str] = []
-    for gid in ids:
+    attempted_ids = [int(gid) for gid in retry_gids]
+    attempted_ids.extend(gid for gid in ids if str(gid) not in retry_gids)
+    for gid in attempted_ids:
         try:
             item, used_base = _fetch_one(session, gid, preferred_base)
             if used_base:
                 preferred_base = used_base
                 used_hosts[used_base] = used_hosts.get(used_base, 0) + 1
+            if not item:
+                raise ValueError("empty gallery metadata")
+            if str(gid) in queue:
+                queue.pop(str(gid))
+                retry_succeeded += 1
             if item:
                 items.append(item)
                 if item.get("thumbnail"):
@@ -350,10 +383,18 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
                     if len(thumbnail_samples) < 3:
                         thumbnail_samples.append(f"{gid}: {item.get('thumbnail')}")
         except Exception as e:
+            newly_failed = str(gid) not in queue
+            gave_up = _retry_failure(queue, exhausted, str(gid), str(e))
+            retry_queued += int(newly_failed and not gave_up)
+            retry_exhausted += int(gave_up)
             if len(errors) < 6:
                 errors.append(f"{gid}: {e}")
 
     new_state = dict(state)
+    if queue or "retry_ids" in state:
+        new_state["retry_ids"] = queue
+    if exhausted or "retry_exhausted_ids" in state:
+        new_state["retry_exhausted_ids"] = exhausted
     if preferred_base:
         new_state["resource_base"] = preferred_base
     if backfill_ids:
@@ -362,7 +403,12 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
             new_state["backfill_complete"] = new_state["backfill_offset"] >= total_index
 
     status = {
-        "status": "ok" if items else ("error" if errors else "empty"),
+        "partial": bool(retry_queued or queue or retry_exhausted),
+        "retry_queued": retry_queued,
+        "retry_queue_size": len(queue),
+        "retry_succeeded": retry_succeeded,
+        "retry_exhausted": retry_exhausted,
+        "status": "ok" if items or retry_succeeded else ("error" if errors else "empty"),
         "discovered": len(ids),
         "accepted_raw": len(items),
         "latest_ids": len(latest_ids),
