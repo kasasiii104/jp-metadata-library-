@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "updated_at": "2026-11-09T06:17:33+00:00",
+  "namespaces": {
+    "3hentai:<digits>": "Jandapress internal ID",
+    "3hentai:g<digits>": "Public /d/ gallery ID"
+  },
+  "public_to_internal": {},
+  "migrations": []
+}
