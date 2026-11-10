@@ -411,8 +411,9 @@ def _href_namespace(href: str) -> tuple[str, str]:
         ("/tag/", "tag"), ("/tags/", "tag"),
     )
     for token, ns in path_map:
-        if token in low:
-            value = path.split(token, 1)[1].strip("/")
+        pos = low.find(token)
+        if pos != -1:
+            value = path[pos + len(token):].strip("/")
             value = unquote(value).replace("-", " ").replace("_", " ")
             return ns, _clean(value)
 
@@ -702,7 +703,7 @@ def enrich_existing_for_filter(items: list[dict], limit: int | None = None) -> d
         if attempted < limit:
             time.sleep(max(0.0, HENTAI3_EXISTING_FILTER_AUDIT_DELAY_SEC))
 
-    remaining = max(0, len(targets) - attempted)
+    remaining = sum(x.get("filter_metadata_checked") != "3hentai-gallery-v1" for x in targets)
     return {
         "existing_filter_audit_results": attempt_results,
         "existing_filter_audit_mode": "public-gallery-metadata",

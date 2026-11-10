@@ -92,20 +92,20 @@ class RetryQueueTests(unittest.TestCase):
         self.assertFalse(status['partial'])
 
     def test_eh_missing_and_error_rows_are_queued(self):
-        _, state, status, _ = self.eh_run(refs=[(1, 'a'), (2, 'b'), (3, 'c')],
+        _, state, status, _ = self.eh_run(refs=[(1, 'aaaaaaaaaa'), (2, 'bbbbbbbbbb'), (3, 'cccccccccc')],
                                         rows=[self.row(1), {'gid': 3, 'error': ''}])
         self.assertEqual(set(state['retry_refs']), {'2', '3'})
-        self.assertEqual(state['retry_refs']['2']['token'], 'b')
+        self.assertEqual(state['retry_refs']['2']['token'], 'bbbbbbbbbb')
         self.assertEqual(status['status'], 'ok')
         self.assertTrue(status['partial'])
         self.assertEqual(status['retry_queued'], 2)
 
     def test_eh_retry_has_separate_budget_and_returns_japanese(self):
-        original = {'retry_refs': {'2': self.entry(token='b')}}
+        original = {'retry_refs': {'2': self.entry(token='bbbbbbbbbb')}}
         snapshot = copy.deepcopy(original)
         with patch.object(eh, 'EH_MAX_GALLERIES_PER_RUN', 1):
-            items, state, status, post = self.eh_run(original, [(3, 'c')], [self.row(2), self.row(3)])
-        self.assertEqual([c.args[2]['gidlist'] for c in post.call_args_list], [[[2, 'b']], [[3, 'c']]])
+            items, state, status, post = self.eh_run(original, [(3, 'cccccccccc')], [self.row(2), self.row(3)])
+        self.assertEqual([c.args[2]['gidlist'] for c in post.call_args_list], [[[2, 'bbbbbbbbbb']], [[3, 'cccccccccc']]])
         self.assertEqual({x['source_id'] for x in items}, {'2', '3'})
         self.assertEqual(state['retry_refs'], {})
         self.assertEqual(status['retry_succeeded'], 1)
@@ -113,7 +113,7 @@ class RetryQueueTests(unittest.TestCase):
 
     def test_eh_retry_exhausts_and_all_missing_is_empty_partial(self):
         with patch.object(eh, 'EH_RETRY_MAX_FAILURES', 2):
-            _, state, status, _ = self.eh_run({'retry_refs': {'2': self.entry(token='b')}})
+            _, state, status, _ = self.eh_run({'retry_refs': {'2': self.entry(token='bbbbbbbbbb')}})
         self.assertEqual(state['retry_refs'], {})
         self.assertEqual(state['retry_exhausted_refs'][0]['failures'], 2)
         self.assertEqual(status['retry_exhausted'], 1)
@@ -122,26 +122,26 @@ class RetryQueueTests(unittest.TestCase):
 
     def test_eh_metadata_exception_keeps_cursor(self):
         with patch.object(eh, 'EH_BACKFILL_PAGES', 1), patch.object(eh, 'EH_LATEST_PAGES', 0):
-            _, state, status, _ = self.eh_run({'backfill_next': '100'}, [(2, 'b')], error=RuntimeError('gdata'))
+            _, state, status, _ = self.eh_run({'backfill_next': '100'}, [(2, 'bbbbbbbbbb')], error=RuntimeError('gdata'))
         self.assertEqual(state['backfill_next'], '100')
         self.assertEqual(status['status'], 'error')
 
     def test_eh_normal_run_does_not_add_queue(self):
-        _, state, status, _ = self.eh_run(refs=[(1, 'a')], rows=[self.row(1)])
+        _, state, status, _ = self.eh_run(refs=[(1, 'aaaaaaaaaa')], rows=[self.row(1)])
         self.assertNotIn('retry_refs', state)
         self.assertNotIn('retry_exhausted_refs', state)
         self.assertFalse(status['partial'])
 
     def test_eh_non_japanese_retry_success_is_saved(self):
         items, state, status, _ = self.eh_run(
-            {'retry_refs': {'2': self.entry(token='b')}}, rows=[self.row(2, False)])
+            {'retry_refs': {'2': self.entry(token='bbbbbbbbbb')}}, rows=[self.row(2, False)])
         self.assertEqual(items, [])
         self.assertEqual(state['retry_refs'], {})
         self.assertEqual(status['status'], 'ok')
         self.assertEqual(status['retry_succeeded'], 1)
 
     def test_eh_retry_exception_increments_failures_without_advancing(self):
-        original = {'backfill_next': '100', 'retry_refs': {'2': self.entry(token='b')}}
+        original = {'backfill_next': '100', 'retry_refs': {'2': self.entry(token='bbbbbbbbbb')}}
         _, state, status, _ = self.eh_run(original, error=RuntimeError('timeout'))
         self.assertEqual(state['retry_refs']['2']['failures'], 2)
         self.assertEqual(state['backfill_next'], '100')
@@ -152,7 +152,7 @@ class RetryQueueTests(unittest.TestCase):
         with patch.object(eh, 'EH_BACKFILL_PAGES', 1), \
              patch.object(eh, 'EH_LATEST_PAGES', 0), \
              patch.object(eh, 'EH_RETRY_QUEUE_MAX', 1):
-            _, state, status, _ = self.eh_run({'backfill_next': '100'}, [(1, 'a'), (2, 'b')])
+            _, state, status, _ = self.eh_run({'backfill_next': '100'}, [(1, 'aaaaaaaaaa'), (2, 'bbbbbbbbbb')])
         self.assertEqual(state['backfill_next'], '50')
         self.assertEqual(set(state['retry_refs']), {'1'})
         self.assertEqual(state['retry_exhausted_refs'][0]['gid'], '2')
@@ -209,11 +209,11 @@ class RetryQueueTests(unittest.TestCase):
             lambda state: self.hitomi_run(state, [3], (2, 3)))
 
     def test_eh_all_failed_main_preserves_state(self):
-        original = {'backfill_next': '100', 'retry_refs': {'2': self.entry(token='b')}}
+        original = {'backfill_next': '100', 'retry_refs': {'2': self.entry(token='bbbbbbbbbb')}}
         with patch.object(eh, 'EH_BACKFILL_PAGES', 1), patch.object(eh, 'EH_LATEST_PAGES', 0):
             self.assert_failed_run_preserves_state(
                 'ehentai', original,
-                lambda state: self.eh_run(state, [(3, 'c')]))
+                lambda state: self.eh_run(state, [(3, 'cccccccccc')]))
 
     def test_retry_limits_leave_remaining_entries_untouched(self):
         with patch.object(hitomi, 'HITOMI_RETRY_LIMIT', 1):
@@ -221,7 +221,7 @@ class RetryQueueTests(unittest.TestCase):
         self.assertEqual(fetch.call_count, 1)
         self.assertEqual(set(state['retry_ids']), {'2'})
         with patch.object(eh, 'EH_RETRY_LIMIT', 1):
-            _, state, _, post = self.eh_run({'retry_refs': {'1': self.entry(token='a'), '2': self.entry(token='b')}}, rows=[self.row(1)])
+            _, state, _, post = self.eh_run({'retry_refs': {'1': self.entry(token='aaaaaaaaaa'), '2': self.entry(token='bbbbbbbbbb')}}, rows=[self.row(1)])
         self.assertEqual(post.call_count, 1)
         self.assertEqual(set(state['retry_refs']), {'2'})
 

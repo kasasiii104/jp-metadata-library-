@@ -77,8 +77,15 @@ def is_japanese(raw: dict, ts: list[str]) -> bool:
         clean(first(raw, "language", "lang", "locale")),
         *ts,
     ]
-    text = " ".join(vals).casefold()
-    return any(x in text for x in ("japanese", "日本語", "language:japanese", "lang:japanese", "language:ja"))
+    for value in vals:
+        value = value.strip().casefold()
+        for prefix in ("language:", "lang:"):
+            if value.startswith(prefix):
+                value = value[len(prefix):].strip()
+                break
+        if value in {"japanese", "ja", "日本語", "jp"}:
+            return True
+    return False
 
 
 def thumbnail_of(raw: dict) -> str:
@@ -147,6 +154,7 @@ def collect(state: dict | None = None):
     detail_success = 0
     detail_cursor = int(state.get("detail_cursor") or 0)
     candidate_index = 0
+    seen_ids = set()
     search_ok = False
     search_key_used = ""
 
@@ -163,13 +171,20 @@ def collect(state: dict | None = None):
                     sid = clean(first(raw, "id", "gallery_id", "galleryId", "book", "source_id", "gid"))
                     if not is_valid_source_id(sid, source="asmhentai"):
                         continue
+                    if sid in seen_ids:
+                        continue
+                    seen_ids.add(sid)
                     detail = {}
                     should_detail = detail_cursor <= candidate_index < detail_cursor + DETAIL_LIMIT
                     candidate_index += 1
                     if sid and should_detail:
                         detail_attempts += 1
                         try:
-                            detail = _get(sess, sid)
+                            fetched_detail = _get(sess, sid)
+                            detail_id = first(fetched_detail, "id", "gallery_id", "galleryId", "book", "source_id", "gid")
+                            if detail_id is not None and str(detail_id) != str(sid):
+                                raise ValueError("ASMHentai gallery identity mismatch")
+                            detail = fetched_detail
                             if detail:
                                 detail_success += 1
                         except Exception as e:

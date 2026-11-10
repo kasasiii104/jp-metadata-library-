@@ -13,7 +13,7 @@ from sources.common import absolute_url, iso_from_unix, safe_get, safe_post_json
 BASE = "https://e-hentai.org/"
 API = "https://api.e-hentai.org/api.php"
 SEARCH_QUERY = "language:japanese$"
-GALLERY_RE = re.compile(r"/g/(\d+)/([0-9a-fA-F]{10})/?")
+GALLERY_RE = re.compile(r"/g/([0-9]+)/([0-9a-fA-F]{10})(?![0-9A-Za-z])")
 
 
 def _refs_from_html(html: str) -> list[tuple[int, str]]:
@@ -41,8 +41,8 @@ def _cursor_from_href(href: str) -> str:
     return m.group(1) if m else ""
 
 
-def _extract_next_cursor(html: str) -> str:
-    """Extract E-Hentai's current keyset/cursor pagination token."""
+def _extract_next_cursor(html: str) -> str | None:
+    """Return a cursor, an empty string for explicit end, or None if unknown."""
     soup = BeautifulSoup(html or "", "html.parser")
 
     for selector in ("#dnext[href]", "#unext[href]", "a#dnext[href]", "a#unext[href]"):
@@ -76,7 +76,11 @@ def _extract_next_cursor(html: str) -> str:
             if cur:
                 return cur
 
-    return ""
+    markers = soup.select("#unext, #dnext")
+    if markers and not any(el.has_attr("href") or el.select_one("[href]")
+                           for el in markers):
+        return ""
+    return None
 
 
 def _discover(
@@ -84,7 +88,7 @@ def _discover(
     cursor: str = "",
     stage: str = "",
     search_query: str | None = SEARCH_QUERY,
-) -> tuple[list[tuple[int, str]], str, dict]:
+) -> tuple[list[tuple[int, str]], str | None, dict]:
     """Read one public E-Hentai listing page.
 
     `search_query=None` means the unfiltered global newest feed. Historical
@@ -122,11 +126,13 @@ def _normalize(meta: dict[str, Any]) -> dict[str, Any] | None:
         return None
     gid = str(meta.get("gid") or "")
     token = str(meta.get("token") or meta.get("current_key") or "")
+    if not re.fullmatch(r"[0-9]+", gid):
+        raise ValueError("invalid gallery gid")
+    if not re.fullmatch(r"[0-9a-fA-F]{10}", token):
+        raise ValueError("invalid gallery token")
     tags = unique_strings(meta.get("tags") or [])
     low = {t.lower() for t in tags}
     language = "japanese" if "language:japanese" in low else ""
-    if not gid or not token:
-        return None
     return {
         "uid": f"ehentai:{gid}",
         "source": "ehentai",
@@ -161,6 +167,8 @@ def _metadata(session: requests.Session, refs: list[tuple[int, str]],
             "namespace": 1,
         }
         data = safe_post_json(session, API, payload)
+        if not isinstance(data, dict) or not isinstance(data.get("gmetadata"), list):
+            raise ValueError("invalid gmetadata response")
         token_by_gid = {str(gid): token for gid, token in batch}
         rows = {str(raw.get("gid") or ""): raw
                 for raw in data.get("gmetadata") or [] if isinstance(raw, dict)}
@@ -173,7 +181,12 @@ def _metadata(session: requests.Session, refs: list[tuple[int, str]],
             raw = dict(raw)
             if not raw.get("token"):
                 raw["token"] = token_by_gid[str(gid)]
-            item = _normalize(raw)
+            try:
+                item = _normalize(raw)
+            except Exception as e:
+                if failures is not None:
+                    failures[str(gid)] = str(e)
+                continue
             if item:
                 out.append(item)
         if idx and idx % 100 == 0:
@@ -331,6 +344,9 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
                 if not page_refs:
                     backfill_failed = True
                     break
+
+                if next_cursor is None or (next_cursor and next_cursor == backfill_cursor):
+                    raise ValueError("Unable to determine next backfill cursor")
 
                 backfill_pages_fetched += 1
                 if next_cursor and next_cursor != backfill_cursor:

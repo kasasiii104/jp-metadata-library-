@@ -55,7 +55,20 @@ def _fetch_range_from_base(
     res = safe_get(session, url, headers=headers)
 
     data = res.content
-    if res.status_code == 200 and len(data) > count * 4:
+    if len(data) % 4:
+        raise ValueError("Hitomi index response length is not a multiple of 4")
+    if res.status_code == 206:
+        match = re.fullmatch(r"bytes ([0-9]+)-([0-9]+)/([0-9]+)", res.headers.get("Content-Range") or "")
+        if not match:
+            raise ValueError("Invalid Hitomi index Content-Range")
+        range_start, range_end, total = map(int, match.groups())
+        if range_end >= total or total % 4:
+            raise ValueError("Invalid Hitomi index Content-Range total")
+        if range_start != start_byte or range_end > end_byte or range_end < range_start:
+            raise ValueError("Unexpected Hitomi index Content-Range")
+        if len(data) != range_end - range_start + 1:
+            raise ValueError("Hitomi index body length does not match Content-Range")
+    if res.status_code == 200:
         data = data[start_byte : end_byte + 1]
 
     total_items = None
@@ -202,13 +215,24 @@ def _thumbnail_from_first_file(raw: dict[str, Any]) -> str:
     return f"https://tn.hitomi.la/bigtn/{path}.jpg"
 
 
+class _ThumbnailResult(str):
+    """Keep URL/string compatibility while carrying extraction observations."""
+
+    def __new__(cls, url: str, source: str = "unknown", failure_reasons: tuple[str, ...] = ()):
+        result = super().__new__(cls, url)
+        result.source = source
+        result.failure_reasons = failure_reasons
+        return result
+
+
 def _thumbnail(session: requests.Session, gid: int, raw: dict[str, Any]) -> str:
     direct = _thumbnail_from_raw(raw)
     if direct:
-        return direct
+        return _ThumbnailResult(direct, "api")
 
     # Fetch the lightweight/public gallery HTML and use the actual thumbnail URL
     # emitted by Hitomi. This avoids guessing image host/subdomain algorithms.
+    failure_reasons: list[str] = []
     for template in GALLERY_PAGE_URLS:
         try:
             res = safe_get(
@@ -219,13 +243,15 @@ def _thumbnail(session: requests.Session, gid: int, raw: dict[str, Any]) -> str:
             soup = BeautifulSoup(res.text, "html.parser")
             thumb = _extract_thumbnail_from_soup(soup)
             if thumb:
-                return thumb
-        except Exception:
+                return _ThumbnailResult(thumb, "html", tuple(failure_reasons))
+        except Exception as exc:
+            failure_reasons.append(type(exc).__name__[:80])
             continue
 
     # Final metadata-only fallback. The browser may still reject this URL; the UI
     # will replace failed images with its normal placeholder.
-    return _thumbnail_from_first_file(raw)
+    guessed = _thumbnail_from_first_file(raw)
+    return _ThumbnailResult(guessed, "guessed" if guessed else "missing", tuple(failure_reasons))
 
 
 def _normalize(gid: int, raw: dict[str, Any], thumbnail: str) -> dict[str, Any] | None:
@@ -285,6 +311,8 @@ def _fetch_gallery_js(session: requests.Session, gid: int, preferred_base: str |
 
 def _fetch_one(session: requests.Session, gid: int, preferred_base: str | None) -> tuple[dict[str, Any] | None, str | None]:
     raw, used_base = _fetch_gallery_js(session, gid, preferred_base)
+    if raw.get("id") is not None and str(raw["id"]) != str(gid):
+        raise ValueError("Hitomi gallery identity mismatch")
     thumb = _thumbnail(session, gid, raw)
     return _normalize(gid, raw, thumb), used_base
 
@@ -334,14 +362,6 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
 
     try:
         latest_ids, latest_total, latest_base = _range_ids(session, 0, HITOMI_LATEST_LIMIT, preferred_base)
-        backfill_ids, backfill_total, backfill_base = _range_ids(
-            session,
-            backfill_offset,
-            HITOMI_BACKFILL_LIMIT,
-            latest_base,
-        )
-        preferred_base = latest_base or backfill_base
-        total_index = latest_total if latest_total is not None else backfill_total
     except Exception as e:
         return [], state, {
             "status": "error",
@@ -351,6 +371,23 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
             "resource_hosts": RESOURCE_BASES,
             "index_path": INDEX_PATH,
         }
+
+    preferred_base = latest_base
+    total_index = latest_total
+    backfill_ids = []
+    backfill_failed = False
+    try:
+        backfill_ids, backfill_total, backfill_base = _range_ids(
+            session,
+            backfill_offset,
+            HITOMI_BACKFILL_LIMIT,
+            latest_base,
+        )
+        preferred_base = latest_base or backfill_base
+        total_index = latest_total if latest_total is not None else backfill_total
+    except Exception as e:
+        backfill_failed = True
+        errors.append(f"backfill: {str(e)[:300]}")
 
     ids: list[int] = []
     seen = set()
@@ -362,6 +399,8 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     items: list[dict] = []
     used_hosts: dict[str, int] = {}
     thumbnails_found = 0
+    thumbnail_sources = dict.fromkeys(("api", "html", "guessed", "missing", "unknown"), 0)
+    thumbnail_failure_reasons: dict[str, int] = {}
     thumbnail_samples: list[str] = []
     attempted_ids = [int(gid) for gid in retry_gids]
     attempted_ids.extend(gid for gid in ids if str(gid) not in retry_gids)
@@ -378,6 +417,13 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
                 retry_succeeded += 1
             if item:
                 items.append(item)
+                thumbnail = item.get("thumbnail")
+                # Older callers/mocks may still supply ordinary strings.
+                source = getattr(thumbnail, "source", "unknown" if thumbnail else "missing")
+                thumbnail_sources[source] += 1
+                for reason in getattr(thumbnail, "failure_reasons", ()):
+                    if reason in thumbnail_failure_reasons or len(thumbnail_failure_reasons) < 6:
+                        thumbnail_failure_reasons[reason] = thumbnail_failure_reasons.get(reason, 0) + 1
                 if item.get("thumbnail"):
                     thumbnails_found += 1
                     if len(thumbnail_samples) < 3:
@@ -403,7 +449,7 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
             new_state["backfill_complete"] = new_state["backfill_offset"] >= total_index
 
     status = {
-        "partial": bool(retry_queued or queue or retry_exhausted),
+        "partial": bool(backfill_failed or retry_queued or queue or retry_exhausted),
         "retry_queued": retry_queued,
         "retry_queue_size": len(queue),
         "retry_succeeded": retry_succeeded,
@@ -417,6 +463,9 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         "resource_base": preferred_base or "",
         "used_hosts": used_hosts,
         "thumbnails_found": thumbnails_found,
+        "thumbnails_guessed": thumbnail_sources["guessed"],
+        "thumbnail_sources": thumbnail_sources,
+        "thumbnail_failure_reasons": thumbnail_failure_reasons,
         "thumbnails_missing": max(0, len(items) - thumbnails_found),
         "thumbnail_samples": thumbnail_samples,
         "artists_found": sum(1 for x in items if x.get("artists")),
