@@ -112,7 +112,8 @@ class IdentityTests(unittest.TestCase):
                 self.assertEqual(store['records']['3hentai:888']['status'], 'pending')
                 self.assertEqual(store['records']['3hentai:999']['status'], 'blocked')
                 self.assertEqual(store['hentai3_attempts'], {
-                    '3hentai:999': {'failures': 123}, '3hentai:888': {'failures': 999}})
+                    '3hentai:999': {'failures': 123, 'id_gen': 2},
+                    '3hentai:888': {'failures': 999, 'id_gen': 2}})
                 self.assertEqual(stats['total'], 8)
                 for name in ('catalog', 'records', 'verified_checkpoints', 'hentai3_attempts'):
                     self.assertEqual([(x['old_uid'], x['new_uid']) for x in
@@ -123,6 +124,67 @@ class IdentityTests(unittest.TestCase):
                 items, stats = ids.migrate(items, store, mapping, STAMP, c.merge_item)
                 self.assertEqual(stats['total'], 0)
                 self.assertEqual((items, store, mapping), before)
+
+    def test_restart_with_legacy_catalog_preserves_migrated_stores(self):
+        for order, marked in ((order, marked) for order in
+                              (('123', '999'), ('999', '123')) for marked in (False, True)):
+            with self.subTest(order=order, marked=marked):
+                mapping = ids.empty_id_map()
+                mapping['public_to_internal'] = {'123': '3hentai:999', '999': '3hentai:888'}
+                old = [row(sid, source_url='https://3hentai.net/d/' + sid) for sid in order]
+                store = {'records': {}, 'verified_checkpoints': {}, 'hentai3_attempts': {}}
+                # Simulate the persisted stores from a partial migration before restart.
+                for item in old:
+                    uid = mapping['public_to_internal'][item['source_id']]
+                    migrated = dict(item, uid=uid, source_id=uid.split(':')[1],
+                                    public_gallery_id=item['source_id'])
+                    store['records'][uid] = {
+                        'status': 'blocked' if item['source_id'] == '123' else 'pending',
+                        'reason': 'evidence:' + item['source_id'], 'item': migrated}
+                    store['verified_checkpoints'][uid] = copy.deepcopy(migrated)
+                    store['hentai3_attempts'][uid] = {
+                        'failures': int(item['source_id']),
+                        'last_attempt': 20 if item['source_id'] == '123' else 10}
+                    if marked:
+                        store['hentai3_attempts'][uid]['id_gen'] = 2
+                with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[1]) as directory:
+                    path = Path(directory) / 'filter.json'
+                    save_json(path, store)
+                    store = load_json(path, {})
+                before = copy.deepcopy(store)
+                for attempt in before['hentai3_attempts'].values():
+                    attempt['id_gen'] = 2
+                items, stats = ids.migrate(old, store, mapping, STAMP, c.merge_item)
+                self.assertEqual(store, before)
+                self.assertEqual({x['uid']: x['title'] for x in items},
+                                 {'3hentai:999': 'Sample 123', '3hentai:888': 'Sample 999'})
+                self.assertEqual(stats['by_store'], {'catalog': 2})
+                snapshot = copy.deepcopy((items, store, mapping))
+                items, stats = ids.migrate(items, store, mapping, STAMP, c.merge_item)
+                self.assertEqual(stats['total'], 0)
+                self.assertEqual((items, store, mapping), snapshot)
+
+    def test_attempts_only_unmarked_records_move_and_marking_is_not_migration(self):
+        for marked in (False, True):
+            with self.subTest(marked=marked):
+                mapping = ids.empty_id_map()
+                mapping['public_to_internal']['123'] = '3hentai:999'
+                old = row('123', source_url='https://3hentai.net/d/123')
+                attempt = {'failures': 7, 'last_attempt': 1}
+                if marked:
+                    attempt['id_gen'] = 2
+                store = {'hentai3_attempts': {'3hentai:123': attempt,
+                                            '3hentai:456': {'failures': 1}}}
+                items, stats = ids.migrate([old], store, mapping, STAMP, c.merge_item)
+                expected_uid = '3hentai:123' if marked else '3hentai:999'
+                self.assertEqual(store['hentai3_attempts'], {
+                    expected_uid: {'failures': 7, 'last_attempt': 1, 'id_gen': 2},
+                    '3hentai:456': {'failures': 1, 'id_gen': 2}})
+                self.assertEqual(stats['total'], 1 if marked else 2)
+                self.assertEqual([x['store'] for x in mapping['migrations']],
+                                 ['catalog'] if marked else ['catalog', 'hentai3_attempts'])
+                _, stats = ids.migrate(items, store, mapping, STAMP, c.merge_item)
+                self.assertEqual(stats['total'], 0)
 
     def test_unmapped_legacy_and_pending_migrate_to_public(self):
         old = row('123', source_url='https://3hentai.net/d/123')

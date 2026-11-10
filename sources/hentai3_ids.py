@@ -97,17 +97,34 @@ def migrate(items, filter_store, id_map, stamp, merge):
         new = id_map["public_to_internal"].get(public, "3hentai:g" + public)
         if new != old:
             moves[old] = (new, public)
+    # Determine ownership before removing rows from any item store.
+    protected_attempts = set()
+    for store in ("catalog", "records", "verified_checkpoints"):
+        for uid, value in stores[store].items():
+            if uid in moves:
+                item = value["item"] if store == "records" else value
+                if _legacy(item) != moves[uid][1]:
+                    protected_attempts.add(uid)
     # Remove every moving source before inserting destinations: a destination
     # may itself be an unrelated legacy source that still needs to move.
     sources = {}
     for store, entries in stores.items():
-        snapshot = dict(entries)
-        sources[store] = {uid: value for uid, value in snapshot.items() if uid in moves}
-        entries.clear()
-        entries.update((uid, value) for uid, value in snapshot.items() if uid not in moves)
+        sources[store] = {}
+        for uid, value in list(entries.items()):
+            if uid not in moves:
+                continue
+            if store == "hentai3_attempts":
+                eligible = "id_gen" not in value and uid not in protected_attempts
+            else:
+                item = value["item"] if store == "records" else value
+                eligible = _legacy(item) == moves[uid][1]
+            if eligible:
+                sources[store][uid] = entries.pop(uid)
     for old, (new, public) in moves.items():
         _move(stores, old, new, public, id_map, stamp, merge, "namespace", stats,
               sources=sources)
+    for attempt in stores["hentai3_attempts"].values():
+        attempt["id_gen"] = 2
     return list(catalog.values()), stats
 
 

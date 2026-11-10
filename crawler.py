@@ -589,6 +589,7 @@ def main(*, audit_only: bool = False) -> int:
                 h3_attempts.pop(uid, None)
             else:
                 h3_attempts[uid] = {"last_attempt": _timestamp(stamp),
+                                    "id_gen": 2,
                                     "failures": h3_attempts.get(uid, {}).get("failures", 0) + 1}
         restored = blocked = 0
         for uid, item in h3_pending.items():
