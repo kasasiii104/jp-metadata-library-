@@ -2,20 +2,18 @@
   "ehentai": {
     "status": "ok",
     "discovered": 50,
-    "accepted_raw": 1,
+    "accepted_raw": 9,
     "message": "",
-    "last_attempt": "2026-11-10T08:23:35+00:00",
-    "accepted": 0,
-    "blocked": 1,
-    "blocked_reasons": {
-      "blocked:male:yaoi": 1
-    },
-    "last_success": "2026-11-10T08:23:35+00:00",
-    "artists_found": 0,
-    "groups_found": 0,
-    "works_found": 0,
-    "characters_found": 0,
-    "tagged_items": 1,
+    "last_attempt": "2026-11-10T17:00:48+00:00",
+    "accepted": 9,
+    "blocked": 0,
+    "blocked_reasons": {},
+    "last_success": "2026-11-10T17:00:48+00:00",
+    "artists_found": 4,
+    "groups_found": 2,
+    "works_found": 5,
+    "characters_found": 5,
+    "tagged_items": 9,
     "pagination_mode": "global-latest+japanese-next-cursor",
     "latest_pages_fetched": 2,
     "backfill_pages_requested": 4,
@@ -31,21 +29,21 @@
         "requested_cursor": "<latest>",
         "final_url": "https://e-hentai.org/",
         "found_count": 25,
-        "first_gid": "4318886",
-        "last_gid": "4318859",
-        "next_cursor": "4318859",
+        "first_gid": "4319831",
+        "last_gid": "4319800",
+        "next_cursor": "4319800",
         "unique_new_count": 25,
         "repeated_page": false
       },
       {
         "stage": "latest-global:2",
         "query_mode": "global-latest",
-        "requested_cursor": "4318859",
-        "final_url": "https://e-hentai.org/?next=4318859",
+        "requested_cursor": "4319800",
+        "final_url": "https://e-hentai.org/?next=4319800",
         "found_count": 25,
-        "first_gid": "4318853",
-        "last_gid": "4318820",
-        "next_cursor": "4318820",
+        "first_gid": "4319799",
+        "last_gid": "4319771",
+        "next_cursor": "4319771",
         "unique_new_count": 25,
         "repeated_page": false
       }
@@ -53,11 +51,11 @@
     "latest_mode": "global-feed+gdata-language-filter",
     "backfill_mode": "japanese-search-next-cursor",
     "metadata_resolved": 50,
-    "japanese_items": 1,
+    "japanese_items": 9,
     "latest_global_discovered": 50,
     "latest_metadata_found": 50,
-    "latest_japanese_found": 1,
-    "latest_non_japanese_skipped": 49,
+    "latest_japanese_found": 9,
+    "latest_non_japanese_skipped": 41,
     "backfill_japanese_found": 0,
     "partial": false,
     "retry_queued": 0,
@@ -71,44 +69,44 @@
     "accepted_raw": 90,
     "latest_ids": 30,
     "backfill_ids": 60,
-    "total_index": 566228,
+    "total_index": 566367,
     "resource_base": "https://ltn.gold-usergeneratedcontent.net",
     "used_hosts": {
       "https://ltn.gold-usergeneratedcontent.net": 90
     },
     "index_url": "https://ltn.gold-usergeneratedcontent.net/n/index-japanese.nozomi",
     "message": "",
-    "last_attempt": "2026-11-10T08:23:35+00:00",
-    "accepted": 62,
-    "blocked": 28,
+    "last_attempt": "2026-11-10T17:00:48+00:00",
+    "accepted": 74,
+    "blocked": 16,
     "blocked_reasons": {
-      "blocked:male:yaoi": 23,
-      "blocked:amputee": 1,
-      "blocked:corpse": 1,
-      "blocked:female:guro": 1,
-      "blocked:female:scat": 2
+      "metadata_unverified": 4,
+      "blocked:male:yaoi": 4,
+      "blocked:title:vore": 1,
+      "blocked:female:scat": 5,
+      "blocked:male:miniguy": 2
     },
-    "last_success": "2026-11-10T08:23:35+00:00",
+    "last_success": "2026-11-10T17:00:48+00:00",
     "thumbnails_found": 90,
     "thumbnails_missing": 0,
     "thumbnail_samples": [
-      "4318921: https://tn.hitomi.la/bigtn/a/1c/dbee44d7c269b1e66fd7ec07e0d82001fe5c52a179d7e2f667f0f4779fc5b1ca.jpg",
-      "4318920: https://tn.hitomi.la/bigtn/8/8b/3c8ece2107aef6539b1d6fd6ea0196a290be6840fa7b79073e6defdd70a608b8.jpg",
-      "4318874: https://tn.hitomi.la/bigtn/e/26/d44be73b1f903054a4c4441fae492330cff468c294dd4b81e57de287893c726e.jpg"
+      "4319998: https://tn.hitomi.la/bigtn/3/09/5433e0aae61f7b42114ebd12ba7e1bcdf2986b3e682fdbdc2bf2e2334bcf6093.jpg",
+      "4319997: https://tn.hitomi.la/bigtn/0/ba/78213abd2596bcf55fb945704f7e729a2348a2064f8f2f7002e34caa0d25cba0.jpg",
+      "4319995: https://tn.hitomi.la/bigtn/4/0a/12a22d54d246352b1fffdc0c9c9900d4567590420afdffd4a0093e44d6fa80a4.jpg"
     ],
     "thumbnail_cache": {
-      "attempted": 32,
-      "cached": 32,
-      "reused": 29217,
+      "attempted": 34,
+      "cached": 34,
+      "reused": 29249,
       "failed": 0,
       "pending": 0,
       "failures": []
     },
-    "artists_found": 77,
-    "groups_found": 18,
+    "artists_found": 74,
+    "groups_found": 16,
     "works_found": 74,
-    "characters_found": 36,
-    "tagged_items": 90,
+    "characters_found": 57,
+    "tagged_items": 86,
     "partial": false,
     "retry_queued": 0,
     "retry_queue_size": 0,
@@ -128,12 +126,13 @@
   },
   "3hentai": {
     "status": "ok",
-    "discovered": 70,
-    "accepted_raw": 70,
+    "discovered": 73,
+    "accepted_raw": 73,
     "browse_mode": "browse-query-page",
     "detail_errors": 0,
     "languages_detected": {
-      "japanese": 70
+      "japanese": 72,
+      "english": 1
     },
     "language_evidence": {
       "missing": 2
@@ -142,62 +141,56 @@
       "10160 lang='missing' via='missing' title='Newest hentai - 10160'",
       "10161 lang='missing' via='missing' title='Newest hentai - 10161'"
     ],
-    "thumbnails_found": 70,
+    "thumbnails_found": 73,
     "thumbnails_missing": 0,
-    "debug": "page=1 candidates=7 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=1&sort=recent | page=2 candidates=13 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=2&sort=recent | page=1847 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=1847&sort=recent | page=1848 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=1848&sort=recent",
+    "debug": "page=1 candidates=23 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=1&sort=recent | page=2 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=2&sort=recent | page=1849 candidates=25 url=http://127.0.0.1:3000/3hentai/search?key=language%3Ajapanese&page=1849&sort=recent",
     "message": "",
-    "last_attempt": "2026-11-10T08:23:35+00:00",
-    "accepted": 51,
-    "blocked": 19,
+    "last_attempt": "2026-11-10T17:00:48+00:00",
+    "accepted": 62,
+    "blocked": 11,
     "blocked_reasons": {
-      "metadata_unverified": 10,
-      "blocked:yaoi": 9
+      "blocked:yaoi": 9,
+      "language": 1,
+      "blocked:title:blood": 1
     },
-    "last_success": "2026-11-10T08:23:35+00:00",
+    "last_success": "2026-11-10T17:00:48+00:00",
     "api_base": "http://127.0.0.1:3000",
     "jandapress_http": 200,
     "search_key": "language:japanese",
     "thumbnail_cache": {
       "mode": "public-search-exact-title+gallery",
       "attempted": 12,
-      "cached": 6,
-      "reused": 7058,
-      "failed": 6,
-      "pending": 3915,
+      "cached": 12,
+      "reused": 7064,
+      "failed": 0,
+      "pending": 3954,
       "resolved_search_fallbacks": 0,
       "rate_limited": false,
       "upstream_unavailable": false,
       "samples": [
-        "3643762: https://s9.3hentai.xyz/d949779/thumb.jpg -> thumbs/3hentai/3643762.webp",
-        "3607945: https://s4.3hentai.xyz/d607945/thumb.jpg -> thumbs/3hentai/3607945.webp",
-        "3607317: https://s9.3hentai.xyz/d607317/thumb.jpg -> thumbs/3hentai/3607317.webp",
-        "3607195: https://s9.3hentai.xyz/d607195/thumb.jpg -> thumbs/3hentai/3607195.webp",
-        "3607190: https://s4.3hentai.xyz/d607190/thumb.jpg -> thumbs/3hentai/3607190.webp"
+        "3788975: https://s1.3hentai.xyz/d2509578/thumb.jpg -> thumbs/3hentai/3788975.webp",
+        "3788970: https://s1.3hentai.xyz/d2509568/thumb.jpg -> thumbs/3hentai/3788970.webp",
+        "3788965: https://s1.3hentai.xyz/d2509570/thumb.jpg -> thumbs/3hentai/3788965.webp",
+        "3788960: https://s1.3hentai.xyz/d2509565/thumb.jpg -> thumbs/3hentai/3788960.webp",
+        "3788955: https://s1.3hentai.xyz/d2509562/thumb.jpg -> thumbs/3hentai/3788955.webp"
       ],
-      "failures": [
-        "3607840: https://s9.3hentai.xyz/d607840/thumb.jpg: 522 Server Error: <none> for url: https://s9.3hentai.xyz/d607840/thumb.jpg",
-        "3607296: https://s9.3hentai.xyz/d607296/thumb.jpg: 522 Server Error: <none> for url: https://s9.3hentai.xyz/d607296/thumb.jpg",
-        "3607279: https://s9.3hentai.xyz/d607279/thumb.jpg: 522 Server Error: <none> for url: https://s9.3hentai.xyz/d607279/thumb.jpg",
-        "3607276: https://s9.3hentai.xyz/d607276/thumb.jpg: 522 Server Error: <none> for url: https://s9.3hentai.xyz/d607276/thumb.jpg",
-        "3607275: https://s9.3hentai.xyz/d607275/thumb.jpg: 522 Server Error: <none> for url: https://s9.3hentai.xyz/d607275/thumb.jpg",
-        "3607193: https://s9.3hentai.xyz/d607193/thumb.jpg: 522 Server Error: <none> for url: https://s9.3hentai.xyz/d607193/thumb.jpg"
-      ]
+      "failures": []
     },
     "detail_mode": "search-only",
-    "source_urls_found": 70,
-    "direct_source_urls": 70,
+    "source_urls_found": 73,
+    "direct_source_urls": 73,
     "search_fallback_urls": 0,
     "source_url_samples": [
-      "3788285 [direct]: https://3hentai.net/d/788285",
-      "3788205 [direct]: https://3hentai.net/d/788205",
-      "3788185 [direct]: https://3hentai.net/d/788185",
-      "3788150 [direct]: https://3hentai.net/d/788150",
-      "3788125 [direct]: https://3hentai.net/d/788125"
+      "3788970 [direct]: https://3hentai.net/d/788970",
+      "3788975 [direct]: https://3hentai.net/d/788975",
+      "3788955 [direct]: https://3hentai.net/d/788955",
+      "3788960 [direct]: https://3hentai.net/d/788960",
+      "3788965 [direct]: https://3hentai.net/d/788965"
     ],
     "3hentai_debug_samples": [
       {
-        "id_guess": "3788285",
-        "title_guess": "[オタワ] 個人レッスンるる 先行公開",
+        "id_guess": "3788970",
+        "title_guess": "(C81) Yuki to Onsen no Aru Tsuitachi. (THE IDOLM@STER)",
         "top_level_keys": [
           "title",
           "id"
@@ -210,13 +203,13 @@
         "image_like_values": [],
         "real_gallery_url": "",
         "best_thumbnail_url": "",
-        "normalized_source_id": "3788285",
+        "normalized_source_id": "3788970",
         "normalized_source_url_kind": "search",
-        "normalized_source_url": "https://3hentai.net/search?q=%5B%E3%82%AA%E3%82%BF%E3%83%AF%5D+%E5%80%8B%E4%BA%BA%E3%83%AC%E3%83%83%E3%82%B9%E3%83%B3%E3%82%8B%E3%82%8B+%E5%85%88%E8%A1%8C%E5%85%AC%E9%96%8B"
+        "normalized_source_url": "https://3hentai.net/search?q=%28C81%29+Yuki+to+Onsen+no+Aru+Tsuitachi.+%28THE+IDOLM%40STER%29"
       },
       {
-        "id_guess": "3788205",
-        "title_guess": "[kunugimiyaco] 私で童貞捨てたくせに合同の果穂(２ページ)",
+        "id_guess": "3788975",
+        "title_guess": "[ゆうひぐも。] 火花のおしおきっすとり〜む (崩壊:スターレイル)",
         "top_level_keys": [
           "title",
           "id"
@@ -229,13 +222,13 @@
         "image_like_values": [],
         "real_gallery_url": "",
         "best_thumbnail_url": "",
-        "normalized_source_id": "3788205",
+        "normalized_source_id": "3788975",
         "normalized_source_url_kind": "search",
-        "normalized_source_url": "https://3hentai.net/search?q=%5Bkunugimiyaco%5D+%E7%A7%81%E3%81%A7%E7%AB%A5%E8%B2%9E%E6%8D%A8%E3%81%A6%E3%81%9F%E3%81%8F%E3%81%9B%E3%81%AB%E5%90%88%E5%90%8C%E3%81%AE%E6%9E%9C%E7%A9%82%28%EF%BC%92%E3%83%9A%E3%83%BC%E3%82%B8%29"
+        "normalized_source_url": "https://3hentai.net/search?q=%5B%E3%82%86%E3%81%86%E3%81%B2%E3%81%90%E3%82%82%E3%80%82%5D+%E7%81%AB%E8%8A%B1%E3%81%AE%E3%81%8A%E3%81%97%E3%81%8A%E3%81%8D%E3%81%A3%E3%81%99%E3%81%A8%E3%82%8A%E3%80%9C%E3%82%80+%28%E5%B4%A9%E5%A3%8A%3A%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%AC%E3%82%A4%E3%83%AB%29"
       },
       {
-        "id_guess": "3788185",
-        "title_guess": "[Kanamiya (Kanami)] Hitori Asobu Peko! (Usada Pekora) [Digital]",
+        "id_guess": "3788955",
+        "title_guess": "(C79) [Nekousa Pudding (Ra-men)] Koisuru Idol (THE IDOLM@STER)",
         "top_level_keys": [
           "title",
           "id"
@@ -248,9 +241,9 @@
         "image_like_values": [],
         "real_gallery_url": "",
         "best_thumbnail_url": "",
-        "normalized_source_id": "3788185",
+        "normalized_source_id": "3788955",
         "normalized_source_url_kind": "search",
-        "normalized_source_url": "https://3hentai.net/search?q=%5BKanamiya+%28Kanami%29%5D+Hitori+Asobu+Peko%21+%28Usada+Pekora%29+%5BDigital%5D"
+        "normalized_source_url": "https://3hentai.net/search?q=%28C79%29+%5BNekousa+Pudding+%28Ra-men%29%5D+Koisuru+Idol+%28THE+IDOLM%40STER%29"
       }
     ],
     "debug_sample_count": 3,
@@ -262,34 +255,27 @@
     "get_debug_rate_limited": false,
     "get_probe_enriched_items": 0,
     "direct_html_mode": "public-search-card-enrichment",
-    "direct_html_cards": 70,
-    "direct_html_enriched": 70,
+    "direct_html_cards": 73,
+    "direct_html_enriched": 73,
     "direct_html_pages": [
       {
         "page": 1,
         "http_status": 200,
         "final_url": "https://3hentai.net/search?q=language%3Ajapanese&page=1&sort=recent",
-        "cards": 7,
+        "cards": 23,
         "error": ""
       },
       {
         "page": 2,
         "http_status": 200,
         "final_url": "https://3hentai.net/search?q=language%3Ajapanese&page=2&sort=recent",
-        "cards": 13,
-        "error": ""
-      },
-      {
-        "page": 1847,
-        "http_status": 200,
-        "final_url": "https://3hentai.net/search?q=language%3Ajapanese&page=1847&sort=recent",
         "cards": 25,
         "error": ""
       },
       {
-        "page": 1848,
+        "page": 1849,
         "http_status": 200,
-        "final_url": "https://3hentai.net/search?q=language%3Ajapanese&page=1848&sort=recent",
+        "final_url": "https://3hentai.net/search?q=language%3Ajapanese&page=1849&sort=recent",
         "cards": 25,
         "error": ""
       }
@@ -300,44 +286,57 @@
     "gallery_metadata_failed": 0,
     "gallery_metadata_stopped": false,
     "gallery_metadata_samples": [
-      "3607945: tags=3 artists=0 groups=0 category=manga",
-      "3607840: tags=8 artists=0 groups=0 category=doujinshi",
-      "3607833: tags=8 artists=0 groups=0 category=doujinshi",
-      "3643762: tags=25 artists=0 groups=0 category=doujinshi",
-      "3607769: tags=3 artists=0 groups=0 category=doujinshi"
+      "3609193: tags=11 artists=0 groups=0 category=doujinshi",
+      "3607056: tags=11 artists=0 groups=0 category=doujinshi",
+      "3607052: tags=5 artists=0 groups=0 category=doujinshi",
+      "3607048: tags=12 artists=0 groups=0 category=doujinshi",
+      "3607060: tags=10 artists=0 groups=0 category=doujinshi"
     ],
     "gallery_metadata_failures": [],
     "existing_filter_audit_mode": "public-gallery-metadata",
     "existing_filter_audit_attempted": 60,
-    "existing_filter_audit_enriched": 1,
+    "existing_filter_audit_enriched": 17,
     "existing_filter_audit_resolved_search": 0,
-    "existing_filter_audit_failed": 59,
-    "existing_filter_audit_pending": 273,
+    "existing_filter_audit_failed": 43,
+    "existing_filter_audit_pending": 255,
     "existing_filter_audit_stopped": false,
     "existing_filter_audit_samples": [
-      "3746459: tags=7 artists=0"
+      "3786385: tags=7 artists=0",
+      "3786390: tags=11 artists=0",
+      "3786380: tags=12 artists=0",
+      "3786260: tags=5 artists=0",
+      "3786255: tags=7 artists=0"
     ],
-    "existing_filter_audit_failures": [],
-    "purged_existing_this_run": 1,
-    "tagged_items": 70,
+    "existing_filter_audit_failures": [
+      "3712322: search exact-title matches=2",
+      "3711742: search exact-title matches=4",
+      "3711617: search exact-title matches=4",
+      "3711560: search exact-title matches=2",
+      "3711529: search exact-title matches=3",
+      "3713846: search exact-title matches=2",
+      "3713678: search exact-title matches=2",
+      "3717191: search exact-title matches=8"
+    ],
+    "purged_existing_this_run": 0,
+    "tagged_items": 73,
     "artists_found": 0,
     "groups_found": 0,
-    "works_found": 41,
-    "characters_found": 37,
+    "works_found": 50,
+    "characters_found": 40,
     "skipped": "hitomi-filter-audit-only",
     "partial": true,
-    "backfill_page_before": 1847,
-    "backfill_page_after": 1849,
-    "backfill_pages_completed": 2,
+    "backfill_page_before": 1849,
+    "backfill_page_after": 1850,
+    "backfill_pages_completed": 1,
     "backfill_pages_failed": 0,
     "id_migration": {
       "total": 0,
       "by_store": {},
       "conflicts": 0
     },
-    "existing_filter_audit_pending_targets": 18,
-    "existing_filter_audit_pending_restored": 0,
-    "existing_filter_audit_pending_blocked": 0
+    "existing_filter_audit_pending_targets": 17,
+    "existing_filter_audit_pending_restored": 16,
+    "existing_filter_audit_pending_blocked": 1
   },
   "filters": {
     "id_migration": {
@@ -349,55 +348,63 @@
     "r18g_filter": "enabled",
     "insect_filter": "enabled",
     "insect_terms": 55,
-    "purged_existing_blocked": 1,
+    "purged_existing_blocked": 0,
     "purged_existing_insect": 0,
-    "purged_existing_3hentai": 1,
-    "purged_existing_reasons": {
-      "blocked:yaoi": 1
-    },
-    "purged_existing_by_source": {
-      "3hentai": 1
-    },
+    "purged_existing_3hentai": 0,
+    "purged_existing_reasons": {},
+    "purged_existing_by_source": {},
     "3hentai_existing_audit": {
       "existing_filter_audit_mode": "public-gallery-metadata",
       "existing_filter_audit_attempted": 60,
-      "existing_filter_audit_enriched": 1,
+      "existing_filter_audit_enriched": 17,
       "existing_filter_audit_resolved_search": 0,
-      "existing_filter_audit_failed": 59,
-      "existing_filter_audit_pending": 273,
+      "existing_filter_audit_failed": 43,
+      "existing_filter_audit_pending": 255,
       "existing_filter_audit_stopped": false,
       "existing_filter_audit_samples": [
-        "3746459: tags=7 artists=0"
+        "3786385: tags=7 artists=0",
+        "3786390: tags=11 artists=0",
+        "3786380: tags=12 artists=0",
+        "3786260: tags=5 artists=0",
+        "3786255: tags=7 artists=0"
       ],
-      "existing_filter_audit_failures": [],
-      "existing_filter_audit_pending_targets": 18,
-      "existing_filter_audit_pending_restored": 0,
-      "existing_filter_audit_pending_blocked": 0
+      "existing_filter_audit_failures": [
+        "3712322: search exact-title matches=2",
+        "3711742: search exact-title matches=4",
+        "3711617: search exact-title matches=4",
+        "3711560: search exact-title matches=2",
+        "3711529: search exact-title matches=3",
+        "3713846: search exact-title matches=2",
+        "3713678: search exact-title matches=2",
+        "3717191: search exact-title matches=8"
+      ],
+      "existing_filter_audit_pending_targets": 17,
+      "existing_filter_audit_pending_restored": 16,
+      "existing_filter_audit_pending_blocked": 1
     },
     "hitomi_existing_audit": {
-      "last_run": "2026-11-10T08:23:35+00:00",
-      "eligible": 29031,
+      "last_run": "2026-11-10T17:00:48+00:00",
+      "eligible": 29060,
       "attempted": 200,
-      "verified": 3,
-      "restored": 3,
+      "verified": 4,
+      "restored": 4,
       "blocked": 0,
-      "unverified": 122,
-      "failed": 75,
+      "unverified": 181,
+      "failed": 15,
       "failed_reasons": {
-        "metadata_invalid": 44,
-        "http_404": 31
+        "http_404": 6,
+        "metadata_invalid": 9
       },
       "stopped": false,
-      "remaining_source_rechecks": 29353
+      "remaining_source_rechecks": 29360
     },
     "quarantined_pending_by_source": {
-      "hitomi": 1323,
-      "3hentai": 17
+      "hitomi": 1320
     },
     "quarantined_blocked_by_source": {
       "hitomi": 3169,
       "ehentai": 430,
-      "3hentai": 1834,
+      "3hentai": 1841,
       "asmhentai": 2
     },
     "held_existing_unverified": 0
@@ -428,16 +435,16 @@
     "tagged_items": 8,
     "thumbnail_urls": 8,
     "message": "",
-    "last_attempt": "2026-11-10T08:23:35+00:00",
+    "last_attempt": "2026-11-10T17:00:48+00:00",
     "accepted": 76,
     "blocked": 2,
     "blocked_reasons": {
       "blocked:yaoi": 2
     },
     "thumbnail_cache": {
-      "attempted": 1,
-      "cached": 1,
-      "reused": 79,
+      "attempted": 0,
+      "cached": 0,
+      "reused": 80,
       "failed": 0,
       "pending": 0
     },
@@ -447,10 +454,10 @@
     "probe_rows": 0,
     "detail_attempts": 8,
     "detail_success": 8,
-    "last_success": "2026-11-10T08:23:35+00:00",
-    "detail_cursor": 0,
-    "detail_cursor_next": 8,
+    "last_success": "2026-11-10T17:00:48+00:00",
+    "detail_cursor": 8,
+    "detail_cursor_next": 16,
     "detail_candidates": 80
   },
-  "updated_at": "2026-11-10T08:23:35+00:00"
+  "updated_at": "2026-11-10T17:00:48+00:00"
 }
