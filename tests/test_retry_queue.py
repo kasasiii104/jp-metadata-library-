@@ -8,6 +8,7 @@ from unittest.mock import patch
 
 import crawler as c
 from sources import ehentai as eh, hitomi
+from sources.common import retry_window
 
 
 class RetryQueueTests(unittest.TestCase):
@@ -215,7 +216,61 @@ class RetryQueueTests(unittest.TestCase):
                 'ehentai', original,
                 lambda state: self.eh_run(state, [(3, 'cccccccccc')]))
 
-    def test_retry_limits_leave_remaining_entries_untouched(self):
+    def test_retry_window_small_and_disabled(self):
+        for keys, limit in [([], 2), (['a'], 2), (['a', 'b'], 2)]:
+            self.assertEqual(retry_window(keys, limit, now=7200), keys)
+        for limit in (0, -1):
+            self.assertEqual(retry_window(['a', 'b'], limit, now=0), [])
+
+    def test_retry_window_coverage_size_and_period_stability(self):
+        for n in range(2, 15):
+            for limit in range(1, n):
+                keys = list(range(n))
+                seen = set()
+                for period in range((n + limit - 1) // limit + 1):
+                    now = period * 3600
+                    selected = retry_window(keys, limit, now=now)
+                    self.assertEqual(len(selected), limit)
+                    self.assertEqual(len(set(selected)), limit)
+                    start = (period * limit) % n
+                    self.assertEqual(selected, [keys[(start + i) % n] for i in range(limit)])
+                    self.assertEqual(retry_window(keys, limit, now=now + 3599), selected)
+                    seen.update(selected)
+                self.assertEqual(seen, set(keys))
+
+    def test_hitomi_retry_rotates_without_saving_state(self):
+        self.assert_retry_rotates_without_saving_state(hitomi, 'HITOMI', 'retry_ids')
+
+    def test_eh_retry_rotates_without_saving_state(self):
+        self.assert_retry_rotates_without_saving_state(eh, 'EH', 'retry_refs')
+
+    def assert_retry_rotates_without_saving_state(self, module, prefix, queue_key):
+        extra = {'token': 'aaaaaaaaaa'} if module is eh else {}
+        original = {queue_key: {str(gid): self.entry(**extra) for gid in range(1, 6)}}
+        snapshot = copy.deepcopy(original)
+        attempted = set()
+        expected_keys = {queue_key}
+        with patch.object(module, prefix + '_RETRY_LIMIT', 2):
+            for period in range(4):
+                with patch('sources.common.time.time', return_value=period * 3600):
+                    if module is eh:
+                        items, new_state, status, mock = self.eh_run(original)
+                        attempted.update(gid for call in mock.call_args_list
+                                         for gid, _ in call.args[2]['gidlist'])
+                    else:
+                        items, new_state, status, mock = self.hitomi_run(original, fail=range(1, 6))
+                        attempted.update(call.args[1] for call in mock.call_args_list)
+                self.assertEqual(items, [])
+                self.assertNotEqual(status['status'], 'ok')
+                self.assertEqual(set(new_state), expected_keys)
+                self.assertEqual(set(new_state[queue_key]), set(original[queue_key]))
+                for entry in new_state[queue_key].values():
+                    self.assertEqual(set(entry), set(self.entry(**extra)))
+                self.assertEqual(original, snapshot)
+        self.assertEqual(attempted, set(range(1, 6)))
+
+    @patch("sources.common.time.time", return_value=0)
+    def test_retry_limits_leave_remaining_entries_untouched(self, _clock):
         with patch.object(hitomi, 'HITOMI_RETRY_LIMIT', 1):
             _, state, _, fetch = self.hitomi_run({'retry_ids': {'1': self.entry(), '2': self.entry()}})
         self.assertEqual(fetch.call_count, 1)

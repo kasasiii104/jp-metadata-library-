@@ -18,6 +18,18 @@ HEADERS = {
 }
 
 
+def retry_window(keys, limit, now=None, period_sec=3600) -> list:
+    """Rotate retries despite zero-success runs, without adding saved state."""
+    if limit <= 0 or not keys:
+        return []
+    if len(keys) <= limit:
+        return list(keys)
+    if now is None:
+        now = time.time()
+    start = (int(now // period_sec) * limit) % len(keys)
+    return [keys[(start + offset) % len(keys)] for offset in range(limit)]
+
+
 def is_valid_source_id(value: str, *, source: str = "") -> bool:
     """Accept ASCII IDs without path/URL syntax; preserve opaque API IDs."""
     if isinstance(value, str) and re.fullmatch(r"[A-Za-z0-9_-]+", value):

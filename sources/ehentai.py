@@ -8,7 +8,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from config import EH_RETRY_LIMIT, EH_RETRY_MAX_FAILURES, EH_RETRY_QUEUE_MAX, EH_BACKFILL_PAGES, EH_LATEST_PAGES, EH_MAX_GALLERIES_PER_RUN
-from sources.common import absolute_url, iso_from_unix, safe_get, safe_post_json, unique_strings
+from sources.common import absolute_url, retry_window, iso_from_unix, safe_get, safe_post_json, unique_strings
 
 BASE = "https://e-hentai.org/"
 API = "https://api.e-hentai.org/api.php"
@@ -234,7 +234,7 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         exhausted.append({"gid": gid, **queue.pop(gid)})
         retry_exhausted += 1
     exhausted = exhausted[-200:]
-    retry_gids = list(queue)[:max(0, EH_RETRY_LIMIT)]
+    retry_gids = retry_window(list(queue), EH_RETRY_LIMIT)
     session = requests.Session()
     refs: list[tuple[int, str]] = []
     seen_refs: set[tuple[int, str]] = set()

@@ -6,7 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from config import HITOMI_RETRY_LIMIT, HITOMI_RETRY_MAX_FAILURES, HITOMI_RETRY_QUEUE_MAX, HITOMI_BACKFILL_LIMIT, HITOMI_LATEST_LIMIT
-from sources.common import absolute_url, parse_json_wrapped_js, safe_get, unique_strings
+from sources.common import absolute_url, retry_window, parse_json_wrapped_js, safe_get, unique_strings
 
 # Hitomi moved resource delivery from ltn.hitomi.la to
 # ltn.gold-usergeneratedcontent.net. Keep the old host as a fallback only.
@@ -354,7 +354,7 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         exhausted.append({"gid": gid, **queue.pop(gid)})
         retry_exhausted += 1
     exhausted = exhausted[-200:]
-    retry_gids = list(queue)[:max(0, HITOMI_RETRY_LIMIT)]
+    retry_gids = retry_window(list(queue), HITOMI_RETRY_LIMIT)
     backfill_offset = int(state.get("backfill_offset") or HITOMI_LATEST_LIMIT)
     preferred_base = str(state.get("resource_base") or "") or None
     session = requests.Session()
