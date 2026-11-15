@@ -4,22 +4,24 @@ on:
     paths: ["crawler.py", "config.py", "sources/**", "tests/**", "tools/purge_*.py", ".github/workflows/**"]
   push:
     branches: [main]
-    paths: ["crawler.py", "config.py", "sources/**", "tests/**", "tools/purge_*.py", ".github/workflows/test.yml"]
+    paths: ["crawler.py", "config.py", "sources/**", "tests/**", "tools/**", "requirements.txt", "requirements.lock", ".github/workflows/test.yml", ".github/workflows/update.yml"]
 permissions:
   contents: read
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      # sparse-checkout は cone モード（既定）なので、ルート直下のファイル（crawler.py・config.py・
+      # requirements.txt・requirements.lock）は一覧に書かなくても常に展開される。
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           sparse-checkout: |
             .github
             sources
             tests
             tools
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: "3.12"
-      - run: pip install -r requirements.txt
+      - run: pip install --require-hashes -r requirements.lock
       - run: python -m unittest discover -s tests -v
