@@ -17,7 +17,7 @@ def row(number):
 
 
 def metadata(tags=None):
-    return {"evidence_count": 1, "filter_evidence_count": 1,
+    return {"evidence_count": 1, "filter_evidence_count": 1, "tag_section_found": True, "content_tag_count": 1,
             "tags": tags or ["sample"]}, {"http_status": 200}
 
 
@@ -46,6 +46,21 @@ class BackfillTests(unittest.TestCase):
                 raise RuntimeError("API failure")
             return ([] if self.empty else [row(page * 10 + n) for n in range(2)]), "mock"
         self.enterContext(patch.object(h, "_get_json", side_effect=search))
+
+    def test_collect_requires_content_tags_for_checked_and_success(self):
+        for html, reason in [("<nav></nav>", "gallery_no_tag_section"),
+                             ('<div id="main-info"><div class="tag-container">Tags: '
+                              '<a href="/language/japanese">japanese</a></div></div>',
+                              "gallery_no_tags")]:
+            with self.subTest(reason=reason):
+                self.fetch.return_value = (h._gallery_metadata_from_html(html, ""),
+                                           {"http_status": 200})
+                items, _, status = h.collect({"backfill_page": 10})
+                self.assertTrue(items)
+                self.assertTrue(all(not x.get("filter_metadata_checked") for x in items))
+                self.assertEqual(status["gallery_metadata_enriched"], 0)
+                self.assertEqual(status["gallery_metadata_failed"], status["gallery_metadata_attempted"])
+                self.assertTrue(all(reason in failure for failure in status["gallery_metadata_failures"]))
 
     def test_latest_cap_still_ingests_whole_history_page(self):
         items, state, status = h.collect({"backfill_page": 10})
@@ -244,6 +259,158 @@ class PendingAuditTests(unittest.TestCase):
         self.assertEqual(c.main(audit_only=True), 0)
         self.fetch.assert_not_called()
         self.assertEqual(c.load_json(c.FILTER_STATE_FILE, {})["records"]["3hentai:100"]["status"], "pending")
+
+    def legacy_row(self, number, url=""):
+        return dict(row(number), source_url=url, source_token="", title_jp="Sample",
+                    category="", artists=[], groups=[], parodies=[], works=[],
+                    characters=[], tags=["language:japanese"], meta_tags=[], pages=0,
+                    rating=None, popularity=None, posted_at="", thumbnail="",
+                    first_seen="2026-09-24T09:38:05+00:00",
+                    last_seen="2026-09-24T09:38:05+00:00")
+
+    def test_legacy_empty_and_search_are_held_with_details_and_restored(self):
+        items = [self.legacy_row(3712322), self.legacy_row(3711742, "https://3hentai.net/search?q=Sample")]
+        c.save_json(c.DATA_FILE, {"items": items})
+        with patch.object(h, "HENTAI3_EXISTING_FILTER_AUDIT_LIMIT", 2), patch.object(
+                h, "_resolve_public_search_exact", return_value=(None, "exact-title matches=2", False)):
+            self.assertEqual(c.main(), 0)
+        self.assertEqual(c.load_json(c.DATA_FILE, {})["items"], [])
+        store = c.load_json(c.FILTER_STATE_FILE, {}, c.validate_filter_store)
+        for item, reason in zip(items, ("repair_no_page_title", "repair_no_page_title")):
+            rec = store["records"][item["uid"]]
+            self.assertEqual(rec["status"], "pending")
+            self.assertEqual(rec["reason"], "metadata_unverified")
+            self.assertEqual(rec["hold_detail"], "3hentai_unaudited:" + reason)
+            for key, value in item.items():
+                self.assertEqual(rec["item"][key], value)
+        self.assertEqual(c.load_json(c.STATUS_FILE, {})["3hentai"]["held_existing_unaudited"], 2)
+        first = store["records"][items[0]["uid"]]["first_quarantined_at"]
+        store["records"][items[0]["uid"]]["item"]["source_url"] = row(3712322)["source_url"]
+        c.save_json(c.FILTER_STATE_FILE, store)
+        self.assertEqual(c.main(), 0)
+        self.assertEqual(c.load_json(c.DATA_FILE, {})["items"], [])
+        store = c.load_json(c.FILTER_STATE_FILE, {})
+        store["records"][items[0]["uid"]]["item"]["repair_evidence"] = "detail_id"
+        c.save_json(c.FILTER_STATE_FILE, store)
+        self.assertEqual(c.main(), 0)
+        self.assertEqual([x["uid"] for x in c.load_json(c.DATA_FILE, {})["items"]], [items[0]["uid"]])
+        self.assertEqual(first, "2026-11-09T00:00:00+00:00")
+
+    def test_non_numeric_empty_url_gives_up_without_http_and_does_not_consume_limit(self):
+        item = dict(self.legacy_row(3712322), source_id="g3712322")
+        c.save_json(c.DATA_FILE, {"items": [item]})
+        with patch.object(h, "_resolve_public_search_exact") as search:
+            self.assertEqual(c.main(), 0)
+            self.fetch.assert_not_called()
+            search.assert_not_called()
+        attempt = c.load_json(c.FILTER_STATE_FILE, {})["hentai3_attempts"][item["uid"]]
+        self.assertTrue(attempt["gave_up"])
+        self.assertEqual((attempt["reason"], attempt["url_shape"], attempt["source_url"]), ("empty_url", "empty", ""))
+        c.save_json(c.DATA_FILE, {"items": [row(3711742)]})
+        self.assertEqual(c.main(), 0)
+        self.assertEqual(self.fetch.call_count, 1)
+        status = c.load_json(c.STATUS_FILE, {})["3hentai"]
+        self.assertEqual(status["existing_filter_audit_reason_counts"], {"ok": 1})
+        self.assertEqual(status["existing_filter_audit_gave_up_reasons"], {"empty_url": 1})
+        self.assertEqual(status["existing_filter_audit_pending"], 1)
+        self.assertEqual(c.load_json(c.FILTER_STATE_FILE, {})["hentai3_attempts"][item["uid"]]["failures"], 1)
+
+    def test_search_repair_failure_gives_up_and_url_change_resumes(self):
+        item = self.legacy_row(3712322, "https://3hentai.net/search?q=Sample")
+        c.save_json(c.DATA_FILE, {"items": [item]})
+        with patch.object(h, "_resolve_public_search_exact") as search:
+            self.assertEqual(c.main(), 0)
+            attempt = c.load_json(c.FILTER_STATE_FILE, {})["hentai3_attempts"][item["uid"]]
+            self.assertTrue(attempt["gave_up"])
+            self.assertEqual(attempt["reason"], "repair_no_page_title")
+            self.assertEqual(c.main(), 0)
+            search.assert_not_called()
+        store = c.load_json(c.FILTER_STATE_FILE, {})
+        store["records"][item["uid"]]["item"]["source_url"] = row(3712322)["source_url"]
+        c.save_json(c.FILTER_STATE_FILE, store)
+        self.assertEqual(c.main(), 0)
+        self.assertNotIn(item["uid"], c.load_json(c.FILTER_STATE_FILE, {})["hentai3_attempts"])
+        self.assertEqual(c.load_json(c.DATA_FILE, {})["items"], [])
+        store = c.load_json(c.FILTER_STATE_FILE, {})
+        store["records"][item["uid"]]["item"]["repair_evidence"] = "payload_link"
+        c.save_json(c.FILTER_STATE_FILE, store)
+        self.assertEqual(c.main(), 0)
+        self.assertEqual(len(c.load_json(c.DATA_FILE, {})["items"]), 1)
+
+    def test_repeated_429_does_not_give_up(self):
+        self.seed(row(100))
+        self.fetch.return_value = (None, {"http_status": 429})
+        for _ in range(4):
+            self.assertEqual(c.main(), 0)
+        attempt = c.load_json(c.FILTER_STATE_FILE, {})["hentai3_attempts"]["3hentai:100"]
+        self.assertEqual(attempt["reason"], "stopped_http_429")
+        self.assertFalse(attempt.get("gave_up", False))
+
+    def test_audit_only_holds_unaudited_but_keeps_verified_and_hitomi(self):
+        verified = dict(row(3711742), filter_metadata_checked="3hentai-gallery-v1")
+        hitomi = dict(uid="hitomi:100", source="hitomi", source_id="100", title="Sample",
+                      language="japanese", tags=["sample"],
+                      filter_metadata_checked=c.hitomi.FILTER_METADATA_VERSION)
+        c.save_json(c.DATA_FILE, {"items": [self.legacy_row(3712322), verified, hitomi]})
+        self.assertEqual(c.main(audit_only=True), 0)
+        self.fetch.assert_not_called()
+        self.assertEqual({x["uid"] for x in c.load_json(c.DATA_FILE, {})["items"]}, {verified["uid"], hitomi["uid"]})
+        rec = c.load_json(c.FILTER_STATE_FILE, {})["records"]["3hentai:3712322"]
+        self.assertEqual(rec["hold_detail"], "3hentai_unaudited")
+
+    def test_quarantine_preserves_block_and_first_timestamp(self):
+        store = {"records": {}, "hentai3_attempts": {}}
+        item = self.legacy_row(3712322)
+        c.quarantine_item(store, item, "metadata_unverified", "first")
+        c.quarantine_item(store, item, "metadata_unverified", "second")
+        self.assertEqual(store["records"][item["uid"]]["first_quarantined_at"], "first")
+        c.quarantine_item(store, item, "blocked:guro", "third")
+        saved = dict(store["records"][item["uid"]])
+        c.quarantine_item(store, item, "metadata_unverified", "fourth")
+        self.assertEqual(store["records"][item["uid"]], saved)
+
+    def test_transient_failure_resets_permanent_streak(self):
+        self.seed(row(100))
+        self.fetch.side_effect = [(None, {"http_status": status})
+                                  for status in (404, 404, 429, 404)]
+        for _ in range(4):
+            self.assertEqual(c.main(), 0)
+        attempt = c.load_json(c.FILTER_STATE_FILE, {})["hentai3_attempts"]["3hentai:100"]
+        self.assertEqual(attempt["consecutive_failures"], 1)
+        self.assertEqual(attempt["failures"], 4)
+        self.assertFalse(attempt.get("gave_up", False))
+
+    def test_missing_section_and_no_tags_give_up_after_three(self):
+        for html, reason in [("<nav></nav>", "gallery_no_tag_section"),
+                             ('<div id="main-info"><div class="tag-container">Tags: '
+                              '<a href="/language/japanese">japanese</a></div></div>',
+                              "gallery_no_tags")]:
+            with self.subTest(reason=reason):
+                self.seed(row(100))
+                self.fetch.return_value = (h._gallery_metadata_from_html(html, ""),
+                                           {"http_status": 200})
+                for attempt_number in range(1, 4):
+                    self.assertEqual(c.main(), 0)
+                    store = c.load_json(c.FILTER_STATE_FILE, {})
+                    attempt = store["hentai3_attempts"]["3hentai:100"]
+                    self.assertEqual(attempt["reason"], reason)
+                    self.assertEqual(attempt["consecutive_failures"], attempt_number)
+                    self.assertEqual(bool(attempt.get("gave_up")), attempt_number == 3)
+
+    def test_gallery_no_evidence_and_404_give_up_but_transport_does_not(self):
+        for status, reason, gives_up in [(200, "gallery_no_evidence", True),
+                                         (404, "gallery_http_404", True),
+                                         (0, "transport", False)]:
+            with self.subTest(reason=reason):
+                self.seed(row(100))
+                self.fetch.return_value = (None, {"http_status": status})
+                for _ in range(3):
+                    self.assertEqual(c.main(), 0)
+                store = c.load_json(c.FILTER_STATE_FILE, {})
+                attempt = store["hentai3_attempts"]["3hentai:100"]
+                self.assertEqual(attempt["reason"], reason)
+                self.assertEqual(bool(attempt.get("gave_up")), gives_up)
+                self.assertEqual(store["records"]["3hentai:100"]["status"], "pending")
 
 
 if __name__ == "__main__":

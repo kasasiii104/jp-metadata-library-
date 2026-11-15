@@ -141,20 +141,13 @@ def page_image_candidates(html: str, page_url: str) -> list[str]:
             if url:
                 out.append(url)
 
-    # 3Hentai currently exposes lazy thumbnails with data-src on gallery cards
-    # and page thumbs.  A first page thumbnail is a perfectly adequate card
-    # image when a dedicated cover is absent.
+    # Observed own-gallery containers only; related galleries are outside them.
     selectors = (
-        ".gallery-cover img",
-        ".cover img",
-        ".gallery-thumb img",
-        ".single-thumb img",
-        "img.lazy",
-        "img[data-src]",
-        "img[src]",
+        "#main-info a.main-cover img",
+        "#thumbnail-gallery img",
     )
     for sel in selectors:
-        for img in soup.select(sel)[:8]:
+        for img in soup.select(sel):
             raw = img.get("data-src") or img.get("data-original") or img.get("src") or ""
             url = absolute(page_url, raw)
             if url:
@@ -176,7 +169,8 @@ def fetch_page_candidates(session: requests.Session, page_url: str) -> tuple[lis
         if r.status_code == 429:
             return [], f"429 from gallery page: {page_url}", True
         r.raise_for_status()
-        return page_image_candidates(r.text, r.url), "", False
+        candidates = page_image_candidates(r.text, r.url)
+        return candidates, "" if candidates else "gallery_no_image_candidates", False
     except Exception as e:
         return [], f"gallery page: {e}", False
 

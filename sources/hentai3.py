@@ -18,6 +18,7 @@ from config import (
     HENTAI3_GALLERY_METADATA_LIMIT,
     HENTAI3_GET_DEBUG_DELAY_SEC,
     HENTAI3_GET_DEBUG_LIMIT,
+    HENTAI3_REPAIR_GET_LIMIT,
     HENTAI3_LATEST_PAGES,
     HENTAI3_MAX_GALLERIES_PER_RUN,
 )
@@ -437,11 +438,11 @@ def _href_namespace(href: str) -> tuple[str, str]:
 def _gallery_metadata_from_html(html: str, page_url: str) -> dict:
     """Extract only public gallery metadata used by the library/filters.
 
-    No reader/page images are fetched here.  The parser intentionally accepts
-    multiple common 3Hentai markup shapes so small HTML changes do not disable
-    the exclusion rules.
+    Only the observed main-info tag containers are trusted. Missing containers
+    fail closed; links elsewhere on the page are unrelated gallery evidence.
     """
     soup = BeautifulSoup(html, "html.parser")
+    sections = soup.select("#main-info .tag-container")
     artists: list[str] = []
     groups: list[str] = []
     parodies: list[str] = []
@@ -474,7 +475,7 @@ def _gallery_metadata_from_html(html: str, page_url: str) -> dict:
             tags.append(value)
 
     # Path/query-based tag links are the most reliable source.
-    for a in soup.select("a[href]"):
+    for a in (a for section in sections for a in section.select("a[href]")):
         href = _clean(a.get("href") or "")
         ns, slug_value = _href_namespace(href)
         if not ns:
@@ -488,7 +489,7 @@ def _gallery_metadata_from_html(html: str, page_url: str) -> dict:
         "parody": "parody", "parodies": "parody", "series": "parody", "character": "character", "characters": "character",
         "tag": "tag", "tags": "tag", "language": "language", "languages": "language", "category": "category", "categories": "category",
     }
-    for node in soup.find_all(["div", "li", "p", "section", "tr"], limit=500):
+    for node in sections:
         text = _clean(node.get_text(" ", strip=True))
         if not text or len(text) > 1200:
             continue
@@ -511,7 +512,7 @@ def _gallery_metadata_from_html(html: str, page_url: str) -> dict:
                 add(ns, val, val)
 
     # Some pages expose namespace-prefixed text in badges.
-    for node in soup.select(".tag, .tags a, .badge, [data-tag], [data-name]")[:300]:
+    for node in (node for section in sections for node in section.select(".tag, .tags a, .badge, [data-tag], [data-name]")):
         text = _clean(node.get("data-tag") or node.get("data-name") or node.get_text(" ", strip=True))
         m = re.match(r"^(artist|group|circle|parody|series|character|language|category|tag|male|female|other)\s*:\s*(.+)$", text, re.I)
         if not m:
@@ -549,6 +550,13 @@ def _gallery_metadata_from_html(html: str, page_url: str) -> dict:
             language = "korean"
             break
 
+    language_names = {value.casefold() for value in languages} | {
+        "japanese", "english", "chinese", "korean", "日本語", "ja",
+    }
+    content_tag_count = sum(
+        not tag.casefold().startswith("language:") and tag.casefold() not in language_names
+        for tag in tags
+    )
     category = categories[0] if categories else ""
     evidence_count = len(artists) + len(groups) + len(parodies) + len(characters) + len(tags) + len(languages) + len(categories)
     filter_evidence_count = len(tags) + len(languages) + len(categories)
@@ -562,7 +570,10 @@ def _gallery_metadata_from_html(html: str, page_url: str) -> dict:
         "category": category,
         "evidence_count": evidence_count,
         "filter_evidence_count": filter_evidence_count,
+        "content_tag_count": content_tag_count,
+        "tag_section_found": bool(sections),
         "metadata_url": page_url,
+        "page_title": _clean(soup.select_one("#main-info h1").get_text(" ", strip=True)) if soup.select_one("#main-info h1") else "",
     }
 
 
@@ -592,8 +603,19 @@ def _fetch_gallery_metadata(session: requests.Session, page_url: str) -> tuple[d
         return None, info
 
 
+def _gallery_filter_reason(meta: dict) -> str:
+    if not meta.get("tag_section_found"):
+        return "gallery_no_tag_section"
+    if int(meta.get("content_tag_count") or 0) == 0:
+        return "gallery_no_tags"
+    return "ok"
+
+
 def _merge_gallery_metadata(item: dict, meta: dict, *, mark_checked: bool = True) -> bool:
     changed = False
+    if mark_checked and _gallery_filter_reason(meta) != "ok":
+        for key in ("filter_metadata_checked", "filter_metadata_checked_at"):
+            changed = item.pop(key, None) is not None or changed
     for key in ("artists", "groups", "parodies", "characters", "tags"):
         merged = unique_strings(list(item.get(key) or []) + list(meta.get(key) or []))
         if merged != list(item.get(key) or []):
@@ -605,7 +627,7 @@ def _merge_gallery_metadata(item: dict, meta: dict, *, mark_checked: bool = True
     if meta.get("category") and not item.get("category"):
         item["category"] = meta["category"]
         changed = True
-    if mark_checked and int(meta.get("filter_evidence_count") or 0) > 0:
+    if mark_checked and meta.get("tag_section_found") and int(meta.get("content_tag_count") or 0) > 0:
         if item.get("filter_metadata_checked") != "3hentai-gallery-v1":
             item["filter_metadata_checked"] = "3hentai-gallery-v1"
             changed = True
@@ -617,7 +639,7 @@ def _resolve_public_search_exact(session: requests.Session, search_url: str, exp
     """Resolve a legacy title-search URL using one exact normalized-title match."""
     try:
         r = session.get(search_url, timeout=TIMEOUT, headers={"User-Agent": "Mozilla/5.0 (compatible; Japanese-Metadata-Library/2.1; metadata-only)"})
-        if r.status_code in {403, 429, 502, 503, 504}:
+        if r.status_code in {403, 429} or r.status_code >= 500:
             return None, f"HTTP {r.status_code}", True
         r.raise_for_status()
         soup = BeautifulSoup(r.text, "html.parser")
@@ -641,7 +663,136 @@ def _resolve_public_search_exact(session: requests.Session, search_url: str, exp
         return None, str(e)[:500], False
 
 
-def enrich_existing_for_filter(items: list[dict], limit: int | None = None) -> dict:
+def direct_gallery_id(url: str) -> str:
+    parsed = urlparse(str(url or ""))
+    if parsed.scheme not in {"https", "http"} or parsed.hostname != "3hentai.net":
+        return ""
+    match = re.fullmatch(r"/d/([0-9]+)/?", parsed.path)
+    return match.group(1) if match else ""
+
+
+def repair_target(item: dict) -> bool:
+    return (item.get("source") == "3hentai"
+            and re.fullmatch(r"[0-9]+", str(item.get("source_id", ""))) is not None
+            and not direct_gallery_id(item.get("source_url", "")))
+
+
+def split_mislinks(items: list[dict]) -> tuple[set[str], int]:
+    """Detect only groups with an offset-matching owner; never mutate input."""
+    groups = {}
+    for item in items:
+        gid = direct_gallery_id(item.get("source_url", ""))
+        if item.get("source") == "3hentai" and gid:
+            groups.setdefault(gid, {})[item["uid"]] = item
+    excess, unresolved = set(), 0
+    for gid, members in groups.items():
+        if len(members) < 2:
+            continue
+        owners = {uid for uid, item in members.items()
+                  if str(item.get("source_id", "")).isdigit()
+                  and int(item["source_id"]) - 3000000 == int(gid)}
+        if owners:
+            excess.update(set(members) - owners)
+        else:
+            unresolved += 1
+    return excess, unresolved
+
+
+class _RepairGetBudget:
+    def __init__(self, session):
+        self.session = session
+        self.calls = 0
+        self.stopped = False
+
+    def get(self, book: str) -> dict:
+        if self.stopped or self.calls >= max(0, HENTAI3_REPAIR_GET_LIMIT):
+            return {"http_status": None, "attempted": False, "link": "", "id_value": ""}
+        if self.calls:
+            time.sleep(max(0.0, HENTAI3_GET_DEBUG_DELAY_SEC))
+        self.calls += 1
+        result = {"http_status": 0, "attempted": True, "link": "", "id_value": ""}
+        try:
+            response = self.session.get(f"{API_BASE}/3hentai/get", params={"book": book}, timeout=TIMEOUT)
+            result["http_status"] = response.status_code
+            if response.status_code in {403, 429}:
+                self.stopped = True
+            if response.status_code == 200:
+                payload = response.json()
+                obj = _find_payload_object(payload)
+                result["link"] = _find_real_gallery_url(payload)[:500]
+                value = _first(obj, "gallery_id", "galleryId", "book", "source_id", "gid", "id")
+                # Do not normalize/coerce an observed ID before exact comparison.
+                result["id_value"] = str(value)[:500] if value is not None else ""
+        except Exception:
+            pass
+        return result
+
+
+def _repair_existing(item, session, budget, claimed, kind, previous):
+    for key in ("filter_metadata_checked", "filter_metadata_checked_at"):
+        item.pop(key, None)
+    sid = str(item["source_id"])
+    candidate = str(int(sid) - 3000000)
+    rec = {"target_kind": kind, "candidate_id": candidate, "candidate_http": None,
+           "page_title": "", "title_match": None, "get_internal": None, "get_public": None,
+           "evidence": "", "conclusion": "", "updated_at": _stamp_now(),
+           "attempts": previous.get("attempts", 0) + 1}
+    def done(reason, stop=False):
+        rec["title_match_ever"] = bool(previous.get("title_match_ever") or rec["title_match"])
+        rec["conclusion"] = reason
+        return rec, stop
+    if int(candidate) <= 0:
+        return done("repair_invalid_candidate")
+    if claimed.get(candidate, set()) - {item["uid"]}:
+        return done("repair_candidate_claimed")
+    meta, info = _fetch_gallery_metadata(session, f"{SOURCE_BASE}/d/{candidate}")
+    status = info.get("http_status", 0)
+    rec["candidate_http"] = status
+    if status in {403, 429} or status >= 500:
+        return done(f"stopped_http_{status}", True)
+    if status >= 400:
+        return done(f"repair_candidate_http_{status}")
+    if not status or info.get("error"):
+        return done("transport")
+    title = (meta or {}).get("page_title", "")
+    rec["page_title"] = title[:500]
+    rec["title_match"] = bool(_title_key(title)) and _title_key(title) == _title_key(item.get("title"))
+    if not title:
+        return done("repair_no_page_title")
+    if not rec["title_match"]:
+        return done("repair_title_mismatch")
+    cached_a = previous.get("get_internal") or {}
+    resume_b = (previous.get("conclusion") == "repair_corroboration_deferred"
+                and previous.get("candidate_id") == candidate and cached_a.get("attempted")
+                and 0 < cached_a.get("http_status", 0) < 500
+                and cached_a.get("http_status") not in {403, 429} and not cached_a.get("link"))
+    a = rec["get_internal"] = dict(cached_a) if resume_b else budget.get(sid)
+    if not a["attempted"] or not a["http_status"] or a["http_status"] in {403, 429} or a["http_status"] >= 500:
+        return done("repair_corroboration_deferred")
+    if a["link"]:
+        if direct_gallery_id(a["link"]) != candidate:
+            return done("repair_payload_link_conflict")
+        rec["evidence"] = "payload_link"
+    else:
+        b = rec["get_public"] = budget.get(candidate)
+        if not b["attempted"] or not b["http_status"] or b["http_status"] in {403, 429} or b["http_status"] >= 500:
+            return done("repair_corroboration_deferred")
+        if b["http_status"] != 200 or b["id_value"] != sid:
+            return done("repair_uncorroborated")
+        rec["evidence"] = "detail_id"
+    item.update(source_url=f"{SOURCE_BASE}/d/{candidate}", source_url_kind="direct",
+                repair_evidence=rec["evidence"], repair_evidence_at=rec["updated_at"])
+    item.pop("resolved_gallery_id", None)
+    item.pop("public_gallery_id", None)
+    if rec["evidence"] == "payload_link":
+        item["public_gallery_id"] = candidate
+    _merge_gallery_metadata(item, meta, mark_checked=True)
+    rec["metadata_reason"] = _gallery_filter_reason(meta)
+    return done("restored_pending_audit")
+
+
+def enrich_existing_for_filter(items: list[dict], limit: int | None = None, *,
+                               claimed_gallery_ids=None, repair_kinds=None, repairs=None) -> dict:
     """Gradually audit already-saved 3Hentai rows for exclusion metadata.
 
     The caller applies the common block filter immediately after this returns,
@@ -659,53 +810,82 @@ def enrich_existing_for_filter(items: list[dict], limit: int | None = None) -> d
         x for x in items
         if isinstance(x, dict)
         and x.get("source") == "3hentai"
-        and x.get("filter_metadata_checked") != "3hentai-gallery-v1"
+        and (x.get("filter_metadata_checked") != "3hentai-gallery-v1" or repair_target(x)
+             or "/search" in (x.get("source_url") or ""))
     ]
 
     attempt_results = {}
+    reason_counts = {}
+    repairs = repairs if repairs is not None else {}
+    repair_kinds = repair_kinds or {}
+    budget = _RepairGetBudget(session)
+    repair_attempted = 0
     for item in targets[:limit]:
         attempted += 1
-        attempt_results[item["uid"]] = False
-        page_url = _clean(item.get("source_url") or "")
-        if "/search" in page_url:
-            card, err, stop = _resolve_public_search_exact(session, page_url, _clean(item.get("title") or ""))
-            if stop:
+        # An attempted audit must earn its marker from this response.
+        for key in ("filter_metadata_checked", "filter_metadata_checked_at"):
+            item.pop(key, None)
+        source_url = item.get("source_url") or ""
+        page_url = _clean(source_url)
+        result = {"reason": "gallery_no_evidence", "source_url": source_url,
+                  "url_shape": "empty" if not page_url else "search" if "/search" in page_url else "direct"}
+        attempt_results[item["uid"]] = result
+        reason = "empty_url" if not page_url else ""
+        if repair_target(item) or "/search" in page_url:
+            repair_attempted += 1
+            if repair_target(item):
+                rec, stopped = _repair_existing(item, session, budget, claimed_gallery_ids or {},
+                    repair_kinds.get(item["uid"], "legacy"), repairs.get(item["uid"], {}))
+            else:
+                rec = {"conclusion": "repair_invalid_internal_id", "target_kind": "legacy",
+                       "candidate_id": "", "candidate_http": None, "page_title": "",
+                       "title_match": None, "title_match_ever": False, "get_internal": None,
+                       "get_public": None, "evidence": "", "updated_at": _stamp_now(),
+                       "attempts": repairs.get(item["uid"], {}).get("attempts", 0) + 1}
+            repairs[item["uid"]] = rec
+            reason = (rec["metadata_reason"] if rec["conclusion"] == "restored_pending_audit"
+                      else rec["conclusion"])
+            if reason == "ok":
+                enriched += 1
+            page_url = ""  # The candidate metadata has already been merged after corroboration.
+        if not reason and re.search(r"/d/\d+(?:/|$|[?#])", page_url, re.I):
+            meta, info = _fetch_gallery_metadata(session, page_url)
+            status = info.get("http_status") or 0
+            if status in {403, 429} or status >= 500:
+                reason = f"stopped_http_{status}"
                 stopped = True
-                if len(failures) < 8: failures.append(f"{item.get('source_id')}: {err}")
-                break
-            if card:
-                page_url = _clean(card.get("source_url") or "")
-                item["source_url"] = page_url
-                item["source_url_kind"] = "direct"
-                item["resolved_gallery_id"] = _clean(card.get("gallery_id") or "")
-                resolved += 1
-            elif err and len(failures) < 8:
-                failures.append(f"{item.get('source_id')}: search {err}")
-        if not re.search(r"/d/\d+(?:/|$|[?#])", page_url, re.I):
-            failed += 1
-            continue
-
-        meta, info = _fetch_gallery_metadata(session, page_url)
-        if info.get("http_status") in {403, 429, 502, 503, 504}:
-            stopped = True
-            if len(failures) < 8: failures.append(f"{item.get('source_id')}: {info.get('error')}")
-            break
-        if meta and int(meta.get("evidence_count") or 0) > 0:
-            _merge_gallery_metadata(item, meta, mark_checked=True)
-            enriched += 1
-            attempt_results[item["uid"]] = item.get("filter_metadata_checked") == "3hentai-gallery-v1"
-            if len(samples) < 5:
-                samples.append(f"{item.get('source_id')}: tags={len(item.get('tags') or [])} artists={len(item.get('artists') or [])}")
-        else:
-            failed += 1
+            elif status >= 400:
+                reason = f"gallery_http_{status}"
+            elif not status or info.get("error"):
+                reason = "transport"
+            elif meta is not None:
+                reason = _gallery_filter_reason(meta)
+                _merge_gallery_metadata(item, meta, mark_checked=True)
+                if int(meta.get("evidence_count") or 0) > 0:
+                    enriched += 1
+                if len(samples) < 5:
+                    samples.append(f"{item.get('source_id')}: tags={len(item.get('tags') or [])} artists={len(item.get('artists') or [])}")
+        reason = reason or "gallery_no_evidence"
+        result["reason"] = reason
+        reason_counts[reason] = reason_counts.get(reason, 0) + 1
+        if reason != "ok":
+            if not stopped:
+                failed += 1
             if len(failures) < 8:
-                failures.append(f"{item.get('source_id')}: metadata evidence=0 {info.get('error') or ''}".strip())
+                failures.append(f"{item.get('source_id')}: {reason}")
+        if stopped:
+            break
         if attempted < limit:
             time.sleep(max(0.0, HENTAI3_EXISTING_FILTER_AUDIT_DELAY_SEC))
 
-    remaining = sum(x.get("filter_metadata_checked") != "3hentai-gallery-v1" for x in targets)
+    remaining = sum(x.get("filter_metadata_checked") != "3hentai-gallery-v1"
+                    or repair_target(x) or "/search" in (x.get("source_url") or "") for x in targets)
     return {
+        "repair_attempted": repair_attempted,
+        "repair_get_stopped": budget.stopped,
+        "repair_get_calls": budget.calls,
         "existing_filter_audit_results": attempt_results,
+        "existing_filter_audit_reason_counts": reason_counts,
         "existing_filter_audit_mode": "public-gallery-metadata",
         "existing_filter_audit_attempted": attempted,
         "existing_filter_audit_enriched": enriched,
@@ -1141,8 +1321,9 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
             if len(gallery_metadata_failures) < 8:
                 gallery_metadata_failures.append(f"{sid}: {info.get('error')}")
             break
-        if meta and int(meta.get("evidence_count") or 0) > 0:
+        if meta is not None:
             _merge_gallery_metadata(item, meta, mark_checked=True)
+        if meta is not None and _gallery_filter_reason(meta) == "ok":
             gallery_metadata_enriched += 1
             if len(gallery_metadata_samples) < 5:
                 gallery_metadata_samples.append(
@@ -1152,7 +1333,7 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         else:
             gallery_metadata_failed += 1
             if len(gallery_metadata_failures) < 8:
-                gallery_metadata_failures.append(f"{sid}: metadata evidence=0 {info.get('error') or ''}".strip())
+                gallery_metadata_failures.append(f"{sid}: {_gallery_filter_reason(meta) if meta is not None else info.get('error') or 'gallery_no_evidence'}")
         if gallery_metadata_attempted < HENTAI3_GALLERY_METADATA_LIMIT:
             time.sleep(max(0.0, HENTAI3_GALLERY_METADATA_DELAY_SEC))
 

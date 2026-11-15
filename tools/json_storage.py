@@ -49,7 +49,7 @@ def validate_source_mapping(value):
 
 def validate_filter_store(value):
     validate_mapping(value)
-    for key in ("records", "hitomi_attempts", "verified_checkpoints"):
+    for key in ("records", "hitomi_attempts", "hentai3_attempts", "hentai3_repairs", "verified_checkpoints"):
         entries = value.get(key, {})
         validate_mapping(entries)
         if any(not isinstance(entry, dict) for entry in entries.values()):

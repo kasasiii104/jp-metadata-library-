@@ -196,8 +196,11 @@ def clean_item(item: dict[str, Any], stamp: str) -> dict[str, Any]:
         "source_token": str(item.get("source_token") or ""),
         "source_url": str(item.get("source_url") or ""),
         "source_url_kind": str(item.get("source_url_kind") or ""),
-        "resolved_gallery_id": str(item.get("resolved_gallery_id") or ""),
-        "public_gallery_id": str(item.get("public_gallery_id") or ""),
+        **({"resolved_gallery_id": str(item.get("resolved_gallery_id") or "")}
+           if not item.get("repair_evidence") else {}),
+        **({"public_gallery_id": str(item.get("public_gallery_id") or "")}
+           if not item.get("repair_evidence") or item.get("repair_evidence") == "payload_link" else {}),
+        **{key: item[key] for key in ("repair_evidence", "repair_evidence_at") if key in item},
         "filter_metadata_checked": str(item.get("filter_metadata_checked") or ""),
         "filter_metadata_checked_at": str(item.get("filter_metadata_checked_at") or ""),
         "title": str(item.get("title") or "").strip(),
@@ -252,6 +255,10 @@ def merge_item(old: dict[str, Any] | None, new: dict[str, Any], stamp: str) -> d
             merged[key] = value
     merged["first_seen"] = old.get("first_seen") or stamp
     merged["last_seen"] = stamp
+    if merged.get("repair_evidence"):
+        merged.pop("resolved_gallery_id", None)
+        if merged["repair_evidence"] == "detail_id":
+            merged.pop("public_gallery_id", None)
     return merged
 
 
@@ -284,10 +291,47 @@ def quarantine_item(store: dict, item: dict, reason: str, stamp: str) -> None:
     # Missing tags on a later response must not erase a confirmed exclusion.
     if old.get("status") == "blocked":
         return
-    records[uid] = {"item": dict(item), "reason": reason,
+    records[uid] = {**{k: old[k] for k in ("repair_original", "hold_detail", "hold_source_url") if k in old}, "item": dict(item), "reason": reason,
                     "status": "pending" if reason == "metadata_unverified" else "blocked",
                     "first_quarantined_at": old.get("first_quarantined_at") or stamp,
                     "updated_at": stamp}
+
+    if item.get("source") == "3hentai":
+        records[uid]["hold_source_url"] = old.get("hold_source_url", (old.get("item") or item).get("source_url", ""))
+
+    if (reason == "metadata_unverified" and item.get("source") == "3hentai"
+            and item.get("filter_metadata_checked") != "3hentai-gallery-v1"):
+        detail = store.get("hentai3_attempts", {}).get(uid, {}).get("reason")
+        if not old.get("repair_original") and old.get("hold_detail") not in {
+                "3hentai_mislinked_split", "3hentai_url_conflict"}:
+            records[uid]["hold_detail"] = "3hentai_unaudited" + (":" + detail if detail else "")
+
+
+def hentai3_can_restore(item: dict, record: dict) -> bool:
+    """Every restoration path must honor the original repair hold."""
+    held_url = record.get("hold_source_url", record.get("item", {}).get("source_url", ""))
+    held_gid = hentai3.direct_gallery_id(held_url)
+    same_gallery = (held_gid and held_gid == hentai3.direct_gallery_id(item.get("source_url", "")))
+    identity_repair = bool(record) and record.get("item", {}).get("source") == "3hentai" and not same_gallery
+    return (record.get("status") != "blocked"
+            and item.get("filter_metadata_checked") == "3hentai-gallery-v1"
+            and bool(hentai3.direct_gallery_id(item.get("source_url", "")))
+            and (not (hentai3_ids.needs_repair(record) or identity_repair) or item.get("repair_evidence") in {"payload_link", "detail_id"}))
+
+
+def reconcile_hentai3_input(original, incoming, store, stamp, *, retain_original=False):
+    """Keep catalog/checkpoint provenance before an input can replace it."""
+    if original.get("source") != "3hentai" or incoming.get("source") != "3hentai":
+        return True
+    candidate = {"item": original, "status": "pending"}
+    hentai3_ids.reconcile_record(incoming, candidate)
+    if hentai3_ids.needs_repair(candidate):
+        if (retain_original and original["uid"] not in store["records"]
+                and incoming.get("repair_evidence") not in {"payload_link", "detail_id"}):
+            return False
+        quarantine_item(store, original, "metadata_unverified", stamp)
+        hentai3_ids.reconcile_record(incoming, store["records"][original["uid"]])
+    return True
 
 
 def _timestamp(value: str) -> float:
@@ -511,6 +555,16 @@ def apply_duplicate_groups(items: list[dict[str, Any]]) -> int:
     return duplicate_groups
 
 
+HENTAI3_TERMINAL_REPAIR_FAILURES = {
+    "repair_uncorroborated", "repair_title_mismatch", "repair_no_page_title",
+    "repair_payload_link_conflict", "repair_candidate_claimed", "repair_invalid_candidate",
+    "repair_invalid_internal_id", "repair_candidate_http_404",
+}
+HENTAI3_PERMANENT_FAILURE_LIMIT = 3
+HENTAI3_PERMANENT_FAILURES = {"search_no_match", "search_ambiguous",
+                              "gallery_no_evidence", "gallery_no_tag_section", "gallery_no_tags", "gallery_http_404"}
+
+
 def main(*, audit_only: bool = False) -> int:
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
     stamp = now_iso()
@@ -519,17 +573,35 @@ def main(*, audit_only: bool = False) -> int:
     state = load_json(STATE_FILE, {}, validate_source_mapping)
     filter_store = load_json(FILTER_STATE_FILE, {}, validate_filter_store)
     status_store = load_json(STATUS_FILE, {}, validate_source_mapping)
-    for key in ("records", "hitomi_attempts", "hentai3_attempts", "verified_checkpoints"):
+    for key in ("records", "hitomi_attempts", "hentai3_attempts", "hentai3_repairs", "verified_checkpoints"):
         if not isinstance(filter_store.get(key), dict):
             filter_store[key] = {}
     id_map_path = (HENTAI3_ID_MAP_FILE if HENTAI3_ID_MAP_FILE.parent == DOCS_DIR
                    else DOCS_DIR / HENTAI3_ID_MAP_FILE.name)
     id_map = load_json(id_map_path, hentai3_ids.empty_id_map(), validate_hentai3_id_map)
+    # Capture catalog provenance before identity merges or checkpoints can fill URLs.
+    for item in data["items"]:
+        hentai3_ids.reconcile_record(item, filter_store["records"].get(item.get("uid"), {}))
+        if (item.get("source") == "3hentai"
+                and (item.get("filter_metadata_checked") != "3hentai-gallery-v1"
+                     or not hentai3.direct_gallery_id(item.get("source_url", "")))):
+            quarantine_item(filter_store, item, "metadata_unverified", stamp)
+            record = filter_store["records"][item["uid"]]
+            if record.get("status") == "pending":
+                record.setdefault("hold_detail", "3hentai_unaudited")
     data["items"], id_migration = hentai3_ids.migrate(
         data["items"], filter_store, id_map, stamp, merge_item)
     if id_migration["total"]:
         id_map["updated_at"] = stamp
         save_json(id_map_path, id_map)
+    # Ambiguous cross-store ownership must not be healed by a checkpoint.
+    ambiguous_uids = set(id_migration.pop("held_uids", []))
+    for item in data["items"] + list(filter_store["verified_checkpoints"].values()):
+        if item["uid"] in ambiguous_uids:
+            quarantine_item(filter_store, item, "metadata_unverified", stamp)
+            rec = filter_store["records"][item["uid"]]
+            if rec.get("status") == "pending" and not hentai3_ids.needs_repair(rec):
+                rec.update(hold_source_url="", hold_detail="3hentai_url_conflict")
     records = filter_store["records"]
     existing_items = [
         upgrade_item_schema(x) for x in data.get("items", [])
@@ -539,12 +611,22 @@ def main(*, audit_only: bool = False) -> int:
     # checkpoint but before writing the final catalog.
     existing_map = {x["uid"]: x for x in existing_items}
     restored_h3_uids = set()
+    # Freeze hold-time URL shape before checkpoints or audits can mutate items.
+    for rec in records.values():
+        if rec.get("item", {}).get("source") == "3hentai":
+            rec.setdefault("hold_source_url", rec["item"].get("source_url", ""))
     for uid, saved in filter_store["verified_checkpoints"].items():
+        original = existing_map.get(uid, {})
+        if (saved.get("source") == "3hentai"
+                and not hentai3.direct_gallery_id(saved.get("source_url", ""))):
+            quarantine_item(filter_store, saved, "metadata_unverified", stamp)
+        reconcile_hentai3_input(original, saved, filter_store, stamp)
         if (records.get(uid, {}).get("status") != "blocked"
-                and ((saved.get("filter_metadata_checked") == hitomi.FILTER_METADATA_VERSION
+                and ((saved.get("source") == "hitomi"
+                      and saved.get("filter_metadata_checked") == hitomi.FILTER_METADATA_VERSION
                       and not unverified_hitomi(saved, fresh=True))
                      or (saved.get("source") == "3hentai"
-                         and saved.get("filter_metadata_checked") == "3hentai-gallery-v1"))
+                         and hentai3_can_restore(saved, records.get(uid, {}))))
                 and not blocked_reason(saved)):
             existing_map[uid] = merge_item(existing_map.get(uid), saved, stamp)
             records.pop(uid, None)
@@ -556,6 +638,36 @@ def main(*, audit_only: bool = False) -> int:
     # filters.  Audit a bounded number of saved 3Hentai galleries every run,
     # then apply the same common filter to *all* retained rows.  This gradually
     # cleans the existing site without a one-off destructive reset.
+    combined = {x["uid"]: x for x in existing_items}
+    combined.update({uid: rec["item"] for uid, rec in records.items()
+                     if rec.get("status") == "pending" and rec.get("item", {}).get("source") == "3hentai"})
+    mislinks, unresolved_splits = hentai3.split_mislinks(list(combined.values()))
+    for uid in mislinks:
+        item = combined[uid]
+        fields = ("source_url", "source_url_kind", "resolved_gallery_id", "public_gallery_id",
+                  "filter_metadata_checked", "filter_metadata_checked_at", "artists", "groups",
+                  "parodies", "works", "characters", "tags", "meta_tags", "category", "thumbnail")
+        original = {key: item[key] for key in fields if key in item}
+        for key in fields:
+            item.pop(key, None)
+        item["tags"] = [tag for tag in original.get("tags", []) if tag.startswith("language:")]
+        quarantine_item(filter_store, item, "metadata_unverified", stamp)
+        records[uid].update(repair_original=original, hold_detail="3hentai_mislinked_split")
+        filter_store["verified_checkpoints"].pop(uid, None)
+        filter_store["hentai3_attempts"].pop(uid, None)
+    existing_items = [combined[x["uid"]] if x["uid"] in mislinks else x for x in existing_items]
+    for item in combined.values():
+        if (item.get("source") == "3hentai" and hentai3.direct_gallery_id(item.get("source_url", ""))
+                and not item.get("source_url_kind")):
+            item["source_url_kind"] = "direct"
+    claimed = {}
+    for item in existing_items:
+        gid = hentai3.direct_gallery_id(item.get("source_url", ""))
+        sid = str(item.get("source_id", ""))
+        if item.get("source") == "3hentai" and gid and sid.isdigit() and int(sid) - 3000000 == int(gid):
+            claimed.setdefault(gid, set()).add(item["uid"])
+    repair_kinds = {uid: "mislinked_split" for uid, rec in records.items() if rec.get("hold_detail") == "3hentai_mislinked_split"}
+    repairs = filter_store["hentai3_repairs"]
     h3_pending = {
         uid: rec["item"] for uid, rec in records.items()
         if rec.get("status") == "pending" and rec.get("item", {}).get("source") == "3hentai"
@@ -565,11 +677,35 @@ def main(*, audit_only: bool = False) -> int:
                   and x.get("filter_metadata_checked") != "3hentai-gallery-v1"}
     h3_targets.update(h3_pending)
     h3_attempts = filter_store["hentai3_attempts"]
-    h3_ordered = sorted(h3_targets.values(), key=lambda x:
+    for uid, item in h3_targets.items():
+        if hentai3.repair_target(item) or "/search" in (item.get("source_url") or ""):
+            quarantine_item(filter_store, item, "metadata_unverified", stamp)
+            rec = records[uid]
+            rec.setdefault("hold_detail", "3hentai_unaudited")
+            original = rec.setdefault("repair_original", {})
+            for key in ("filter_metadata_checked", "filter_metadata_checked_at"):
+                if key in item:
+                    original.setdefault(key, item[key])
+                    item.pop(key)
+            rec["item"] = dict(item)
+            h3_pending[uid] = item
+        previous = h3_attempts.get(uid, {})
+        if hentai3.repair_target(item) and previous.get("gave_up_reason") in {"empty_url", "search_no_match", "search_ambiguous"}:
+            previous.clear()
+        candidate = str(int(item["source_id"]) - 3000000) if str(item.get("source_id", "")).isdigit() else ""
+        if (previous.get("gave_up_reason") == "repair_candidate_claimed"
+                and not (claimed.get(candidate, set()) - {uid})):
+            previous.clear()
+        if "source_url" in previous and previous["source_url"] != (item.get("source_url") or ""):
+            for key in ("gave_up", "gave_up_reason", "gave_up_at", "consecutive_failures", "reason"):
+                previous.pop(key, None)
+    h3_ordered = sorted((x for x in h3_targets.values()
+                         if not h3_attempts.get(x["uid"], {}).get("gave_up")), key=lambda x:
                         h3_attempts.get(x["uid"], {}).get("last_attempt", 0))
     try:
         h3_existing_audit = ({"skipped": "hitomi-filter-audit-only"} if audit_only else
-                             hentai3.enrich_existing_for_filter(h3_ordered))
+                             hentai3.enrich_existing_for_filter(h3_ordered, claimed_gallery_ids=claimed,
+                                 repair_kinds=repair_kinds, repairs=repairs))
     except Exception as e:
         h3_existing_audit = {
             "existing_filter_audit_mode": "public-gallery-metadata",
@@ -584,16 +720,25 @@ def main(*, audit_only: bool = False) -> int:
         }
 
     if not audit_only:
-        for uid, success in h3_existing_audit.pop("existing_filter_audit_results", {}).items():
-            if success:
+        for uid, result in h3_existing_audit.pop("existing_filter_audit_results", {}).items():
+            reason = result["reason"]
+            if reason == "ok":
                 h3_attempts.pop(uid, None)
-            else:
-                h3_attempts[uid] = {"last_attempt": _timestamp(stamp),
-                                    "id_gen": 2,
-                                    "failures": h3_attempts.get(uid, {}).get("failures", 0) + 1}
+                continue
+            previous = h3_attempts.get(uid, {})
+            consecutive = (previous.get("consecutive_failures", 0) + 1
+                           if previous.get("reason") == reason
+                           and previous.get("source_url") == result["source_url"] else 1)
+            attempt = {"last_attempt": _timestamp(stamp), "id_gen": 2,
+                       "failures": previous.get("failures", 0) + 1,
+                       **result, "consecutive_failures": consecutive}
+            if reason in HENTAI3_TERMINAL_REPAIR_FAILURES or reason == "empty_url" or (reason in HENTAI3_PERMANENT_FAILURES
+                                          and consecutive >= HENTAI3_PERMANENT_FAILURE_LIMIT):
+                attempt.update(gave_up=True, gave_up_reason=reason, gave_up_at=stamp)
+            h3_attempts[uid] = attempt
         restored = blocked = 0
         for uid, item in h3_pending.items():
-            if item.get("filter_metadata_checked") != "3hentai-gallery-v1":
+            if not hentai3_can_restore(item, records.get(uid, {})):
                 continue
             reason = publication_reason(item, fresh=True)
             if reason:
@@ -612,6 +757,35 @@ def main(*, audit_only: bool = False) -> int:
             "existing_filter_audit_pending_blocked": blocked,
         })
 
+    h3_existing_audit.setdefault("repair_attempted", 0)
+    h3_existing_audit.setdefault("repair_get_stopped", False)
+    h3_existing_audit.setdefault("repair_get_calls", 0)
+    conclusions = {}
+    for repair in repairs.values():
+        key = repair["conclusion"]
+        conclusions[key] = conclusions.get(key, 0) + 1
+    h3_existing_audit.update(repair_conclusions=conclusions,
+        repair_title_matched=sum(bool(r.get("title_match_ever") or r.get("title_match")) for r in repairs.values()),
+        repair_corroborated=sum(bool(r.get("evidence")) for r in repairs.values()),
+        mislinked_split_held=len(mislinks), unresolved_split_groups=unresolved_splits)
+
+    # Giving up retries does not verify the row; keep it in the pending count.
+    if not audit_only:
+        h3_existing_audit["existing_filter_audit_pending"] = sum(
+            x.get("filter_metadata_checked") != "3hentai-gallery-v1" or hentai3.repair_target(x)
+            or "/search" in (x.get("source_url") or "") for x in h3_targets.values())
+    h3_existing_audit.setdefault("existing_filter_audit_reason_counts", {})
+    gave_up_counts = {}
+    for attempt in h3_attempts.values():
+        if attempt.get("gave_up"):
+            key = attempt["gave_up_reason"]
+            gave_up_counts[key] = gave_up_counts.get(key, 0) + 1
+    h3_existing_audit.update(existing_filter_audit_gave_up=sum(gave_up_counts.values()),
+                             existing_filter_audit_gave_up_reasons=gave_up_counts)
+    for uid, item in h3_pending.items():
+        if records.get(uid, {}).get("status") == "pending":
+            quarantine_item(filter_store, item, "metadata_unverified", stamp)
+
     retained_items: list[dict[str, Any]] = []
     purged_existing_blocked = 0
     purged_existing_reasons: dict[str, int] = {}
@@ -619,15 +793,19 @@ def main(*, audit_only: bool = False) -> int:
     purged_existing_insect = 0
     purged_existing_3hentai = 0
     held_existing_unverified = 0
+    held_existing_unaudited = 0
     for item in existing_items:
         rec = records.get(item["uid"], {})
         reason = (rec.get("reason") if rec.get("status") == "blocked" else publication_reason(item))
-        if not reason and (unverified_hitomi(item) or rec.get("status") == "pending"):
+        unaudited_h3 = (item.get("source") == "3hentai"
+                        and item.get("filter_metadata_checked") != "3hentai-gallery-v1")
+        if not reason and (unverified_hitomi(item) or unaudited_h3 or rec.get("status") == "pending"):
             reason = "metadata_unverified"
         if reason:
             quarantine_item(filter_store, item, reason, stamp)
             if reason == "metadata_unverified":
                 held_existing_unverified += 1
+                held_existing_unaudited += int(unaudited_h3)
                 continue
             purged_existing_blocked += 1
             purged_existing_reasons[reason] = purged_existing_reasons.get(reason, 0) + 1
@@ -677,6 +855,9 @@ def main(*, audit_only: bool = False) -> int:
             if name == "3hentai":
                 raw = hentai3_ids.normalize_incoming(
                     raw, existing, filter_store, id_map, stamp, merge_item, id_migration)
+                # Fold can create a hold after the retained catalog was built.
+                if records.get(raw.get("uid"), {}).get("status") in {"pending", "blocked"}:
+                    existing.pop(raw["uid"], None)
             if not is_valid_source_id(str(raw.get("source_id") or ""), source=name):
                 continue
             if not raw.get("uid"):
@@ -685,7 +866,27 @@ def main(*, audit_only: bool = False) -> int:
             # gallery page did not yield filter-relevant metadata, do not add
             # the item yet. It can be discovered again on a later healthy run.
             uid = raw["uid"]
+            if name == "3hentai":
+                if not reconcile_hentai3_input(existing.get(uid, {}), raw, filter_store, stamp,
+                                               retain_original=True):
+                    blocked += 1
+                    blocked_reasons["repair_url_conflict"] = blocked_reasons.get("repair_url_conflict", 0) + 1
+                    continue
+                if records.get(uid, {}).get("status") == "pending":
+                    existing.pop(uid, None)
             prior = existing.get(uid) or records.get(uid, {}).get("item")
+            if (name == "3hentai" and records.get(uid, {}).get("status") == "pending"
+                    and not hentai3_can_restore(raw, records[uid])):
+                # A fresh title-derived search result cannot bypass an existing repair hold.
+                blocked += 1
+                blocked_reasons["metadata_unverified"] = blocked_reasons.get("metadata_unverified", 0) + 1
+                continue
+            if (name == "3hentai" and (prior or {}).get("repair_evidence")
+                    and raw.get("source_url") != prior.get("source_url")):
+                # Do not overwrite a corroborated URL with a newly title-matched card.
+                blocked += 1
+                blocked_reasons["repair_url_conflict"] = blocked_reasons.get("repair_url_conflict", 0) + 1
+                continue
             merged = merge_item(prior, raw, stamp)
             saved_block = records.get(uid, {})
             if saved_block.get("status") == "blocked":
@@ -738,7 +939,8 @@ def main(*, audit_only: bool = False) -> int:
             f"status={result.get('status')}" + (f" message={msg}" if msg else "")
         )
 
-    if not audit_only and successful_sources == 0:
+    all_sources_failed = not audit_only and successful_sources == 0
+    if all_sources_failed:
         print("All sources failed; catalog and crawl state will not be saved.", file=sys.stderr)
         return 1
 
@@ -747,6 +949,12 @@ def main(*, audit_only: bool = False) -> int:
         status_store["3hentai"].update(h3_existing_audit)
         status_store["3hentai"]["purged_existing_this_run"] = purged_existing_3hentai
 
+    status_store["3hentai"]["held_existing_unaudited"] = held_existing_unaudited
+
+    # Every successful path, including audit-only and early collector skips,
+    # reaches this gate before truncation, grouping or any catalog save.
+    status_store["3hentai"]["held_identity_gate"] = hentai3_ids.exclude_held_identities(
+        existing, records, id_map)
     items = sorted(existing.values(), key=sort_key, reverse=True)
     if KEEP_ITEMS > 0:
         items = items[:KEEP_ITEMS]
@@ -755,7 +963,10 @@ def main(*, audit_only: bool = False) -> int:
     duplicate_item_count = sum(1 for x in items if x.get("duplicate_group"))
 
     # Final defense applies after every merge, not just to incoming responses.
-    assert not any(blocked_reason(x) or unverified_hitomi(x) for x in items), "Unsafe catalog row"
+    assert not any(blocked_reason(x) or unverified_hitomi(x)
+                   or (x.get("source") == "3hentai"
+                       and x.get("filter_metadata_checked") != "3hentai-gallery-v1")
+                   for x in items), "Unsafe catalog row"
     pending_counts: dict[str, int] = {}
     blocked_counts: dict[str, int] = {}
     for rec in records.values():

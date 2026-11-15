@@ -14,9 +14,12 @@ STAMP = '2026-11-09T00:00:00+00:00'
 
 
 def row(sid, **extra):
-    return dict(uid='3hentai:' + sid, source='3hentai', source_id=sid,
+    item = dict(uid='3hentai:' + sid, source='3hentai', source_id=sid,
                 title='Sample ' + sid, language='japanese', tags=['sample'],
-                filter_metadata_checked='3hentai-gallery-v1', **extra)
+                source_url='https://3hentai.net/d/' + (sid[1:] if sid.startswith('g') else str(int(sid) + 3000000)),
+                filter_metadata_checked='3hentai-gallery-v1')
+    item.update(extra)
+    return item
 
 
 class IdentityTests(unittest.TestCase):
@@ -307,12 +310,18 @@ class MainIdentityTests(unittest.TestCase):
         self.incoming = [h._normalize({'title': 'Public', 'url': 'https://3hentai.net/d/123', 'language': 'japanese'})]
         self.incoming[0].update(filter_metadata_checked='3hentai-gallery-v1', tags=['sample'])
         items = self.run_main([row('123', source_url='https://3hentai.net/search?q=internal')])
-        self.assertEqual({x['uid'] for x in items}, {'3hentai:123', '3hentai:g123'})
-        self.assertEqual({x['title'] for x in items}, {'Sample 123', 'Public'})
+        # Non-direct catalog URLs are now held even with a stale checked marker.
+        self.assertEqual({x['uid'] for x in items}, {'3hentai:g123'})
+        records = load_json(c.FILTER_STATE_FILE, {})['records']
+        self.assertEqual(records['3hentai:123']['status'], 'pending')
+        self.assertEqual(records['3hentai:123']['hold_source_url'], 'https://3hentai.net/search?q=internal')
+        retained = items + [rec['item'] for rec in records.values()]
+        self.assertEqual({x['uid'] for x in retained}, {'3hentai:123', '3hentai:g123'})
+        self.assertEqual({x['title'] for x in retained}, {'Sample 123', 'Public'})
 
     def test_incoming_internal_folds_public_catalog(self):
         public = row('g123', public_gallery_id='123', first_seen='2020')
-        self.incoming = [row('999', public_gallery_id='123')]
+        self.incoming = [row('999', public_gallery_id='123', source_url='https://3hentai.net/d/123')]
         items = self.run_main([public])
         self.assertEqual([x['uid'] for x in items], ['3hentai:999'])
         self.assertEqual(items[0]['first_seen'], '2020')
@@ -344,7 +353,7 @@ class MainIdentityTests(unittest.TestCase):
         save_json(c.FILTER_STATE_FILE, {'records': {blocked['uid']: {
             'status': 'blocked', 'reason': 'blocked:evidence', 'item': blocked}},
             'hentai3_attempts': {blocked['uid']: {'last_attempt': 1, 'failures': 2}}})
-        items = self.run_main([old, row('999', first_seen='2021')])
+        items = self.run_main([old, row('999', first_seen='2021', source_url='https://3hentai.net/d/123')])
         self.assertEqual([x['uid'] for x in items], ['3hentai:999'])
         self.assertEqual(items[0]['first_seen'], '2020')
         store = load_json(c.FILTER_STATE_FILE, {})

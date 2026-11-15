@@ -119,3 +119,6 @@ ALLOWED_LANGUAGES = {"japanese", "ja", "日本語"}
 
 INITIAL_RENDER_COUNT = 40
 LOAD_MORE_COUNT = 40
+
+# Independent corroboration budget for existing-row URL repairs.
+HENTAI3_REPAIR_GET_LIMIT = max(0, int(os.environ.get("HENTAI3_REPAIR_GET_LIMIT", "10")))
