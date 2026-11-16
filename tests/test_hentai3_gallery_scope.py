@@ -100,6 +100,7 @@ class GalleryScopeTests(unittest.TestCase):
             session.get.return_value = Mock(status_code=200, text='<img src="/logo.png">',
                                              url=item['source_url'])
             with patch.object(thumbs, 'DATA', data), patch.object(thumbs, 'OUTDIR', root / 'thumbs'), \
+                 patch.object(thumbs, 'ATTEMPTS', root / 'attempts.json'), \
                  patch.object(thumbs, 'load', side_effect=[{'items': [item]}, status]), \
                  patch.object(thumbs, 'save'), patch.object(thumbs.requests, 'Session', return_value=session), \
                  patch.object(thumbs.time, 'sleep'), contextlib.redirect_stdout(io.StringIO()):

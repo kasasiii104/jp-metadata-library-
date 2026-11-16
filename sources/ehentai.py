@@ -14,6 +14,7 @@ BASE = "https://e-hentai.org/"
 API = "https://api.e-hentai.org/api.php"
 SEARCH_QUERY = "language:japanese$"
 GALLERY_RE = re.compile(r"/g/([0-9]+)/([0-9a-fA-F]{10})(?![0-9A-Za-z])")
+NO_HITS_MARKER = "no hits found"
 
 
 def _refs_from_html(html: str) -> list[tuple[int, str]]:
@@ -102,13 +103,44 @@ def _discover(
 
     res = safe_get(session, BASE, params=params)
     found = _refs_from_html(res.text)
+    listing_container_present = True
+    title = ""
+    try:
+        soup = BeautifulSoup(res.text, "html.parser")
+        listing_container_present = soup.select_one(".itg") is not None
+        if soup.title is not None:
+            title = " ".join(soup.title.get_text(" ", strip=True).split())[:120]
+    except Exception:
+        # Parser failures are not evidence that the listing is missing.
+        listing_container_present = True
+    listing_observation = (
+        ("present" if listing_container_present else "missing")
+        + ("_nonempty" if found else "_empty")
+    )
+    # A legitimate zero-hit search page has no `.itg` either (captured
+    # 2026-11-16: the body only says "No hits found"). Treat that marker as
+    # a valid empty page; only an unexplained missing listing is a failure.
+    listing_no_hits = NO_HITS_MARKER in (res.text or "").lower()
+    # A page that still exposes a next cursor keeps flowing as before, so the
+    # caller can reach later pages exactly as it did without this check.
     next_cursor = _extract_next_cursor(res.text)
+    if (not listing_container_present and not found and not listing_no_hits
+            and not next_cursor):
+        body = getattr(res, "content", None)
+        body_bytes = len(body) if isinstance(body, bytes) else len(res.text.encode("utf-8"))
+        raise ValueError(
+            f"listing_structure_missing: {getattr(res, 'url', '') or ''} bytes={body_bytes}"
+            + (f" title={title}" if title else "")
+        )
     debug = {
         "stage": stage,
         "query_mode": "japanese-search" if search_query else "global-latest",
         "requested_cursor": cursor or "<latest>",
         "final_url": str(getattr(res, "url", "") or ""),
         "found_count": len(found),
+        "listing_container_present": listing_container_present,
+        "listing_observation": listing_observation,
+        "listing_no_hits": listing_no_hits,
         "first_gid": str(found[0][0]) if found else "",
         "last_gid": str(found[-1][0]) if found else "",
         "next_cursor": next_cursor,

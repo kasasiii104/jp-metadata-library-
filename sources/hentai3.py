@@ -385,6 +385,13 @@ def _direct_search_cards(session: requests.Session, key: str, page: int, sort: s
         })
 
     info["cards"] = len(cards)
+    info["listing_container_present"] = soup.select_one(".listing-container") is not None
+    info["listing_observation"] = (
+        ("present" if info["listing_container_present"] else "missing")
+        + ("_nonempty" if cards else "_empty")
+    )
+    if not info["listing_container_present"] and not cards:
+        info["warning"] = "listing_structure_missing"
     return cards, info
 
 

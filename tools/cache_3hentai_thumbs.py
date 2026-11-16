@@ -11,6 +11,7 @@ import os
 import time
 import re
 import unicodedata
+from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urljoin
 
@@ -29,6 +30,8 @@ SOURCE_BASE = "https://3hentai.net"
 LIMIT = int(os.environ.get("HENTAI3_THUMB_LIMIT", "12"))
 DELAY = float(os.environ.get("HENTAI3_THUMB_DELAY_SEC", "2.0"))
 MAX_BYTES = int(os.environ.get("HENTAI3_THUMB_MAX_BYTES", str(15 * 1024 * 1024)))
+ATTEMPTS = Path("state/3hentai_thumb_attempts.json")
+RETRY_SEC = float(os.environ.get("HENTAI3_THUMB_RETRY_SEC", "86400"))
 TIMEOUT = 30
 
 
@@ -210,7 +213,44 @@ def download_thumbnail(session: requests.Session, urls: list[str]) -> tuple[byte
     return None, last, False
 
 
-def main() -> int:
+def validate_attempts(value):
+    if not isinstance(value, dict) or type(value.get("version")) is not int or value["version"] != 1:
+        raise ValueError("unsupported thumbnail attempts version")
+    if not isinstance(value.get("items"), dict):
+        raise ValueError("thumbnail attempts items must be an object")
+    for sid, entry in value["items"].items():
+        if (not isinstance(sid, str) or not isinstance(entry, dict)
+                or not isinstance(entry.get("last_attempt"), str)
+                or not isinstance(entry.get("reason"), str)
+                or type(entry.get("failures")) is not int or entry["failures"] < 1):
+            raise ValueError("invalid thumbnail attempt entry")
+
+
+def load_attempts():
+    try:
+        if not ATTEMPTS.exists():
+            print("[3hentai-thumbs] attempt state missing; using empty records")
+            return {"version": 1, "items": {}}
+        return load(ATTEMPTS, {"version": 1, "items": {}}, validate_attempts)
+    except (ValueError, OSError, TypeError) as e:
+        message = " ".join(str(e).split())[:200]
+        print(f"[3hentai-thumbs] invalid attempt state; using empty records: {message}")
+        return {"version": 1, "items": {}}
+
+
+def attempt_time(entry):
+    try:
+        stamp = datetime.fromisoformat(entry["last_attempt"].replace("Z", "+00:00"))
+        if stamp.tzinfo is None:
+            return float("-inf")
+        return stamp.timestamp()
+    except (ValueError, OverflowError, OSError):
+        return float("-inf")
+
+
+def main(now=None) -> int:
+    now = now if now is not None else datetime.now(timezone.utc)
+    now = now.astimezone(timezone.utc)
     if not DATA.exists() and not DATA.is_symlink():
         print("[3hentai-thumbs] docs/data.json not found")
         return 0
@@ -219,6 +259,13 @@ def main() -> int:
     status = load(STATUS, {}, validate_source_mapping)
     items = [x for x in data.get("items", []) if isinstance(x, dict) and x.get("source") == "3hentai"]
     OUTDIR.mkdir(parents=True, exist_ok=True)
+
+    attempt_state = load_attempts()
+    records = attempt_state["items"]
+    catalog_ids = {str(x.get("source_id") or "").strip() for x in items}
+    for sid in list(records):
+        if sid not in catalog_ids:
+            records.pop(sid)
 
     session = requests.Session()
     session.headers.update({
@@ -234,6 +281,9 @@ def main() -> int:
     failures: list[str] = []
     samples: list[str] = []
 
+    untried = []
+    retries = []
+    deferred = 0
     for item in items:
         sid = str(item.get("source_id") or "").strip()
         if not sid:
@@ -248,7 +298,18 @@ def main() -> int:
         if dest.exists() and dest.stat().st_size > 512:
             item["thumbnail"] = rel
             reused += 1
+            records.pop(sid, None)
             continue
+        entry = records.get(sid)
+        if entry is None:
+            untried.append((item, sid, rel, dest))
+        elif now.timestamp() - attempt_time(entry) >= RETRY_SEC:
+            retries.append((attempt_time(entry), item, sid, rel, dest))
+        else:
+            deferred += 1
+
+    queue = untried + [row[1:] for row in sorted(retries, key=lambda row: row[0])]
+    for item, sid, rel, dest in queue:
         if attempted >= LIMIT or rate_limited:
             continue
 
@@ -256,6 +317,7 @@ def main() -> int:
         page_url = str(item.get("source_url") or "").strip()
         source_url_kind = str(item.get("source_url_kind") or "").strip().lower()
 
+        resolve_error = page_error = ""
         urls: list[str] = []
         current = str(item.get("thumbnail") or "").strip()
         if current.startswith(("http://", "https://")):
@@ -310,11 +372,17 @@ def main() -> int:
             dest.write_bytes(data_bytes)
             item["thumbnail"] = rel
             cached += 1
+            records.pop(sid, None)
             if len(samples) < 5:
                 samples.append(f"{sid}: {used} -> {rel}")
             print(f"[3hentai-thumbs] cached {sid} -> {rel} ({len(data_bytes)} bytes)")
         else:
             failed += 1
+            records[sid] = {
+                "last_attempt": now.isoformat(),
+                "reason": (used or page_error or resolve_error or "no image candidate")[:200],
+                "failures": records.get(sid, {}).get("failures", 0) + 1,
+            }
             if len(failures) < 8:
                 failures.append(f"{sid}: {used or 'no image candidate'}")
 
@@ -322,6 +390,7 @@ def main() -> int:
         # gradually fill the local cache.
         time.sleep(max(0.0, DELAY))
 
+    save(ATTEMPTS, attempt_state)
     save(DATA, data)
     src = status.setdefault("3hentai", {})
     src["thumbnail_cache"] = {
@@ -330,6 +399,8 @@ def main() -> int:
         "cached": cached,
         "reused": reused,
         "failed": failed,
+        "deferred": deferred,
+        "tracked_failures": len(records),
         "pending": max(0, len(items) - reused - cached),
         "resolved_search_fallbacks": resolved_search_fallbacks,
         "rate_limited": rate_limited,

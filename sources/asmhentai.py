@@ -196,7 +196,8 @@ def collect(state: dict | None = None):
                     # title. This prevents English-only galleries leaking in.
                     ts = tags(first(candidate, "tags", "tag", "metadata"))
                     detailed_title = clean(first(candidate, "title", "name", "pretty", "japanese"))
-                    japanese_script = bool(__import__("re").search(r"[ぁ-んァ-ヶ一-龯]", detailed_title))
+                    # Kana only: kanji alone cannot tell Japanese from Chinese titles.
+                    japanese_script = bool(__import__("re").search(r"[ぁ-んァ-ヶ]", detailed_title))
                     if key == "日本語" and japanese_script and not is_japanese(candidate, ts):
                         candidate = dict(candidate)
                         candidate["language"] = "japanese"

@@ -214,7 +214,8 @@ class JsonPersistenceTests(unittest.TestCase):
     def cache_3hentai_files(self):
         for name, relative in (("DATA", "docs/data.json"),
                                ("STATUS", "docs/source_status.json"),
-                               ("OUTDIR", "docs/thumbs/3hentai")):
+                               ("OUTDIR", "docs/thumbs/3hentai"),
+                               ("ATTEMPTS", "state/3hentai_thumb_attempts.json")):
             self.patch_attribute(cache_3hentai_thumbs, name, self.tmp_path / relative)
         return cache_3hentai_thumbs.DATA
 
