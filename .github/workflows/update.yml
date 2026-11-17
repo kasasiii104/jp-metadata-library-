@@ -124,6 +124,14 @@ jobs:
           ASMHENTAI_THUMB_DELAY_SEC: "0.4"
         run: python tools/cache_asmhentai_thumbs.py
 
+      - name: Cache nHentai thumbnails locally
+        if: env.OFFLINE_FILTER_PURGE != 'true' && env.FAST_PAGES_ONLY != 'true'
+        env:
+        NHENTAI_THUMB_LIMIT: "60"
+        NHENTAI_THUMB_DELAY_SEC: "0.5"
+        NHENTAI_THUMB_DEADLINE_SEC: "180"
+        run: python tools/cache_nhentai_thumbs.py
+        
       - name: Cache Hitomi thumbnails locally
         if: env.OFFLINE_FILTER_PURGE != 'true' && env.FAST_PAGES_ONLY != 'true'
         env:
