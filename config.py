@@ -122,3 +122,16 @@ LOAD_MORE_COUNT = 40
 
 # Independent corroboration budget for existing-row URL repairs.
 HENTAI3_REPAIR_GET_LIMIT = max(0, int(os.environ.get("HENTAI3_REPAIR_GET_LIMIT", "10")))
+
+# nHentai: v2 latest and ID-aligned historical backfill.
+# Maximum pages to follow until reaching latest_id.
+NH_LATEST_PAGES = int(os.environ.get("NH_LATEST_PAGES", "40"))
+NH_MAX_DETAILS_PER_RUN = int(os.environ.get("NH_MAX_DETAILS_PER_RUN", "45"))
+NH_INITIAL_BACKFILL_ITEMS = int(os.environ.get("NH_INITIAL_BACKFILL_ITEMS", "2500"))
+NH_BACKFILL_SEEK_PAGES = int(os.environ.get("NH_BACKFILL_SEEK_PAGES", "6"))
+NH_SEARCH_DELAY_SEC = float(os.environ.get("NH_SEARCH_DELAY_SEC", "6.5"))
+NH_DETAIL_DELAY_SEC = float(os.environ.get("NH_DETAIL_DELAY_SEC", "3.2"))
+NH_DETAIL_MAX_FAILURES = int(os.environ.get("NH_DETAIL_MAX_FAILURES", "3"))
+
+NH_RUN_DEADLINE_SEC = float(os.environ.get("NH_RUN_DEADLINE_SEC", "420"))
+NH_REQUEST_TIMEOUT = float(os.environ.get("NH_REQUEST_TIMEOUT", "15"))

@@ -26,7 +26,7 @@ from config import (
     HITOMI_FILTER_AUDIT_REFRESH_SEC,
     HITOMI_FILTER_RETRY_SEC,
 )
-from sources import ehentai, hitomi, hentai3, asmhentai, hentai3_ids
+from sources import ehentai, hitomi, hentai3, asmhentai, hentai3_ids, nhentai
 from sources.common import is_valid_source_id, normalize_full_tag, normalize_tag, unique_strings, polite_sleep
 from tools.json_storage import (load_json, save_json, validate_catalog,
                                 validate_source_mapping, validate_filter_store, validate_hentai3_id_map)
@@ -36,8 +36,9 @@ SOURCES = {
     "hitomi": hitomi.collect,
     "3hentai": hentai3.collect,
     "asmhentai": asmhentai.collect,
+    "nhentai": nhentai.collect,
 }
-RETIRED_SOURCES = {"pururin", "nharchive", "nhentai"}
+RETIRED_SOURCES = {"pururin", "nharchive"}
 
 NORMALIZED_BLOCK_TAGS = {normalize_tag(x) for x in BLOCK_TAGS}
 NORMALIZED_BLOCK_FULL_TAGS = {normalize_full_tag(x) for x in BLOCK_FULL_TAGS}

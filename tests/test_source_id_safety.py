@@ -3,13 +3,7 @@ import tempfile
 import unittest
 from unittest.mock import Mock, patch
 
-import config
-from sources import asmhentai, hentai3
-
-# The retired nHentai collector no longer has runtime settings in config.
-with patch.multiple(config, NH_BACKFILL_PAGES=1, NH_LATEST_PAGES=1,
-                    NH_MAX_DETAILS_PER_RUN=1, create=True):
-    from sources import nhentai
+from sources import asmhentai, hentai3, nhentai
 from sources.common import is_valid_source_id
 from tools import cache_3hentai_thumbs, cache_asmhentai_thumbs
 
@@ -22,6 +16,9 @@ class SourceIdSafetyTests(unittest.TestCase):
                 raw = {'id': sid, 'title': 'sample', 'language': 'japanese'}
                 self.assertEqual(asmhentai.normalize(raw)['source_id'], sid)
                 self.assertEqual(hentai3._normalize(raw)['source_id'], sid)
+                if not sid.isdigit():
+                    self.assertIsNone(nhentai._normalize(raw))
+                    continue
                 self.assertEqual(
                     nhentai._normalize(dict(raw, title={'english': 'sample'}))['source_id'],
                     sid,
