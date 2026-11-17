@@ -1,5 +1,62 @@
 "use strict";
 (() => {
+  const dateCache = new Map();
+  function parseDate(value) {
+    if (typeof value !== "string") return NaN;
+    if (dateCache.has(value)) return dateCache.get(value);
+    const trimmed = value.trim();
+    const parts = trimmed.match(/^(\d{4})-(\d{2})-(\d{2})/);
+    let result;
+    if (!parts) result = Date.parse(value);
+    else {
+      const [,y,m,d] = parts.map(Number);
+      const leap = y%4===0 && (y%100!==0 || y%400===0);
+      const days = [31,leap?29:28,31,30,31,30,31,31,30,31,30,31];
+      if (m<1 || m>12 || d<1 || d>days[m-1]) result = NaN;
+      else {
+        const normalized = trimmed.replace(/^(\d{4}-\d{2}-\d{2}) /, "$1T").replace(/([+-]\d{2})(\d{2})$/, "$1:$2").replace(/(T.*)([+-]\d{2})$/, "$1$2:00");
+        const utc = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2}(?:\.\d+)?)?$/.test(normalized) ? `${normalized}Z` : normalized;
+        result = Date.parse(trimmed.length===10 ? `${trimmed}T00:00:00Z` : utc);
+      }
+    }
+    dateCache.set(value, result);
+    return result;
+  }
+  const defaults = {q:"",src:"all",cat:"",fk:"",fv:"",sort:"new",pages:"0"};
+  function decodeState(query) {
+    const p = new URLSearchParams(query), out = {...defaults};
+    for (const k of ["q","cat","fv"]) out[k] = p.get(k) || "";
+    for (const [k, allowed] of Object.entries({src:["all","ehentai","hitomi","3hentai","asmhentai"],fk:["","artists","groups","works","characters","tags"],sort:["new","rating","pages"],pages:["0","20","40","80"]})) {
+      const v=p.get(k); if(allowed.includes(v))out[k]=v;
+    }
+    if(!out.fk)out.fv="";
+    return out;
+  }
+  function encodeState(value) {
+    const v=decodeState(new URLSearchParams(value)), p=new URLSearchParams();
+    for(const k of Object.keys(defaults))if(v[k]!==defaults[k])p.set(k,v[k]);
+    return p.toString();
+  }
+  function seededOrder(items, seed) {
+    const hash = uid => { let h=2166136261; for(const c of `${seed}:${uid}`)h=Math.imul(h^c.charCodeAt(0),16777619); return h>>>0; };
+    return [...items].sort((a,b)=>hash(a.uid)-hash(b.uid)||String(a.uid).localeCompare(String(b.uid)));
+  }
+  function isNew(item, since) { return (item._members || [item]).some(x=>parseDate(x.posted_at)>since); }
+  function decideSince(updated, previous, session, now=Date.now()) {
+    const current=Number.isFinite(parseDate(updated))?parseDate(updated):now;
+    const number=v=>typeof v==="string"&&/^\d{1,16}$/.test(v)&&Number(v)>0&&Number(v)<=current?Number(v):NaN;
+    const old=number(previous), fixed=number(session);
+    return {since:Number.isFinite(fixed)?fixed:Number.isFinite(old)?old:current,lastSeen:current};
+  }
+  function initializeSince(updated, local, session, now) {
+    const read=(s,k)=>{try{return s()?.getItem(k);}catch{return null;}};
+    const result=decideSince(updated,read(local,"meta_last_seen"),read(session,"meta_new_since"),now);
+    try{local()?.setItem("meta_last_seen",String(result.lastSeen));}catch{}
+    try{session()?.setItem("meta_new_since",String(result.since));}catch{}
+    return result.since;
+  }
+  if(typeof module !== "undefined" && module.exports) { module.exports={parseDate,decodeState,encodeState,seededOrder,isNew,decideSince,initializeSince}; return; }
+
   const $ = (s) => document.querySelector(s);
   const $$ = (s) => [...document.querySelectorAll(s)];
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]);
@@ -7,7 +64,7 @@
   const uniq = (a) => [...new Set((a || []).filter(Boolean))];
   const sourceLabel = (s) => ({ehentai:"E-Hentai",hitomi:"Hitomi","3hentai":"3Hentai",asmhentai:"ASMHentai"})[s] || s;
   const INITIAL = 40, STEP = 40, INITIAL_CHUNKS = 2;
-  const state = { raw:[], items:[], filtered:[], shown:INITIAL, source:"all", favoritesOnly:false, manifest:null, loadedChunks:new Set(), loading:false };
+  const state = { raw:[], items:[], filtered:[], shown:INITIAL, source:"all", favoritesOnly:false, manifest:null, loadedChunks:new Set(), loading:false, seed:null, newOnly:false, since:NaN, newCount:0 };
 
   function readSet(key) {
     try { const v = JSON.parse(localStorage.getItem(key) || "[]"); return new Set(Array.isArray(v) ? v : []); }
@@ -54,8 +111,8 @@
   function worksOf(x) { return uniq([...(x.works || []), ...(x.parodies || [])]); }
   function contentTagsOf(x) { return uniq(x.tags || []).filter(v => !/^(?:language|artist|group|parody|work|character):/i.test(String(v || "").trim())); }
   function fieldValues(x, key) { if (key === "works") return worksOf(x); if (key === "tags") return contentTagsOf(x); return x[key] || []; }
-  function dateScore(x) { const n = Date.parse(x.posted_at || ""); return Number.isFinite(n) ? n : 0; }
-  function relative(v) { const t = Date.parse(v || ""); if (!Number.isFinite(t)) return ""; const d = Math.max(0, Date.now()-t), days=Math.floor(d/86400000); if(days<1)return"今日"; if(days<7)return`${days}日前`; return new Date(t).toLocaleDateString("ja-JP"); }
+  function dateScore(x) { const n = parseDate(x.posted_at); return Number.isFinite(n) ? n : 0; }
+  function relative(v) { const t = parseDate(v); if (!Number.isFinite(t)) return ""; const d = Math.max(0, Date.now()-t), days=Math.floor(d/86400000); if(days<1)return"今日"; if(days<7)return`${days}日前`; return new Date(t).toLocaleDateString("ja-JP"); }
   function localThumb(u) { return u && !/^https?:/i.test(u); }
   function memberScore(x){let n=0;if(localThumb(x.thumbnail))n+=80;else if(x.thumbnail)n+=40;if(x.title_jp)n+=20;if(x.rating!=null)n+=8;if(x.artists?.length)n+=5;if(x.source==="ehentai")n+=3;return n;}
 
@@ -83,21 +140,43 @@
 
   function refreshFacetValues(selected="") { const kind=$("#facetKind").value, sel=$("#facetValue"); sel.innerHTML='<option value="">すべて</option>'; if(!kind){sel.disabled=true;return;} const counts=new Map(); for(const x of state.items)for(const v of fieldValues(x,kind))if(v)counts.set(v,(counts.get(v)||0)+1); for(const [v,n] of [...counts].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],"ja")).slice(0,500)){const o=document.createElement("option");o.value=v;o.textContent=`${displayValue(kind,v)} (${n})`;sel.appendChild(o);}if(selected&&![...sel.options].some(o=>o.value===selected)){const o=document.createElement("option");o.value=selected;const n=counts.get(selected);o.textContent=n?`${displayValue(kind,selected)} (${n})`:displayValue(kind,selected);sel.appendChild(o);}sel.disabled=false;if(selected)sel.value=selected; }
   function updateActiveFacet(){const kind=$("#facetKind").value,value=$("#facetValue").value,b=$("#activeFacet");if(!kind||!value){b.hidden=true;return;}const labels={artists:"作者",groups:"グループ",works:"作品",characters:"キャラ",tags:"タグ"};b.hidden=false;b.textContent=`${labels[kind]||kind}: ${displayValue(kind,value)} ×`;}
-  function apply(reset=true){const q=$("#q").value.trim().toLowerCase(),cat=$("#category").value,minPages=Number($("#pages").value||0),sort=$("#sort").value,kind=$("#facetKind").value,val=$("#facetValue").value;let a=state.items.filter(x=>!hidden.has(x._groupId));if(state.source!=="all")a=a.filter(x=>x._sources.includes(state.source));if(state.favoritesOnly)a=a.filter(x=>favs.has(x._groupId));if(q)a=a.filter(x=>searchable(x).includes(q));if(cat)a=a.filter(x=>x._categories.includes(cat));if(kind&&val)a=a.filter(x=>fieldValues(x,kind).includes(val));if(minPages)a=a.filter(x=>Number(x.pages||0)>=minPages);a.sort((a,b)=>sort==="rating"?(Number(b.rating||-1)-Number(a.rating||-1))||dateScore(b)-dateScore(a):sort==="pages"?(Number(b.pages||0)-Number(a.pages||0))||dateScore(b)-dateScore(a):dateScore(b)-dateScore(a));state.filtered=a;if(reset)state.shown=INITIAL;updateActiveFacet();render();}
-  function render(){const list=state.filtered.slice(0,state.shown);$("#grid").innerHTML=list.length?list.map(card).join(""):'<div class="empty">該当作品がありません</div>';const total=Number(state.manifest?.item_count||0),loaded=state.raw.length;$("#count").textContent=`${state.filtered.length.toLocaleString()}件表示対象 ・ ${loaded.toLocaleString()}/${total.toLocaleString()}件読込`;$("#loadMore").hidden=(state.shown>=state.filtered.length && state.loadedChunks.size>=Number(state.manifest?.chunk_count||0));$("#loadMore").textContent=state.loading?"読み込み中…":state.shown<state.filtered.length?"もっと見る":"次の作品を読み込む";}
+  function apply(reset=true){const q=$("#q").value.trim().toLowerCase(),cat=$("#category").value,minPages=Number($("#pages").value||0),sort=$("#sort").value,kind=$("#facetKind").value,val=$("#facetValue").value;let a=state.items.filter(x=>!hidden.has(x._groupId));if(state.source!=="all")a=a.filter(x=>x._sources.includes(state.source));if(state.favoritesOnly)a=a.filter(x=>favs.has(x._groupId));if(q)a=a.filter(x=>searchable(x).includes(q));if(cat)a=a.filter(x=>x._categories.includes(cat));if(kind&&val)a=a.filter(x=>fieldValues(x,kind).includes(val));if(minPages)a=a.filter(x=>Number(x.pages||0)>=minPages);a.sort((a,b)=>sort==="rating"?(Number(b.rating||-1)-Number(a.rating||-1))||dateScore(b)-dateScore(a):sort==="pages"?(Number(b.pages||0)-Number(a.pages||0))||dateScore(b)-dateScore(a):dateScore(b)-dateScore(a));if(state.newOnly)a=a.filter(x=>isNew(x,state.since));if(state.seed!==null)a=seededOrder(a,state.seed);state.filtered=a;if(reset)state.shown=INITIAL;updateActiveFacet();$("#randomActive").hidden=state.seed===null;render();}
+  function render(){const list=state.filtered.slice(0,state.shown);$("#grid").innerHTML=list.length?list.map(card).join(""):'<div class="empty">該当作品がありません</div>';const total=Number(state.manifest?.item_count||0),loaded=state.raw.length;$("#count").textContent=`${state.filtered.length.toLocaleString()}件表示対象 ・ ${loaded.toLocaleString()}/${total.toLocaleString()}件読込`;$("#newBtn").textContent=`新着${state.newOnly?"表示中":""} (${state.newCount})`;
+    if(state.newOnly)$("#count").textContent+=` ・ 新着 ${state.filtered.length}件（基準 ${new Date(state.since).toLocaleString("ja-JP")} 以降）`;
+    $("#loadMore").hidden=(state.shown>=state.filtered.length && state.loadedChunks.size>=Number(state.manifest?.chunk_count||0));$("#loadMore").textContent=state.loading?"読み込み中…":state.shown<state.filtered.length?"もっと見る":"次の作品を読み込む";}
 
   async function loadChunk(i){if(state.loadedChunks.has(i))return;const r=await fetch(`catalog/chunk-${String(i).padStart(3,"0")}.json?v=${encodeURIComponent(state.manifest?.version||"")}`,{cache:"no-store"});if(!r.ok)throw new Error(`chunk ${i}: HTTP ${r.status}`);const d=await r.json();if(!Array.isArray(d.items))throw new Error(`chunk ${i}: invalid`);state.raw.push(...d.items);state.loadedChunks.add(i);}
-  function rebuild(){state.items=collapseGroups(state.raw);const cats=[...new Set(state.items.flatMap(x=>x._categories).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"ja"));const current=$("#category").value;$("#category").innerHTML='<option value="">全カテゴリ</option>'+cats.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join("");$("#category").value=current;refreshFacetValues($("#facetValue").value);apply(false);}
+  function updateNewCount(){state.newCount=state.items.filter(x=>!hidden.has(x._groupId)&&isNew(x,state.since)).length;}
+  function rebuild(){state.items=collapseGroups(state.raw);updateNewCount();const cats=[...new Set(state.items.flatMap(x=>x._categories).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"ja"));const current=$("#category").value;if(current&&!cats.includes(current))cats.push(current);$("#category").innerHTML='<option value="">全カテゴリ</option>'+cats.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join("");$("#category").value=current;refreshFacetValues($("#facetValue").value);apply(false);}
   async function loadNextChunk(){if(state.loading)return;const n=Number(state.manifest?.chunk_count||0);const next=[...Array(n).keys()].find(i=>!state.loadedChunks.has(i));if(next==null)return;state.loading=true;render();try{await loadChunk(next);rebuild();}catch(e){$("#status").textContent=`追加データ読込失敗: ${e.message}`;}finally{state.loading=false;render();}}
   async function loadAll(){if(state.loading)return;state.loading=true;$("#loadAll").disabled=true;try{const n=Number(state.manifest?.chunk_count||0);for(let i=0;i<n;i++){if(state.loadedChunks.has(i))continue;$("#status").textContent=`全件読み込み ${i+1}/${n}`;await loadChunk(i);if(i%4===0)await new Promise(r=>setTimeout(r,0));}rebuild();$("#status").textContent=`全${Number(state.manifest.item_count).toLocaleString()}件を読み込み済み`;}catch(e){$("#status").textContent=`全件読込失敗: ${e.message}`;}finally{state.loading=false;$("#loadAll").disabled=false;render();}}
   function detailBlock(label,values,kind){values=uniq(values||[]);if(!values.length)return"";return `<div class="detailblock"><div class="detailtitle">${esc(label)}</div><div class="detailchips">${values.slice(0,36).map(v=>facetButton(kind,v,kind==="tags"?`#${displayValue(kind,v)}`:displayValue(kind,v))).join("")}</div></div>`;}
-  function menu(id){const x=state.items.find(i=>i._groupId===id);if(!x)return;const links=x._members.map(m=>`<a href="${esc(sourceWorkUrl(m)||"#")}" target="_blank" rel="noopener noreferrer">${esc(sourceLabel(m.source))}で見る</a>`).join("");$("#sheet").innerHTML=detailBlock("作品・原作",worksOf(x),"works")+detailBlock("キャラクター",x.characters,"characters")+detailBlock("タグ",contentTagsOf(x),"tags")+`<button data-act="fav">${favs.has(id)?"お気に入りから外す":"お気に入りに追加"}</button><button data-act="hide">この作品を非表示</button>${links}`;$("#sheetBg").classList.add("on");$("#sheet").classList.add("on");$("#sheet [data-act=fav]").onclick=()=>{favs.has(id)?favs.delete(id):favs.add(id);saveSet("meta_favorites",favs);closeSheet();apply();};$("#sheet [data-act=hide]").onclick=()=>{hidden.add(id);saveSet("meta_hidden",hidden);closeSheet();apply();};}
+  function menu(id){const x=state.items.find(i=>i._groupId===id);if(!x)return;const links=x._members.map(m=>`<a href="${esc(sourceWorkUrl(m)||"#")}" target="_blank" rel="noopener noreferrer">${esc(sourceLabel(m.source))}で見る</a>`).join("");$("#sheet").innerHTML=detailBlock("作品・原作",worksOf(x),"works")+detailBlock("キャラクター",x.characters,"characters")+detailBlock("タグ",contentTagsOf(x),"tags")+`<button data-act="fav">${favs.has(id)?"お気に入りから外す":"お気に入りに追加"}</button><button data-act="hide">この作品を非表示</button>${links}`;$("#sheetBg").classList.add("on");$("#sheet").classList.add("on");$("#sheet [data-act=fav]").onclick=()=>{favs.has(id)?favs.delete(id):favs.add(id);saveSet("meta_favorites",favs);closeSheet();apply();};$("#sheet [data-act=hide]").onclick=()=>{hidden.add(id);saveSet("meta_hidden",hidden);updateNewCount();closeSheet();apply();};}
   function closeSheet(){$("#sheetBg").classList.remove("on");$("#sheet").classList.remove("on");}
 
-  async function init(){try{const [manifest,status]=await Promise.all([fetch("catalog/manifest.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(`manifest HTTP ${r.status}`);return r.json();}),fetch("source_status.json",{cache:"no-store"}).then(r=>r.ok?r.json():{}).catch(()=>({}))]);state.manifest=manifest;const n=Math.min(INITIAL_CHUNKS,Number(manifest.chunk_count||0));for(let i=0;i<n;i++)await loadChunk(i);rebuild();$("#status").textContent=`更新 ${new Date(manifest.updated_at).toLocaleString("ja-JP")} ・ 全${Number(manifest.item_count).toLocaleString()}件`;const parts=["ehentai","hitomi","3hentai","asmhentai"].map(k=>{const s=status[k]||{};return `${sourceLabel(k)}: ${s.status||"不明"}${s.accepted!=null?` ${s.accepted}件`:""}`;});$("#sourceStatus").textContent=parts.join(" / ");}catch(e){$("#status").textContent=`起動失敗: ${e.message}`;$("#grid").innerHTML='<div class="empty">公開データを読み込めませんでした。再読み込みしてください。</div>';}}
+  async function init(){try{const [manifest,status]=await Promise.all([fetch("catalog/manifest.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(`manifest HTTP ${r.status}`);return r.json();}),fetch("source_status.json",{cache:"no-store"}).then(r=>r.ok?r.json():{}).catch(()=>({}))]);state.manifest=manifest;const n=Math.min(INITIAL_CHUNKS,Number(manifest.chunk_count||0));for(let i=0;i<n;i++)await loadChunk(i);state.since=initializeSince(manifest.updated_at,()=>localStorage,()=>sessionStorage);rebuild();$("#status").textContent=`更新 ${new Date(manifest.updated_at).toLocaleString("ja-JP")} ・ 全${Number(manifest.item_count).toLocaleString()}件`;const parts=["ehentai","hitomi","3hentai","asmhentai"].map(k=>{const s=status[k]||{};return `${sourceLabel(k)}: ${s.status||"不明"}${s.accepted!=null?` ${s.accepted}件`:""}`;});$("#sourceStatus").textContent=parts.join(" / ");}catch(e){$("#status").textContent=`起動失敗: ${e.message}`;$("#grid").innerHTML='<div class="empty">公開データを読み込めませんでした。再読み込みしてください。</div>';}}
 
-  let searchTimer=0;$("#q").addEventListener("input",()=>{clearTimeout(searchTimer);searchTimer=setTimeout(()=>apply(),180);});$("#sort").addEventListener("change",()=>apply());$("#category").addEventListener("change",()=>apply());$("#facetKind").addEventListener("change",()=>{refreshFacetValues();apply();});$("#facetValue").addEventListener("change",()=>apply());$("#pages").addEventListener("change",()=>apply());
-  $("#loadMore").onclick=async()=>{if(state.shown<state.filtered.length){state.shown+=STEP;render();}else await loadNextChunk();};$("#loadAll").onclick=loadAll;$("#favBtn").onclick=()=>{state.favoritesOnly=!state.favoritesOnly;$("#favBtn").textContent=state.favoritesOnly?"★のみ":"★";apply();};$("#activeFacet").onclick=()=>{$("#facetKind").value="";refreshFacetValues();$("#facetValue").value="";apply();};
-  $$('[data-source]').forEach(b=>b.onclick=()=>{$$('[data-source]').forEach(x=>x.classList.remove("on"));b.classList.add("on");state.source=b.dataset.source;apply();});document.addEventListener("click",e=>{const f=e.target.closest("[data-facet-kind][data-facet-value]");if(f){e.preventDefault();$("#facetKind").value=f.dataset.facetKind;refreshFacetValues(f.dataset.facetValue);$("#facetValue").value=f.dataset.facetValue;closeSheet();apply();return;}const b=e.target.closest("[data-more]");if(b){e.preventDefault();menu(b.dataset.more);}});$("#sheetBg").onclick=closeSheet;
+  function writeUrl(mode) {
+    const query=encodeState({q:$("#q").value,src:state.source,cat:$("#category").value,fk:$("#facetKind").value,fv:$("#facetValue").value,sort:$("#sort").value,pages:$("#pages").value});
+    const url=location.pathname+(query?"?"+query:"")+location.hash;
+    if(url===location.pathname+location.search+location.hash)return;
+    try{history[mode+"State"](null,"",url);}catch{}
+  }
+  function restoreUrl(renderNow=true) {
+    clearTimeout(searchTimer);
+    const v=decodeState(location.search);state.source=v.src;
+    for(const [id,key] of [["q","q"],["sort","sort"],["pages","pages"],["facetKind","fk"]])$("#"+id).value=v[key];
+    const cat=$("#category");if(v.cat&&![...cat.options].some(o=>o.value===v.cat)){const o=document.createElement("option");o.value=v.cat;o.textContent=v.cat;cat.appendChild(o);}cat.value=v.cat;
+    refreshFacetValues(v.fv);$$('[data-source]').forEach(b=>b.classList.toggle("on",b.dataset.source===state.source));if(renderNow)apply();
+  }
+  const change=()=>{apply();writeUrl("push");};
+  let searchTimer=0;$("#q").addEventListener("input",()=>{clearTimeout(searchTimer);searchTimer=setTimeout(()=>{apply();writeUrl("replace");},180);});$("#sort").addEventListener("change",()=>{state.seed=null;change();});$("#category").addEventListener("change",change);$("#facetKind").addEventListener("change",()=>{refreshFacetValues();change();});$("#facetValue").addEventListener("change",change);$("#pages").addEventListener("change",change);
+  $("#loadMore").onclick=async()=>{if(state.shown<state.filtered.length){state.shown+=STEP;render();}else await loadNextChunk();};$("#loadAll").onclick=loadAll;$("#favBtn").onclick=()=>{state.favoritesOnly=!state.favoritesOnly;$("#favBtn").textContent=state.favoritesOnly?"★のみ":"★";apply();};$("#activeFacet").onclick=()=>{$("#facetKind").value="";refreshFacetValues();$("#facetValue").value="";change();};
+  $$('[data-source]').forEach(b=>b.onclick=()=>{$$('[data-source]').forEach(x=>x.classList.remove("on"));b.classList.add("on");state.source=b.dataset.source;change();});document.addEventListener("click",e=>{const f=e.target.closest("[data-facet-kind][data-facet-value]");if(f){e.preventDefault();$("#facetKind").value=f.dataset.facetKind;refreshFacetValues(f.dataset.facetValue);$("#facetValue").value=f.dataset.facetValue;closeSheet();change();return;}const b=e.target.closest("[data-more]");if(b){e.preventDefault();menu(b.dataset.more);}});$("#sheetBg").onclick=closeSheet;
+  $("#randomBtn").onclick=()=>{state.seed=(state.seed===null?Date.now():state.seed+1);apply();};
+  $("#randomActive").onclick=()=>{state.seed=null;apply();};
+  $("#newBtn").onclick=()=>{state.newOnly=!state.newOnly;apply();};
+  window.addEventListener("popstate",restoreUrl);
+  restoreUrl(false);
   init();
 })();

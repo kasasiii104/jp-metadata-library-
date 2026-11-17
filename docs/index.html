@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="複数ソースの公開メタデータを検索・絞り込みできるカタログです。">
+<meta name="theme-color" content="#0f0f0f">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <title>Japanese Metadata Library</title>
 <style>
 :root{color-scheme:dark;--bg:#0f0f0f;--panel:#181818;--panel2:#242424;--text:#f5f5f5;--muted:#aaa;--line:#303030}
@@ -32,6 +36,9 @@ main{padding:14px 12px calc(90px + env(safe-area-inset-bottom));max-width:1500px
     <select id="pages"><option value="0">ページ数すべて</option><option value="20">20ページ以上</option><option value="40">40ページ以上</option><option value="80">80ページ以上</option></select>
     <span id="count" class="count"></span>
   </div>
+  <button id="randomBtn" class="btn" type="button">ランダム</button>
+  <button id="newBtn" class="btn" type="button">新着 (0)</button>
+  <button id="randomActive" class="active-filter" type="button" hidden>ランダム表示中 ×</button>
   <button id="activeFacet" class="active-filter" type="button" hidden></button>
 
   <section id="fallback">
@@ -87,7 +94,7 @@ main{padding:14px 12px calc(90px + env(safe-area-inset-bottom));max-width:1500px
   <div id="sourceStatus" class="source-status"></div>
 </main>
 <div id="sheetBg" class="sheet-bg"></div><div id="sheet" class="sheet"></div>
-<script src="app.js?v=20261026-2" defer></script>
+<script src="app.js?v=20261117-1" defer></script>
 <script>
 (() => {
   const status = document.getElementById('status');
