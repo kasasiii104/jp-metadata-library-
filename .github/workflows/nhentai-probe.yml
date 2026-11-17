@@ -1,0 +1,14 @@
+name: nhentai-probe
+on:
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe nhentai v2 API
+        run: |
+          code=$(curl -s -o /tmp/resp.json -w "%{http_code}" -A "Mozilla/5.0" "https://nhentai.net/api/v2/search?query=language%3Ajapanese&sort=date&page=1&per_page=1")
+          echo "HTTP_STATUS=$code"
+          head -c 600 /tmp/resp.json
+          echo
+          python3 -c "import json;d=json.load(open('/tmp/resp.json'));r=d.get('result');print('RESULT_OK', isinstance(r,list) and len(r)>0 and isinstance(r[0].get('id'),int))"
