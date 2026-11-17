@@ -231,7 +231,9 @@ def load_attempts():
         if not ATTEMPTS.exists():
             print("[3hentai-thumbs] attempt state missing; using empty records")
             return {"version": 1, "items": {}}
-        return load(ATTEMPTS, {"version": 1, "items": {}}, validate_attempts)
+        state = load(ATTEMPTS, {"version": 1, "items": {}}, validate_attempts)
+        validate_attempts(state)
+        return state
     except (ValueError, OSError, TypeError) as e:
         message = " ".join(str(e).split())[:200]
         print(f"[3hentai-thumbs] invalid attempt state; using empty records: {message}")

@@ -67,6 +67,64 @@ class ThumbnailAttemptsTests(unittest.TestCase):
         self.assertEqual(self.status()['deferred'], 1)
         self.assertEqual(self.status()['tracked_failures'], 2)
 
+    def test_load_attempts_missing_file_returns_fresh_empty_records(self):
+        """Missing state has its own message and never shares mutable defaults."""
+        with redirect_stdout(io.StringIO()) as output:
+            first = thumbs.load_attempts()
+            first['items']['a'] = self.entry()
+            second = thumbs.load_attempts()
+        self.assertEqual(second, {'version': 1, 'items': {}})
+        self.assertEqual(output.getvalue().count('attempt state missing; using empty records'), 2)
+
+    def test_load_attempts_invalid_file_returns_empty_records(self):
+        """Empty files, missing items, wrong types, versions and entries recover."""
+        thumbs.ATTEMPTS.parent.mkdir()
+        for raw in ('', '{}', '{"version": 1}', '{"version": 1, "items": []}',
+                    '[]', '{"version": 2, "items": {}}',
+                    '{"version": 1, "items": {"a": {}}}'):
+            with self.subTest(raw=raw):
+                thumbs.ATTEMPTS.write_text(raw)
+                with redirect_stdout(io.StringIO()) as output:
+                    self.assertEqual(thumbs.load_attempts(), {'version': 1, 'items': {}})
+                self.assertIn('invalid attempt state; using empty records:', output.getvalue())
+
+    def test_load_attempts_revalidates_unexpected_mock_returns(self):
+        """Even loaders that bypass validation cannot leak malformed state."""
+        self.seed({})
+        for value in ({}, [], {'version': 1}, {'version': 1, 'items': []},
+                      {'version': True, 'items': {}},
+                      {'version': 1, 'items': {'a': {}}}):
+            with self.subTest(value=value), patch.object(thumbs, 'load', return_value=value):
+                with redirect_stdout(io.StringIO()) as output:
+                    first = thumbs.load_attempts()
+                    self.assertEqual(first, {'version': 1, 'items': {}})
+                    first['items']['a'] = self.entry()
+                    self.assertEqual(thumbs.load_attempts(), {'version': 1, 'items': {}})
+                self.assertIn('invalid attempt state; using empty records:', output.getvalue())
+
+    def test_load_attempts_preserves_valid_entries(self):
+        """Valid state keeps timestamps, reasons and failure counts unchanged."""
+        entries = {'a': self.entry()}
+        self.seed(entries)
+        self.assertEqual(thumbs.load_attempts(), {'version': 1, 'items': entries})
+
+    def test_main_saves_valid_state_after_unexpected_load_return(self):
+        """Recovery also protects the state passed to save, including new failures."""
+        self.seed({})
+        original_load = thumbs.load
+        for value in ({}, [], {'version': 1}):
+            with self.subTest(value=value):
+                with patch.object(thumbs, 'load', side_effect=lambda path, default, validator:
+                                  value if path == thumbs.ATTEMPTS else original_load(path, default, validator)), \
+                        patch.object(thumbs, 'save') as save:
+                    self.run_main()
+                states = [call.args[1] for call in save.call_args_list
+                          if call.args[0] == thumbs.ATTEMPTS]
+                self.assertEqual(len(states), 1)
+                thumbs.validate_attempts(states[0])
+                self.assertEqual(states[0], {'version': 1, 'items': {'a': {
+                    'last_attempt': self.now.isoformat(), 'reason': 'not image', 'failures': 1}}})
+
     def test_retry_interval_boundary_and_oldest_first(self):
         self.catalog('a', 'b')
         self.seed({'a': self.entry(age=23), 'b': self.entry(age=26)})
