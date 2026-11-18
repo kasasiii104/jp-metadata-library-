@@ -8,7 +8,9 @@ import requests
 from bs4 import BeautifulSoup
 
 from config import EH_RETRY_LIMIT, EH_RETRY_MAX_FAILURES, EH_RETRY_QUEUE_MAX, EH_BACKFILL_PAGES, EH_LATEST_PAGES, EH_MAX_GALLERIES_PER_RUN
+from sources.common import stop_on_url_policy_error
 from sources.common import absolute_url, retry_window, iso_from_unix, safe_get, safe_post_json, unique_strings
+from sources.net_policy import URLPolicyError
 
 BASE = "https://e-hentai.org/"
 API = "https://api.e-hentai.org/api.php"
@@ -101,7 +103,7 @@ def _discover(
     if cursor:
         params["next"] = cursor
 
-    res = safe_get(session, BASE, params=params)
+    res = safe_get(session, BASE, purpose="ehentai_list", params=params)
     found = _refs_from_html(res.text)
     listing_container_present = True
     title = ""
@@ -198,7 +200,7 @@ def _metadata(session: requests.Session, refs: list[tuple[int, str]],
             "gidlist": [[gid, token] for gid, token in batch],
             "namespace": 1,
         }
-        data = safe_post_json(session, API, payload)
+        data = safe_post_json(session, API, payload, purpose="ehentai_api")
         if not isinstance(data, dict) or not isinstance(data.get("gmetadata"), list):
             raise ValueError("invalid gmetadata response")
         token_by_gid = {str(gid): token for gid, token in batch}
@@ -257,6 +259,7 @@ def _retry_failure(queue: dict, exhausted: list, gid: str, error: str, **extra) 
     return False
 
 
+@stop_on_url_policy_error
 def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     state = dict(state or {})
     queue = {gid: dict(entry) for gid, entry in (state.get("retry_refs") or {}).items()}
@@ -314,6 +317,8 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
             if not next_cursor or next_cursor == latest_cursor or len(refs) >= EH_MAX_GALLERIES_PER_RUN:
                 break
             latest_cursor = next_cursor
+        except URLPolicyError:
+            raise
         except Exception as e:
             errors.append(f"latest-global {i + 1}: {e}")
             break
@@ -388,6 +393,8 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
                     backfill_advance_cursor = ""
                     backfill_cursor = ""
                     break
+            except URLPolicyError:
+                raise
             except Exception as e:
                 errors.append(f"backfill-japanese {i + 1}: {e}")
                 backfill_failed = True
@@ -406,6 +413,8 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         failures: dict[str, str] = {}
         try:
             all_items.extend(_metadata(session, requested, failures))
+        except URLPolicyError:
+            raise
         except Exception as e:
             errors.append(f"gdata: {e}")
             metadata_ok = False

@@ -3,11 +3,53 @@ import json
 from contextlib import ExitStack, redirect_stdout
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from random import Random
 import tempfile
 import unittest
 from unittest.mock import Mock, patch
 
+from PIL import Image
+from requests import Response
+
+from net_test_helpers import recording_session
+
 from tools import cache_3hentai_thumbs as thumbs
+
+
+class ThumbnailDownloadTests(unittest.TestCase):
+    def test_rejected_urls_do_not_use_image_send_slots(self):
+        denied = [f"https://s2.3hentai.xyz/d42/{n}.jpg" for n in range(8)]
+        allowed = [f"https://s1.3hentai.xyz/d42/{n}.jpg" for n in range(9)]
+        rejections = []
+        with patch.object(thumbs, "guarded_request", side_effect=OSError("offline")) as send:
+            data, _, stopped = thumbs.download_thumbnail(
+                Mock(), denied + allowed, policy_rejections=rejections,
+            )
+        self.assertIsNone(data)
+        self.assertFalse(stopped)
+        self.assertEqual(rejections, denied)
+        self.assertEqual([call.args[2] for call in send.call_args_list], allowed[:8])
+
+    def test_stream_closed_on_rate_limit_and_oversize(self):
+        url = "https://s1.3hentai.xyz/d42/thumb.jpg"
+        for status in (429, 200):
+            with self.subTest(status=status):
+                response = Response()
+                response.status_code = status
+                response.raw = Mock()
+                response.raw.read.return_value = b"12345"
+                with patch.object(thumbs, "MAX_BYTES", 4), patch.object(
+                    thumbs, "guarded_request", return_value=response,
+                ):
+                    data, reason, stopped = thumbs.download_thumbnail(Mock(), [url])
+                response.raw.close.assert_called_once_with()
+                self.assertIsNone(data)
+                self.assertEqual(stopped, status == 429)
+                if stopped:
+                    response.raw.read.assert_not_called()
+                else:
+                    response.raw.read.assert_called_once_with(5, decode_content=True)
+                    self.assertIn("too large", reason)
 
 
 class ThumbnailAttemptsTests(unittest.TestCase):
@@ -24,7 +66,10 @@ class ThumbnailAttemptsTests(unittest.TestCase):
         self.stack.enter_context(patch.object(thumbs, 'RETRY_SEC', 86400))
         self.stack.enter_context(patch.object(thumbs.time, 'sleep'))
         self.stack.enter_context(patch.object(thumbs.requests, 'Session',
-                                             return_value=Mock(get=Mock(side_effect=AssertionError('network')))))
+                                             return_value=Mock(request=Mock(side_effect=AssertionError('network')))))
+        self.real_download = thumbs.download_thumbnail
+        self.real_page = thumbs.fetch_page_candidates
+        self.real_resolve = thumbs.resolve_search_fallback
         self.download = self.stack.enter_context(patch.object(
             thumbs, 'download_thumbnail', return_value=(None, 'not image', False)))
         self.page = self.stack.enter_context(patch.object(
@@ -174,6 +219,218 @@ class ThumbnailAttemptsTests(unittest.TestCase):
                 self.assertEqual(self.records(), {})
                 self.assertEqual(self.status()['attempted'], 1)
                 self.assertTrue(self.status()['upstream_unavailable' if route == 'upstream' else 'rate_limited'])
+
+    def test_initial_policy_denials_skip_candidate_and_persist_exhausted_work(self):
+        denied = "https://s2.3hentai.xyz/d42/thumb.jpg"
+        allowed = "https://s1.3hentai.xyz/d42/thumb.jpg"
+        page_url = "https://3hentai.net/d/42"
+        catalog = json.loads(thumbs.DATA.read_text())
+        first, second, third = catalog["items"]
+        first.update(thumbnail="", source_url=page_url, source_url_kind="direct")
+        second["thumbnail"] = denied
+        third["thumbnail"] = allowed
+        thumbs.save(thumbs.DATA, catalog)
+        self.download.side_effect = self.real_download
+        self.page.side_effect = self.real_page
+        image = io.BytesIO()
+        Image.frombytes("RGB", (64, 64), Random(42).randbytes(64 * 64 * 3)).save(image, "PNG")
+        session, transport = recording_session()
+
+        def respond(prepared, **kwargs):
+            response = Response()
+            response.status_code = 200
+            response.url = prepared.url
+            if prepared.url == page_url:
+                response._content = (
+                    f'<meta property="og:image" content="{denied}">'
+                    f'<meta name="twitter:image" content="{allowed}">'
+                ).encode()
+            else:
+                self.assertEqual(prepared.url, allowed)
+                response.headers["content-type"] = "image/png"
+                response.raw = Mock(_original_response=None)
+                response.raw.read.return_value = image.getvalue()
+            return response
+
+        transport.side_effect = respond
+        with patch.object(thumbs, "LIMIT", 3), patch.object(
+            thumbs.requests, "Session", return_value=session,
+        ):
+            self.run_main()
+            entry = self.records()["b"]
+            self.assertIn("hentai3_image policy", entry["reason"])
+            self.assertEqual(self.status()["cached"], 2)
+            self.assertEqual(self.status()["failed"], 1)
+            self.assertEqual(self.status()["url_policy_rejected"], 2)
+            self.assertFalse(self.status()["upstream_unavailable"])
+            self.assertEqual([call.args[0].url for call in transport.call_args_list],
+                             [page_url, allowed, allowed])
+
+            transport.reset_mock()
+            self.run_main(now=self.now + timedelta(days=2))
+
+        transport.assert_not_called()
+        self.assertEqual(self.records(), {"b": entry})
+        self.assertEqual(self.status()["attempted"], 0)
+        self.assertEqual(self.status()["deferred"], 1)
+
+    def test_html_policy_rejection_is_retried_after_interval(self):
+        self.catalog("a")
+        catalog = json.loads(thumbs.DATA.read_text())
+        page_url = "https://3hentai.net/d/42"
+        denied = "https://s2.3hentai.xyz/d42/thumb.jpg"
+        allowed = "https://s1.3hentai.xyz/d42/thumb.jpg"
+        catalog["items"][0].update(source_url=page_url, source_url_kind="direct", thumbnail="")
+        thumbs.save(thumbs.DATA, catalog)
+        self.download.side_effect = self.real_download
+        self.page.side_effect = self.real_page
+        session, transport = recording_session()
+        image = io.BytesIO()
+        Image.frombytes("RGB", (64, 64), Random(42).randbytes(64 * 64 * 3)).save(image, "PNG")
+        urls = iter([denied, allowed])
+
+        def respond(prepared, **kwargs):
+            response = Response()
+            response.status_code = 200
+            response.url = prepared.url
+            if prepared.url == page_url:
+                response._content = f'<meta property="og:image" content="{next(urls)}">'.encode()
+            else:
+                self.assertEqual(prepared.url, allowed)
+                response.headers["content-type"] = "image/png"
+                response.raw = Mock(_original_response=None)
+                response.raw.read.return_value = image.getvalue()
+            return response
+
+        transport.side_effect = respond
+        with patch.object(thumbs.requests, "Session", return_value=session):
+            self.run_main()
+            self.assertNotIn("policy_rejected_inputs", self.records()["a"])
+            self.assertEqual(self.status()["url_policy_rejected"], 1)
+            self.run_main(now=self.now + timedelta(seconds=thumbs.RETRY_SEC - 1))
+            self.assertEqual(self.status()["attempted"], 0)
+
+            # Old builds persisted a terminal marker even for this HTML failure.
+            legacy_entry = self.records()["a"]
+            legacy_entry["policy_rejected_inputs"] = [page_url, "direct", ""]
+            self.seed({"a": legacy_entry})
+            self.run_main(now=self.now + timedelta(seconds=thumbs.RETRY_SEC))
+
+        self.assertEqual([call.args[0].url for call in transport.call_args_list],
+                         [page_url, page_url, allowed])
+        self.assertEqual(self.status()["cached"], 1)
+        self.assertEqual(self.records(), {})
+
+    def test_search_result_gallery_url_is_validated_even_with_allowed_cover(self):
+        search_url = "https://3hentai.net/search?q=Title"
+        cover_url = "https://s1.3hentai.xyz/d42/thumb.jpg"
+        image = io.BytesIO()
+        Image.frombytes("RGB", (64, 64), Random(42).randbytes(64 * 64 * 3)).save(image, "PNG")
+        self.resolve.side_effect = self.real_resolve
+        self.download.side_effect = self.real_download
+
+        for sid, host, cover_status in (
+            ("a", "example.org", 200),
+            ("b", "example.org", 404),
+            ("c", "3hentai.net", 200),
+        ):
+            with self.subTest(host=host, cover_status=cover_status):
+                self.catalog(sid)
+                catalog = json.loads(thumbs.DATA.read_text())
+                catalog["items"][0].update(
+                    source_url=search_url, source_url_kind="search", resolved_gallery_id="17",
+                    title="Title", thumbnail="",
+                )
+                thumbs.save(thumbs.DATA, catalog)
+                gallery_url = f"https://{host}/d/42"
+                search_response = Response()
+                search_response.status_code = 200
+                search_response.url = search_url
+                search_response._content = (
+                    f'<a href="{gallery_url}"><img src="{cover_url}" alt="Title"></a>'
+                ).encode()
+                cover_response = Response()
+                cover_response.status_code = cover_status
+                cover_response.url = cover_url
+                cover_response.headers["content-type"] = "image/png"
+                cover_response.raw = Mock(_original_response=None)
+                cover_response.raw.read.return_value = image.getvalue()
+                session, transport = recording_session()
+                transport.side_effect = [search_response, cover_response]
+
+                with patch.object(thumbs.requests, "Session", return_value=session):
+                    self.run_main()
+                    self.assertEqual([call.args[0].url for call in transport.call_args_list],
+                                     [search_url, cover_url])
+                    self.page.assert_not_called()
+                    saved = json.loads(thumbs.DATA.read_text())["items"][0]
+                    if host == "example.org":
+                        self.assertEqual(self.status()["url_policy_rejected"], 1)
+                        self.assertEqual(saved["source_url"], search_url)
+                        self.assertEqual(saved["source_url_kind"], "search")
+                        self.assertEqual(saved["resolved_gallery_id"], "17")
+                    else:
+                        self.assertEqual(self.status()["url_policy_rejected"], 0)
+                        self.assertEqual(saved["source_url"], gallery_url)
+                        self.assertEqual(saved["source_url_kind"], "direct")
+                        self.assertEqual(saved["resolved_gallery_id"], "42")
+
+                    if cover_status == 200:
+                        self.assertEqual(self.status()["cached"], 1)
+                        self.assertEqual(saved["thumbnail"], f"thumbs/3hentai/{sid}.webp")
+                        self.assertTrue(thumbs.cache_destination(sid).is_file())
+                        self.assertEqual(self.records(), {})
+                    else:
+                        self.assertEqual(self.status()["failed"], 1)
+                        self.assertNotIn("policy_rejected_inputs", self.records()[sid])
+                        transport.reset_mock(side_effect=True)
+                        self.run_main(now=self.now + timedelta(seconds=thumbs.RETRY_SEC - 1))
+                        transport.assert_not_called()
+                        transport.side_effect = [search_response, cover_response]
+                        self.run_main(now=self.now + timedelta(seconds=thumbs.RETRY_SEC))
+                        self.assertEqual([call.args[0].url for call in transport.call_args_list],
+                                         [search_url, cover_url])
+
+    def test_rejected_saved_pages_stay_deferred_until_inputs_change(self):
+        self.catalog("a", "b")
+        catalog = json.loads(thumbs.DATA.read_text())
+        direct, search = catalog["items"]
+        direct.update(source_url="https://example.org/d/42", source_url_kind="direct", thumbnail="")
+        search.update(source_url="https://example.org/search?q=b", source_url_kind="search", thumbnail="")
+        thumbs.save(thumbs.DATA, catalog)
+        self.download.side_effect = self.real_download
+        self.page.side_effect = self.real_page
+        self.resolve.side_effect = self.real_resolve
+        session, transport = recording_session()
+        with patch.object(thumbs, "LIMIT", 2), patch.object(
+            thumbs.requests, "Session", return_value=session,
+        ):
+            self.run_main()
+            self.assertEqual(self.status()["url_policy_rejected"], 2)
+            self.assertTrue(all("policy_rejected_inputs" in entry for entry in self.records().values()))
+            self.assertEqual(set(self.records()), {"a", "b"})
+            self.run_main(now=self.now + timedelta(seconds=thumbs.RETRY_SEC))
+            self.assertEqual(self.status()["attempted"], 0)
+            transport.assert_not_called()
+
+            direct["source_url"] = "https://3hentai.net/d/42"
+            thumbs.save(thumbs.DATA, catalog)
+            transport.return_value.status_code = 200
+            transport.return_value.url = direct["source_url"]
+            transport.return_value._content = b"<html></html>"
+            self.run_main(now=self.now + timedelta(seconds=1))
+
+        self.assertEqual([call.args[0].url for call in transport.call_args_list], [direct["source_url"]])
+        self.assertNotIn("policy_rejected_inputs", self.records()["a"])
+
+    def test_policy_denial_stops_without_recording_an_attempt(self):
+        self.seed({})
+        self.download.return_value = (None, "URL policy: DNS denied", True)
+        self.run_main()
+        self.assertEqual(self.records(), {})
+        self.assertEqual(self.status()["attempted"], 1)
+        self.assertTrue(self.status()["upstream_unavailable"])
+        self.assertFalse(self.status()["rate_limited"])
 
     def test_missing_corrupt_and_wrong_shape_start_in_catalog_order(self):
         for raw in (None, '{broken', '{"version": 2, "items": {}}',

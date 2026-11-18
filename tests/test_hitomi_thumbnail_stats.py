@@ -9,7 +9,7 @@ from sources import hitomi
 
 class HitomiThumbnailStatsTests(unittest.TestCase):
     def setUp(self):
-        self.enterContext(patch('requests.sessions.Session.request',
+        self.enterContext(patch('requests.adapters.HTTPAdapter.send',
                                 side_effect=AssertionError('Network forbidden')))
 
     def collect(self, raw, **get_kwargs):

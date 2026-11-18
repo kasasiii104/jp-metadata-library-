@@ -7,6 +7,7 @@ from unittest.mock import Mock, patch
 from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
+from net_test_helpers import recording_session
 from sources import hentai3 as h
 from tools import cache_3hentai_thumbs as thumbs
 
@@ -78,9 +79,9 @@ class GalleryScopeTests(unittest.TestCase):
     def test_unrelated_images_produce_no_candidates(self):
         html = '<div id="similar-content"><a class="cover"><img class="lazy" data-src="/other.jpg"></a></div><img src="/logo.png">'
         self.assertEqual(thumbs.page_image_candidates(html, 'https://3hentai.net/d/1'), [])
-        session = Mock()
-        session.get.return_value = Mock(status_code=200, text=html, url='https://3hentai.net/d/1')
-        self.assertEqual(thumbs.fetch_page_candidates(session, session.get.return_value.url),
+        session, transport = recording_session()
+        transport.return_value = Mock(raw=None, status_code=200, text=html, url='https://3hentai.net/d/1')
+        self.assertEqual(thumbs.fetch_page_candidates(session, transport.return_value.url),
                          ([], 'gallery_no_image_candidates', False))
 
     def test_meta_candidates_remain_supported(self):
@@ -96,8 +97,8 @@ class GalleryScopeTests(unittest.TestCase):
             data = root / 'data.json'
             data.write_text('{"items": []}')
             status = {}
-            session = Mock()
-            session.get.return_value = Mock(status_code=200, text='<img src="/logo.png">',
+            session, transport = recording_session()
+            transport.return_value = Mock(raw=None, status_code=200, text='<img src="/logo.png">',
                                              url=item['source_url'])
             with patch.object(thumbs, 'DATA', data), patch.object(thumbs, 'OUTDIR', root / 'thumbs'), \
                  patch.object(thumbs, 'ATTEMPTS', root / 'attempts.json'), \
@@ -108,4 +109,4 @@ class GalleryScopeTests(unittest.TestCase):
             stats = status['3hentai']['thumbnail_cache']
             self.assertEqual((stats['attempted'], stats['failed'], stats['cached']), (1, 1, 0))
             self.assertIn('1: gallery_no_image_candidates', stats['failures'])
-            self.assertEqual(session.get.call_count, 1)
+            self.assertEqual(transport.call_count, 1)

@@ -5,6 +5,8 @@ import unittest
 from pathlib import Path
 from unittest.mock import Mock, patch
 
+from net_test_helpers import recording_session
+
 import crawler as c
 from sources import hentai3 as h
 
@@ -28,10 +30,13 @@ class BackfillTests(unittest.TestCase):
                             "HENTAI3_GET_DEBUG_LIMIT": 0,
                             "HENTAI3_GALLERY_METADATA_LIMIT": 20}.items():
             self.enterContext(patch.object(h, name, value))
-        self.enterContext(patch.object(h.requests, "Session", return_value=Mock(
-            get=Mock(return_value=Mock(status_code=200)))))
+        session, transport = recording_session()
+        transport.return_value.status_code = 200
+        self.enterContext(patch.object(h.requests, "Session", return_value=session))
         self.enterContext(patch.object(h.time, "sleep"))
         self.enterContext(patch.object(h, "_direct_search_cards", return_value=([], {})))
+        self.find_candidate_dicts = h._find_candidate_dicts
+        self.normalize = h._normalize
         self.enterContext(patch.object(h, "_find_candidate_dicts", side_effect=lambda p: p))
         self.enterContext(patch.object(h, "_normalize", side_effect=lambda obj, **kw: dict(obj)))
         self.fetch = self.enterContext(patch.object(h, "_fetch_gallery_metadata", return_value=metadata()))
@@ -95,6 +100,58 @@ class BackfillTests(unittest.TestCase):
         self.assertTrue(status["partial"])
         self.assertEqual(sum(x.get("filter_metadata_checked") == "3hentai-gallery-v1" for x in items), 3)
 
+    def test_duplicate_candidates_keep_allowed_url(self):
+        allowed = dict(row(1), source_url="https://3hentai.net/d/1", source_url_kind="direct")
+        denied = dict(allowed, source_url="https://example.org/d/1")
+        scenarios = {
+            "within_page": ([[allowed, denied]], None),
+            "across_pages": ([[allowed], [denied]], None),
+            "probe_detail": ([[allowed]], denied),
+            "later_allowed": ([[denied, allowed]], None),
+            "only_denied": ([[denied, denied]], None),
+        }
+        for scenario, (pages, detail) in scenarios.items():
+            with (
+                self.subTest(scenario=scenario),
+                patch.object(h, "HENTAI3_LATEST_PAGES", 0),
+                patch.object(h, "HENTAI3_BACKFILL_PAGES", len(pages)),
+                patch.object(h, "_get_json", side_effect=[(rows, "mock") for rows in pages]),
+                patch.object(h, "_find_candidate_dicts", self.find_candidate_dicts),
+                patch.object(h, "_normalize", self.normalize),
+                patch.object(h, "HENTAI3_GET_DEBUG_LIMIT", int(detail is not None)),
+                patch.object(h, "_probe_get_endpoint", return_value=({}, detail)),
+            ):
+                self.fetch.reset_mock()
+                items, state, status = h.collect({"backfill_page": 1})
+                self.assertEqual(state["backfill_page"], 1 + len(pages))
+                self.assertEqual(status["status"], "ok")
+                if scenario == "only_denied":
+                    self.assertEqual(items, [])
+                    self.assertEqual(status["gallery_metadata_url_policy_rejected"], 1)
+                    self.fetch.assert_not_called()
+                else:
+                    self.assertEqual([item["source_url"] for item in items], [allowed["source_url"]])
+                    self.assertFalse(status["partial"])
+                    self.assertEqual([call.args[1] for call in self.fetch.call_args_list],
+                                     [allowed["source_url"]])
+
+    def test_rejected_history_url_does_not_consume_metadata_slot(self):
+        denied = dict(row(1), source_url="https://example.org/d/1")
+        allowed = row(2)
+        with (
+            patch.object(h, "HENTAI3_LATEST_PAGES", 0),
+            patch.object(h, "HENTAI3_BACKFILL_PAGES", 1),
+            patch.object(h, "HENTAI3_GALLERY_METADATA_LIMIT", 1),
+            patch.object(h, "_get_json", return_value=([denied, allowed], "mock")),
+        ):
+            items, state, status = h.collect({"backfill_page": 1})
+        self.assertEqual(state["backfill_page"], 2)
+        self.assertEqual(status["gallery_metadata_url_policy_rejected"], 1)
+        self.assertEqual(status["gallery_metadata_attempted"], 1)
+        self.assertEqual([item["source_id"] for item in items], ["2"])
+        self.assertEqual(items[0]["filter_metadata_checked"], "3hentai-gallery-v1")
+        self.assertEqual([call.args[1] for call in self.fetch.call_args_list], [allowed["source_url"]])
+
     def test_fallback_does_not_complete_failed_history_page(self):
         self.failure = 10
         self.empty = True
@@ -126,7 +183,7 @@ class PendingAuditTests(unittest.TestCase):
         self.enterContext(patch.object(c, "now_iso", return_value="2026-11-09T00:00:00+00:00"))
         self.enterContext(patch.object(c, "HITOMI_FILTER_AUDIT_LIMIT", 0))
         self.enterContext(patch.dict(c.SOURCES, {"3hentai": lambda state: ([], state, {"status": "ok"})}, clear=True))
-        self.enterContext(patch.object(h.requests.Session, "request", side_effect=AssertionError("Network forbidden")))
+        self.enterContext(patch('requests.adapters.HTTPAdapter.send', side_effect=AssertionError("Network forbidden")))
         self.enterContext(patch.object(h.time, "sleep"))
         self.enterContext(patch.object(h, "HENTAI3_EXISTING_FILTER_AUDIT_LIMIT", 1))
         self.fetch = self.enterContext(patch.object(h, "_fetch_gallery_metadata", return_value=metadata()))
@@ -148,6 +205,25 @@ class PendingAuditTests(unittest.TestCase):
         self.assertEqual(c.load_json(c.DATA_FILE, {})["items"][0]["filter_metadata_checked"],
                          "3hentai-gallery-v1")
         self.assertNotIn("3hentai:100", c.load_json(c.FILTER_STATE_FILE, {})["records"])
+
+    def test_policy_rejected_saved_url_is_recorded_and_not_reselected(self):
+        bad = dict(row(100), source_url="https://example.org/d/1")
+        good = row(101)
+        self.seed(bad, good)
+
+        self.assertEqual(c.main(), 0)
+        store = c.load_json(c.FILTER_STATE_FILE, {})
+        entry = store["hentai3_attempts"][bad["uid"]]
+        self.assertEqual(entry["reason"], "url_policy")
+        self.assertEqual(entry["gave_up_reason"], "url_policy")
+        self.assertEqual(entry["source_url"], bad["source_url"])
+        self.assertIn("hentai3_page policy", entry["policy_error"])
+        self.assertNotIn("filter_metadata_checked", store["records"][bad["uid"]]["item"])
+        self.fetch.assert_not_called()
+
+        self.assertEqual(c.main(), 0)
+        self.assertEqual([call.args[1] for call in self.fetch.call_args_list], [good["source_url"]])
+        self.assertEqual(c.load_json(c.FILTER_STATE_FILE, {})["hentai3_attempts"][bad["uid"]], entry)
 
     def test_restored_pending_survives_checkpoint_and_all_collectors_failed(self):
         self.seed(row(100))

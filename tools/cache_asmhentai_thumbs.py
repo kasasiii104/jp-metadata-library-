@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
 import io, os, time
+import sys
 from pathlib import Path
 import requests
 from PIL import Image, ImageOps
+if not __package__:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from sources.net_policy import URLPolicyError, guarded_request
+
 if __package__:
     from .json_storage import load_json as load, save_json as save, validate_catalog, validate_source_mapping
 else:
@@ -24,7 +30,11 @@ def cache_destination(sid: str) -> Path:
 
 def download(sess,url):
     try:
-        r=sess.get(url,timeout=TIMEOUT,stream=True,headers={"Referer":"https://asmhentai.com/"})
+        # Allowed hosts are defined by the asmhentai_image policy in net_policy.
+        r = guarded_request(
+            sess, "GET", url, purpose="asmhentai_image", timeout=TIMEOUT,
+            stream=True, headers={"Referer": "https://asmhentai.com/"},
+        )
         r.raise_for_status(); raw=r.raw.read(MAX_BYTES+1,decode_content=True)
         if not raw or len(raw)>MAX_BYTES:return None
         with Image.open(io.BytesIO(raw)) as im:
@@ -35,6 +45,9 @@ def download(sess,url):
                 else: im=im.convert("RGB")
             im.thumbnail((520,760),Image.Resampling.LANCZOS)
             b=io.BytesIO();im.save(b,"WEBP",quality=78,method=4);return b.getvalue()
+    except URLPolicyError:
+        print("[asmhentai-thumbs] 許可ホスト外のため拒否")
+        return None
     except Exception:return None
 
 def main():

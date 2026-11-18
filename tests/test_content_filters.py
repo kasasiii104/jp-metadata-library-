@@ -26,7 +26,7 @@ class ContentFilterTests(unittest.TestCase):
         self.enterContext(patch.object(c, 'HITOMI_FILTER_AUDIT_LIMIT', 0))
         self.enterContext(patch.object(c, 'HITOMI_FILTER_AUDIT_DELAY_SEC', 0))
         self.enterContext(patch.object(c.hentai3, 'enrich_existing_for_filter', return_value={}))
-        self.enterContext(patch.object(hitomi.requests.Session, 'get', side_effect=AssertionError('Network forbidden')))
+        self.enterContext(patch('requests.adapters.HTTPAdapter.send', side_effect=AssertionError('Network forbidden')))
         self.enterContext(patch.dict(c.SOURCES, {}, clear=True))
 
     def item(self, num='9000001', **extra):

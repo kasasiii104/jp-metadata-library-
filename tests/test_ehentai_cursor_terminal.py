@@ -7,7 +7,7 @@ from sources import ehentai as eh
 
 class CursorTerminalTests(unittest.TestCase):
     def setUp(self):
-        self.enterContext(patch('requests.sessions.Session.request',
+        self.enterContext(patch('requests.adapters.HTTPAdapter.send',
                                 side_effect=AssertionError('Network forbidden')))
         self.enterContext(patch.object(eh, 'EH_LATEST_PAGES', 1))
         self.enterContext(patch.object(eh, 'EH_BACKFILL_PAGES', 1))

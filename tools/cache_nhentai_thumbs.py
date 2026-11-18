@@ -3,10 +3,16 @@ import io
 import os
 import re
 import time
+import sys
 from pathlib import Path
 
 import requests
 from PIL import Image, ImageOps
+
+if not __package__:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from sources.net_policy import URLPolicyError, guarded_request, validate_url
 
 if __package__:
     from .json_storage import load_json as load, save_json as save, validate_catalog, validate_source_mapping
@@ -21,11 +27,16 @@ DELAY = float(os.environ.get("NHENTAI_THUMB_DELAY_SEC", "0.5"))
 TIMEOUT = 15
 DEADLINE_SEC = float(os.environ.get("NHENTAI_THUMB_DEADLINE_SEC", "180"))
 MAX_BYTES = 15 * 1024 * 1024
-THUMB_PATTERN = r"https://t\.nhentai\.net/galleries/[0-9]+/thumb\.[A-Za-z0-9.]+"
 
 
 def valid_url(url: str) -> bool:
-    return isinstance(url, str) and re.fullmatch(THUMB_PATTERN, url) is not None
+    if not isinstance(url, str):
+        return False
+    try:
+        validate_url(url, purpose="nhentai_thumb")
+    except URLPolicyError:
+        return False
+    return True
 
 
 def cache_destination(sid: str) -> Path:
@@ -42,8 +53,10 @@ def download(sess: requests.Session, url: str) -> bytes | None:
     if not valid_url(url):
         return None
     try:
-        with sess.get(url, timeout=TIMEOUT, stream=True, allow_redirects=False,
-                      headers={"Referer": "https://nhentai.net/"}) as response:
+        with guarded_request(
+            sess, "GET", url, purpose="nhentai_thumb", timeout=TIMEOUT, stream=True,
+            headers={"Referer": "https://nhentai.net/"}, follow_redirects=False,
+        ) as response:
             if response.status_code != 200:
                 return None
             raw = response.raw.read(MAX_BYTES + 1, decode_content=True)

@@ -1,20 +1,20 @@
 import json
 import re
+import sys
 import time
 from collections import Counter
+from pathlib import Path
 from typing import Any
 from urllib.parse import urljoin
 
 import requests
 from bs4 import BeautifulSoup, Tag
 
-from config import (
-    PURURIN_BACKFILL_PAGES,
-    PURURIN_DETAIL_SLEEP_SEC,
-    PURURIN_LATEST_PAGES,
-    PURURIN_MAX_GALLERIES_PER_RUN,
-)
+if __name__ == "__main__" and not __package__:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 from sources.common import safe_get, unique_strings
+from sources.net_policy import validate_url
 
 BASE = "https://pururin.me"
 BROWSE_URL = BASE + "/browse"
@@ -70,7 +70,8 @@ def _discover_page(session: requests.Session, page: int) -> tuple[list[dict[str,
     params: dict[str, Any] = {"sort": "newest"}
     if page > 1:
         params["page"] = page
-    res = safe_get(session, BROWSE_URL, params=params)
+    # The retired source has no outbound policy, so this fails before sending.
+    res = safe_get(session, BROWSE_URL, purpose="pururin", params=params)
     soup = BeautifulSoup(res.text, "html.parser")
     title = soup.title.get_text(" ", strip=True)[:160] if soup.title else ""
 
@@ -357,12 +358,23 @@ def _normalize_detail(ref: dict[str, Any], soup: BeautifulSoup) -> dict[str, Any
 
 
 def _fetch_detail(session: requests.Session, ref: dict[str, Any]) -> dict[str, Any]:
-    res = safe_get(session, ref["url"])
+    # The retired source has no outbound policy, so this fails before sending.
+    res = safe_get(session, ref["url"], purpose="pururin")
     soup = BeautifulSoup(res.text, "html.parser")
     return _normalize_detail(ref, soup)
 
 
 def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
+    # Standalone collection fails before creating a session for this retired source.
+    validate_url(BROWSE_URL, purpose="pururin")
+    # Legacy settings were removed when the source was retired.
+    from config import (
+        PURURIN_BACKFILL_PAGES,
+        PURURIN_DETAIL_SLEEP_SEC,
+        PURURIN_LATEST_PAGES,
+        PURURIN_MAX_GALLERIES_PER_RUN,
+    )
+
     state = dict(state or {})
     backfill_page = int(state.get("backfill_page") or (PURURIN_LATEST_PAGES + 1))
     session = requests.Session()
@@ -440,3 +452,7 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         "message": " | ".join(errors[:3]),
     }
     return items, new_state, status
+
+
+if __name__ == "__main__":
+    collect()

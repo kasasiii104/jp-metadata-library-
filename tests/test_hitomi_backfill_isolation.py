@@ -9,7 +9,7 @@ from sources import hitomi
 
 class HitomiBackfillIsolationTests(unittest.TestCase):
     def setUp(self):
-        self.enterContext(patch('requests.sessions.Session.request',
+        self.enterContext(patch('requests.adapters.HTTPAdapter.send',
                                 side_effect=AssertionError('Network forbidden')))
 
     def test_backfill_failure_keeps_latest_and_offset_on_repeated_runs(self):

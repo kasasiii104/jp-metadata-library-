@@ -46,6 +46,23 @@ class AuditPendingTests(unittest.TestCase):
         self.assertEqual(result["existing_filter_audit_attempted"], 2)
         self.assertEqual(result["existing_filter_audit_pending"], 3)
 
+    def test_policy_denial_preserves_saved_metadata_and_excludes_attempt_result(self):
+        item = self.items[1]
+        item["filter_metadata_checked_at"] = "saved timestamp"
+        original = item.copy()
+        self.fetch.side_effect = [self.success, (None, {
+            "policy_denied": True, "error": "DNS denied",
+        })]
+
+        result = h.enrich_existing_for_filter(self.items, limit=4)
+
+        self.assertEqual(self.fetch.call_count, 2)
+        self.assertEqual(item, original)
+        self.assertTrue(result["existing_filter_audit_stopped"])
+        self.assertEqual(result["existing_filter_audit_failed"], 0)
+        self.assertEqual(set(result["existing_filter_audit_results"]), {self.items[0]["uid"]})
+        self.assertIn("DNS denied", result["existing_filter_audit_failures"])
+
     def test_pending_excludes_previously_checked_and_other_sources(self):
         self.items[0]["filter_metadata_checked"] = "3hentai-gallery-v1"
         self.items[1]["source"] = "other"

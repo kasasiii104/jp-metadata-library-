@@ -12,12 +12,18 @@ import time
 import re
 import unicodedata
 from datetime import datetime, timezone
+import sys
 from pathlib import Path
 from urllib.parse import urljoin
 
 import requests
 from bs4 import BeautifulSoup
 from PIL import Image, ImageOps
+if not __package__:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from sources.net_policy import URLPolicyError, guarded_request, validate_url
+
 if __package__:
     from .json_storage import load_json as load, save_json as save, validate_catalog, validate_source_mapping
 else:
@@ -106,10 +112,19 @@ def search_cards(html: str, page_url: str) -> list[dict]:
     return out
 
 
-def resolve_search_fallback(session: requests.Session, search_url: str, expected_title: str) -> tuple[dict | None, str, bool]:
+def resolve_search_fallback(
+    session: requests.Session, search_url: str, expected_title: str,
+    *, policy_rejections: list[str] | None = None,
+) -> tuple[dict | None, str, bool]:
     """Resolve one legacy title-search URL by an exact normalized-title match."""
     try:
-        r = session.get(search_url, timeout=TIMEOUT)
+        validate_url(search_url, purpose="hentai3_page")
+    except URLPolicyError as exc:
+        if policy_rejections is not None:
+            policy_rejections.append(search_url)
+        return None, f"URL policy: {exc}", False
+    try:
+        r = guarded_request(session, "GET", search_url, purpose="hentai3_page", timeout=TIMEOUT)
         if r.status_code == 429:
             return None, f"429 from search page: {search_url}", True
         if r.status_code in {403, 502, 503, 504}:
@@ -124,6 +139,8 @@ def resolve_search_fallback(session: requests.Session, search_url: str, expected
         if len(exact) > 1:
             return None, f"ambiguous exact-title matches={len(exact)}", False
         return None, "no exact-title match on search page", False
+    except URLPolicyError as e:
+        return None, f"URL policy: {e}", True
     except Exception as e:
         return None, f"search page: {e}", False
 
@@ -166,28 +183,55 @@ def page_image_candidates(html: str, page_url: str) -> list[str]:
     return unique
 
 
-def fetch_page_candidates(session: requests.Session, page_url: str) -> tuple[list[str], str, bool]:
+def fetch_page_candidates(
+    session: requests.Session, page_url: str,
+    *, policy_rejections: list[str] | None = None,
+) -> tuple[list[str], str, bool]:
     try:
-        r = session.get(page_url, timeout=TIMEOUT)
+        validate_url(page_url, purpose="hentai3_page")
+    except URLPolicyError as exc:
+        if policy_rejections is not None:
+            policy_rejections.append(page_url)
+        return [], f"URL policy: {exc}", False
+    try:
+        r = guarded_request(session, "GET", page_url, purpose="hentai3_page", timeout=TIMEOUT)
         if r.status_code == 429:
             return [], f"429 from gallery page: {page_url}", True
         r.raise_for_status()
         candidates = page_image_candidates(r.text, r.url)
         return candidates, "" if candidates else "gallery_no_image_candidates", False
+    except URLPolicyError as e:
+        return [], f"URL policy: {e}", True
     except Exception as e:
         return [], f"gallery page: {e}", False
 
 
-def download_thumbnail(session: requests.Session, urls: list[str]) -> tuple[bytes | None, str, bool]:
+def download_thumbnail(
+    session: requests.Session, urls: list[str],
+    *, policy_rejections: list[str] | None = None,
+) -> tuple[bytes | None, str, bool]:
     last = ""
-    for url in urls[:8]:
+    allowed_urls = []
+    for url in urls:
         try:
-            r = session.get(url, timeout=TIMEOUT, stream=True)
-            if r.status_code == 429:
-                return None, f"429 from image: {url}", True
-            r.raise_for_status()
-            ctype = (r.headers.get("content-type") or "").lower()
-            raw = r.raw.read(MAX_BYTES + 1, decode_content=True)
+            validate_url(url, purpose="hentai3_image")
+        except URLPolicyError as exc:
+            if policy_rejections is not None:
+                policy_rejections.append(url)
+            last = f"URL policy: {exc}"
+            continue
+        allowed_urls.append(url)
+
+    for url in allowed_urls[:8]:
+        try:
+            with guarded_request(
+                session, "GET", url, purpose="hentai3_image", timeout=TIMEOUT, stream=True,
+            ) as r:
+                if r.status_code == 429:
+                    return None, f"429 from image: {url}", True
+                r.raise_for_status()
+                ctype = (r.headers.get("content-type") or "").lower()
+                raw = r.raw.read(MAX_BYTES + 1, decode_content=True)
             if len(raw) > MAX_BYTES:
                 last = f"too large: {url}"
                 continue
@@ -208,6 +252,8 @@ def download_thumbnail(session: requests.Session, urls: list[str]) -> tuple[byte
                 data = buf.getvalue()
                 if len(data) > 512:
                     return data, url, False
+        except URLPolicyError as e:
+            return None, f"URL policy: {e}", True
         except Exception as e:
             last = f"{url}: {e}"
     return None, last, False
@@ -278,6 +324,7 @@ def main(now=None) -> int:
 
     attempted = cached = reused = failed = 0
     resolved_search_fallbacks = 0
+    policy_rejected = 0
     rate_limited = False
     upstream_unavailable = False
     failures: list[str] = []
@@ -303,8 +350,13 @@ def main(now=None) -> int:
             records.pop(sid, None)
             continue
         entry = records.get(sid)
-        if entry is None:
+        inputs = [item.get("source_url"), item.get("source_url_kind"), item.get("thumbnail")]
+        rejected_inputs = entry.get("policy_rejected_inputs") if entry else None
+        if entry is None or (rejected_inputs is not None and rejected_inputs != inputs):
             untried.append((item, sid, rel, dest))
+        # Older markers could describe HTML-derived URLs and must be retried.
+        elif rejected_inputs == inputs and entry.get("policy_rejected_stored") is True:
+            deferred += 1
         elif now.timestamp() - attempt_time(entry) >= RETRY_SEC:
             retries.append((attempt_time(entry), item, sid, rel, dest))
         else:
@@ -320,6 +372,10 @@ def main(now=None) -> int:
         source_url_kind = str(item.get("source_url_kind") or "").strip().lower()
 
         resolve_error = page_error = ""
+        page_attempts = 0
+        card = None
+        page_rejections: list[str] = []
+        image_rejections: list[str] = []
         urls: list[str] = []
         current = str(item.get("thumbnail") or "").strip()
         if current.startswith(("http://", "https://")):
@@ -329,46 +385,77 @@ def main(now=None) -> int:
         # Resolve that page conservatively: only a single exact normalized-title
         # match is accepted, so another work's cover is never guessed by order.
         if source_url_kind != "direct" and "/search" in page_url:
-            card, resolve_error, stop = resolve_search_fallback(session, page_url, str(item.get("title") or ""))
+            page_attempts += 1
+            card, resolve_error, stop = resolve_search_fallback(
+                session, page_url, str(item.get("title") or ""), policy_rejections=page_rejections,
+            )
             if resolve_error and len(failures) < 8:
                 failures.append(f"{sid}: {resolve_error}")
             if stop:
-                rate_limited = "429" in resolve_error
+                rate_limited = resolve_error.startswith("429")
                 upstream_unavailable = not rate_limited
                 break
             if card:
-                page_url = str(card.get("source_url") or "").strip()
-                item["source_url"] = page_url
-                item["source_url_kind"] = "direct"
-                if card.get("gallery_id"):
-                    item["resolved_gallery_id"] = str(card["gallery_id"])
+                resolved_page_url = str(card.get("source_url") or "").strip()
                 thumb = str(card.get("thumbnail") or "").strip()
-                if thumb:
-                    item["thumbnail"] = thumb
-                    if thumb not in urls:
-                        urls.append(thumb)
-                source_url_kind = "direct"
-                resolved_search_fallbacks += 1
+                if thumb and thumb not in urls:
+                    urls.append(thumb)
+                try:
+                    validate_url(resolved_page_url, purpose="hentai3_page")
+                except URLPolicyError:
+                    # This rejection came from search HTML, not a saved input.
+                    policy_rejected += 1
+                    card = None
+                else:
+                    page_url = resolved_page_url
+                    source_url_kind = "direct"
+                    resolved_search_fallbacks += 1
 
-        # For verified direct pages, only visit the gallery page when search/API
-        # did not already provide an image URL.
-        if source_url_kind == "direct" and page_url.startswith(("http://", "https://")) and not urls:
-            page_urls, page_error, page_limited = fetch_page_candidates(session, page_url)
+        # An image rejected locally cannot replace the gallery page as a fallback.
+        has_allowed_image = False
+        if source_url_kind == "direct":
+            for url in urls:
+                try:
+                    validate_url(url, purpose="hentai3_image")
+                except URLPolicyError:
+                    continue
+                has_allowed_image = True
+                break
+        if (source_url_kind == "direct" and page_url.startswith(("http://", "https://"))
+                and not has_allowed_image):
+            page_attempts += 1
+            page_urls, page_error, page_stopped = fetch_page_candidates(
+                session, page_url, policy_rejections=page_rejections,
+            )
             if page_error and len(failures) < 8:
                 failures.append(f"{sid}: {page_error}")
-            if page_limited:
-                rate_limited = True
+            if page_stopped:
+                rate_limited = page_error.startswith("429")
+                upstream_unavailable = not rate_limited
                 break
             for u in page_urls:
                 if u not in urls:
                     urls.append(u)
 
-        data_bytes, used, image_limited = download_thumbnail(session, urls)
-        if image_limited:
-            rate_limited = True
+        data_bytes, used, image_stopped = download_thumbnail(
+            session, urls, policy_rejections=image_rejections,
+        )
+        policy_rejected += len(page_rejections) + len(image_rejections)
+        if image_stopped:
+            rate_limited = used.startswith("429")
+            upstream_unavailable = not rate_limited
             if len(failures) < 8:
                 failures.append(f"{sid}: {used}")
             break
+
+        # Keep the saved search inputs when retrying a rejection from its HTML.
+        if card and (data_bytes or not (page_rejections or image_rejections)):
+            item["source_url"] = page_url
+            item["source_url_kind"] = "direct"
+            if card.get("gallery_id"):
+                item["resolved_gallery_id"] = str(card["gallery_id"])
+            if thumb:
+                item["thumbnail"] = thumb
 
         if data_bytes:
             dest.write_bytes(data_bytes)
@@ -385,6 +472,14 @@ def main(now=None) -> int:
                 "reason": (used or page_error or resolve_error or "no image candidate")[:200],
                 "failures": records.get(sid, {}).get("failures", 0) + 1,
             }
+            # Keep terminal rejections tied to the stored URLs that produced them.
+            if ((page_rejections or image_rejections)
+                    and len(image_rejections) == len(urls)
+                    and page_attempts == len(page_rejections)):
+                records[sid]["policy_rejected_stored"] = True
+                records[sid]["policy_rejected_inputs"] = [
+                    item.get("source_url"), item.get("source_url_kind"), item.get("thumbnail"),
+                ]
             if len(failures) < 8:
                 failures.append(f"{sid}: {used or 'no image candidate'}")
 
@@ -402,6 +497,7 @@ def main(now=None) -> int:
         "reused": reused,
         "failed": failed,
         "deferred": deferred,
+        "url_policy_rejected": policy_rejected,
         "tracked_failures": len(records),
         "pending": max(0, len(items) - reused - cached),
         "resolved_search_fallbacks": resolved_search_fallbacks,

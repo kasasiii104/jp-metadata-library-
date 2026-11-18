@@ -4,7 +4,8 @@ from urllib.parse import quote_plus
 
 import requests
 
-from sources.common import is_valid_source_id
+from sources.common import stop_on_url_policy_error, is_valid_source_id
+from sources.net_policy import URLPolicyError, guarded_request, local_api_url
 
 API_BASE = os.environ.get("JANDAPRESS_URL", "http://127.0.0.1:3000").rstrip("/")
 SEARCH_KEY = os.environ.get("ASMHENTAI_SEARCH_KEY", "japanese")
@@ -132,19 +133,26 @@ def normalize(raw: dict) -> dict | None:
 
 
 def _search(sess, key: str, page: int):
-    r = sess.get(f"{API_BASE}/asmhentai/search", params={"key": key, "page": page}, timeout=TIMEOUT)
+    r = guarded_request(
+        sess, "GET", local_api_url(API_BASE, "/asmhentai/search"), purpose="local_api",
+        params={"key": key, "page": page}, timeout=TIMEOUT,
+    )
     r.raise_for_status()
     return walk(r.json())
 
 
 def _get(sess, book: str) -> dict:
-    r = sess.get(f"{API_BASE}/asmhentai/get", params={"book": book}, timeout=TIMEOUT)
+    r = guarded_request(
+        sess, "GET", local_api_url(API_BASE, "/asmhentai/get"), purpose="local_api",
+        params={"book": book}, timeout=TIMEOUT,
+    )
     r.raise_for_status()
     payload = r.json()
     data = payload.get("data") if isinstance(payload, dict) else None
     return data if isinstance(data, dict) else {}
 
 
+@stop_on_url_policy_error
 def collect(state: dict | None = None):
     state = dict(state or {})
     sess = requests.Session()
@@ -187,6 +195,8 @@ def collect(state: dict | None = None):
                             detail = fetched_detail
                             if detail:
                                 detail_success += 1
+                        except URLPolicyError:
+                            raise
                         except Exception as e:
                             errors.append(f"get={sid}: {str(e)[:180]}")
                     candidate = detail or raw
@@ -208,6 +218,8 @@ def collect(state: dict | None = None):
                         rejected_non_japanese += 1
                     if len(found) >= LIMIT:
                         break
+            except URLPolicyError:
+                raise
             except Exception as e:
                 errors.append(f"key={key} page={page}: {str(e)[:220]}")
             if len(found) >= LIMIT:
@@ -231,6 +243,8 @@ def collect(state: dict | None = None):
                     found[item["source_id"]] = item
                 else:
                     rejected_non_japanese += 1
+        except URLPolicyError:
+            raise
         except Exception as e:
             errors.append(f"probe={PROBE_KEY}: {str(e)[:220]}")
 

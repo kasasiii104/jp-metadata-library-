@@ -2,6 +2,7 @@ import contextlib
 import unittest
 from unittest.mock import Mock, patch
 
+from net_test_helpers import recording_session
 from sources import hentai3 as h
 
 
@@ -16,12 +17,15 @@ class DuplicateTitleTests(unittest.TestCase):
                 'HENTAI3_GALLERY_METADATA_LIMIT': 0,
             }.items():
                 stack.enter_context(patch.object(h, name, value))
-            session = Mock()
-            session.get.return_value.status_code = 200
-            session.request.side_effect = AssertionError('Network forbidden')
+            session, transport = recording_session()
+            def root_request(prepared, **kwargs):
+                if (prepared.method, prepared.url) != ('GET', f'{h.API_BASE}/'):
+                    raise AssertionError('Network forbidden')
+                return Mock(status_code=200, raw=None)
+
+            transport.side_effect = root_request
             stack.enter_context(patch.object(h.requests, 'Session', return_value=session))
-            stack.enter_context(patch.object(
-                h.requests.sessions.Session, 'request',
+            stack.enter_context(patch('requests.adapters.HTTPAdapter.send',
                 side_effect=AssertionError('Network forbidden')))
             stack.enter_context(patch.object(
                 h, '_direct_search_cards', return_value=(cards, {})))

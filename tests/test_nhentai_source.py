@@ -6,7 +6,9 @@ import unittest
 from unittest.mock import Mock, patch
 
 import crawler
+from net_test_helpers import recording_session
 from sources import nhentai as nh
+from sources.net_policy import URLPolicyError
 from sources.common import iso_from_unix
 
 FIXTURES = Path(__file__).parent / "fixtures" / "nhentai"
@@ -136,9 +138,9 @@ class NhentaiTests(unittest.TestCase):
 
     def test_search_fixtures_and_all_tag_types(self):
         for name in ['search-p1', 'search-p2']:
-            session = Mock()
-            session.get.return_value.status_code = 200
-            session.get.return_value.json.return_value = fixture(name)
+            session, transport = recording_session()
+            transport.return_value.status_code = 200
+            transport.return_value.json.return_value = fixture(name)
             self.assertEqual(nh._search_page(session, 1), fixture(name)['result'])
         raw = detail(1)
         raw['tags'] = [{'type': typ, 'name': typ + '-value'} for typ in
@@ -166,26 +168,27 @@ class NhentaiTests(unittest.TestCase):
         self.assertEqual(nh._thumb_url('galleries/12/thumb.a.webp'),'https://t.nhentai.net/galleries/12/thumb.a.webp')
 
     def test_transport(self):
-        session = Mock()
-        session.get.return_value.status_code = 200
-        session.get.return_value.json.return_value = fixture('search-p1')
+        session, transport = recording_session()
+        transport.return_value.status_code = 200
+        transport.return_value.json.return_value = fixture('search-p1')
         self.assertTrue(nh._search_page(session,1))
-        self.assertEqual(session.get.call_args.args[0], nh.SEARCH_URL.format(page=1))
-        self.assertFalse(session.get.call_args.kwargs['allow_redirects'])
-        self.assertEqual(session.get.call_args.kwargs['timeout'], nh.NH_REQUEST_TIMEOUT)
-        session.get.return_value.json.return_value = fixture('detail-697843')
+        self.assertEqual(transport.call_args.args[0].url, nh.SEARCH_URL.format(page=1))
+        self.assertEqual(transport.call_args.kwargs['timeout'], nh.NH_REQUEST_TIMEOUT)
+        transport.return_value.json.return_value = fixture('detail-697843')
         nh._detail(session,'697843')
-        self.assertEqual(session.get.call_args.args[0], 'https://nhentai.net/api/v2/galleries/697843')
+        self.assertEqual(transport.call_args.args[0].url, 'https://nhentai.net/api/v2/galleries/697843')
         for gid in ['../1','https://evil.test', 'abc', '１２']:
             with self.assertRaises(ValueError):
                 nh._detail(session,gid)
         for code in [301,302,404,429,500]:
-            session.get.return_value.status_code=code
+            transport.return_value.status_code=code
+            before = transport.call_count
             with self.assertRaises(nh.HTTPError) as error:
                 nh._detail(session,'1')
             self.assertEqual(error.exception.status_code, code)
-        session.get.return_value.status_code=200
-        session.get.return_value.json.return_value=[]
+            self.assertEqual(transport.call_count, before + 1)
+        transport.return_value.status_code=200
+        transport.return_value.json.return_value=[]
         with self.assertRaises(ValueError):
             nh._get_json(session,nh.SEARCH_URL.format(page=1))
 
@@ -308,6 +311,34 @@ class NhentaiTests(unittest.TestCase):
                 self.assertEqual([int(i['source_id']) for i in items], expected)
                 self.assertEqual(search.call_count, 3 if gap else 2)
                 self.assertEqual(state['latest_id'], expected[-1])
+
+    def test_policy_denial_keeps_latest_cursor_across_four_runs(self):
+        state = {"latest_id": 100}
+        for attempt in range(4):
+            with self.subTest(attempt=attempt):
+                (items, state, status), _, calls = self.run_collect(
+                    {1: rows(102, 101, 100)}, state,
+                    {101: URLPolicyError("DNS denied")}, NH_DETAIL_MAX_FAILURES=3,
+                )
+                self.assertEqual(state, {"latest_id": 100})
+                self.assertEqual(items, [])
+                self.assertEqual(status["status"], "error")
+                self.assertTrue(status["partial"])
+                self.assertIn("DNS denied", status["message"])
+                self.assertEqual(status["detail_errors"], 1)
+                self.assertEqual(status["skipped_failed"], 0)
+                self.assertEqual([call.args[1] for call in calls.call_args_list], ["101"])
+
+    def test_policy_denial_rolls_back_cursor_with_out_of_order_results(self):
+        (items, state, status), _, calls = self.run_collect(
+            {1: rows(101, 102, 100)}, {"latest_id": 100},
+            {101: URLPolicyError("DNS denied")},
+        )
+        self.assertEqual([call.args[1] for call in calls.call_args_list], ["102", "101"])
+        self.assertEqual(items, [])
+        self.assertEqual(state, {"latest_id": 100})
+        self.assertEqual(status["status"], "error")
+        self.assertTrue(status["partial"])
 
     def test_persistent_failure_recovers_after_four_runs(self):
         state = {'latest_id': 10}

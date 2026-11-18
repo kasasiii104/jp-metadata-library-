@@ -6,7 +6,7 @@ from sources import ehentai as eh
 
 class PartialMetadataTests(unittest.TestCase):
     def setUp(self):
-        self.enterContext(patch('requests.sessions.Session.request',
+        self.enterContext(patch('requests.adapters.HTTPAdapter.send',
                                 side_effect=AssertionError('Network forbidden')))
         self.enterContext(patch.object(eh.time, 'sleep'))
 

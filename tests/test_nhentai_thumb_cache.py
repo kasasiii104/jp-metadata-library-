@@ -2,9 +2,10 @@ import io
 from pathlib import Path
 import tempfile
 import unittest
-from unittest.mock import MagicMock, Mock, patch
+from unittest.mock import Mock, patch
 
 from PIL import Image
+from net_test_helpers import recording_session
 from tools import cache_nhentai_thumbs as cache
 
 URL = 'https://t.nhentai.net/galleries/123/thumb.webp'
@@ -13,14 +14,14 @@ URL = 'https://t.nhentai.net/galleries/123/thumb.webp'
 class ThumbnailTests(unittest.TestCase):
     def test_url_validation(self):
         self.assertTrue(cache.valid_url(URL))
-        session=Mock()
+        session, transport = recording_session()
         for url in ['http://t.nhentai.net/galleries/123/thumb.webp', URL+'?x=1',
                     URL+'/../x', URL.replace('t.nhentai.net','evil.test'),
                     'https://t.nhentai.net@evil.test/galleries/123/thumb.webp']:
             with self.subTest(url=url):
                 self.assertFalse(cache.valid_url(url))
                 self.assertIsNone(cache.download(session,url))
-        session.get.assert_not_called()
+        transport.assert_not_called()
 
     def test_confined_destination(self):
         with tempfile.TemporaryDirectory() as directory, patch.object(cache,'OUT',Path(directory)/'cache'):
@@ -96,12 +97,15 @@ class ThumbnailTests(unittest.TestCase):
             download.assert_not_called()
 
     def test_redirect_and_conversion(self):
-        session=MagicMock()
-        response=session.get.return_value.__enter__.return_value
+        session, transport = recording_session()
+        response=transport.return_value
+        response.raw = Mock(_original_response=None)
+        response.__enter__.return_value=response
         response.status_code=302
+        response.headers={"Location": "/galleries/124/thumb.webp"}
         self.assertIsNone(cache.download(session,URL))
-        self.assertFalse(session.get.call_args.kwargs['allow_redirects'])
-        self.assertEqual(session.get.call_args.kwargs['headers']['Referer'],'https://nhentai.net/')
+        transport.assert_called_once()
+        self.assertEqual(transport.call_args.args[0].headers['Referer'],'https://nhentai.net/')
         response.raw.read.assert_not_called()
         response.status_code=200
         buffer=io.BytesIO()

@@ -39,7 +39,7 @@ class ResumeSafetyTests(unittest.TestCase):
         self.enterContext(patch.object(c, 'now_iso', return_value=STAMP))
         self.enterContext(patch.object(c, 'HITOMI_FILTER_AUDIT_LIMIT', 0))
         self.enterContext(patch.object(h, 'enrich_existing_for_filter', return_value={}))
-        self.enterContext(patch.object(h.requests.Session, 'request', side_effect=AssertionError('No network')))
+        self.enterContext(patch('requests.adapters.HTTPAdapter.send', side_effect=AssertionError('No network')))
         self.enterContext(patch.object(c, 'polite_sleep'))
         self.enterContext(patch.dict(c.SOURCES, {'3hentai': lambda state:
                           (self.incoming, state, {'status': self.status})}, clear=True))

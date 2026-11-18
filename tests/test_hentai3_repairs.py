@@ -2,8 +2,10 @@ import copy
 import json
 from pathlib import Path
 import unittest
+from urllib.parse import parse_qs, urlsplit
 from unittest.mock import Mock, patch
 
+from net_test_helpers import recording_session
 from sources import hentai3 as h
 import crawler as c
 import test_hentai3_backfill_pending as base
@@ -22,7 +24,7 @@ class RepairTests(unittest.TestCase):
             '<a href="/tag/sample">sample</a></div></div>', 'https://3hentai.net/d/123')
         self.fetch = self.enterContext(patch.object(h, "_fetch_gallery_metadata", return_value=(self.meta, {"http_status": 200})))
         self.enterContext(patch.object(h.time, "sleep"))
-        self.enterContext(patch.object(h.requests.Session, "request", side_effect=AssertionError("No network")))
+        self.enterContext(patch('requests.adapters.HTTPAdapter.send', side_effect=AssertionError("No network")))
         self.repairs = {}
 
     def run_repair(self, observations, **kwargs):
@@ -68,28 +70,28 @@ class RepairTests(unittest.TestCase):
         self.assertEqual(self.repairs[self.item["uid"]]["conclusion"], "repair_candidate_http_404")
 
     def test_get_limit_resume_transport_and_429(self):
-        session = Mock()
-        session.get.return_value = Mock(status_code=400)
+        session, transport = recording_session()
+        transport.return_value = Mock(raw=None, status_code=400)
         with patch.object(h.requests, "Session", return_value=session), patch.object(h, "HENTAI3_REPAIR_GET_LIMIT", 1):
             for expected in ("repair_corroboration_deferred", "repair_uncorroborated"):
                 h.enrich_existing_for_filter([self.item], repairs=self.repairs)
                 self.assertEqual(self.repairs[self.item["uid"]]["conclusion"], expected)
-            self.assertEqual(session.get.call_count, 2)
-            self.assertEqual(session.get.call_args.kwargs["params"], {"book": "123"})
+            self.assertEqual(transport.call_count, 2)
+            self.assertEqual(parse_qs(urlsplit(transport.call_args.args[0].url).query), {"book": ["123"]})
         for status in (0, 429):
             self.repairs.clear()
-            session.get.side_effect = ConnectionError() if status == 0 else None
-            session.get.return_value = Mock(status_code=status)
+            transport.side_effect = ConnectionError() if status == 0 else None
+            transport.return_value = Mock(raw=None, status_code=status)
             with patch.object(h.requests, "Session", return_value=session), patch.object(h, "HENTAI3_REPAIR_GET_LIMIT", 10):
                 result = h.enrich_existing_for_filter([self.item], repairs=self.repairs)
             self.assertEqual(self.repairs[self.item["uid"]]["conclusion"], "repair_corroboration_deferred")
             self.assertEqual(result["repair_get_stopped"], status == 429)
 
     def test_budget_reads_raw_payload_first_id_and_stops_shared_run(self):
-        session = Mock()
-        session.get.side_effect = [
-            Mock(status_code=200, json=Mock(return_value={"data": {"id": "123", "gallery_id": "3000123", "url": "/d/123"}})),
-            Mock(status_code=429)]
+        session, transport = recording_session()
+        transport.side_effect = [
+            Mock(raw=None, status_code=200, json=Mock(return_value={"data": {"id": "123", "gallery_id": "3000123", "url": "/d/123"}})),
+            Mock(raw=None, status_code=429)]
         with patch.object(h, "HENTAI3_REPAIR_GET_LIMIT", 10):
             budget = h._RepairGetBudget(session)
             observed = budget.get("3000123")
@@ -97,7 +99,7 @@ class RepairTests(unittest.TestCase):
             self.assertEqual(observed["link"], "https://3hentai.net/d/123")
             self.assertEqual(budget.get("123")["http_status"], 429)
             self.assertFalse(budget.get("456")["attempted"])
-            self.assertEqual(session.get.call_count, 2)
+            self.assertEqual(transport.call_count, 2)
         with patch.object(h, "HENTAI3_REPAIR_GET_LIMIT", 0):
             budget = h._RepairGetBudget(session)
             self.assertFalse(budget.get("123")["attempted"])

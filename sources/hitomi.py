@@ -6,7 +6,9 @@ import requests
 from bs4 import BeautifulSoup
 
 from config import HITOMI_RETRY_LIMIT, HITOMI_RETRY_MAX_FAILURES, HITOMI_RETRY_QUEUE_MAX, HITOMI_BACKFILL_LIMIT, HITOMI_LATEST_LIMIT
+from sources.common import stop_on_url_policy_error
 from sources.common import absolute_url, retry_window, parse_json_wrapped_js, safe_get, unique_strings
+from sources.net_policy import URLPolicyError
 
 # Hitomi moved resource delivery from ltn.hitomi.la to
 # ltn.gold-usergeneratedcontent.net. Keep the old host as a fallback only.
@@ -52,7 +54,7 @@ def _fetch_range_from_base(
     headers = dict(RESOURCE_HEADERS)
     headers["Range"] = f"bytes={start_byte}-{end_byte}"
     url = base + INDEX_PATH
-    res = safe_get(session, url, headers=headers)
+    res = safe_get(session, url, purpose="hitomi_resource", headers=headers)
 
     data = res.content
     if len(data) % 4:
@@ -99,6 +101,8 @@ def _range_ids(
         try:
             ids, total = _fetch_range_from_base(session, base, start_index, count)
             return ids, total, base
+        except URLPolicyError:
+            raise
         except Exception as e:
             errors.append(f"{base}: {e}")
     raise RuntimeError("all Hitomi resource hosts failed: " + " | ".join(errors))
@@ -238,12 +242,15 @@ def _thumbnail(session: requests.Session, gid: int, raw: dict[str, Any]) -> str:
             res = safe_get(
                 session,
                 template.format(gid=gid),
+                purpose="hitomi_html",
                 headers={"Referer": FRONT_BASE + "/", "Accept": "text/html,*/*;q=0.8"},
             )
             soup = BeautifulSoup(res.text, "html.parser")
             thumb = _extract_thumbnail_from_soup(soup)
             if thumb:
                 return _ThumbnailResult(thumb, "html", tuple(failure_reasons))
+        except URLPolicyError:
+            raise
         except Exception as exc:
             failure_reasons.append(type(exc).__name__[:80])
             continue
@@ -302,8 +309,13 @@ def _fetch_gallery_js(session: requests.Session, gid: int, preferred_base: str |
     errors: list[str] = []
     for base in bases:
         try:
-            res = safe_get(session, base + GALLERY_JS_PATH.format(gid=gid), headers=JS_HEADERS)
+            res = safe_get(
+                session, base + GALLERY_JS_PATH.format(gid=gid),
+                purpose="hitomi_resource", headers=JS_HEADERS,
+            )
             return parse_json_wrapped_js(res.text), base
+        except URLPolicyError:
+            raise
         except Exception as e:
             errors.append(f"{base}: {e}")
     raise RuntimeError("gallery metadata hosts failed: " + " | ".join(errors))
@@ -320,7 +332,10 @@ def _fetch_one(session: requests.Session, gid: int, preferred_base: str | None) 
 def fetch_filter_metadata(session: requests.Session, gid: int, preferred_base: str | None = None) -> dict:
     """Audit metadata only: no gallery/image download and no host hopping."""
     base = preferred_base if preferred_base in RESOURCE_BASES else RESOURCE_BASES[0]
-    res = safe_get(session, base + GALLERY_JS_PATH.format(gid=gid), headers=JS_HEADERS)
+    res = safe_get(
+        session, base + GALLERY_JS_PATH.format(gid=gid),
+        purpose="hitomi_resource", headers=JS_HEADERS,
+    )
     raw = parse_json_wrapped_js(res.text)
     if raw.get("id") is not None and str(raw["id"]) != str(gid):
         raise ValueError("Hitomi gallery identity mismatch")
@@ -345,6 +360,7 @@ def _retry_failure(queue: dict, exhausted: list, gid: str, error: str, **extra) 
     return False
 
 
+@stop_on_url_policy_error
 def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     state = dict(state or {})
     queue = {gid: dict(entry) for gid, entry in (state.get("retry_ids") or {}).items()}
@@ -362,6 +378,8 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
 
     try:
         latest_ids, latest_total, latest_base = _range_ids(session, 0, HITOMI_LATEST_LIMIT, preferred_base)
+    except URLPolicyError:
+        raise
     except Exception as e:
         return [], state, {
             "status": "error",
@@ -385,6 +403,8 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         )
         preferred_base = latest_base or backfill_base
         total_index = latest_total if latest_total is not None else backfill_total
+    except URLPolicyError:
+        raise
     except Exception as e:
         backfill_failed = True
         errors.append(f"backfill: {str(e)[:300]}")
@@ -428,6 +448,8 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
                     thumbnails_found += 1
                     if len(thumbnail_samples) < 3:
                         thumbnail_samples.append(f"{gid}: {item.get('thumbnail')}")
+        except URLPolicyError:
+            raise
         except Exception as e:
             newly_failed = str(gid) not in queue
             gave_up = _retry_failure(queue, exhausted, str(gid), str(e))

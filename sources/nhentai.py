@@ -9,6 +9,7 @@ from config import (NH_LATEST_PAGES, NH_MAX_DETAILS_PER_RUN, NH_INITIAL_BACKFILL
                     NH_BACKFILL_SEEK_PAGES, NH_SEARCH_DELAY_SEC, NH_DETAIL_DELAY_SEC,
                     NH_DETAIL_MAX_FAILURES, NH_REQUEST_TIMEOUT, NH_RUN_DEADLINE_SEC)
 from sources.common import HEADERS, is_valid_source_id, iso_from_unix, polite_sleep, unique_strings
+from sources.net_policy import URLPolicyError, guarded_request
 
 SEARCH_URL = "https://nhentai.net/api/v2/search?query=language%3Ajapanese&sort=date&page={page}"
 DETAIL_URL = "https://nhentai.net/api/v2/galleries/{gid}"
@@ -25,9 +26,13 @@ class HTTPError(RuntimeError):
 
 
 def _get_json(session: requests.Session, url: str) -> dict:
-    response = session.get(url, headers={**HEADERS, "Accept": "application/json"},
-                           timeout=NH_REQUEST_TIMEOUT, allow_redirects=False)
+    response = guarded_request(
+        session, "GET", url, purpose="nhentai_api",
+        headers={**HEADERS, "Accept": "application/json"},
+        timeout=NH_REQUEST_TIMEOUT, follow_redirects=False,
+    )
     if response.status_code != 200:
+        response.close()
         raise HTTPError(response.status_code)
     payload = response.json()
     if not isinstance(payload, dict):
@@ -118,6 +123,7 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     seen, discovered = set(), set()
     calls = {"search": 0, "detail": 0}
     halted = False
+    policy_denied = False
     budget_limited = False
     confirmation_used = False
     budget = NH_MAX_DETAILS_PER_RUN
@@ -140,8 +146,10 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         return fn(session, *args)
 
     def error(context, exc):
-        nonlocal halted
+        nonlocal halted, policy_denied
         errors.append(f"{context}: {str(exc)[:200]}")
+        if isinstance(exc, URLPolicyError):
+            policy_denied = halted = True
         if getattr(exc, "status_code", None) == 429:
             counts["rate_limited"] = True
             halted = True
@@ -176,6 +184,10 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
                 counts["skipped_non_japanese"] += 1
             failures.pop(gid, None)
             return True
+        except URLPolicyError as exc:
+            counts["detail_errors"] += 1
+            error(gid, exc)
+            return False
         except DeadlineReached:
             return False
         except Exception as exc:
@@ -198,7 +210,10 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     def finish(page_one_ok=True):
         progressed = (new.get("latest_id", 0) != latest_before or
                       new.get("backfill_before_id") != back_before)
-        ok = page_one_ok and (not errors or counts["detail_successes"] > 0 or progressed)
+        ok = (page_one_ok and not policy_denied
+              and (not errors or counts["detail_successes"] > 0 or progressed))
+        if policy_denied:
+            items.clear()
         if counts["detail_successes"]:
             new["detail_failures"] = dict(list(failures.items())[-50:])
         result_state = new if ok else original

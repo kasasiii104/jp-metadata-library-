@@ -4,12 +4,14 @@ import re
 import time
 import unicodedata
 from datetime import datetime, timezone
+from functools import wraps
 from typing import Any, Iterable
 
 import requests
 from bs4 import BeautifulSoup
 
 from config import REQUEST_TIMEOUT, USER_AGENT
+from sources.net_policy import URLPolicyError, guarded_request
 
 HEADERS = {
     "User-Agent": USER_AGENT,
@@ -94,12 +96,32 @@ def _response_title(res: requests.Response) -> str:
     return ""
 
 
-def safe_get(session: requests.Session, url: str, *, params=None, headers=None, timeout=None) -> requests.Response:
+def stop_on_url_policy_error(collect):
+    """Preserve the input state when a source cannot complete safely."""
+    @wraps(collect)
+    def run(state=None):
+        try:
+            return collect(state)
+        except URLPolicyError as exc:
+            return [], dict(state or {}), {
+                "status": "error", "partial": True, "discovered": 0,
+                "accepted_raw": 0, "message": str(exc),
+            }
+
+    return run
+
+
+def safe_get(session: requests.Session, url: str, *, purpose: str, params=None, headers=None, timeout=None) -> requests.Response:
     merged = dict(HEADERS)
     if headers:
         merged.update(headers)
     try:
-        res = session.get(url, params=params, headers=merged, timeout=timeout or REQUEST_TIMEOUT)
+        res = guarded_request(
+            session, "GET", url, purpose=purpose, params=params,
+            headers=merged, timeout=timeout or REQUEST_TIMEOUT,
+        )
+    except URLPolicyError:
+        raise
     except Exception as e:
         raise RuntimeError(f"request failed url={url}: {e}") from e
     if not res.ok:
@@ -111,13 +133,18 @@ def safe_get(session: requests.Session, url: str, *, params=None, headers=None, 
     return res
 
 
-def safe_post_json(session: requests.Session, url: str, payload: dict, *, headers=None, timeout=None) -> dict:
+def safe_post_json(session: requests.Session, url: str, payload: dict, *, purpose: str, headers=None, timeout=None) -> dict:
     merged = dict(HEADERS)
     merged["Content-Type"] = "application/json"
     if headers:
         merged.update(headers)
     try:
-        res = session.post(url, json=payload, headers=merged, timeout=timeout or REQUEST_TIMEOUT)
+        res = guarded_request(
+            session, "POST", url, purpose=purpose, json=payload,
+            headers=merged, timeout=timeout or REQUEST_TIMEOUT,
+        )
+    except URLPolicyError:
+        raise
     except Exception as e:
         raise RuntimeError(f"request failed url={url}: {e}") from e
     if not res.ok:

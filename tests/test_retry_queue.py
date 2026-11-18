@@ -13,7 +13,7 @@ from sources.common import retry_window
 
 class RetryQueueTests(unittest.TestCase):
     def setUp(self):
-        self.enterContext(patch('requests.sessions.Session.request',
+        self.enterContext(patch('requests.adapters.HTTPAdapter.send',
                                 side_effect=AssertionError('Network forbidden')))
         self.enterContext(patch.object(eh.time, 'sleep'))
         self.enterContext(patch.object(eh, 'EH_LATEST_PAGES', 1))

@@ -22,7 +22,8 @@ from config import (
     HENTAI3_LATEST_PAGES,
     HENTAI3_MAX_GALLERIES_PER_RUN,
 )
-from sources.common import is_valid_source_id, unique_strings
+from sources.common import stop_on_url_policy_error, is_valid_source_id, unique_strings
+from sources.net_policy import URLPolicyError, guarded_request, local_api_url, validate_url
 
 API_BASE = os.environ.get("JANDAPRESS_URL", "http://127.0.0.1:3000").rstrip("/")
 SOURCE_BASE = "https://3hentai.net"
@@ -307,8 +308,8 @@ def _direct_search_cards(session: requests.Session, key: str, page: int, sort: s
     url = f"{SOURCE_BASE}/search"
     info = {"page": page, "http_status": 0, "final_url": "", "cards": 0, "error": ""}
     try:
-        r = session.get(
-            url,
+        r = guarded_request(
+            session, "GET", url, purpose="hentai3_page",
             params={"q": key, "page": page, "sort": sort},
             timeout=TIMEOUT,
             headers={
@@ -324,6 +325,8 @@ def _direct_search_cards(session: requests.Session, key: str, page: int, sort: s
             return [], info
         r.raise_for_status()
     except Exception as e:
+        if isinstance(e, URLPolicyError):
+            info["policy_denied"] = True
         info["error"] = str(e)[:500]
         return [], info
 
@@ -587,8 +590,8 @@ def _gallery_metadata_from_html(html: str, page_url: str) -> dict:
 def _fetch_gallery_metadata(session: requests.Session, page_url: str) -> tuple[dict | None, dict]:
     info = {"url": page_url, "http_status": 0, "evidence_count": 0, "error": ""}
     try:
-        r = session.get(
-            page_url,
+        r = guarded_request(
+            session, "GET", page_url, purpose="hentai3_page",
             timeout=TIMEOUT,
             headers={
                 "User-Agent": "Mozilla/5.0 (compatible; Japanese-Metadata-Library/2.1; metadata-only)",
@@ -606,6 +609,8 @@ def _fetch_gallery_metadata(session: requests.Session, page_url: str) -> tuple[d
         info["evidence_count"] = int(meta.get("evidence_count") or 0)
         return meta, info
     except Exception as e:
+        if isinstance(e, URLPolicyError):
+            info["policy_denied"] = True
         info["error"] = str(e)[:500]
         return None, info
 
@@ -645,7 +650,10 @@ def _merge_gallery_metadata(item: dict, meta: dict, *, mark_checked: bool = True
 def _resolve_public_search_exact(session: requests.Session, search_url: str, expected_title: str) -> tuple[dict | None, str, bool]:
     """Resolve a legacy title-search URL using one exact normalized-title match."""
     try:
-        r = session.get(search_url, timeout=TIMEOUT, headers={"User-Agent": "Mozilla/5.0 (compatible; Japanese-Metadata-Library/2.1; metadata-only)"})
+        r = guarded_request(
+            session, "GET", search_url, purpose="hentai3_page", timeout=TIMEOUT,
+            headers={"User-Agent": "Mozilla/5.0 (compatible; Japanese-Metadata-Library/2.1; metadata-only)"},
+        )
         if r.status_code in {403, 429} or r.status_code >= 500:
             return None, f"HTTP {r.status_code}", True
         r.raise_for_status()
@@ -671,6 +679,7 @@ def _resolve_public_search_exact(session: requests.Session, search_url: str, exp
 
 
 def direct_gallery_id(url: str) -> str:
+    # Classify stored gallery links. Outbound requests apply the HTTPS policy separately.
     parsed = urlparse(str(url or ""))
     if parsed.scheme not in {"https", "http"} or parsed.hostname != "3hentai.net":
         return ""
@@ -719,7 +728,10 @@ class _RepairGetBudget:
         self.calls += 1
         result = {"http_status": 0, "attempted": True, "link": "", "id_value": ""}
         try:
-            response = self.session.get(f"{API_BASE}/3hentai/get", params={"book": book}, timeout=TIMEOUT)
+            response = guarded_request(
+                self.session, "GET", local_api_url(API_BASE, "/3hentai/get"),
+                purpose="local_api", params={"book": book}, timeout=TIMEOUT,
+            )
             result["http_status"] = response.status_code
             if response.status_code in {403, 429}:
                 self.stopped = True
@@ -730,6 +742,8 @@ class _RepairGetBudget:
                 value = _first(obj, "gallery_id", "galleryId", "book", "source_id", "gid", "id")
                 # Do not normalize/coerce an observed ID before exact comparison.
                 result["id_value"] = str(value)[:500] if value is not None else ""
+        except URLPolicyError:
+            raise
         except Exception:
             pass
         return result
@@ -755,6 +769,8 @@ def _repair_existing(item, session, budget, claimed, kind, previous):
     meta, info = _fetch_gallery_metadata(session, f"{SOURCE_BASE}/d/{candidate}")
     status = info.get("http_status", 0)
     rec["candidate_http"] = status
+    if info.get("policy_denied"):
+        raise URLPolicyError(info["error"])
     if status in {403, 429} or status >= 500:
         return done(f"stopped_http_{status}", True)
     if status >= 400:
@@ -827,7 +843,8 @@ def enrich_existing_for_filter(items: list[dict], limit: int | None = None, *,
     repair_kinds = repair_kinds or {}
     budget = _RepairGetBudget(session)
     repair_attempted = 0
-    for item in targets[:limit]:
+    for saved_item in targets[:limit]:
+        item = dict(saved_item)
         attempted += 1
         # An attempted audit must earn its marker from this response.
         for key in ("filter_metadata_checked", "filter_metadata_checked_at"):
@@ -838,11 +855,23 @@ def enrich_existing_for_filter(items: list[dict], limit: int | None = None, *,
                   "url_shape": "empty" if not page_url else "search" if "/search" in page_url else "direct"}
         attempt_results[item["uid"]] = result
         reason = "empty_url" if not page_url else ""
-        if repair_target(item) or "/search" in page_url:
+        if page_url:
+            try:
+                validate_url(page_url, purpose="hentai3_page")
+            except URLPolicyError as exc:
+                reason = "url_policy"
+                result["policy_error"] = str(exc)[:500]
+        if reason != "url_policy" and (repair_target(item) or "/search" in page_url):
             repair_attempted += 1
             if repair_target(item):
-                rec, stopped = _repair_existing(item, session, budget, claimed_gallery_ids or {},
-                    repair_kinds.get(item["uid"], "legacy"), repairs.get(item["uid"], {}))
+                try:
+                    rec, stopped = _repair_existing(item, session, budget, claimed_gallery_ids or {},
+                        repair_kinds.get(item["uid"], "legacy"), repairs.get(item["uid"], {}))
+                except URLPolicyError as exc:
+                    attempt_results.pop(item["uid"])
+                    failures.append(str(exc)[:500])
+                    stopped = True
+                    break
             else:
                 rec = {"conclusion": "repair_invalid_internal_id", "target_kind": "legacy",
                        "candidate_id": "", "candidate_http": None, "page_title": "",
@@ -857,6 +886,11 @@ def enrich_existing_for_filter(items: list[dict], limit: int | None = None, *,
             page_url = ""  # The candidate metadata has already been merged after corroboration.
         if not reason and re.search(r"/d/\d+(?:/|$|[?#])", page_url, re.I):
             meta, info = _fetch_gallery_metadata(session, page_url)
+            if info.get("policy_denied"):
+                attempt_results.pop(item["uid"])
+                failures.append(info["error"])
+                stopped = True
+                break
             status = info.get("http_status") or 0
             if status in {403, 429} or status >= 500:
                 reason = f"stopped_http_{status}"
@@ -872,6 +906,8 @@ def enrich_existing_for_filter(items: list[dict], limit: int | None = None, *,
                     enriched += 1
                 if len(samples) < 5:
                     samples.append(f"{item.get('source_id')}: tags={len(item.get('tags') or [])} artists={len(item.get('artists') or [])}")
+        saved_item.clear()
+        saved_item.update(item)
         reason = reason or "gallery_no_evidence"
         result["reason"] = reason
         reason_counts[reason] = reason_counts.get(reason, 0) + 1
@@ -905,11 +941,26 @@ def enrich_existing_for_filter(items: list[dict], limit: int | None = None, *,
     }
 
 
+def _page_url_allowed(item: dict) -> bool:
+    try:
+        validate_url(_clean(item.get("source_url")), purpose="hentai3_page")
+    except URLPolicyError:
+        return False
+    return True
+
+
+def _prefer_candidate(candidates: dict[str, dict], item: dict) -> None:
+    sid = item["source_id"]
+    previous = candidates.get(sid)
+    if previous is None or _page_url_allowed(item) or not _page_url_allowed(previous):
+        candidates[sid] = item
+
+
 def _enrich_from_direct_card(item: dict, card: dict) -> bool:
     """Attach verified public gallery/thumbnail metadata without changing UID."""
     changed = False
     direct_url = _clean(card.get("source_url"))
-    if direct_url and re.search(r"/d/\d+(?:/|$|[?#])", direct_url, re.I):
+    if re.search(r"/d/\d+(?:/|$|[?#])", direct_url, re.I) and _page_url_allowed(card):
         if item.get("source_url") != direct_url or item.get("source_url_kind") != "direct":
             item["source_url"] = direct_url
             item["source_url_kind"] = "direct"
@@ -1012,8 +1063,8 @@ def _normalize(raw: dict, *, assumed_japanese: bool = False) -> dict | None:
     }
 
 def _get_json(session: requests.Session, path: str, params: dict | None = None):
-    url = f"{API_BASE}{path}"
-    r = session.get(url, params=params or {}, timeout=TIMEOUT)
+    url = local_api_url(API_BASE, path)
+    r = guarded_request(session, "GET", url, purpose="local_api", params=params or {}, timeout=TIMEOUT)
     r.raise_for_status()
     return r.json(), r.url
 
@@ -1091,7 +1142,10 @@ def _probe_get_endpoint(session: requests.Session, sid: str) -> tuple[dict, dict
     """
     url = f"{API_BASE}/3hentai/get"
     try:
-        r = session.get(url, params={"book": sid}, timeout=TIMEOUT)
+        r = guarded_request(
+            session, "GET", local_api_url(API_BASE, "/3hentai/get"),
+            purpose="local_api", params={"book": sid}, timeout=TIMEOUT,
+        )
         preview = " ".join((r.text or "").split())[:1200]
         result = {
             "id": sid,
@@ -1119,6 +1173,8 @@ def _probe_get_endpoint(session: requests.Session, sid: str) -> tuple[dict, dict
                 if obj:
                     detail_item = _normalize(obj, assumed_japanese=True)
         return result, detail_item
+    except URLPolicyError:
+        raise
     except Exception as e:
         return {
             "id": sid,
@@ -1144,7 +1200,8 @@ def _merge_probe_detail(base: dict, detail: dict) -> bool:
             and not base.get("public_gallery_id") and detail.get("public_gallery_id")):
         base["public_gallery_id"] = detail["public_gallery_id"]
         changed = True
-    if detail.get("source_url_kind") == "direct" and detail.get("source_url"):
+    if (detail.get("source_url_kind") == "direct" and detail.get("source_url")
+            and (_page_url_allowed(detail) or not _page_url_allowed(base))):
         if base.get("source_url") != detail.get("source_url") or base.get("source_url_kind") != "direct":
             base["source_url"] = detail["source_url"]
             base["source_url_kind"] = "direct"
@@ -1164,6 +1221,7 @@ def _merge_probe_detail(base: dict, detail: dict) -> bool:
     return changed
 
 
+@stop_on_url_policy_error
 def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     state = dict(state or {})
     backfill_page = max(1, int(state.get("backfill_page") or 1))
@@ -1171,7 +1229,7 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
 
     # First verify the locally self-hosted Jandapress service.
     try:
-        root = session.get(f"{API_BASE}/", timeout=10)
+        root = guarded_request(session, "GET", local_api_url(API_BASE, "/"), purpose="local_api", timeout=10)
         service_status = root.status_code
     except Exception as e:
         return [], state, {
@@ -1215,6 +1273,8 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         # the verified /d/<gallery_id> link and public lazy thumbnail.  The
         # Jandapress ID remains the stable local UID for backward compatibility.
         direct_cards, direct_info = _direct_search_cards(session, SEARCH_KEY, page, "recent")
+        if direct_info.get("policy_denied"):
+            raise URLPolicyError(direct_info["error"])
         direct_html_debug.append(direct_info)
         direct_html_cards_total += len(direct_cards)
         direct_by_title = {}
@@ -1246,17 +1306,20 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
                 card = direct_by_title.get(_title_key(normalized.get("title")))
                 if card and _enrich_from_direct_card(normalized, card):
                     direct_html_enriched += 1
-                page_candidates[normalized["source_id"]] = normalized
+                _prefer_candidate(page_candidates, normalized)
             # Reserve any over-cap page for history. Latest rows recur every
             # run, while history must retain a complete, contiguous boundary.
             if (page not in history_pages
                     and len(candidates.keys() | page_candidates.keys()) > HENTAI3_MAX_GALLERIES_PER_RUN):
                 truncated = True
                 continue
-            candidates.update(page_candidates)
+            for item in page_candidates.values():
+                _prefer_candidate(candidates, item)
             if page in history_pages:
                 history_ids.update(page_candidates)
             completed_pages.add(page)
+        except URLPolicyError:
+            raise
         except Exception as e:
             errors.append(f"page={page}: {e}")
             if page in history_pages:
@@ -1281,11 +1344,13 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
                         debug_raw_objects.append(obj)
                     normalized = _normalize(obj, assumed_japanese=False)
                     if normalized:
-                        candidates[normalized["source_id"]] = normalized
+                        _prefer_candidate(candidates, normalized)
                         if len(candidates) >= HENTAI3_MAX_GALLERIES_PER_RUN:
                             break
                 if candidates:
                     break
+            except URLPolicyError:
+                raise
             except Exception as e:
                 errors.append(f"fallback={fallback_key}: {e}")
 
@@ -1317,12 +1382,27 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     gallery_metadata_samples: list[str] = []
     gallery_metadata_failures: list[str] = []
     metadata_order = sorted(candidates.items(), key=lambda pair: pair[0] not in history_ids)
-    for sid, item in metadata_order[:max(0, HENTAI3_GALLERY_METADATA_LIMIT)]:
+    rejected_urls = set()
+    for sid, item in metadata_order:
+        page_url = _clean(item.get("source_url") or "")
+        if not page_url or item.get("source_url_kind") == "search":
+            continue
+        try:
+            validate_url(page_url, purpose="hentai3_page")
+        except URLPolicyError as exc:
+            rejected_urls.add(sid)
+            if len(gallery_metadata_failures) < 8:
+                gallery_metadata_failures.append(f"{sid}: url_policy: {exc}")
+
+    eligible_metadata = [(sid, item) for sid, item in metadata_order if sid not in rejected_urls]
+    for sid, item in eligible_metadata[:max(0, HENTAI3_GALLERY_METADATA_LIMIT)]:
         page_url = _clean(item.get("source_url") or "")
         if not re.search(r"/d/\d+(?:/|$|[?#])", page_url, re.I):
             continue
         gallery_metadata_attempted += 1
         meta, info = _fetch_gallery_metadata(session, page_url)
+        if info.get("policy_denied"):
+            raise URLPolicyError(info["error"])
         if info.get("http_status") in {403, 429, 502, 503, 504}:
             gallery_metadata_stopped = True
             if len(gallery_metadata_failures) < 8:
@@ -1357,6 +1437,8 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     # for discovery; thumbnails are resolved separately and slowly by the
     # local cache step.
     for sid, item in candidates.items():
+        if sid in rejected_urls:
+            continue
         lang = item.get("language") or "missing"
         languages[lang] = languages.get(lang, 0) + 1
         if item.get("thumbnail"):
@@ -1372,8 +1454,8 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     new_state["backfill_page"] = next_page
 
     status = {
-        "status": "ok" if items else "error",
-        "partial": bool(errors or truncated or any(
+        "status": "ok" if items or (rejected_urls and next_page > backfill_page) else "error",
+        "partial": bool(errors or truncated or rejected_urls or any(
             x.get("filter_metadata_checked") != "3hentai-gallery-v1" for x in items)),
         "backfill_page_before": backfill_page,
         "backfill_page_after": next_page,
@@ -1403,6 +1485,7 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
         "gallery_metadata_attempted": gallery_metadata_attempted,
         "gallery_metadata_enriched": gallery_metadata_enriched,
         "gallery_metadata_failed": gallery_metadata_failed,
+        "gallery_metadata_url_policy_rejected": len(rejected_urls),
         "gallery_metadata_stopped": gallery_metadata_stopped,
         "gallery_metadata_samples": gallery_metadata_samples,
         "gallery_metadata_failures": gallery_metadata_failures,

@@ -50,7 +50,7 @@ class GalleryIdFormatTests(unittest.TestCase):
     def test_invalid_metadata_is_queued_without_losing_valid_item(self):
         for token in self.invalid_tokens[:-1]:
             with self.subTest(token=token), \
-                 patch('requests.sessions.Session.request',
+                 patch('requests.adapters.HTTPAdapter.send',
                        side_effect=AssertionError('Network forbidden')), \
                  patch.object(eh, 'EH_LATEST_PAGES', 1), \
                  patch.object(eh, 'EH_BACKFILL_PAGES', 0), \

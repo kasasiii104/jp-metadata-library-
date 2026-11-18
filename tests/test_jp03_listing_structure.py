@@ -5,6 +5,7 @@ from types import SimpleNamespace
 from unittest.mock import Mock, patch
 
 from bs4 import BeautifulSoup
+from net_test_helpers import recording_session
 from sources import ehentai as eh, hentai3, hitomi
 
 FIXTURES = Path(__file__).parent / 'fixtures' / 'jp03'
@@ -12,7 +13,7 @@ FIXTURES = Path(__file__).parent / 'fixtures' / 'jp03'
 
 class ListingStructureTests(unittest.TestCase):
     def setUp(self):
-        self.enterContext(patch('requests.sessions.Session.request',
+        self.enterContext(patch('requests.adapters.HTTPAdapter.send',
                                 side_effect=AssertionError('Network forbidden')))
         self.enterContext(patch.object(eh.time, 'sleep'))
 
@@ -50,11 +51,11 @@ class ListingStructureTests(unittest.TestCase):
             return eh._discover(object())
 
     def direct(self, html):
-        response = SimpleNamespace(text=html, status_code=200,
+        response = SimpleNamespace(text=html, content=html.encode('utf-8'), status_code=200, raw=None,
                                    url='https://3hentai.net/search',
                                    raise_for_status=lambda: None)
-        session = Mock()
-        session.get.return_value = response
+        session, transport = recording_session()
+        transport.return_value = response
         return hentai3._direct_search_cards(session, 'language:japanese', 1)
 
     def test_eh_real_listings_and_unwrapped_refs(self):
@@ -254,7 +255,7 @@ class ListingStructureTests(unittest.TestCase):
 
 class HitomiStructureRegressionTests(unittest.TestCase):
     def setUp(self):
-        self.enterContext(patch('requests.sessions.Session.request',
+        self.enterContext(patch('requests.adapters.HTTPAdapter.send',
                                 side_effect=AssertionError('Network forbidden')))
 
     def response(self, data):

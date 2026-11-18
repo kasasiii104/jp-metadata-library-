@@ -27,6 +27,7 @@ from config import (
     HITOMI_FILTER_RETRY_SEC,
 )
 from sources import ehentai, hitomi, hentai3, asmhentai, hentai3_ids, nhentai
+from sources.net_policy import URLPolicyError
 from sources.common import is_valid_source_id, normalize_full_tag, normalize_tag, unique_strings, polite_sleep
 from tools.json_storage import (load_json, save_json, validate_catalog,
                                 validate_source_mapping, validate_filter_store, validate_hentai3_id_map)
@@ -403,6 +404,11 @@ def audit_existing_hitomi(existing: dict, store: dict, stamp: str, preferred_bas
                     records.pop(uid, None)
                     attempts.pop(uid, None)
                     stats["verified"] += 1
+            except URLPolicyError:
+                stats["stopped"] = True
+                stats["failed"] += 1
+                stats["failed_reasons"]["url_policy"] = 1
+                break
             except Exception as exc:
                 match = re.search(r"HTTP (\d{3})\b", str(exc))
                 status = int(match.group(1)) if match else None
@@ -733,8 +739,10 @@ def main(*, audit_only: bool = False) -> int:
             attempt = {"last_attempt": _timestamp(stamp), "id_gen": 2,
                        "failures": previous.get("failures", 0) + 1,
                        **result, "consecutive_failures": consecutive}
-            if reason in HENTAI3_TERMINAL_REPAIR_FAILURES or reason == "empty_url" or (reason in HENTAI3_PERMANENT_FAILURES
-                                          and consecutive >= HENTAI3_PERMANENT_FAILURE_LIMIT):
+            if (reason in HENTAI3_TERMINAL_REPAIR_FAILURES
+                    or reason in {"empty_url", "url_policy"}
+                    or (reason in HENTAI3_PERMANENT_FAILURES
+                        and consecutive >= HENTAI3_PERMANENT_FAILURE_LIMIT)):
                 attempt.update(gave_up=True, gave_up_reason=reason, gave_up_at=stamp)
             h3_attempts[uid] = attempt
         restored = blocked = 0

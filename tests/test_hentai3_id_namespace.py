@@ -4,9 +4,10 @@ import io
 import tempfile
 import unittest
 from pathlib import Path
-from unittest.mock import Mock, patch
+from unittest.mock import patch
 
 import crawler as c
+from net_test_helpers import recording_session
 from sources import hentai3 as h, hentai3_ids as ids
 from tools.json_storage import load_json, save_json, validate_hentai3_id_map
 
@@ -234,7 +235,9 @@ class IdentityTests(unittest.TestCase):
             for name, value in {'HENTAI3_LATEST_PAGES': 1, 'HENTAI3_BACKFILL_PAGES': 0,
                                 'HENTAI3_GET_DEBUG_LIMIT': 0, 'HENTAI3_GALLERY_METADATA_LIMIT': 0}.items():
                 stack.enter_context(patch.object(h, name, value))
-            stack.enter_context(patch.object(h.requests, 'Session', return_value=Mock()))
+            session, transport = recording_session()
+            transport.return_value.status_code = 200
+            stack.enter_context(patch.object(h.requests, 'Session', return_value=session))
             stack.enter_context(patch.object(h, '_direct_search_cards', return_value=(cards, {})))
             stack.enter_context(patch.object(h, '_get_json', return_value=([{'id': 999, 'title': 'Sample'}], 'mock')))
             stack.enter_context(patch.object(h, '_find_candidate_dicts', side_effect=lambda x: x))
@@ -258,7 +261,7 @@ class MainIdentityTests(unittest.TestCase):
         self.enterContext(contextlib.redirect_stdout(io.StringIO()))
         self.enterContext(patch.object(c, 'HITOMI_FILTER_AUDIT_LIMIT', 0))
         self.enterContext(patch.object(h, 'enrich_existing_for_filter', return_value={}))
-        self.enterContext(patch.object(h.requests.Session, 'request', side_effect=AssertionError('Network forbidden')))
+        self.enterContext(patch('requests.adapters.HTTPAdapter.send', side_effect=AssertionError('Network forbidden')))
         self.incoming = []
         self.enterContext(patch.dict(c.SOURCES, {'3hentai': lambda state: (self.incoming, state, {'status': 'ok'})}, clear=True))
 

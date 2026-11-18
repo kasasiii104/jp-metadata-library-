@@ -24,7 +24,7 @@ class PartialSourceGuardTests(unittest.TestCase):
         self.enterContext(patch.object(c, "now_iso", return_value="2026-11-08T00:00:00+00:00"))
         self.enterContext(patch.object(c, "HITOMI_FILTER_AUDIT_LIMIT", 0))
         self.enterContext(patch.object(c.hentai3, "enrich_existing_for_filter", return_value={}))
-        self.enterContext(patch.object(c.hitomi.requests.Session, "request",
+        self.enterContext(patch('requests.adapters.HTTPAdapter.send',
                                        side_effect=AssertionError("Network forbidden")))
         self.enterContext(patch.dict(c.SOURCES, {}, clear=True))
 
