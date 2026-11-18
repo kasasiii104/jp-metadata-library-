@@ -26,7 +26,7 @@
   function decodeState(query) {
     const p = new URLSearchParams(query), out = {...defaults};
     for (const k of ["q","cat","fv"]) out[k] = p.get(k) || "";
-    for (const [k, allowed] of Object.entries({src:["all","ehentai","hitomi","3hentai","asmhentai"],fk:["","artists","groups","works","characters","tags"],sort:["new","rating","pages"],pages:["0","20","40","80"]})) {
+    for (const [k, allowed] of Object.entries({src:["all","ehentai","hitomi","3hentai","asmhentai","nhentai"],fk:["","artists","groups","works","characters","tags"],sort:["new","rating","pages"],pages:["0","20","40","80"]})) {
       const v=p.get(k); if(allowed.includes(v))out[k]=v;
     }
     if(!out.fk)out.fv="";
@@ -62,7 +62,7 @@
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]);
   const safeUrl = (u) => { try { const x = new URL(String(u || ""), location.href); return /^https?:$/.test(x.protocol) ? x.href : ""; } catch { return ""; } };
   const uniq = (a) => [...new Set((a || []).filter(Boolean))];
-  const sourceLabel = (s) => ({ehentai:"E-Hentai",hitomi:"Hitomi","3hentai":"3Hentai",asmhentai:"ASMHentai"})[s] || s;
+  const sourceLabel = (s) => ({ehentai:"E-Hentai",hitomi:"Hitomi","3hentai":"3Hentai",asmhentai:"ASMHentai",nhentai:"nhentai"})[s] || s;
   const INITIAL = 40, STEP = 40, INITIAL_CHUNKS = 2;
   const state = { raw:[], items:[], filtered:[], shown:INITIAL, source:"all", favoritesOnly:false, manifest:null, loadedChunks:new Set(), loading:false, seed:null, newOnly:false, since:NaN, newCount:0 };
 
@@ -131,7 +131,15 @@
     }
     saveSet("meta_favorites",favs);saveSet("meta_hidden",hidden);return out;
   }
-  function searchable(x){return [x.title,x.title_jp,x.category,...(x.artists||[]),...(x.groups||[]),...worksOf(x),...(x.characters||[]),...(x.tags||[])].join(" ").toLowerCase();}
+  function searchable(x) {
+    if (x._search != null) return x._search;
+    const works=worksOf(x), characters=x.characters||[], tags=x.tags||[];
+    const translated=[];
+    for (const [kind,values] of [["works",works],["characters",characters],["tags",tags]]) {
+      for (const v of values) { const label=displayValue(kind,v); if(label!==v)translated.push(label); }
+    }
+    return x._search=[x.title,x.title_jp,x.category,...(x.artists||[]),...(x.groups||[]),...works,...characters,...tags,...translated].join(" ").toLowerCase();
+  }
   function sourceWorkUrl(m){if(m?.source==="3hentai"){const d=safeUrl(m.source_url);if(m.source_url_kind==="direct"&&d)return d;const q=String(m.title_jp||m.title||"").trim();return q?`https://3hentai.net/search?q=${encodeURIComponent(q)}`:"https://3hentai.net/";}return safeUrl(m?.source_url);}
   function facetButton(kind,value,label){return `<button class="facet" type="button" data-facet-kind="${esc(kind)}" data-facet-value="${esc(value)}">${esc(label)}</button>`;}
   function facetSummary(x){const a=[];const w=worksOf(x)[0];if(w)a.push(facetButton("works",w,`作品：${displayValue("works",w)}`));if(x.characters?.[0])a.push(facetButton("characters",x.characters[0],`キャラ：${displayValue("characters",x.characters[0])}`));for(const t of contentTagsOf(x).slice(0,2))a.push(facetButton("tags",t,`#${displayValue("tags",t)}`));return a.slice(0,4).join("");}
@@ -154,7 +162,7 @@
   function menu(id){const x=state.items.find(i=>i._groupId===id);if(!x)return;const links=x._members.map(m=>`<a href="${esc(sourceWorkUrl(m)||"#")}" target="_blank" rel="noopener noreferrer">${esc(sourceLabel(m.source))}で見る</a>`).join("");$("#sheet").innerHTML=detailBlock("作品・原作",worksOf(x),"works")+detailBlock("キャラクター",x.characters,"characters")+detailBlock("タグ",contentTagsOf(x),"tags")+`<button data-act="fav">${favs.has(id)?"お気に入りから外す":"お気に入りに追加"}</button><button data-act="hide">この作品を非表示</button>${links}`;$("#sheetBg").classList.add("on");$("#sheet").classList.add("on");$("#sheet [data-act=fav]").onclick=()=>{favs.has(id)?favs.delete(id):favs.add(id);saveSet("meta_favorites",favs);closeSheet();apply();};$("#sheet [data-act=hide]").onclick=()=>{hidden.add(id);saveSet("meta_hidden",hidden);updateNewCount();closeSheet();apply();};}
   function closeSheet(){$("#sheetBg").classList.remove("on");$("#sheet").classList.remove("on");}
 
-  async function init(){try{const [manifest,status]=await Promise.all([fetch("catalog/manifest.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(`manifest HTTP ${r.status}`);return r.json();}),fetch("source_status.json",{cache:"no-store"}).then(r=>r.ok?r.json():{}).catch(()=>({}))]);state.manifest=manifest;const n=Math.min(INITIAL_CHUNKS,Number(manifest.chunk_count||0));for(let i=0;i<n;i++)await loadChunk(i);state.since=initializeSince(manifest.updated_at,()=>localStorage,()=>sessionStorage);rebuild();$("#status").textContent=`更新 ${new Date(manifest.updated_at).toLocaleString("ja-JP")} ・ 全${Number(manifest.item_count).toLocaleString()}件`;const parts=["ehentai","hitomi","3hentai","asmhentai"].map(k=>{const s=status[k]||{};return `${sourceLabel(k)}: ${s.status||"不明"}${s.accepted!=null?` ${s.accepted}件`:""}`;});$("#sourceStatus").textContent=parts.join(" / ");}catch(e){$("#status").textContent=`起動失敗: ${e.message}`;$("#grid").innerHTML='<div class="empty">公開データを読み込めませんでした。再読み込みしてください。</div>';}}
+  async function init(){try{const [manifest,status]=await Promise.all([fetch("catalog/manifest.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(`manifest HTTP ${r.status}`);return r.json();}),fetch("source_status.json",{cache:"no-store"}).then(r=>r.ok?r.json():{}).catch(()=>({}))]);state.manifest=manifest;const n=Math.min(INITIAL_CHUNKS,Number(manifest.chunk_count||0));for(let i=0;i<n;i++)await loadChunk(i);state.since=initializeSince(manifest.updated_at,()=>localStorage,()=>sessionStorage);rebuild();$("#status").textContent=`更新 ${new Date(manifest.updated_at).toLocaleString("ja-JP")} ・ 全${Number(manifest.item_count).toLocaleString()}件`;const parts=["ehentai","hitomi","3hentai","asmhentai","nhentai"].map(k=>{const s=status[k]||{};return `${sourceLabel(k)}: ${s.status||"不明"}${s.accepted!=null?` ${s.accepted}件`:""}`;});$("#sourceStatus").textContent=parts.join(" / ");}catch(e){$("#status").textContent=`起動失敗: ${e.message}`;$("#grid").innerHTML='<div class="empty">公開データを読み込めませんでした。再読み込みしてください。</div>';}}
 
   function writeUrl(mode) {
     const query=encodeState({q:$("#q").value,src:state.source,cat:$("#category").value,fk:$("#facetKind").value,fv:$("#facetValue").value,sort:$("#sort").value,pages:$("#pages").value});

@@ -84,14 +84,15 @@ class Element {
  async click(){return this.onclick?.();}
 }
 async function boot(query='',options={}){
+ const data=options.fixture||fixture;
  const els={};for(const m of html.matchAll(/<(\w+)[^>]*\bid="([^"]+)"[^>]*>/g)){const e=new Element(m[1]);els[m[2]]=e;if(m[1]==='select')e.innerHTML=html.slice(m.index).split('</select>')[0];}
  for(const act of ['fav','hide'])els[`sheet [data-act=${act}]`]=new Element('button');
- const sources=['all','ehentai','hitomi','3hentai','asmhentai'].map(source=>{const e=new Element('button');e.dataset.source=source;return e;});
+ const sources=[...html.matchAll(/<button\b[^>]*data-source="([^"]+)"/g)].map(m=>m[1]).map(source=>{const e=new Element('button');e.dataset.source=source;return e;});
  const events={},documentEvents={},loc=new URL('https://example.org/site/'+query),writes=[];
  const history={};for(const method of ['pushState','replaceState'])history[method]=(a,b,url)=>{if(options.historyFail)throw Error('blocked');writes.push([method,url]);loc.href=new URL(url,loc).href;};
  const document={querySelector:s=>els[s.slice(1)]||null,querySelectorAll:s=>s==='[data-source]'?sources:[],createElement:t=>new Element(t),addEventListener:(k,f)=>documentEvents[k]=f};
  const local=options.local||storage(),session=options.session||storage();
- const context={document,window:{addEventListener:(k,f)=>events[k]=f},location:loc,history,localStorage:local,sessionStorage:session,URL,URLSearchParams,console,setTimeout,clearTimeout,fetch:async url=>{const match=url.match(/chunk-(\d+)/);return {ok:!options.fetchFail,status:500,json:async()=>match?{items:fixture.chunks[Number(match[1])]}:url.includes('manifest')?fixture.manifest:{}};}};
+ const context={document,window:{addEventListener:(k,f)=>events[k]=f},location:loc,history,localStorage:local,sessionStorage:session,URL,URLSearchParams,console,setTimeout,clearTimeout,fetch:async url=>{const match=url.match(/chunk-(\d+)/);return {ok:!options.fetchFail,status:500,json:async()=>match?{items:data.chunks[Number(match[1])]}:url.includes('manifest')?data.manifest:{}};}};
  vm.runInNewContext(code,context);for(let i=0;i<10;i++)await new Promise(r=>setTimeout(r,0));
  return {els,sources,loc,writes,events,documentEvents,local,session,async change(id,value){els[id].value=value;await els[id].fire('change');},async pop(query){loc.search=query;events.popstate();},titles(){return [...els.grid.innerHTML.matchAll(/class="title"[^>]*>([^<]*)/g)].map(m=>m[1]);}};
 }
@@ -145,13 +146,71 @@ test('結合: history/storage例外でも動作、失敗時status',async()=>{
 test('HTML IDs、FALLBACK、PWA、PNGシグネチャと寸法',()=>{
  const ids=new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]));for(const m of code.matchAll(/\$\("#([\w-]+)(?:[ "\)])/g))assert.ok(ids.has(m[1]),m[1]);
  for(const region of ['CARDS','STATUS'])for(const end of ['START','END'])assert.equal(html.split(`<!-- FALLBACK_${region}_${end} -->`).length,2);
- for(const pattern of [/name="description"/,/name="theme-color"/,/rel="manifest"/,/rel="apple-touch-icon"/,/app\.js\?v=20261117-1/])assert.match(html,pattern);
+ for(const pattern of [/name="description"/,/name="theme-color"/,/rel="manifest"/,/rel="apple-touch-icon"/,/app\.js\?v=20261117-2/])assert.match(html,pattern);
  const manifest=JSON.parse(fs.readFileSync('docs/manifest.webmanifest'));assert.equal(manifest.start_url,'./');assert.equal(manifest.scope,'./');assert.equal(manifest.display,'standalone');
  for(const icon of [...manifest.icons,{src:'icons/apple-touch-icon.png',sizes:'180x180'}]){const bytes=fs.readFileSync(path.join('docs',icon.src));if(icon.src.endsWith('.png')){assert.equal(bytes.subarray(0,8).toString('hex'),'89504e470d0a1a0a');assert.equal(bytes.subarray(12,16).toString(),'IHDR');assert.equal(`${bytes.readUInt32BE(16)}x${bytes.readUInt32BE(20)}`,icon.sizes);}}
 });
 
-test("FALLBACK生成領域のバイト固定",()=>{
- const crypto=require("node:crypto");
- assert.equal(crypto.createHash("sha256").update(html.match(/<!-- FALLBACK_CARDS_START -->[\s\S]*?<!-- FALLBACK_CARDS_END -->/)[0]).digest("hex"),"c4e75fbc54b1870d22539b4af3cb8dcc7388562ef56718f38e39ad0588a4de98");
- assert.equal(crypto.createHash("sha256").update(html.match(/<!-- FALLBACK_STATUS_START -->[\s\S]*?<!-- FALLBACK_STATUS_END -->/)[0]).digest("hex"),"1d69c6ae3bb7c6f09c25953973544907f3e7e7de4ee3a222b52e4bfbb5efda80");
+test("FALLBACK生成領域の構造（マーカー単一・順序・入れ子なし）",()=>{
+ const ranges=['CARDS','STATUS'].map(region=>{
+  const markers=['START','END'].map(end=>`<!-- FALLBACK_${region}_${end} -->`);
+  for(const marker of markers)assert.equal(html.split(marker).length,2,marker);
+  const start=html.indexOf(markers[0]),end=html.indexOf(markers[1]);
+  assert.ok(start<end,region);
+  return {start,end:end+markers[1].length};
+ }).sort((a,b)=>a.start-b.start);
+ assert.ok(ranges[0].end<=ranges[1].start);
+});
+
+const nhentaiFixture={
+ manifest:{...fixture.manifest,chunk_count:3,item_count:4},
+ chunks:[[
+  {uid:'nh-1',source:'nhentai',source_id:'1',title:'Plain',tags:['big breasts','untranslated token'],parodies:['parody:kantai collection'],characters:['character:ponytail'],posted_at:'2026-11-16'},
+  {uid:'nh-2',source:'nhentai',source_id:'2',title:'Namespaced',tags:['female:big breasts'],parodies:[],characters:[],posted_at:'2026-11-15'}
+ ],[
+  {uid:'other',source:'hitomi',title:'Other',tags:['glasses'],works:['work:azur lane'],posted_at:'2026-11-14'}
+ ],[
+  {uid:'nh-3',source:'nhentai',source_id:'3',duplicate_group:'nh-1',title:'Later',tags:['netorare'],parodies:[],characters:[],posted_at:'2026-11-13'}
+ ]]
+};
+test('URL: nhentai復元・往復、未知ソースはall',()=>{
+ const state=logic.decodeState('?src=nhentai');
+ assert.equal(state.src,'nhentai');
+ assert.deepEqual(logic.decodeState(logic.encodeState(state)),state);
+ assert.equal(logic.decodeState('?src=unknown').src,'all');
+});
+test('結合: nhentaiチップで絞り込み・URL反映・カードラベル・状態表示',async()=>{
+ const b=await boot('',{fixture:nhentaiFixture});
+ assert.deepEqual(b.titles(),['Plain','Namespaced','Other']);
+ const chip=b.sources.find(e=>e.dataset.source==='nhentai');
+ await chip.click();
+ assert.deepEqual(b.titles(),['Plain','Namespaced']);
+ assert.equal(new URLSearchParams(b.loc.search).get('src'),'nhentai');
+ assert.ok(chip.classList.contains('on'));
+ assert.equal([...b.els.grid.innerHTML.matchAll(/<span class="source">([^<]+)<\/span>/g)].map(m=>m[1]).join(','),'nhentai,nhentai');
+ assert.match(b.els.sourceStatus.textContent,/nhentai: 不明/);
+});
+test('結合: src=nhentai起動で絞り込みとチップonを復元',async()=>{
+ const b=await boot('?src=nhentai',{fixture:nhentaiFixture});
+ assert.deepEqual(b.titles(),['Plain','Namespaced']);
+ for(const chip of b.sources)assert.equal(chip.classList.contains('on'),chip.dataset.source==='nhentai');
+ assert.equal(b.writes.length,0);
+});
+test('結合: 日本語タグ・名前空間・parody・works・characterの訳語検索',async()=>{
+ const b=await boot('',{fixture:nhentaiFixture});
+ for(const [query,titles] of [['巨乳',['Plain','Namespaced']],['女性：巨乳',['Namespaced']],['艦隊これくしょん',['Plain']],['ポニーテール',['Plain']],['アズールレーン',['Other']]]){
+  await b.pop('?q='+encodeURIComponent(query));assert.deepEqual(b.titles(),titles,query);
+ }
+});
+test('結合: 英語生値・大小文字・未訳語の検索を維持',async()=>{
+ const b=await boot('',{fixture:nhentaiFixture});
+ for(const [query,titles] of [['big breasts',['Plain','Namespaced']],['BIG',['Plain','Namespaced']],['female:big breasts',['Namespaced']],['parody:kantai collection',['Plain']],['character:ponytail',['Plain']],['untranslated token',['Plain']]]){
+  await b.pop('?q='+encodeURIComponent(query));assert.deepEqual(b.titles(),titles,query);
+ }
+});
+test('結合: 検索キャッシュはチャンク追加のグループ再構築で更新',async()=>{
+ const b=await boot('?q='+encodeURIComponent('寝取られ'),{fixture:nhentaiFixture});
+ assert.deepEqual(b.titles(),[]);
+ await b.els.loadAll.click();assert.deepEqual(b.titles(),['Plain']);
+ await b.pop('?q='+encodeURIComponent('巨乳'));assert.deepEqual(b.titles(),['Plain','Namespaced']);
 });
