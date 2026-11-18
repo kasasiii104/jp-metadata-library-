@@ -39,6 +39,21 @@ test('新着: strict >、欠落除外、グループのどれかが新着',()=>{
  assert.equal(logic.isNew({posted_at:null},since),false);
  assert.equal(logic.isNew({_members:fixture.chunks[0]},since),true);
 });
+test('新着: first_seen を posted_at より優先し、基準と同時刻なら除外',()=>{
+ const since=Date.UTC(2026,10,16);
+ assert.equal(logic.isNew({first_seen:'2026-11-17',posted_at:'2026-11-15'},since),true);
+ assert.equal(logic.isNew({first_seen:'2026-11-16',posted_at:'2026-11-17'},since),false);
+});
+test('新着: first_seen の欠落・不正値では posted_at を使い、両方欠落なら除外',()=>{
+ const since=Date.UTC(2026,10,16);
+ assert.equal(logic.isNew({posted_at:'2026-11-17'},since),true);
+ assert.equal(logic.isNew({first_seen:'invalid',posted_at:'2026-11-17'},since),true);
+ assert.equal(logic.isNew({},since),false);
+});
+test('新着: メンバーのいずれかの first_seen が基準より後ならグループが新着',()=>{
+ const since=Date.UTC(2026,10,16);
+ assert.equal(logic.isNew({_members:[{first_seen:'2026-11-15'},{first_seen:'2026-11-17'}]},since),true);
+});
 test('since: 初回、2回目、セッション固定、未来値修復、storage例外',()=>{
  const updated=fixture.manifest.updated_at, now=Date.UTC(2026,10,17),old=Date.UTC(2026,10,16);
  assert.deepEqual(logic.decideSince(updated,null,null),{since:now,lastSeen:now});
@@ -146,7 +161,7 @@ test('結合: history/storage例外でも動作、失敗時status',async()=>{
 test('HTML IDs、FALLBACK、PWA、PNGシグネチャと寸法',()=>{
  const ids=new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]));for(const m of code.matchAll(/\$\("#([\w-]+)(?:[ "\)])/g))assert.ok(ids.has(m[1]),m[1]);
  for(const region of ['CARDS','STATUS'])for(const end of ['START','END'])assert.equal(html.split(`<!-- FALLBACK_${region}_${end} -->`).length,2);
- for(const pattern of [/name="description"/,/name="theme-color"/,/rel="manifest"/,/rel="apple-touch-icon"/,/app\.js\?v=20261117-2/])assert.match(html,pattern);
+ for(const pattern of [/name="description"/,/name="theme-color"/,/rel="manifest"/,/rel="apple-touch-icon"/,/app\.js\?v=20261117-3/])assert.match(html,pattern);
  const manifest=JSON.parse(fs.readFileSync('docs/manifest.webmanifest'));assert.equal(manifest.start_url,'./');assert.equal(manifest.scope,'./');assert.equal(manifest.display,'standalone');
  for(const icon of [...manifest.icons,{src:'icons/apple-touch-icon.png',sizes:'180x180'}]){const bytes=fs.readFileSync(path.join('docs',icon.src));if(icon.src.endsWith('.png')){assert.equal(bytes.subarray(0,8).toString('hex'),'89504e470d0a1a0a');assert.equal(bytes.subarray(12,16).toString(),'IHDR');assert.equal(`${bytes.readUInt32BE(16)}x${bytes.readUInt32BE(20)}`,icon.sizes);}}
 });

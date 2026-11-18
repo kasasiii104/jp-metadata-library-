@@ -41,7 +41,12 @@
     const hash = uid => { let h=2166136261; for(const c of `${seed}:${uid}`)h=Math.imul(h^c.charCodeAt(0),16777619); return h>>>0; };
     return [...items].sort((a,b)=>hash(a.uid)-hash(b.uid)||String(a.uid).localeCompare(String(b.uid)));
   }
-  function isNew(item, since) { return (item._members || [item]).some(x=>parseDate(x.posted_at)>since); }
+  function isNew(item, since) {
+    return (item._members || [item]).some(x=>{
+      const firstSeen=parseDate(x.first_seen);
+      return (Number.isFinite(firstSeen)?firstSeen:parseDate(x.posted_at))>since;
+    });
+  }
   function decideSince(updated, previous, session, now=Date.now()) {
     const current=Number.isFinite(parseDate(updated))?parseDate(updated):now;
     const number=v=>typeof v==="string"&&/^\d{1,16}$/.test(v)&&Number(v)>0&&Number(v)<=current?Number(v):NaN;

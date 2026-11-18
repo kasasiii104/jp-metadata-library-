@@ -24,7 +24,7 @@ PUBLIC_FIELDS = (
     "uid", "source", "source_id", "source_url", "source_url_kind",
     "title", "title_jp", "category", "artists", "groups", "parodies",
     "works", "characters", "tags", "pages", "rating", "popularity",
-    "posted_at", "thumbnail", "duplicate_group", "duplicate_count",
+    "posted_at", "first_seen", "thumbnail", "duplicate_group", "duplicate_count",
     "duplicate_sources", "duplicate_uids",
 )
 
