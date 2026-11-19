@@ -159,6 +159,7 @@ jobs:
           path: |
             docs
             state/filter_audit.json
+            state/3hentai_thumb_attempts.json
 
       - name: Select Pages artifact for this attempt
         id: pages_artifact
@@ -193,12 +194,15 @@ jobs:
           if [ -f restored-site-data/state/filter_audit.json ]; then
             mv restored-site-data/state/filter_audit.json state/filter_audit.json
           fi
+          if [ -f restored-site-data/state/3hentai_thumb_attempts.json ]; then
+            mv restored-site-data/state/3hentai_thumb_attempts.json state/3hentai_thumb_attempts.json
+          fi
 
       - name: Commit site data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs state/filter_audit.json
+          git add docs state/filter_audit.json state/3hentai_thumb_attempts.json
           if git diff --cached --quiet; then
             echo "No data changes"
           else
@@ -223,3 +227,4 @@ jobs:
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
         with:
           artifact_name: ${{ needs.update.outputs.pages_artifact }}
+
