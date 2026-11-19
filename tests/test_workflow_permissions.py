@@ -78,6 +78,6 @@ class WorkflowPermissionsTests(unittest.TestCase):
         artifact = 'name: site-data-${{ github.run_id }}-${{ github.run_attempt }}'
         self.assertIn(artifact, update)
         self.assertIn(artifact, commit)
-        self.assertIn('            docs\n            state/filter_audit.json', update)
+        self.assertIn('            docs\n            state/filter_audit.json\n            state/3hentai_thumb_attempts.json', update)
         self.assertRegex(update, rf'actions/upload-pages-artifact@{SHA_REF} # v[\d.]+')
         self.assertIn('needs: [update, commit]', deploy)
