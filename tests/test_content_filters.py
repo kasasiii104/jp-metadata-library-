@@ -208,6 +208,62 @@ class ContentFilterTests(unittest.TestCase):
             with self.subTest(title=title):
                 self.assertEqual(c.blocked_reason(self.item(title=title)), "")
 
+    def test_shotacon_tag_conditions(self):
+        for tags, reason in (
+            (["shotacon", "female:sample"], ""),
+            (["shotacon", "sample (female)"], ""),
+            (["shotacon", "sole female"], ""),
+            (["shotacon", "lolicon"], ""),
+            (["shotacon", "males only", "sole female"], "blocked:shotacon"),
+            (["shotacon"], "blocked:shotacon"),
+            (["male:shotacon", "female:lolicon"], ""),
+            (["bestiality", "female:sample"], "blocked:bestiality"),
+            (["shotacon", "yaoi", "sole female"], "blocked:shotacon"),
+            (["shotacon", "male:yaoi", "sole female"], "blocked:shotacon"),
+            (["male:yaoi", "shotacon", "sole female"], "blocked:male:yaoi"),
+            (["shotacon", "ボーイズラブ", "sole female"], "blocked:shotacon"),
+            (["shotacon", "bara", "sole female"], "blocked:shotacon"),
+            (["shotacon", "male:gay", "sole female"], "blocked:shotacon"),
+            (["shotacon", "bestiality", "sole female"], "blocked:bestiality"),
+            (["low shotacon (male)", "ffm threesome"], ""),
+            (["male:shota"], ""),
+        ):
+            with self.subTest(tags=tags):
+                self.assertEqual(c.blocked_reason(self.item(tags=tags)), reason)
+        self.assertEqual(c.blocked_reason(self.item(tags=["shotacon", "sole female"], category="bara")), "")
+        self.assertEqual(c.blocked_reason(self.item(tags=["shotacon", "sole female"], title="【ショタコン】")),
+                         "blocked:title:shotacon")
+
+    def test_restores_only_eligible_shotacon_quarantine_records(self):
+        eligible = self.item(tags=["shotacon", "female:sample"])
+        records = {}
+        for item in (
+            eligible,
+            self.item("9000002", tags=["shotacon", "female:sample", "bestiality"]),
+            self.item("9000003", tags=["shotacon", "female:sample", "males only"]),
+            self.item("9000004", tags=["shotacon", "female:sample"], title=""),
+        ):
+            c.quarantine_item({"records": records}, item, "blocked:shotacon", c.now_iso())
+        c.save_json(c.FILTER_STATE_FILE, {"records": records})
+
+        save = c.save_json
+
+        def interrupted(path, payload):
+            if path == c.DATA_FILE:
+                raise OSError("simulated interrupted write")
+            save(path, payload)
+
+        with patch.object(c, "save_json", side_effect=interrupted):
+            with self.assertRaises(OSError):
+                c.main(audit_only=True)
+        self.assertEqual(self.state()["records"], records)
+
+        for _ in range(2):
+            self.assertEqual(c.main(audit_only=True), 0)
+            self.assertEqual([row["uid"] for row in self.saved()], [eligible["uid"]])
+            self.assertEqual(self.state()["records"],
+                             {uid: rec for uid, rec in records.items() if uid != eligible["uid"]})
+
     def test_new_rules_purge_saved_rows_across_sources(self):
         tags_by_source = {"ehentai": "female:low bestiality", "nhentai": "shotacon",
                           "asmhentai": "bestiality", "hitomi": "male:males only",

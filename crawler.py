@@ -225,22 +225,32 @@ def blocked_reason(item: dict[str, Any]) -> str:
         return "language"
 
     tags = item.get("tags") or []
-    tags = [tags] if isinstance(tags, str) else list(tags)
+    tags = [normalize_full_tag(tag) for tag in ([tags] if isinstance(tags, str) else tags)]
     candidates = list(tags)
     if item.get("category"):
-        candidates.append(item["category"])
+        candidates.append(normalize_full_tag(item["category"]))
 
-    for index, raw in enumerate(candidates):
-        full = normalize_full_tag(raw)
+    hits = []
+    for index, full in enumerate(candidates):
         base = normalize_tag(full.split(":", 1)[-1])
         if full in NORMALIZED_BLOCK_FULL_TAGS:
-            return f"blocked:{full}"
+            hits.append((NORMALIZED_BLOCK_ALIASES.get(base, base), full))
         stripped = TAG_GENDER_SUFFIX.sub("", base).removeprefix("low ")
         for variant in (base, stripped):
             canonical = NORMALIZED_BLOCK_ALIASES.get(variant, variant)
             if (canonical in NORMALIZED_BLOCK_TAGS
                     or (index < len(tags) and canonical in NORMALIZED_BLOCK_TAG_ONLY_TAGS)):
-                return f"blocked:{canonical}"
+                hits.append((canonical, canonical))
+
+    if hits:
+        if (any(canonical == "shotacon" for canonical, _ in hits)
+                and not any(canonical in {"males only", "yaoi"} | NORMALIZED_BLOCK_TAG_ONLY_TAGS
+                            for canonical, _ in hits)
+                and any(tag.startswith("female:") or tag.endswith(" (female)")
+                        or tag in {"sole female", "ffm threesome", "lolicon"} for tag in tags)):
+            hits = [(canonical, reason) for canonical, reason in hits if canonical != "shotacon"]
+        if hits:
+            return f"blocked:{hits[0][1]}"
 
     # Hitomi occasionally exposes a content warning/descriptor only in the
     # gallery title while its structured tag list omits the same term. Scan
@@ -442,7 +452,8 @@ def _timestamp(value: str) -> float:
 
 
 def audit_existing_hitomi(existing: dict, store: dict, stamp: str, preferred_base: str = "",
-                          restored_h3_uids: set[str] | None = None) -> dict:
+                          restored_h3_uids: set[str] | None = None,
+                          shotacon_backups: dict | None = None) -> dict:
     """Bounded, resumable audit; missing tags are checked before older records."""
     records = store.setdefault("records", {})
     attempts = store.setdefault("hitomi_attempts", {})
@@ -535,7 +546,9 @@ def audit_existing_hitomi(existing: dict, store: dict, stamp: str, preferred_bas
                 store["verified_checkpoints"] = {uid: value for uid, value in existing.items()
                     if (value.get("source") == "hitomi" and value.get("filter_metadata_checked_at") == stamp)
                     or uid in (restored_h3_uids or set())}
-                save_json(FILTER_STATE_FILE, store)
+                save_json(FILTER_STATE_FILE, {
+                    **store, "records": {**(shotacon_backups or {}), **records},
+                })
             polite_sleep(HITOMI_FILTER_AUDIT_DELAY_SEC)
     return stats
 
@@ -765,6 +778,22 @@ def main(*, audit_only: bool = False) -> int:
             if saved.get("source") == "3hentai":
                 restored_h3_uids.add(uid)
     existing_items = list(existing_map.values())
+    # Keep the old records in disk checkpoints until the catalog write succeeds.
+    shotacon_backups = {}
+    # Include eligible 3Hentai restorations in split detection before releasing them.
+    shotacon_h3_candidates = {}
+    for uid, rec in records.items():
+        if rec.get("status") != "blocked" or rec.get("reason") != "blocked:shotacon":
+            continue
+        saved = rec.get("item") or {}
+        item = existing_map.get(uid, saved)
+        if (item.get("source") != "3hentai"
+                or uid in ambiguous_uids or publication_reason(saved) or publication_reason(item)):
+            continue
+        if not hentai3_can_restore(item, {**rec, "status": ""}):
+            continue
+        shotacon_h3_candidates[uid] = existing_map.get(uid) or upgrade_item_schema(item)
+
     # Revision 19: 3Hentai historically had little/no tag metadata, so old
     # visible rows could not be evaluated by the common BL/guro/ryona/insect
     # filters.  Audit a bounded number of saved 3Hentai galleries every run,
@@ -773,8 +802,18 @@ def main(*, audit_only: bool = False) -> int:
     combined = {x["uid"]: x for x in existing_items}
     combined.update({uid: rec["item"] for uid, rec in records.items()
                      if rec.get("status") == "pending" and rec.get("item", {}).get("source") == "3hentai"})
+    combined.update(shotacon_h3_candidates)
     mislinks, unresolved_splits = hentai3.split_mislinks(list(combined.values()))
-    for uid in mislinks:
+    rejected_restorations = mislinks.intersection(shotacon_h3_candidates)
+    for uid, item in shotacon_h3_candidates.items():
+        if uid in rejected_restorations:
+            combined.pop(uid)
+            existing_map.pop(uid, None)
+            continue
+        existing_map[uid] = item
+        shotacon_backups[uid] = records.pop(uid)
+    existing_items = list(existing_map.values())
+    for uid in mislinks - rejected_restorations:
         item = combined[uid]
         fields = ("source_url", "source_url_kind", "resolved_gallery_id", "public_gallery_id",
                   "filter_metadata_checked", "filter_metadata_checked_at", "artists", "groups",
@@ -931,6 +970,19 @@ def main(*, audit_only: bool = False) -> int:
                          if audit_only else audit_existing_nhentai(
                              existing_items, records, previous_nh_audit, stamp, nh_run))
 
+    current_items = {item["uid"]: item for item in existing_items}
+    for uid, rec in list(records.items()):
+        if rec.get("status") != "blocked" or rec.get("reason") != "blocked:shotacon":
+            continue
+        saved = rec.get("item") or {}
+        item = current_items.get(uid, saved)
+        if (item.get("source") == "3hentai" or item.get("source") in RETIRED_SOURCES
+                or uid in ambiguous_uids or publication_reason(saved) or publication_reason(item)):
+            continue
+        if uid not in current_items:
+            existing_items.append(upgrade_item_schema(item))
+        shotacon_backups[uid] = records.pop(uid)
+
     retained_items: list[dict[str, Any]] = []
     purged_existing_blocked = 0
     purged_existing_reasons: dict[str, int] = {}
@@ -966,7 +1018,7 @@ def main(*, audit_only: bool = False) -> int:
 
     hitomi_audit = audit_existing_hitomi(existing, filter_store, stamp,
                                         (state.get("hitomi") or {}).get("resource_base", ""),
-                                        restored_h3_uids)
+                                        restored_h3_uids, shotacon_backups)
     status_store.pop("updated_at", None)
 
     for retired in RETIRED_SOURCES:
@@ -1120,6 +1172,16 @@ def main(*, audit_only: bool = False) -> int:
                    or (x.get("source") == "3hentai"
                        and x.get("filter_metadata_checked") != "3hentai-gallery-v1")
                    for x in items), "Unsafe catalog row"
+    published_uids = {item["uid"] for item in items}
+    restored_existing_shotacon = 0
+    for uid, rec in shotacon_backups.items():
+        published_uid = uid
+        if hentai3_ids.namespace(uid) == "public":
+            published_uid = id_map["public_to_internal"].get(uid.removeprefix("3hentai:g"), uid)
+        if uid in published_uids or published_uid in published_uids:
+            restored_existing_shotacon += 1
+        else:
+            records.setdefault(uid, rec)
     pending_counts: dict[str, int] = {}
     blocked_counts: dict[str, int] = {}
     for rec in records.values():
@@ -1137,7 +1199,9 @@ def main(*, audit_only: bool = False) -> int:
     filter_store["verified_checkpoints"] = {x["uid"]: x for x in items
         if (x.get("source") == "hitomi" and x.get("filter_metadata_checked_at") == stamp)
         or x["uid"] in restored_h3_uids}
-    save_json(FILTER_STATE_FILE, filter_store)
+    save_json(FILTER_STATE_FILE, {
+        **filter_store, "records": {**shotacon_backups, **records},
+    })
 
     save_json(DATA_FILE, {
         "updated_at": stamp,
@@ -1149,6 +1213,7 @@ def main(*, audit_only: bool = False) -> int:
         "purged_existing_reasons": purged_existing_reasons,
         "purged_existing_by_source": purged_existing_by_source,
         "purged_existing_3hentai": purged_existing_3hentai,
+        "restored_existing_shotacon": restored_existing_shotacon,
         "held_existing_unverified": held_existing_unverified,
         "items": items,
     })

@@ -342,6 +342,25 @@ class RepairIntegrationTests(unittest.TestCase):
                 self.assertNotIn("filter_metadata_checked", rec["item"])
                 self.assertEqual(c.load_json(c.STATUS_FILE, {})["3hentai"]["mislinked_split_held"], 1 if n == 0 else 0)
 
+    def test_shotacon_restoration_keeps_mislinked_row_quarantined(self):
+        owner = dict(self.legacy_row(3000456, "https://3hentai.net/d/456"),
+                     filter_metadata_checked="3hentai-gallery-v1")
+        excess = dict(owner, uid="3hentai:3000457", source_id="3000457",
+                      tags=["language:japanese", "shotacon", "sole female"])
+        c.save_json(c.DATA_FILE, {"items": [owner]})
+        c.save_json(c.FILTER_STATE_FILE, {"records": {excess["uid"]: {
+            "item": excess, "status": "blocked", "reason": "blocked:shotacon"}}})
+
+        with patch.object(h, "HENTAI3_EXISTING_FILTER_AUDIT_LIMIT", 0):
+            self.assertEqual(c.main(), 0)
+            first = c.load_json(c.DATA_FILE, {})["items"]
+            self.assertEqual([item["uid"] for item in first], [owner["uid"]])
+            first_records = c.load_json(c.FILTER_STATE_FILE, {})["records"]
+            self.assertEqual(first_records[excess["uid"]]["status"], "blocked")
+            self.assertEqual(c.main(), 0)
+            self.assertEqual(c.load_json(c.DATA_FILE, {})["items"], first)
+            self.assertEqual(c.load_json(c.FILTER_STATE_FILE, {})["records"], first_records)
+
     def test_deferred_repair_is_not_gave_up_and_checked_search_stays_pending(self):
         item = dict(self.legacy_row(3000123, "https://3hentai.net/search?q=Sample"),
                     filter_metadata_checked="3hentai-gallery-v1")
@@ -423,7 +442,7 @@ class RepairIntegrationTests(unittest.TestCase):
         self.assertEqual(len(held), 313)
         excluded = {row["uid"]: reason for row in rows
                     if (reason := c.blocked_reason(row))}
-        self.assertEqual(len(excluded.keys() - held), 290)
+        self.assertEqual(len(excluded.keys() - held), 146)
         self.assertEqual(public, {row["uid"] for row in rows} - held - excluded.keys())
         for uid in excluded.keys() - held:
             self.assertEqual(store["records"][uid]["status"], "blocked")
@@ -432,8 +451,6 @@ class RepairIntegrationTests(unittest.TestCase):
         self.assertFalse(any(rec.get("hold_detail") == "3hentai_url_conflict"
                              for rec in store["records"].values()))
         overlapping_statuses = {
-            "3hentai:3603074": "pending",
-            "3hentai:3705834": "pending",
             "3hentai:3602988": "blocked",
         }
         self.assertEqual(held & excluded.keys(), overlapping_statuses.keys())
