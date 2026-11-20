@@ -67,7 +67,8 @@ class ContentFilterTests(unittest.TestCase):
                 self.assertIn(canonical, c.blocked_reason(self.item(title='中立テスト【' + alias + '】')))
 
     def test_short_terms_do_not_match_benign_words_or_creator_fields(self):
-        for title in ('Blue sky', 'Scattered samples', 'Bloodless example', 'グローバルな視点', 'マグロの図鑑'):
+        for title in ('Blue sky', 'Scattered samples', 'Bloodless example', 'グローバルな視点', 'マグロの図鑑',
+                      'マイショタコンテスト'):
             with self.subTest(title=title):
                 self.assertEqual(c.blocked_reason(self.item(title=title, artists=['blood'], groups=['guro'])), '')
         self.assertIn('guro', c.blocked_reason(self.item(title='中立テスト【グロ注意】')))
@@ -104,6 +105,190 @@ class ContentFilterTests(unittest.TestCase):
         self.assertFalse(str(c.FILTER_STATE_FILE).startswith(str(c.DOCS_DIR)))
         self.assertEqual(records['hitomi:9000003']['item']['thumbnail'], items[2]['thumbnail'])
 
+    def test_new_tag_families_and_variants(self):
+        families = {
+            "bestiality": ("female:bestiality", "male:bestiality", "bestiality",
+                           "bestiality (female)", "low bestiality (female)",
+                           "female:low bestiality", "animal on animal"),
+            "shotacon": ("shotacon", "male:shotacon", "low shotacon"),
+            "males only": ("males only", "male:males only"),
+            "bara": ("bara", "low bara (mixed)"),
+            "gay": ("gay", "male:gay"),
+            "guro": ("low gore (other)",),
+        }
+        for reason, tags in families.items():
+            for tag in tags:
+                with self.subTest(tag=tag):
+                    self.assertEqual(c.blocked_reason(self.item(tags=[tag])), f"blocked:{reason}")
+        self.assertEqual(c.blocked_reason(self.item(title="【ショタコン】")), "blocked:title:shotacon")
+        self.assertEqual(c.blocked_reason(self.item(title="獣姦")), "blocked:title:bestiality")
+        self.assertEqual(c.blocked_reason(self.item(title="Bara no Hanazono", category="gay")), "")
+
+    def test_ambiguous_tags_require_explicit_opt_in(self):
+        for tag in ("male:shota", "female:kemonomimi", "female:dog girl", "male:dog",
+                    "male:horse", "female:furry"):
+            with self.subTest(tag=tag):
+                self.assertEqual(c.blocked_reason(self.item(tags=[tag])), "")
+        for tag in ("male:shota", "male:dog", "male:horse"):
+            with patch.object(c, "NORMALIZED_BLOCK_FULL_TAGS", c.NORMALIZED_BLOCK_FULL_TAGS | {tag}):
+                self.assertEqual(c.blocked_reason(self.item(tags=[tag])), f"blocked:{tag}")
+
+    def test_chinese_title_markers(self):
+        markers = ("汉化", "漢化", "汉化组", "漢化組", "中国翻訳", "中国翻译", "中國翻譯",
+                   "中文翻译", "中文翻譯", "中文翻訳", "个人翻译", "個人翻譯", "机翻",
+                   "机器翻译", "機械翻譯", "中译", "中譯", "简体中文", "簡體中文",
+                   "繁體中文", "繁体中文", "简中", "簡中", "繁中", "中文版")
+        for signal in (*markers, "[Chinese]", "[中国語]", "【中國語】", "（中国语）",
+                       "&#91; Ｃｈｉｎｅｓｅ &#93;", "(中文)", "[中国翻訳]", "カラセイ日本語翻訳 [Chinese]",
+                       "SKEB委託日本語/中文翻譯", "[Japaneseish] [Chinese]"):
+            with self.subTest(signal=signal):
+                item = self.item(title="我们读书", title_jp=f"例の作品 {signal}")
+                self.assertEqual(c.blocked_reason(item), c.CHINESE_MARKER_REASON)
+
+    def test_chinese_title_field_guards(self):
+        for title in ("我们读书", "(们书)", "们书ー", "[作者 (画家)] 们书"):
+            with self.subTest(title=title):
+                self.assertEqual(c.blocked_reason(self.item(title=title)), c.CHINESE_SIMPLIFIED_REASON)
+        for title in ("书书", "我们の読书", "[Chinese, Japanese] 我们读书",
+                      "[中国語、日本語] 我们读书", "我们读书 (日本語/English/中文)",
+                      "云开明 (19935159) 2026.09.17", "[冷冷冰可乐]仙子的修行",
+                      "[龙裔 (画家)] 【书马】 仙子的修行"):
+            with self.subTest(title=title):
+                self.assertEqual(c.blocked_reason(self.item(title=title)), "")
+    def test_japanese_labels_exempt_the_whole_work_unless_opted_in(self):
+        marker = c.CHINESE_MARKER_REASON
+        simplified = c.CHINESE_SIMPLIFIED_REASON
+        for title, title_jp, reason in (
+            ("[Chinese, Japanese]", "", marker),
+            ("[Chinese] [Japanese]", "", marker),
+            ("[Japanese] [Chinese]", "", marker),
+            ("[Chinese] [Japanese] [English]", "", marker),
+            ("[Chinese] [Japanese] [Digital]", "[个人汉化]", marker),
+            ("[日本語、中国翻訳]", "", marker),
+            ("[中国翻訳, 日本語]", "", marker),
+            ("[Chinese, Japanese] [白杨汉化组]", "", marker),
+            ("[Japanese/Chinese]", "[日本語/繁中]", marker),
+            ("[Mixed Japanese &amp; Chinese versions]",
+             "[日文版和中文版的混合・日本語版と中国語版の混在]", marker),
+            ("[Japanese] 【基德漢化組】【日本語】", "", marker),
+            ("[Japanese] [星野干拉个人翻译]", "[日本語翻訳]", marker),
+            ("[星野干拉个人翻译]", "[日本語翻訳]", marker),
+            ("[XAL] 寻找间谍 [中日雙語]", "[XAL] 熊三の物語 [Chinese＆Japanese]", marker),
+            ("[XAL] 我们读书 [中日雙語]", "[XAL] 熊三の物語", simplified),
+            ("[Chinese]", "【作者（English and 日文版）】", marker),
+            ("[Chinese]", "［English＋日本語版］", marker),
+            ("[Chinese]", "［English／日本翻訳］", marker),
+        ):
+            with self.subTest(title=title, title_jp=title_jp):
+                item = self.item(title=title, title_jp=title_jp)
+                self.assertEqual(c.blocked_reason(item), "")
+                with patch.object(c, "CHINESE_BLOCK_BILINGUAL", True):
+                    self.assertEqual(c.blocked_reason(item), reason)
+
+        item = self.item(title="[Japanese] [Chinese]", tags=["male:shotacon"])
+        self.assertEqual(c.blocked_reason(item), "blocked:shotacon")
+
+    def test_snapshot_japanese_titles_are_kept(self):
+        # Census kana examples and kanji-rich titles from the 2026-11-19 snapshot.
+        for title in (
+            "随笔爽图 落書き",
+            "pixiv凤梨&#124;才羽ミドリ碧蓝档案小绿合集",
+            "加贺さん漫画",
+            "百合園セイア開発日記",
+            "和風ファンタジーの剣士が女世界線とリンクして女体化",
+            "[天聖] ヤマトさん温泉でマナーを学ぶ♡ (ワンピース) [日本語、英語]",
+            "[yukio] 新キャラ 楓 5p漫画 [日本語、英語]",
+            "くりいむレモンメモリー 記録写真集 Part3 SF超次元伝説ラル",
+            "[Paya8] 天撃将軍開発日記 (崩壊:スターレイル) [無修正]",
+            "[たけのこぺんぎん] 開発済み蛍 (原神) [日本語、中国語]",
+            "[加瀬大輝] t4.豹変する漫研部の部長さん [日本語、英語]",
+            "[菜さん] 極秘作戦記録 (明日方舟) [中国語、英語、日本語]",
+            "[菜さん] 篠澤広 (学園アイドルマスター) [中国語、英語、日本語]",
+        ):
+            with self.subTest(title=title):
+                self.assertEqual(c.blocked_reason(self.item(title=title)), "")
+
+    def test_new_rules_purge_saved_rows_across_sources(self):
+        tags_by_source = {"ehentai": "female:low bestiality", "nhentai": "shotacon",
+                          "asmhentai": "bestiality", "hitomi": "male:males only",
+                          "3hentai": "low bestiality (female)"}
+        items = [self.item(str(9000001 + index), source=source,
+                           uid=f"{source}:{9000001 + index}", tags=[tag],
+                           source_url=f"https://3hentai.net/d/{9000001 + index}/" if source == "3hentai" else "",
+                           filter_metadata_checked="3hentai-gallery-v1" if source == "3hentai" else "")
+                 for index, (source, tag) in enumerate(tags_by_source.items())]
+        items.append(self.item("9000006", source="hentaifox", uid="hentaifox:9000006",
+                               title="サンプル [Chinese]", tags=[]))
+        for audit_only in (True, False):
+            with self.subTest(audit_only=audit_only), patch.dict(c.SOURCES, {
+                "nhentai": Mock(return_value=([], {}, {"status": "ok"})),
+            }, clear=True):
+                self.save_items(items)
+                c.save_json(c.FILTER_STATE_FILE, {})
+                self.assertEqual(c.main(audit_only=audit_only), 0)
+                self.assertEqual(self.saved(), [])
+                status = c.load_json(c.STATUS_FILE, {})["filters"]
+                self.assertEqual(status["purged_existing_by_source"], dict.fromkeys([*tags_by_source, "hentaifox"], 1))
+
+    def test_collection_hitomi_preserves_saved_japanese_label(self):
+        original = self.fresh(title="サンプル [Japanese]")
+        self.save_items([original])
+        fetched = hitomi._normalize(9000001, {
+            "japanese_title": "サンプル [Chinese]", "language": "japanese",
+            "tags": [{"tag": "sample"}],
+        }, "")
+        self.collect([fetched])
+
+        self.assertEqual(c.main(), 0)
+        self.assertEqual(self.saved(), [])
+        record = self.state()["records"][original["uid"]]
+        self.assertEqual((record["status"], record["reason"]), ("pending", "metadata_unverified"))
+        self.assertEqual(record["item"]["title"], original["title"])
+
+    def test_collection_hitomi_blocks_chinese_without_saved_japanese_label(self):
+        original = self.item(title="サンプル")
+        self.save_items([original])
+        fetched = hitomi._normalize(9000001, {
+            "japanese_title": "サンプル [Chinese]", "language": "japanese",
+            "tags": [{"tag": "sample"}],
+        }, "")
+        self.collect([fetched])
+
+        self.assertEqual(c.main(), 0)
+        self.assertEqual(self.saved(), [])
+        record = self.state()["records"][original["uid"]]
+        self.assertEqual((record["status"], record["reason"]),
+                         ("blocked", "blocked:language:chinese:marker"))
+
+    def test_collection_hitomi_requires_fetched_metadata_despite_saved_fields(self):
+        for fields in (("language",), ("title", "title_jp"), ("filter_metadata_checked",)):
+            with self.subTest(fields=fields):
+                original = self.fresh(title_jp="サンプル")
+                self.save_items([original])
+                c.save_json(c.FILTER_STATE_FILE, {})
+                fetched = dict(original)
+                for field in fields:
+                    fetched.pop(field)
+                self.collect([fetched])
+
+                self.assertEqual(c.main(), 0)
+                self.assertEqual(self.saved(), [])
+                record = self.state()["records"][original["uid"]]
+                self.assertEqual((record["status"], record["reason"]), ("pending", "metadata_unverified"))
+                for field in fields:
+                    self.assertEqual(record["item"][field], original[field])
+
+    def test_collection_ehentai_preserves_saved_japanese_label(self):
+        original = self.item(source="ehentai", uid="ehentai:9000001", title="サンプル [Japanese]")
+        self.save_items([original])
+        fetched = dict(original, title="", title_jp="サンプル [Chinese]")
+        c.SOURCES["ehentai"] = Mock(return_value=([fetched], {}, {"status": "ok"}))
+
+        self.assertEqual(c.main(), 0)
+        self.assertEqual([(row["uid"], row["title"], row["title_jp"]) for row in self.saved()],
+                         [(original["uid"], original["title"], fetched["title_jp"])])
+        self.assertNotIn(original["uid"], self.state()["records"])
+
     def test_newly_discovered_blocked_tag_removes_older_visible_row(self):
         self.save_items([self.item()])
         self.collect([self.fresh(tags=['male:scat'])])
@@ -136,6 +321,31 @@ class ContentFilterTests(unittest.TestCase):
         self.assertEqual(saved['filter_metadata_checked'], hitomi.FILTER_METADATA_VERSION)
         self.assertNotIn(original['uid'], self.state()['records'])
         self.assertEqual(self.state()['last_audit']['restored'], 1)
+
+    def test_audit_applies_chinese_filter_to_titles_as_saved(self):
+        cases = (("サンプル [Japanese]", "pending", "metadata_unverified"),
+                 ("サンプル", "blocked", "blocked:language:chinese:marker"))
+        for index, (title, status, reason) in enumerate(cases):
+            with self.subTest(title=title):
+                gid = str(9000001 + index)
+                original = self.item(gid, title=title)
+                self.save_items([original])
+                c.save_json(c.FILTER_STATE_FILE, {})
+                fresh = hitomi._normalize(int(gid), {
+                    "japanese_title": "サンプル [Chinese]", "language": "japanese",
+                    "tags": [{"tag": "sample"}],
+                }, "")
+                self.assertFalse(fresh["title"])
+                self.assertEqual(fresh["title_jp"], "サンプル [Chinese]")
+                with patch.object(c, "HITOMI_FILTER_AUDIT_LIMIT", 1), patch.object(
+                    hitomi, "fetch_filter_metadata", return_value=fresh,
+                ):
+                    self.assertEqual(c.main(audit_only=True), 0)
+                self.assertEqual(self.saved(), [])
+                record = self.state()["records"][original["uid"]]
+                self.assertEqual((record["status"], record["reason"]), (status, reason))
+                self.assertEqual((record["item"]["title"], record["item"]["title_jp"]),
+                                 (title, fresh["title_jp"]))
 
     def test_audit_discovers_blocked_metadata_and_removes_visible_row(self):
         self.save_items([self.item()])

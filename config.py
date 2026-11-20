@@ -51,6 +51,9 @@ KEEP_ITEMS = 0
 # Conservative exclusion set requested by the user.
 BLOCK_TAGS = {
     "yaoi",
+    "bestiality",
+    "shotacon",
+    "males only",
     "boys love",
     "boys' love",
     "bl",
@@ -80,7 +83,31 @@ BLOCK_TAG_ALIASES = {
     "丸呑み": "vore", "丸飲み": "vore", "捕食": "vore",
     "scatology": "scat", "スカトロ": "scat", "スカトロジー": "scat",
     "排便": "scat", "脱糞": "scat",
+    "獣姦": "bestiality", "兽交": "bestiality", "獸交": "bestiality",
+    "獸姦": "bestiality", "zoophilia": "bestiality", "animal on animal": "bestiality",
+    "ショタコン": "shotacon",
 }
+
+BLOCK_TAG_ONLY_TAGS = {"bara", "gay"}
+
+CHINESE_TITLE_MARKERS = (
+    "汉化", "漢化", "中国翻訳", "中国翻译", "中國翻譯", "中文翻译", "中文翻譯",
+    "中文翻訳", "个人翻译", "個人翻譯", "机翻", "机器翻译", "機械翻譯", "中译",
+    "中譯", "简体中文", "簡體中文", "繁體中文", "繁体中文", "简中", "簡中",
+    "繁中", "中文版",
+)
+CHINESE_TITLE_LABELS = {"chinese", "中国語", "中国语", "中國語", "中文"}
+# Apply the Chinese title filter even when a title label explicitly lists Japanese.
+CHINESE_BLOCK_BILINGUAL = False
+JAPANESE_TITLE_LABELS = {
+    "japanese", "日本語", "日本语", "日语", "日文", "日文版", "日本語版",
+    "日本語翻訳", "日本翻訳", "中日雙語", "中日双语", "日中雙語", "日中双语",
+}
+CHINESE_SIMPLIFIED_CHARS = frozenset(
+    "东书买亿们动卖发员图妈娇孙张总恶欢汉浑终给继绿缠脸舰见观让语说读谁谢贝财赏赚赢"
+    "车转轻进远选钱铁铃银销错键长门闪问间闷闹题饥饭饮饿馆马骂验骗鸡鸣鹅齿龄龙"
+)
+CHINESE_SIMPLIFIED_MIN_DISTINCT = 2
 
 # Insect / bug-like content requested to be excluded from the library.
 # Matching is applied to normalized content tags and selected Japanese/English
@@ -98,6 +125,7 @@ BLOCK_INSECT_TAGS = {
     "寄生虫", "寄生",
 }
 
+# male:shota・male:dog・male:horse は BLOCK_FULL_TAGS に追記すれば有効化。
 BLOCK_FULL_TAGS = {
     "male:male",
     "male:yaoi",
@@ -126,6 +154,7 @@ HENTAI3_REPAIR_GET_LIMIT = max(0, int(os.environ.get("HENTAI3_REPAIR_GET_LIMIT",
 # nHentai: v2 latest and ID-aligned historical backfill.
 # Maximum pages to follow until reaching latest_id.
 NH_LATEST_PAGES = int(os.environ.get("NH_LATEST_PAGES", "40"))
+NH_EXISTING_TAG_AUDIT_LIMIT = int(os.environ.get("NH_EXISTING_TAG_AUDIT_LIMIT", "15"))
 NH_MAX_DETAILS_PER_RUN = int(os.environ.get("NH_MAX_DETAILS_PER_RUN", "45"))
 NH_INITIAL_BACKFILL_ITEMS = int(os.environ.get("NH_INITIAL_BACKFILL_ITEMS", "2500"))
 NH_BACKFILL_SEEK_PAGES = int(os.environ.get("NH_BACKFILL_SEEK_PAGES", "6"))

@@ -14,6 +14,14 @@ from config import (
     BLOCK_INSECT_TAGS,
     BLOCK_TAGS,
     BLOCK_TAG_ALIASES,
+    BLOCK_TAG_ONLY_TAGS,
+    CHINESE_BLOCK_BILINGUAL,
+    CHINESE_TITLE_MARKERS,
+    CHINESE_TITLE_LABELS,
+    JAPANESE_TITLE_LABELS,
+    CHINESE_SIMPLIFIED_CHARS,
+    CHINESE_SIMPLIFIED_MIN_DISTINCT,
+    NH_EXISTING_TAG_AUDIT_LIMIT,
     DATA_FILE,
     HENTAI3_ID_MAP_FILE,
     DOCS_DIR,
@@ -41,6 +49,7 @@ SOURCES = {
 }
 RETIRED_SOURCES = {"pururin", "nharchive"}
 
+NORMALIZED_BLOCK_TAG_ONLY_TAGS = {normalize_tag(x) for x in BLOCK_TAG_ONLY_TAGS}
 NORMALIZED_BLOCK_TAGS = {normalize_tag(x) for x in BLOCK_TAGS}
 NORMALIZED_BLOCK_FULL_TAGS = {normalize_full_tag(x) for x in BLOCK_FULL_TAGS}
 NORMALIZED_BLOCK_ALIASES = {normalize_tag(k): normalize_tag(v) for k, v in BLOCK_TAG_ALIASES.items()}
@@ -128,6 +137,85 @@ def is_ehentai_non_h(item: dict[str, Any]) -> bool:
     return category == "nonh"
 
 
+TAG_GENDER_SUFFIX = re.compile(r"\s*\((female|male|mixed|other)\)$")
+TITLE_BRACKET_ENDS = {"[": "]", "(": ")", "【": "】"}
+TITLE_KANA = re.compile(r"[ぁ-ゖァ-ヺゝゞヽヾㇰ-ㇿ]")
+CHINESE_MARKER_REASON = "blocked:language:chinese:marker"
+CHINESE_SIMPLIFIED_REASON = "blocked:language:chinese:simplified"
+
+
+def _title_brackets(title):
+    stack = []
+    spans = {}
+    for index, char in enumerate(title):
+        if char in TITLE_BRACKET_ENDS:
+            stack.append((index, TITLE_BRACKET_ENDS[char]))
+        elif stack and char == stack[-1][1]:
+            start, _ = stack.pop()
+            spans[start] = index + 1
+    return spans
+
+
+TITLE_LABEL_SEPARATOR = re.compile(r"[,、/&・+\s]+|\band\b")
+JAPANESE_LABEL_WORD = re.compile(r"\bjapanese\b")
+CHINESE_LABEL_WORD = re.compile(r"\bchinese\b")
+
+
+def _is_japanese_label(label):
+    return (label in JAPANESE_TITLE_LABELS
+            or any(token in JAPANESE_TITLE_LABELS for token in TITLE_LABEL_SEPARATOR.split(label))
+            or bool(JAPANESE_LABEL_WORD.search(label)))
+
+
+def _is_chinese_label(label):
+    if "".join(label.split()) in CHINESE_TITLE_LABELS:
+        return True
+    return _is_japanese_label(label) and (
+        any(token in CHINESE_TITLE_LABELS for token in TITLE_LABEL_SEPARATOR.split(label))
+        or bool(CHINESE_LABEL_WORD.search(label))
+    )
+
+
+def _chinese_title_fields(item):
+    for name in ("title", "title_jp"):
+        title = unicodedata.normalize("NFKC", html.unescape(str(item.get(name) or ""))).strip().casefold()
+        brackets = _title_brackets(title)
+        labels = [title[start + 1:end - 1] for start, end in brackets.items()]
+        yield title, brackets, labels
+
+
+def _title_body_start(title, brackets):
+    start = 0
+    if brackets.get(0) != len(title):
+        while start in brackets:
+            start = brackets[start]
+            while start < len(title) and title[start].isspace():
+                start += 1
+    return start
+
+
+def chinese_title_reason(item: dict[str, Any]) -> str:
+    fields = list(_chinese_title_fields(item))
+    if not CHINESE_BLOCK_BILINGUAL and any(
+        _is_japanese_label(label) for _, _, labels in fields for label in labels
+    ):
+        return ""
+
+    simplified = False
+    for title, brackets, labels in fields:
+        if (any(marker in title for marker in CHINESE_TITLE_MARKERS)
+                or any(_is_chinese_label(label) for label in labels)):
+            return CHINESE_MARKER_REASON
+        if TITLE_KANA.search(title):
+            continue
+
+        start = _title_body_start(title, brackets)
+        if len(CHINESE_SIMPLIFIED_CHARS.intersection(title[start:])) >= CHINESE_SIMPLIFIED_MIN_DISTINCT:
+            simplified = True
+
+    return CHINESE_SIMPLIFIED_REASON if simplified else ""
+
+
 def blocked_reason(item: dict[str, Any]) -> str:
     if r18g_match_fields(item):
         return R18G_REASON
@@ -136,19 +224,23 @@ def blocked_reason(item: dict[str, Any]) -> str:
     if normalized_language(item.get("language", "")) != "japanese":
         return "language"
 
-    candidates: list[str] = []
-    candidates.extend(item.get("tags") or [])
+    tags = item.get("tags") or []
+    tags = [tags] if isinstance(tags, str) else list(tags)
+    candidates = list(tags)
     if item.get("category"):
         candidates.append(item["category"])
 
-    for raw in candidates:
+    for index, raw in enumerate(candidates):
         full = normalize_full_tag(raw)
         base = normalize_tag(full.split(":", 1)[-1])
         if full in NORMALIZED_BLOCK_FULL_TAGS:
             return f"blocked:{full}"
-        canonical = NORMALIZED_BLOCK_ALIASES.get(base, base)
-        if canonical in NORMALIZED_BLOCK_TAGS:
-            return f"blocked:{canonical}"
+        stripped = TAG_GENDER_SUFFIX.sub("", base).removeprefix("low ")
+        for variant in (base, stripped):
+            canonical = NORMALIZED_BLOCK_ALIASES.get(variant, variant)
+            if (canonical in NORMALIZED_BLOCK_TAGS
+                    or (index < len(tags) and canonical in NORMALIZED_BLOCK_TAG_ONLY_TAGS)):
+                return f"blocked:{canonical}"
 
     # Hitomi occasionally exposes a content warning/descriptor only in the
     # gallery title while its structured tag list omits the same term. Scan
@@ -160,15 +252,19 @@ def blocked_reason(item: dict[str, Any]) -> str:
     for term in sorted(NORMALIZED_BLOCK_TAGS | NORMALIZED_BLOCK_ALIASES.keys(), key=lambda x: (-len(x), x)):
         if not term:
             continue
-        if term == "グロ":
+        if term in {"グロ", "ショタコン"}:
             # Do not mistake マグロ / グローバル for a content warning.
-            matched = bool(re.search(r"(?<![ァ-ヶー])グロ(?![ァ-ヶー])", title_text))
+            matched = bool(re.search(rf"(?<![ァ-ヶー]){re.escape(term)}(?![ァ-ヶー])", title_text))
         elif re.search(r"[ぁ-んァ-ン一-龯々〆ヵヶ蟲]", term):
             matched = term in title_text
         else:
             matched = bool(re.search(rf"(?<![a-z0-9]){re.escape(term)}(?![a-z0-9])", title_text))
         if matched:
             return f"blocked:title:{NORMALIZED_BLOCK_ALIASES.get(term, term)}"
+
+    chinese = chinese_title_reason(item)
+    if chinese:
+        return chinese
 
     insect = insect_block_reason(item)
     if insect:
@@ -272,16 +368,18 @@ def unverified_hitomi(item: dict[str, Any], *, fresh: bool = False) -> bool:
     return fresh and item.get("filter_metadata_checked") != hitomi.FILTER_METADATA_VERSION
 
 
-def publication_reason(item: dict, *, fresh: bool = False) -> str:
+def publication_reason(item: dict, *, fresh: bool = False, fetched: dict | None = None) -> str:
     reason = blocked_reason(item)
+    # Saved fields may fill gaps for content filtering, but cannot verify a fetch.
+    metadata = item if fetched is None else fetched
     # A confirmed content warning must not become a retryable metadata hold.
     if reason == R18G_REASON:
         return reason
     if item.get("source") == "hitomi" and (
-        not item.get("language") or not (item.get("title") or item.get("title_jp"))
+        not metadata.get("language") or not (metadata.get("title") or metadata.get("title_jp"))
     ):
         return "metadata_unverified"
-    return reason or ("metadata_unverified" if unverified_hitomi(item, fresh=fresh) else "")
+    return reason or ("metadata_unverified" if unverified_hitomi(metadata, fresh=fresh) else "")
 
 
 def quarantine_item(store: dict, item: dict, reason: str, stamp: str) -> None:
@@ -389,7 +487,7 @@ def audit_existing_hitomi(existing: dict, store: dict, stamp: str, preferred_bas
                     raise ValueError("Hitomi audit identity mismatch")
                 consecutive_errors = 0
                 merged = merge_item(item, fresh, stamp)
-                reason = publication_reason(fresh, fresh=True)
+                reason = publication_reason(merged, fresh=True, fetched=fresh)
                 if reason:
                     existing.pop(uid, None)
                     quarantine_item(store, merged, reason, stamp)
@@ -572,6 +670,32 @@ HENTAI3_PERMANENT_FAILURES = {"search_no_match", "search_ambiguous",
                               "gallery_no_evidence", "gallery_no_tag_section", "gallery_no_tags", "gallery_http_404"}
 
 
+NH_TAG_AUDIT_VERSION = "nhentai-tags-v1"
+
+
+def audit_existing_nhentai(items, records, previous, stamp, run):
+    candidates = {}
+    for item in items:
+        gid = str(item.get("source_id") or "")
+        if (item.get("source") == "nhentai" and nhentai._valid_id(gid)
+                and item.get("uid") == f"nhentai:{gid}" and not item.get("tags")
+                and item.get("filter_metadata_checked") != NH_TAG_AUDIT_VERSION
+                and records.get(item["uid"], {}).get("status") != "blocked"
+                and not publication_reason(item)):
+            candidates[gid] = item
+    # Rotate past transiently failing IDs so later rows still get audited.
+    cursor = str(previous.get("last_attempted_id") or "")
+    ids = sorted(candidates, key=lambda gid: (gid <= cursor, gid))
+    tags_by_id, status = nhentai.audit_existing_tags(ids[:max(0, NH_EXISTING_TAG_AUDIT_LIMIT)], run=run)
+    status.setdefault("last_attempted_id", cursor)
+    for gid, tags in tags_by_id.items():
+        item = candidates[gid]
+        item.update(tags=tags, filter_metadata_checked=NH_TAG_AUDIT_VERSION,
+                    filter_metadata_checked_at=stamp)
+        status["excluded"] += bool(publication_reason(item))
+    return status
+
+
 def main(*, audit_only: bool = False) -> int:
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
     stamp = now_iso()
@@ -628,14 +752,15 @@ def main(*, audit_only: bool = False) -> int:
                 and not hentai3.direct_gallery_id(saved.get("source_url", ""))):
             quarantine_item(filter_store, saved, "metadata_unverified", stamp)
         reconcile_hentai3_input(original, saved, filter_store, stamp)
+        merged = merge_item(original, saved, stamp)
         if (records.get(uid, {}).get("status") != "blocked"
                 and ((saved.get("source") == "hitomi"
                       and saved.get("filter_metadata_checked") == hitomi.FILTER_METADATA_VERSION
                       and not unverified_hitomi(saved, fresh=True))
                      or (saved.get("source") == "3hentai"
                          and hentai3_can_restore(saved, records.get(uid, {}))))
-                and not blocked_reason(saved)):
-            existing_map[uid] = merge_item(existing_map.get(uid), saved, stamp)
+                and not blocked_reason(merged)):
+            existing_map[uid] = merged
             records.pop(uid, None)
             if saved.get("source") == "3hentai":
                 restored_h3_uids.add(uid)
@@ -795,6 +920,17 @@ def main(*, audit_only: bool = False) -> int:
         if records.get(uid, {}).get("status") == "pending":
             quarantine_item(filter_store, item, "metadata_unverified", stamp)
 
+    # The audit-only command is Hitomi-specific. Like 3hentai's detail audit,
+    # nhentai uses its network budget in normal runs; saved rows always get checked.
+    previous_nh_audit = status_store.get("nhentai", {}).get("existing_tag_audit")
+    if not isinstance(previous_nh_audit, dict):
+        previous_nh_audit = {}
+    nh_run = None if audit_only else nhentai.DetailRun()
+    nh_existing_audit = ({"skipped": "hitomi-filter-audit-only",
+                          "last_attempted_id": previous_nh_audit.get("last_attempted_id", "")}
+                         if audit_only else audit_existing_nhentai(
+                             existing_items, records, previous_nh_audit, stamp, nh_run))
+
     retained_items: list[dict[str, Any]] = []
     purged_existing_blocked = 0
     purged_existing_reasons: dict[str, int] = {}
@@ -845,7 +981,14 @@ def main(*, audit_only: bool = False) -> int:
         print(f"[{name}] start")
         src_state = state.get(name) if isinstance(state.get(name), dict) else {}
         try:
-            raw_items, new_state, result = collector(copy.deepcopy(src_state))
+            if name == "nhentai" and nh_existing_audit.get("stopped"):
+                raw_items, new_state, result = [], src_state, {
+                    "status": "error", "message": "Existing tag audit stopped on access denial",
+                }
+            elif name == "nhentai" and collector is nhentai.collect:
+                raw_items, new_state, result = collector(copy.deepcopy(src_state), run=nh_run)
+            else:
+                raw_items, new_state, result = collector(copy.deepcopy(src_state))
         except Exception as e:
             raw_items, new_state, result = [], src_state, {"status": "error", "message": str(e)}
 
@@ -905,7 +1048,7 @@ def main(*, audit_only: bool = False) -> int:
             elif name == "3hentai" and merged.get("filter_metadata_checked") != "3hentai-gallery-v1":
                 reason = "metadata_unverified"
             else:
-                reason = publication_reason(merged if name == "3hentai" else raw, fresh=True)
+                reason = publication_reason(merged, fresh=True, fetched=None if name == "3hentai" else raw)
             if reason:
                 blocked += 1
                 blocked_reasons[reason] = blocked_reasons.get(reason, 0) + 1
@@ -953,6 +1096,7 @@ def main(*, audit_only: bool = False) -> int:
         print("All sources failed; catalog and crawl state will not be saved.", file=sys.stderr)
         return 1
 
+    status_store.setdefault("nhentai", {})["existing_tag_audit"] = nh_existing_audit
     status_store.setdefault("3hentai", {})["id_migration"] = id_migration
     if isinstance(status_store.get("3hentai"), dict):
         status_store["3hentai"].update(h3_existing_audit)

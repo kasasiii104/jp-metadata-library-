@@ -418,14 +418,32 @@ class RepairIntegrationTests(unittest.TestCase):
             self.assertEqual(c.main(), 0)
         store = c.load_json(c.FILTER_STATE_FILE, {}, c.validate_filter_store)
         public = {row["uid"] for row in c.load_json(c.DATA_FILE, {})["items"]}
-        self.assertEqual(public, {row["uid"] for row in rows} - (legacy | excess))
-        self.assertEqual(len(public), 10830)
-        self.assertEqual(len(legacy | excess), 313)
+        # Content exclusions and identity holds can both affect this snapshot.
+        held = legacy | excess
+        self.assertEqual(len(held), 313)
+        excluded = {row["uid"]: reason for row in rows
+                    if (reason := c.blocked_reason(row))}
+        self.assertEqual(len(excluded.keys() - held), 290)
+        self.assertEqual(public, {row["uid"] for row in rows} - held - excluded.keys())
+        for uid in excluded.keys() - held:
+            self.assertEqual(store["records"][uid]["status"], "blocked")
+            self.assertEqual(store["records"][uid]["reason"], excluded[uid])
         self.assertEqual(c.load_json(c.STATUS_FILE, {})["3hentai"]["held_identity_gate"], 0)
         self.assertFalse(any(rec.get("hold_detail") == "3hentai_url_conflict"
                              for rec in store["records"].values()))
-        for uid in legacy | excess:
-            self.assertEqual(store["records"][uid]["status"], "pending")
+        overlapping_statuses = {
+            "3hentai:3603074": "pending",
+            "3hentai:3705834": "pending",
+            "3hentai:3602988": "blocked",
+        }
+        self.assertEqual(held & excluded.keys(), overlapping_statuses.keys())
+        for uid in held:
+            with self.subTest(uid=uid):
+                record = store["records"][uid]
+                status = overlapping_statuses.get(uid, "pending")
+                self.assertEqual(record["status"], status)
+                expected_reason = excluded[uid] if status == "blocked" else "metadata_unverified"
+                self.assertEqual(record["reason"], expected_reason)
         for uid in excess:
             rec = store["records"][uid]
             self.assertEqual(rec["hold_detail"], "3hentai_mislinked_split")

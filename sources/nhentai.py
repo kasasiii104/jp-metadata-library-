@@ -95,8 +95,64 @@ def _normalize(raw: dict[str, Any], fallback_thumb: str = "") -> dict[str, Any] 
     }
 
 
-def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
-    started = time.monotonic()
+class DetailRun:
+    def __init__(self):
+        self.deadline = time.monotonic() + NH_RUN_DEADLINE_SEC
+        self.audited_ids: set[str] = set()
+
+    def expired(self):
+        return time.monotonic() >= self.deadline
+
+
+def audit_existing_tags(gallery_ids: list[str], *, run: DetailRun | None = None) -> tuple[dict[str, list[str]], dict]:
+    """Fetch content tags for saved galleries through the normal detail API."""
+    tags_by_id = {}
+    status = {"attempted": 0, "tagged": 0, "confirmed_empty": 0, "excluded": 0,
+              "stopped": False, "errors": []}
+    if not gallery_ids:
+        return tags_by_id, status
+
+    run = run if run is not None else DetailRun()
+    consecutive_failures = 0
+    with requests.Session() as session:
+        for gid in gallery_ids[:max(0, NH_MAX_DETAILS_PER_RUN)]:
+            if status["attempted"]:
+                polite_sleep(NH_DETAIL_DELAY_SEC)
+            if run.expired():
+                break
+            run.audited_ids.add(gid)
+            status["attempted"] += 1
+            status["last_attempted_id"] = gid
+            try:
+                raw = _detail(session, gid)
+                if str(raw.get("id")) != gid:
+                    raise ValueError("detail ID mismatch")
+                if not isinstance(raw.get("tags"), list) or any(
+                    not isinstance(tag, dict) or not isinstance(tag.get("type"), str)
+                    or not isinstance(tag.get("name"), str) or not tag["name"].strip()
+                    for tag in raw["tags"]
+                ):
+                    raise ValueError("invalid detail tags")
+                tags = unique_strings(tag["name"] for tag in raw["tags"] if tag["type"] == "tag")
+            except (URLPolicyError, HTTPError, requests.RequestException, ValueError) as exc:
+                status["errors"].append(f"{gid}: {str(exc)[:200]}")
+                consecutive_failures += 1
+                if (isinstance(exc, URLPolicyError)
+                        or getattr(exc, "status_code", None) in (401, 403, 429)):
+                    status["stopped"] = True
+                    break
+                if consecutive_failures >= NH_DETAIL_MAX_FAILURES:
+                    break
+                continue
+            consecutive_failures = 0
+            tags_by_id[gid] = tags
+            status["tagged" if tags else "confirmed_empty"] += 1
+    return tags_by_id, status
+
+
+def collect(state: dict | None = None, *, run: DetailRun | None = None) -> tuple[list[dict], dict, dict]:
+    shared_run = run is not None
+    run = run if run is not None else DetailRun()
     original = copy.deepcopy(state or {})
     new = copy.deepcopy(original)
     for key in ("latest_id", "backfill_before_id", "backfill_page", "backfill_remaining"):
@@ -120,13 +176,15 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     if "detail_failures" in new:
         new["detail_failures"] = dict(failures)
     items, errors = [], []
-    seen, discovered = set(), set()
+    # Audit candidates already have a saved row. Count every attempt against
+    # the run budget and leave failed audits for the next run.
+    seen, discovered = set(run.audited_ids), set()
     calls = {"search": 0, "detail": 0}
     halted = False
     policy_denied = False
     budget_limited = False
     confirmation_used = False
-    budget = NH_MAX_DETAILS_PER_RUN
+    budget = NH_MAX_DETAILS_PER_RUN - len(run.audited_ids)
     latest_before = int(new.get("latest_id") or 0)
     back_before = new.get("backfill_before_id")
     counts = dict(latest_new=0, backfill_processed=0, skipped_non_japanese=0,
@@ -135,13 +193,18 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
 
     def request(kind, fn, *args):
         nonlocal budget_limited
-        if not (kind == "search" and calls["search"] == 0):
-            if counts["deadline_reached"] or time.monotonic() - started > NH_RUN_DEADLINE_SEC:
-                counts["deadline_reached"] = True
-                budget_limited = True
-                raise DeadlineReached()
-        if calls[kind]:
+        # Standalone collection retains its first-page probe. A shared run
+        # may already have exhausted its deadline during the audit.
+        check_deadline = shared_run or kind != "search" or calls["search"] > 0
+        delayed = calls[kind] > 0 or (kind == "detail" and bool(run.audited_ids))
+        expired = check_deadline and run.expired()
+        if delayed and not expired:
             polite_sleep(NH_SEARCH_DELAY_SEC if kind == "search" else NH_DETAIL_DELAY_SEC)
+            expired = check_deadline and run.expired()
+        if expired:
+            counts["deadline_reached"] = True
+            budget_limited = True
+            raise DeadlineReached()
         calls[kind] += 1
         return fn(session, *args)
 
@@ -230,6 +293,8 @@ def collect(state: dict | None = None) -> tuple[list[dict], dict, dict]:
     with requests.Session() as session:
         try:
             first = request("search", _search_page, 1)
+        except DeadlineReached:
+            return finish()
         except Exception as exc:
             error("page 1", exc)
             return finish(False)
