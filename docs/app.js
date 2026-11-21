@@ -261,7 +261,20 @@
   function facetSummary(x){const a=[];const w=worksOf(x)[0];if(w)a.push(facetButton("works",w,`作品：${displayValue("works",w)}`));if(x.characters?.[0])a.push(facetButton("characters",x.characters[0],`キャラ：${displayValue("characters",x.characters[0])}`));for(const t of contentTagsOf(x).slice(0,2))a.push(facetButton("tags",t,`#${displayValue("tags",t)}`));return a.slice(0,4).join("");}
   function metaLine(x){const a=[];if(x.rating!=null&&Number(x.rating)>0)a.push(`★${Number(x.rating).toFixed(2).replace(/0+$/,"").replace(/\.$/,"")}`);if(x.pages)a.push(`${x.pages}p`);if(x.posted_at)a.push(relative(x.posted_at));return a.join(" ・ ");}
   function readerAvailable(group){return Boolean(EMBED_WORKER_BASE&&readerReady)&&canRead(group,readerCatalog,state.manifest)&&group._members.some(isReadableMember);}
-  function card(x){const thumb=safeUrl(x.thumbnail),url=sourceWorkUrl(x),id=x._groupId,labels=x._sources.map(sourceLabel).join(" / ");const dup=x.duplicate_count>1?`<span class="dupe">同一作品 ${x.duplicate_count}ソース</span>`:"";return `<article class="card"><a class="thumb" href="${esc(url||"#")}" target="_blank" rel="noopener noreferrer">${thumb?`<img src="${esc(thumb)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:`<div class="ph">サムネイルなし</div>`}<span class="source">${esc(labels)}</span>${dup}${favs.has(id)?'<span class="favmark">★</span>':""}</a><div class="body"><a class="title" href="${esc(url||"#")}" target="_blank" rel="noopener noreferrer">${esc(titleOf(x))}</a><div class="facetline">${facetSummary(x)}</div><p class="meta">${esc(metaLine(x))}</p>${readerAvailable(x)?`<button class="facet reader-open" type="button" data-read="${esc(id)}">読む</button>`:""}<button class="more" data-more="${esc(id)}">⋮</button></div></article>`;}
+  function card(x){
+    const thumb=safeUrl(x.thumbnail),id=esc(x._groupId),title=esc(titleOf(x)),labels=x._sources.map(sourceLabel).join(" / ");
+    const read=readerAvailable(x);
+    const link=read?"":`href="${esc(sourceWorkUrl(x)||"#")}" target="_blank" rel="noopener noreferrer"`;
+    const thumbContent=thumb?`<img src="${esc(thumb)}" alt="" loading="lazy" referrerpolicy="no-referrer">`
+      :read?'<span class="ph">サムネイルなし</span>':'<div class="ph">サムネイルなし</div>';
+    const dup=x.duplicate_count>1?`<span class="dupe">同一作品 ${x.duplicate_count}ソース</span>`:"";
+    const thumbnail=thumbContent+`<span class="source">${esc(labels)}</span>`+dup+(favs.has(x._groupId)?'<span class="favmark">★</span>':"");
+    const readAttrs=`type="button" data-read="${id}"`;
+    const thumbControl=read?`<button class="thumb" ${readAttrs} aria-label="${title}を読む">${thumbnail}</button>`
+      :`<a class="thumb" ${link}>${thumbnail}</a>`;
+    const titleControl=read?`<button class="title" ${readAttrs}>${title}</button>`:`<a class="title" ${link}>${title}</a>`;
+    return `<article class="card">${thumbControl}<div class="body">${titleControl}<div class="facetline">${facetSummary(x)}</div><p class="meta">${esc(metaLine(x))}</p>${read?`<button class="facet reader-open" ${readAttrs}>読む</button>`:""}<button class="more" data-more="${id}">⋮</button></div></article>`;
+  }
 
   function refreshFacetValues(selected="") { const kind=$("#facetKind").value, sel=$("#facetValue"); sel.innerHTML='<option value="">すべて</option>'; if(!kind){sel.disabled=true;return;} const counts=new Map(); for(const x of state.items)for(const v of fieldValues(x,kind))if(v)counts.set(v,(counts.get(v)||0)+1); for(const [v,n] of [...counts].sort((a,b)=>b[1]-a[1]||String(a[0]).localeCompare(String(b[0]),"ja")).slice(0,500)){const o=document.createElement("option");o.value=v;o.textContent=`${displayValue(kind,v)} (${n})`;sel.appendChild(o);}if(selected&&![...sel.options].some(o=>o.value===selected)){const o=document.createElement("option");o.value=selected;const n=counts.get(selected);o.textContent=n?`${displayValue(kind,selected)} (${n})`:displayValue(kind,selected);sel.appendChild(o);}sel.disabled=false;if(selected)sel.value=selected; }
   function updateActiveFacet(){const kind=$("#facetKind").value,value=$("#facetValue").value,b=$("#activeFacet");if(!kind||!value){b.hidden=true;return;}const labels={artists:"作者",groups:"グループ",works:"作品",characters:"キャラ",tags:"タグ"};b.hidden=false;b.textContent=`${labels[kind]||kind}: ${displayValue(kind,value)} ×`;}
@@ -281,12 +294,20 @@
 
   const reader=$("#reader"), readerPages=$("#readerPages");
   const readerReady=reader&&readerPages&&["#readerClose","#readerSource","#readerMember","#readerCount"].every(id=>$(id));
-  let readerRequest, readerObserver, readerTrigger;
+  let readerRequest, readerObserver, readerTrigger, readerReturnUrl;
   function hideReader(){
     readerRequest?.abort();readerObserver?.disconnect();
     if(reader.open)reader.close();
     readerPages.replaceChildren();document.body.classList.remove("reading");
-    if(readerTrigger?.getClientRects().length)readerTrigger.focus();
+    if(readerTrigger){
+      const {id,className,element}=readerTrigger;
+      let target=element;
+      if(!target?.isConnected||!target.getClientRects().length){
+        const controls=$$("[data-read], [data-more]").filter(b=>(b.dataset.read===id&&!b.dataset.readUid)||b.dataset.more===id);
+        target=controls.find(b=>b.dataset.read===id&&b.className===className)||controls[0];
+      }
+      if(target?.getClientRects().length)target.focus();
+    }
     readerTrigger=null;
   }
   function closeReader(){
@@ -305,8 +326,10 @@
       clearTimeout(searchTimer);apply(false);writeUrl("replace");
       history.pushState({reader:{id,uid:member.uid}},"","#read");
     }
-    if(trigger)readerTrigger=trigger.isConnected&&trigger.getClientRects().length&&!trigger.closest("#sheet")
-      ? trigger : $$("[data-read], [data-more]").find(b=>(b.dataset.read===id&&!b.dataset.readUid)||b.dataset.more===id);
+    readerReturnUrl=location.pathname+location.search;
+    if(trigger){
+      readerTrigger=trigger.closest("#sheet")?{id}:{id,className:trigger.className,element:trigger};
+    }
     closeSheet();
     readerRequest?.abort();readerObserver?.disconnect();
     const request=readerRequest=new AbortController();
@@ -440,8 +463,11 @@
       restoreUrl();
       openReader(id,uid,null,false);
     }else{
+      // Leaving the reader on the same list must keep the focused card in the DOM.
+      const sameList=readerReturnUrl===location.pathname+location.search;
+      readerReturnUrl=null;
+      if(!sameList)restoreUrl();
       if(reader?.open&&readerReady)hideReader();
-      restoreUrl();
     }
   });
   if(location.hash==="#read"){

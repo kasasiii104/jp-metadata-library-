@@ -108,12 +108,12 @@ async function boot(query='',options={}){
  const sources=[...html.matchAll(/<button\b[^>]*data-source="([^"]+)"/g)].map(m=>m[1]).map(source=>{const e=new Element('button');e.dataset.source=source;return e;});
  const events={},documentEvents={},readerFetches=[],loc=new URL('https://example.org/site/'+query),writes=[];
  const history={};for(const method of ['pushState','replaceState'])history[method]=(a,b,url)=>{if(options.historyFail)throw Error('blocked');writes.push([method,url]);history.state=a;loc.href=new URL(url,loc).href;};
- const document={body:new Element(),querySelector:s=>els[s.slice(1)]||null,querySelectorAll:s=>s==='[data-source]'?sources:[],createElement:t=>new Element(t),addEventListener(k,f){const previous=documentEvents[k];documentEvents[k]=e=>{previous?.(e);f(e);};}};
+ const document={body:new Element(),querySelector:s=>els[s.slice(1)]||null,querySelectorAll:s=>s==='[data-source]'?sources:options.queryControls?.(s)||[],createElement:t=>new Element(t),addEventListener(k,f){const previous=documentEvents[k];documentEvents[k]=e=>{previous?.(e);f(e);};}};
  const local=options.local||storage(),session=options.session||storage();
  const context={document,window:{addEventListener:(k,f)=>events[k]=f},location:loc,history,localStorage:local,sessionStorage:session,URL,URLSearchParams,AbortController,Option:function(textContent,value){Object.assign(this,{textContent,value});},console,setTimeout,clearTimeout,fetch:async url=>{
   if(url instanceof URL){readerFetches.push(url);return {ok:false};}
   const match=url.match(/chunk-(\d+)/);return {ok:!options.fetchFail,status:500,json:async()=>match?{items:data.chunks[Number(match[1])]}:url.includes('manifest')?data.manifest:{}};}};
- const app=options.reader?code.replace('const EMBED_WORKER_BASE = "https://jp-embed.kasasiii104.workers.dev";','const EMBED_WORKER_BASE = "https://reader.example/";'):code;
+ const app=options.reader?code.replace('const EMBED_WORKER_BASE = "https://jp-embed.kasasiii104.workers.dev";',options.reader==='disabled'?'const EMBED_WORKER_BASE = "";':'const EMBED_WORKER_BASE = "https://reader.example/";'):code;
  vm.runInNewContext(app,context);for(let i=0;i<10;i++)await new Promise(r=>setTimeout(r,0));
  return {els,sources,loc,writes,events,documentEvents,local,session,history,readerFetches,async change(id,value){els[id].value=value;await els[id].fire('change');},async pop(query){loc.search=query;events.popstate();},titles(){return [...els.grid.innerHTML.matchAll(/class="title"[^>]*>([^<]*)/g)].map(m=>m[1]);}};
 }
@@ -167,7 +167,7 @@ test('結合: history/storage例外でも動作、失敗時status',async()=>{
 test('HTML IDs、FALLBACK、PWA、PNGシグネチャと寸法',()=>{
  const ids=new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]));for(const m of code.matchAll(/\$\("#([\w-]+)(?:[ "\)])/g))assert.ok(ids.has(m[1]),m[1]);
  for(const region of ['CARDS','STATUS'])for(const end of ['START','END'])assert.equal(html.split(`<!-- FALLBACK_${region}_${end} -->`).length,2);
- for(const pattern of [/name="description"/,/name="theme-color"/,/rel="manifest"/,/rel="apple-touch-icon"/,/app\.js\?v=20261121-2/])assert.match(html,pattern);
+ for(const pattern of [/name="description"/,/name="theme-color"/,/rel="manifest"/,/rel="apple-touch-icon"/,/app\.js\?v=20261121-3/])assert.match(html,pattern);
  const manifest=JSON.parse(fs.readFileSync('docs/manifest.webmanifest'));assert.equal(manifest.start_url,'./');assert.equal(manifest.scope,'./');assert.equal(manifest.display,'standalone');
  for(const icon of [...manifest.icons,{src:'icons/apple-touch-icon.png',sizes:'180x180'}]){const bytes=fs.readFileSync(path.join('docs',icon.src));if(icon.src.endsWith('.png')){assert.equal(bytes.subarray(0,8).toString('hex'),'89504e470d0a1a0a');assert.equal(bytes.subarray(12,16).toString(),'IHDR');assert.equal(`${bytes.readUInt32BE(16)}x${bytes.readUInt32BE(20)}`,icon.sizes);}}
 });
@@ -248,15 +248,15 @@ const readerGroup=(...members)=>members.map(member=>({
  ...member,duplicate_group:'group',duplicate_count:members.length,
  duplicate_uids:members.filter(sibling=>sibling!==member).map(sibling=>sibling.uid),
 }));
-function bootReader(members,query=''){
- return boot(query,{reader:true,fixture:{
+function bootReader(members,query='',options={}){
+ return boot(query,{reader:true,...options,fixture:{
   manifest:{...fixture.manifest,chunk_count:1,item_count:members.length},
   chunks:[members.map(member=>({...member}))],
  }});
 }
 function clickReaderControl(browser,selector,dataset){
  browser.documentEvents.click({target:{closest:s=>s===selector?{
-  dataset,isConnected:false,
+  dataset,isConnected:false,closest:()=>null,
  }:null},preventDefault(){}});
 }
 
@@ -270,7 +270,8 @@ test('FIX11 nhentai: カードとシートの「読む」は有効な材料が�
   readerRow('nhentai',50,{...readerData,reader_exts:'w'.repeat(2001),pages:2001}),
  ];
  const b=await bootReader(members);
- assert.deepEqual([...b.els.grid.innerHTML.matchAll(/data-read="([^"]+)"/g)].map(m=>m[1]),[nhMember.uid]);
+ assert.deepEqual([...b.els.grid.innerHTML.matchAll(/class="facet reader-open" type="button" data-read="([^"]+)"/g)].map(m=>m[1]),[nhMember.uid]);
+ assert.deepEqual(new Set([...b.els.grid.innerHTML.matchAll(/data-read="([^"]+)"/g)].map(m=>m[1])),new Set([nhMember.uid]));
  for(const member of members){
   clickReaderControl(b,'[data-more]',{more:member.uid});
   assert.match(b.els.sheet.innerHTML,/で見る/);
@@ -339,4 +340,123 @@ test('FIX11 除外タグ付きグループには nhentai の材料が揃って�
  clickReaderControl(b,'[data-more]',{more:'group'});
  assert.doesNotMatch(b.els.sheet.innerHTML,/で読む/);
  assert.equal([...b.els.sheet.innerHTML.matchAll(/で見る/g)].length,2);
+});
+
+test('FIX12c サムネイルとタイトルから既定出典を開き、閉じると起点に戻る',async()=>{
+ const members=readerGroup(
+  {...eMember,title:'A & "B"'},
+  {...hitomiMember,source_url:'https://hitomi.la/galleries/43.html'},
+ );
+ for(const className of ['thumb','title']){
+  let focused;
+  const controls=['thumb','title','facet reader-open'].map(name=>({
+   className:name,dataset:{read:'group'},getClientRects:()=>[{}],focus:()=>{focused=name;},
+  }));
+  const b=await bootReader(members,'',{queryControls:selector=>selector==='[data-read], [data-more]'?controls:[]});
+  const markup=b.els.grid.innerHTML;
+  const thumb=markup.match(/<button class="thumb"[^>]*>/)?.[0];
+  const title=markup.match(/<button class="title"[^>]*>/)?.[0];
+  for(const control of [thumb,title]){
+   assert.ok(control);
+   assert.match(control,/type="button"/);
+   assert.match(control,/data-read="group"/);
+   assert.doesNotMatch(control,/href=/);
+  }
+  assert.match(thumb,/aria-label="A &amp; &quot;B&quot;を読む"/);
+  assert.match(markup,/<button class="facet reader-open" type="button" data-read="group">読む<\/button>/);
+  clickReaderControl(b,'[data-more]',{more:'group'});
+  assert.match(b.els.sheet.innerHTML,/<a href="https:\/\/e-hentai\.org\/g\/42\/aabbcc\/" target="_blank" rel="noopener noreferrer">E-Hentaiで見る<\/a>/);
+  assert.match(b.els.sheet.innerHTML,/<a href="https:\/\/hitomi\.la\/galleries\/43\.html" target="_blank" rel="noopener noreferrer">Hitomiで見る<\/a>/);
+  const control=className==='thumb'?thumb:title;
+  const trigger={className,dataset:{read:control.match(/data-read="([^"]+)"/)[1]},isConnected:true,closest:()=>null};
+  const grid=b.els.grid;
+  Object.defineProperty(grid,'innerHTML',{
+   get:()=>grid._html,
+   set(value){grid._html=value;trigger.isConnected=false;focused=undefined;},
+  });
+  b.documentEvents.click({target:{closest:selector=>selector==='[data-read]'?trigger:null}});
+  assert.equal(b.els.reader.open,true);
+  assert.equal(b.readerFetches[0].pathname,'/pages');
+  assert.equal(b.readerFetches[0].searchParams.get('uid'),eMember.uid);
+  b.history.back=()=>{
+   b.loc.hash='';
+   b.history.state=null;
+   b.events.popstate();
+  };
+  await b.els.readerClose.click();
+  assert.equal(b.els.reader.open,false);
+  assert.equal(focused,className);
+ }
+});
+
+async function openReaderWithTrackedCards(){
+ let controls=[],focused;
+ const b=await bootReader([eMember,hitomiMember],'',{
+  queryControls:selector=>selector==='[data-read], [data-more]'?controls:[],
+ });
+ const grid=b.els.grid;
+ function updateControls(markup){
+  for(const control of controls)control.isConnected=false;
+  focused=undefined;
+  controls=[...markup.matchAll(/<button class="([^"]+)" type="button" data-read="([^"]+)"/g)].map(([,className,read])=>{
+   const control={className,dataset:{read},isConnected:true,closest:()=>null,
+    getClientRects:()=>control.isConnected?[{}]:[],focus:()=>{focused=control;}};
+   return control;
+  });
+ }
+ Object.defineProperty(grid,'innerHTML',{
+  get:()=>grid._html,
+  set(value){grid._html=value;updateControls(value);},
+ });
+ updateControls(grid.innerHTML);
+ const titleControl=()=>controls.find(c=>c.className==='title'&&c.dataset.read===eMember.uid);
+ const trigger=titleControl();
+ assert.ok(trigger);
+ b.documentEvents.click({target:{closest:selector=>selector==='[data-read]'?trigger:null}});
+ assert.equal(b.els.reader.open,true);
+ return {b,trigger,titleControl,focusedControl:()=>focused};
+}
+
+test('FIX12c リーダー表示中にカードが再描画されても同じ作品のタイトルへ戻る',async()=>{
+ const {b,trigger,titleControl,focusedControl}=await openReaderWithTrackedCards();
+ await b.els.loadAll.click();
+ assert.equal(trigger.isConnected,false);
+ const replacement=titleControl();
+ assert.ok(replacement?.isConnected);
+ b.history.back=()=>{
+  b.loc.hash='';
+  b.history.state=null;
+  b.events.popstate();
+ };
+ await b.els.readerClose.click();
+ assert.equal(b.els.reader.open,false);
+ assert.equal(focusedControl(),replacement);
+});
+
+test('FIX12c リーダーから別クエリの履歴に移動すると検索と一覧を復元して閉じる',async()=>{
+ const {b,trigger,titleControl,focusedControl}=await openReaderWithTrackedCards();
+ assert.deepEqual(b.titles().sort(),[eMember.title,hitomiMember.title].sort());
+ b.loc.hash='';
+ b.history.state=null;
+ await b.pop('?q='+eMember.title);
+ assert.equal(b.els.q.value,eMember.title);
+ assert.deepEqual(b.titles(),[eMember.title]);
+ assert.equal(b.els.reader.open,false);
+ assert.equal(trigger.isConnected,false);
+ const replacement=titleControl();
+ assert.ok(replacement?.isConnected);
+ assert.equal(focusedControl(),replacement);
+});
+
+test('FIX12c Worker 無効または読める出典がないカードは従来の出典リンクを保つ',async()=>{
+ const unreadable={...nhMember,reader_media_id:undefined,source_url:'https://nhentai.net/g/44/'};
+ for(const [member,options] of [[eMember,{reader:'disabled'}],[unreadable,{}]]){
+  const b=await bootReader([member],'',options);
+  const markup=b.els.grid.innerHTML;
+  for(const className of ['thumb','title']){
+   const link=markup.match(new RegExp(`<a class="${className}"[^>]*>`))?.[0];
+   assert.equal(link,`<a class="${className}" href="${member.source_url}" target="_blank" rel="noopener noreferrer">`);
+  }
+  assert.doesNotMatch(markup,/data-read=/);
+ }
 });
