@@ -4,11 +4,19 @@ import json
 import math
 import os
 import shutil
+import sys
 import tempfile
 from pathlib import Path
 from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
+if __package__ in (None, ""):
+    sys.path.insert(0, str(ROOT))
+
+from sources.reader_policy import (
+    READER_EXTS, READER_MAX_PAGES, READER_MEDIA_ID, is_reader_excluded, reader_tags_verified,
+)
+
 DOCS = ROOT / "docs"
 DATA = DOCS / "data.json"
 OUT = DOCS / "catalog"
@@ -25,7 +33,7 @@ PUBLIC_FIELDS = (
     "title", "title_jp", "category", "artists", "groups", "parodies",
     "works", "characters", "tags", "pages", "rating", "popularity",
     "posted_at", "first_seen", "thumbnail", "duplicate_group", "duplicate_count",
-    "duplicate_sources", "duplicate_uids",
+    "duplicate_sources", "duplicate_uids", "reader_media_id", "reader_exts",
 )
 
 SOURCE_LABELS = {
@@ -43,6 +51,18 @@ def compact_item(item: dict) -> dict:
         if value in (None, "", [], {}, False):
             continue
         out[key] = value
+    tags = item.get("tags")
+    media_id = out.get("reader_media_id")
+    exts = out.get("reader_exts")
+    pages = item.get("pages")
+    if (item.get("source") != "nhentai"
+            or not isinstance(media_id, str) or not READER_MEDIA_ID.fullmatch(media_id)
+            or not isinstance(exts, str) or len(exts) > READER_MAX_PAGES or not READER_EXTS.fullmatch(exts)
+            or type(pages) is not int or len(exts) != pages
+            or not reader_tags_verified(tags) or not any(tag.strip() for tag in tags)
+            or is_reader_excluded(tags)):
+        out.pop("reader_media_id", None)
+        out.pop("reader_exts", None)
     return out
 
 

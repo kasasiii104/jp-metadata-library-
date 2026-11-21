@@ -22,6 +22,7 @@ from config import (
     CHINESE_SIMPLIFIED_CHARS,
     CHINESE_SIMPLIFIED_MIN_DISTINCT,
     NH_EXISTING_TAG_AUDIT_LIMIT,
+    NH_READER_BACKFILL_LIMIT,
     DATA_FILE,
     HENTAI3_ID_MAP_FILE,
     DOCS_DIR,
@@ -36,6 +37,7 @@ from config import (
 )
 from sources import ehentai, hitomi, hentai3, asmhentai, hentai3_ids, nhentai
 from sources.net_policy import URLPolicyError
+from sources.reader_policy import is_reader_excluded
 from sources.common import is_valid_source_id, normalize_full_tag, normalize_tag, unique_strings, polite_sleep
 from tools.json_storage import (load_json, save_json, validate_catalog,
                                 validate_source_mapping, validate_filter_store, validate_hentai3_id_map)
@@ -291,6 +293,9 @@ def _meta_tags(artists: list[str], groups: list[str], works: list[str], characte
     )
 
 
+NH_READER_FIELDS = ("reader_media_id", "reader_exts", "reader_checked", "reader_checked_at")
+
+
 def clean_item(item: dict[str, Any], stamp: str) -> dict[str, Any]:
     artists = unique_strings(item.get("artists") or [])
     groups = unique_strings(item.get("groups") or [])
@@ -311,6 +316,8 @@ def clean_item(item: dict[str, Any], stamp: str) -> dict[str, Any]:
         **{key: item[key] for key in ("repair_evidence", "repair_evidence_at") if key in item},
         "filter_metadata_checked": str(item.get("filter_metadata_checked") or ""),
         "filter_metadata_checked_at": str(item.get("filter_metadata_checked_at") or ""),
+        **{key: str(item.get(key) or "") if item.get("source") == "nhentai" else ""
+           for key in NH_READER_FIELDS},
         "title": str(item.get("title") or "").strip(),
         "title_jp": str(item.get("title_jp") or "").strip(),
         "language": normalized_language(item.get("language", "")),
@@ -356,11 +363,19 @@ def merge_item(old: dict[str, Any] | None, new: dict[str, Any], stamp: str) -> d
         return clean_item(new, stamp)
     merged = dict(old)
     refreshed = clean_item(new, stamp)
+    replace_empty = {"pages", "rating", "popularity"}
+    if refreshed.get("source") == "nhentai":
+        replace_empty.update(("reader_media_id", "reader_exts"))
     for key, value in refreshed.items():
         if key == "first_seen":
             continue
-        if value not in ("", None, [], 0) or key in {"pages", "rating", "popularity"}:
+        if value not in ("", None, [], 0) or key in replace_empty:
             merged[key] = value
+    if (refreshed.get("source") == "nhentai" and old.get("reader_media_id")
+            and not merged.get("reader_media_id")):
+        # Reopen reader backfill when the latest detail removes existing reader fields.
+        merged["reader_checked"] = ""
+        merged["reader_checked_at"] = ""
     merged["first_seen"] = old.get("first_seen") or stamp
     merged["last_seen"] = stamp
     if merged.get("repair_evidence"):
@@ -684,28 +699,55 @@ HENTAI3_PERMANENT_FAILURES = {"search_no_match", "search_ambiguous",
 
 
 NH_TAG_AUDIT_VERSION = "nhentai-tags-v1"
+NH_READER_AUDIT_VERSION = "nhentai-reader-v1"
 
 
 def audit_existing_nhentai(items, records, previous, stamp, run):
     candidates = {}
+    tag_candidates = set()
+    reader_candidates = {}
     for item in items:
         gid = str(item.get("source_id") or "")
-        if (item.get("source") == "nhentai" and nhentai._valid_id(gid)
-                and item.get("uid") == f"nhentai:{gid}" and not item.get("tags")
-                and item.get("filter_metadata_checked") != NH_TAG_AUDIT_VERSION
-                and records.get(item["uid"], {}).get("status") != "blocked"
-                and not publication_reason(item)):
+        if (item.get("source") != "nhentai" or not nhentai._valid_id(gid)
+                or item.get("uid") != f"nhentai:{gid}"
+                or records.get(item["uid"], {}).get("status") == "blocked"
+                or publication_reason(item)):
+            continue
+        if not item.get("tags") and item.get("filter_metadata_checked") != NH_TAG_AUDIT_VERSION:
+            tag_candidates.add(gid)
+        if not item.get("reader_media_id") and item.get("reader_checked") != NH_READER_AUDIT_VERSION:
+            saved_tags = item.get("tags") or []
+            saved_tags = unique_strings([saved_tags] if isinstance(saved_tags, str) else saved_tags)
+            if not is_reader_excluded(saved_tags):
+                reader_candidates[gid] = saved_tags
+        if gid in tag_candidates or gid in reader_candidates:
             candidates[gid] = item
+
     # Rotate past transiently failing IDs so later rows still get audited.
     cursor = str(previous.get("last_attempted_id") or "")
     ids = sorted(candidates, key=lambda gid: (gid <= cursor, gid))
-    tags_by_id, status = nhentai.audit_existing_tags(ids[:max(0, NH_EXISTING_TAG_AUDIT_LIMIT)], run=run)
+    tag_limit = max(0, NH_EXISTING_TAG_AUDIT_LIMIT)
+    tag_ids = set([gid for gid in ids if gid in tag_candidates][:tag_limit])
+    # Reader fields need saved tags or a tag audit in this run.
+    reader_ids = set([gid for gid in ids if gid in reader_candidates
+                      and (reader_candidates[gid] or gid in tag_ids)]
+                     [:max(0, NH_READER_BACKFILL_LIMIT)])
+    tags_by_id, reader_by_id, status = nhentai.audit_existing_details(
+        [gid for gid in ids if gid in tag_ids or gid in reader_ids],
+        tag_ids, {gid: reader_candidates[gid] for gid in reader_ids}, run=run)
     status.setdefault("last_attempted_id", cursor)
     for gid, tags in tags_by_id.items():
         item = candidates[gid]
         item.update(tags=tags, filter_metadata_checked=NH_TAG_AUDIT_VERSION,
                     filter_metadata_checked_at=stamp)
         status["excluded"] += bool(publication_reason(item))
+    status.update(reader_filled=0, reader_unavailable=0)
+    for gid, fields in reader_by_id.items():
+        item = candidates[gid]
+        item["reader_checked"] = NH_READER_AUDIT_VERSION
+        if fields:
+            item.update(fields, reader_checked_at=stamp)
+        status["reader_filled" if fields else "reader_unavailable"] += 1
     return status
 
 

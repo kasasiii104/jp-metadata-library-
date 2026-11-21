@@ -155,6 +155,7 @@ HENTAI3_REPAIR_GET_LIMIT = max(0, int(os.environ.get("HENTAI3_REPAIR_GET_LIMIT",
 # Maximum pages to follow until reaching latest_id.
 NH_LATEST_PAGES = int(os.environ.get("NH_LATEST_PAGES", "40"))
 NH_EXISTING_TAG_AUDIT_LIMIT = int(os.environ.get("NH_EXISTING_TAG_AUDIT_LIMIT", "15"))
+NH_READER_BACKFILL_LIMIT = int(os.environ.get("NH_READER_BACKFILL_LIMIT", "15"))
 NH_MAX_DETAILS_PER_RUN = int(os.environ.get("NH_MAX_DETAILS_PER_RUN", "45"))
 NH_INITIAL_BACKFILL_ITEMS = int(os.environ.get("NH_INITIAL_BACKFILL_ITEMS", "2500"))
 NH_BACKFILL_SEEK_PAGES = int(os.environ.get("NH_BACKFILL_SEEK_PAGES", "6"))

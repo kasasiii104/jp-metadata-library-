@@ -10,6 +10,9 @@ from config import (NH_LATEST_PAGES, NH_MAX_DETAILS_PER_RUN, NH_INITIAL_BACKFILL
                     NH_DETAIL_MAX_FAILURES, NH_REQUEST_TIMEOUT, NH_RUN_DEADLINE_SEC)
 from sources.common import HEADERS, is_valid_source_id, iso_from_unix, polite_sleep, unique_strings
 from sources.net_policy import URLPolicyError, guarded_request
+from sources.reader_policy import (
+    READER_MAX_PAGES, READER_MEDIA_ID, is_reader_excluded, reader_tags_verified,
+)
 
 SEARCH_URL = "https://nhentai.net/api/v2/search?query=language%3Ajapanese&sort=date&page={page}"
 DETAIL_URL = "https://nhentai.net/api/v2/galleries/{gid}"
@@ -65,15 +68,46 @@ def _thumb_url(path: str) -> str:
     return ""
 
 
+READER_EXT_CODES = {"webp": "w", "jpg": "j", "png": "p", "gif": "g"}
+
+
+def reader_fields(raw: dict, gid: str, tags: list) -> dict[str, str]:
+    media_id = raw.get("media_id")
+    pages = raw.get("pages")
+    num_pages = raw.get("num_pages")
+    if (str(raw.get("id")) != gid or type(media_id) not in (int, str)
+            or not READER_MEDIA_ID.fullmatch(str(media_id))
+            or not isinstance(pages, list) or not 1 <= len(pages) <= READER_MAX_PAGES
+            or type(num_pages) is not int or len(pages) != num_pages
+            or not reader_tags_verified(tags) or not any(tag.strip() for tag in tags)
+            or is_reader_excluded(tags)):
+        return {}
+    codes = []
+    for number, page in enumerate(pages, start=1):
+        path = page.get("path") if isinstance(page, dict) else None
+        if not isinstance(path, str):
+            return {}
+        match = re.fullmatch(rf"galleries/{media_id}/{number}\.(webp|jpg|png|gif)", path)
+        if not match:
+            return {}
+        codes.append(READER_EXT_CODES[match[1]])
+    return {"reader_media_id": str(media_id), "reader_exts": "".join(codes)}
+
+
 def _normalize(raw: dict[str, Any], fallback_thumb: str = "") -> dict[str, Any] | None:
     gid = str(raw.get("id") or "")
     if not _valid_id(gid):
         return None
     titles = raw.get("title") if isinstance(raw.get("title"), dict) else {}
     tags: dict[str, list[str]] = {}
+    reader_tags = []
     for tag in raw.get("tags") or []:
         if isinstance(tag, dict):
-            tags.setdefault(tag.get("type", ""), []).append(str(tag.get("name") or ""))
+            tag_type = tag.get("type", "")
+            name = tag.get("name")
+            tags.setdefault(tag_type, []).append(str(name or ""))
+            if tag_type == "tag":
+                reader_tags.append(name)
     thumbnail = raw.get("thumbnail") or {}
     path = thumbnail.get("path") if isinstance(thumbnail, dict) else ""
     return {
@@ -88,6 +122,7 @@ def _normalize(raw: dict[str, Any], fallback_thumb: str = "") -> dict[str, Any] 
         "parodies": unique_strings(tags.get("parody", [])),
         "characters": unique_strings(tags.get("character", [])),
         "tags": unique_strings(tags.get("tag", [])),
+        **reader_fields(raw, gid, reader_tags),
         "pages": int(raw.get("num_pages") or 0), "rating": None,
         "popularity": raw.get("num_favorites") if type(raw.get("num_favorites")) is int else None,
         "posted_at": iso_from_unix(raw.get("upload_date")) if raw.get("upload_date") else "",
@@ -106,16 +141,30 @@ class DetailRun:
 
 def audit_existing_tags(gallery_ids: list[str], *, run: DetailRun | None = None) -> tuple[dict[str, list[str]], dict]:
     """Fetch content tags for saved galleries through the normal detail API."""
+    tags_by_id, _, status = audit_existing_details(gallery_ids, set(gallery_ids), {}, run=run)
+    return tags_by_id, status
+
+
+def audit_existing_details(gallery_ids: list[str], tag_ids: set[str],
+                           saved_reader_tags: dict[str, list[str]],
+                           *, run: DetailRun | None = None
+                           ) -> tuple[dict[str, list[str]], dict[str, dict[str, str]], dict]:
+    """An empty reader result marks a gallery with no usable reader fields."""
     tags_by_id = {}
+    reader_by_id = {}
     status = {"attempted": 0, "tagged": 0, "confirmed_empty": 0, "excluded": 0,
               "stopped": False, "errors": []}
     if not gallery_ids:
-        return tags_by_id, status
+        return tags_by_id, reader_by_id, status
 
     run = run if run is not None else DetailRun()
     consecutive_failures = 0
     with requests.Session() as session:
-        for gid in gallery_ids[:max(0, NH_MAX_DETAILS_PER_RUN)]:
+        for gid in gallery_ids:
+            if len(run.audited_ids) >= NH_MAX_DETAILS_PER_RUN:
+                break
+            if gid in run.audited_ids:
+                continue
             if status["attempted"]:
                 polite_sleep(NH_DETAIL_DELAY_SEC)
             if run.expired():
@@ -135,6 +184,11 @@ def audit_existing_tags(gallery_ids: list[str], *, run: DetailRun | None = None)
                     raise ValueError("invalid detail tags")
                 tags = unique_strings(tag["name"] for tag in raw["tags"] if tag["type"] == "tag")
             except (URLPolicyError, HTTPError, requests.RequestException, ValueError) as exc:
+                if gid in saved_reader_tags and (
+                    isinstance(exc, HTTPError) and exc.status_code == 404
+                    or isinstance(exc, ValueError) and not isinstance(exc, requests.RequestException)
+                ):
+                    reader_by_id[gid] = {}
                 status["errors"].append(f"{gid}: {str(exc)[:200]}")
                 consecutive_failures += 1
                 if (isinstance(exc, URLPolicyError)
@@ -145,9 +199,12 @@ def audit_existing_tags(gallery_ids: list[str], *, run: DetailRun | None = None)
                     break
                 continue
             consecutive_failures = 0
-            tags_by_id[gid] = tags
-            status["tagged" if tags else "confirmed_empty"] += 1
-    return tags_by_id, status
+            if gid in tag_ids:
+                tags_by_id[gid] = tags
+                status["tagged" if tags else "confirmed_empty"] += 1
+            if gid in saved_reader_tags:
+                reader_by_id[gid] = reader_fields(raw, gid, saved_reader_tags[gid] + tags) if tags else {}
+    return tags_by_id, reader_by_id, status
 
 
 def collect(state: dict | None = None, *, run: DetailRun | None = None) -> tuple[list[dict], dict, dict]:
