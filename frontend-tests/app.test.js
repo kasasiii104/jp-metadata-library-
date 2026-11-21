@@ -167,7 +167,7 @@ test('結合: history/storage例外でも動作、失敗時status',async()=>{
 test('HTML IDs、FALLBACK、PWA、PNGシグネチャと寸法',()=>{
  const ids=new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]));for(const m of code.matchAll(/\$\("#([\w-]+)(?:[ "\)])/g))assert.ok(ids.has(m[1]),m[1]);
  for(const region of ['CARDS','STATUS'])for(const end of ['START','END'])assert.equal(html.split(`<!-- FALLBACK_${region}_${end} -->`).length,2);
- for(const pattern of [/name="description"/,/name="theme-color"/,/rel="manifest"/,/rel="apple-touch-icon"/,/app\.js\?v=20261121-1/])assert.match(html,pattern);
+ for(const pattern of [/name="description"/,/name="theme-color"/,/rel="manifest"/,/rel="apple-touch-icon"/,/app\.js\?v=20261121-2/])assert.match(html,pattern);
  const manifest=JSON.parse(fs.readFileSync('docs/manifest.webmanifest'));assert.equal(manifest.start_url,'./');assert.equal(manifest.scope,'./');assert.equal(manifest.display,'standalone');
  for(const icon of [...manifest.icons,{src:'icons/apple-touch-icon.png',sizes:'180x180'}]){const bytes=fs.readFileSync(path.join('docs',icon.src));if(icon.src.endsWith('.png')){assert.equal(bytes.subarray(0,8).toString('hex'),'89504e470d0a1a0a');assert.equal(bytes.subarray(12,16).toString(),'IHDR');assert.equal(`${bytes.readUInt32BE(16)}x${bytes.readUInt32BE(20)}`,icon.sizes);}}
 });
@@ -278,44 +278,59 @@ test('FIX11 nhentai: カードとシートの「読む」は有効な材料が�
  }
 });
 
-test('FIX11 ehentai のみでは読む操作が出ず、混在時は hitomi だけを開く',async()=>{
+test('FIX12b ehentai は単独でも読め、hitomi との切替と履歴復元ができる',async()=>{
  const alone=await bootReader([eMember]);
- assert.doesNotMatch(alone.els.grid.innerHTML,/data-read=/);
+ assert.match(alone.els.grid.innerHTML,/data-read="ehentai:42"/);
  clickReaderControl(alone,'[data-more]',{more:eMember.uid});
  assert.match(alone.els.sheet.innerHTML,/で見る/);
- assert.doesNotMatch(alone.els.sheet.innerHTML,/で読む/);
+ assert.match(alone.els.sheet.innerHTML,/で読む/);
+ assert.match(alone.els.sheet.innerHTML,/data-read-uid="ehentai:42"/);
+ clickReaderControl(alone,'[data-read]',{read:eMember.uid,readUid:eMember.uid});
+ assert.equal(alone.readerFetches[0].pathname,'/pages');
+ assert.equal(alone.readerFetches[0].searchParams.get('uid'),eMember.uid);
 
  const b=await bootReader(readerGroup(eMember,hitomiMember),'?src=ehentai');
  assert.match(b.els.grid.innerHTML,/data-read="group"/);
  clickReaderControl(b,'[data-more]',{more:'group'});
  assert.equal([...b.els.sheet.innerHTML.matchAll(/で見る/g)].length,2);
- assert.deepEqual([...b.els.sheet.innerHTML.matchAll(/data-read-uid="([^"]+)"/g)].map(m=>m[1]),[hitomiMember.uid]);
+ assert.deepEqual([...b.els.sheet.innerHTML.matchAll(/data-read-uid="([^"]+)"/g)].map(m=>m[1]),[eMember.uid,hitomiMember.uid]);
  clickReaderControl(b,'[data-read]',{read:'group'});
- assert.equal(b.readerFetches[0].searchParams.get('uid'),hitomiMember.uid);
- assert.deepEqual(b.els.readerMember.options.map(o=>o.value),[hitomiMember.uid]);
- assert.equal(b.els.readerMember.hidden,true);
+ assert.equal(b.readerFetches[0].searchParams.get('uid'),eMember.uid);
+ assert.equal(b.els.readerMember.value,eMember.uid);
+ assert.deepEqual(b.els.readerMember.options.map(o=>o.value),[eMember.uid,hitomiMember.uid]);
+ assert.equal(b.els.readerMember.hidden,false);
+ b.els.readerMember.value=hitomiMember.uid;
+ b.els.readerMember.onchange();
+ assert.equal(b.readerFetches[1].searchParams.get('uid'),hitomiMember.uid);
 
- b.history.state={reader:{id:'group',uid:eMember.uid}};
+ b.loc.hash='';
+ b.history.state=null;
  b.events.popstate();
  assert.equal(b.els.reader.open,false);
- assert.equal(b.readerFetches.length,1);
+
+ b.loc.hash='#read';
+ b.history.state={reader:{id:'group',uid:eMember.uid}};
+ b.events.popstate();
+ assert.equal(b.els.reader.open,true);
+ assert.equal(b.readerFetches[2].searchParams.get('uid'),eMember.uid);
 });
 
-test('FIX11 既定出典は読める絞り込み先を優先し、切替には読める出典だけを載せる',async()=>{
+test('FIX12b 既定出典は読める絞り込み先を優先し、切替には読める出典だけを載せる',async()=>{
  const members=readerGroup(eMember,hitomiMember,nhMember);
- const preferred=await bootReader(members,'?src=nhentai');
- clickReaderControl(preferred,'[data-read]',{read:'group'});
- assert.equal(preferred.readerFetches[0].searchParams.get('uid'),nhMember.uid);
- assert.equal(preferred.els.readerMember.value,nhMember.uid);
- assert.equal(preferred.els.readerMember.hidden,false);
- assert.deepEqual(preferred.els.readerMember.options.map(o=>o.value),[hitomiMember.uid,nhMember.uid]);
- preferred.els.readerMember.value=hitomiMember.uid;
- preferred.els.readerMember.onchange();
- assert.equal(preferred.readerFetches[1].searchParams.get('uid'),hitomiMember.uid);
+ for(const member of [nhMember,eMember]){
+  const preferred=await bootReader(members,'?src='+member.source);
+  clickReaderControl(preferred,'[data-read]',{read:'group'});
+  assert.equal(preferred.readerFetches[0].searchParams.get('uid'),member.uid);
+  assert.equal(preferred.els.readerMember.value,member.uid);
+  assert.equal(preferred.els.readerMember.hidden,false);
+  assert.deepEqual(preferred.els.readerMember.options.map(o=>o.value),[eMember.uid,hitomiMember.uid,nhMember.uid]);
+ }
 
- const fallback=await bootReader(members,'?src=ehentai');
+ const fallback=await bootReader(readerGroup(eMember,hitomiMember,readerRow('nhentai',45)),'?src=nhentai');
  clickReaderControl(fallback,'[data-read]',{read:'group'});
- assert.equal(fallback.readerFetches[0].searchParams.get('uid'),hitomiMember.uid);
+ assert.equal(fallback.readerFetches[0].searchParams.get('uid'),eMember.uid);
+ assert.equal(fallback.els.readerMember.value,eMember.uid);
+ assert.deepEqual(fallback.els.readerMember.options.map(o=>o.value),[eMember.uid,hitomiMember.uid]);
 });
 
 test('FIX11 除外タグ付きグループには nhentai の材料が揃っていても「読む」が出ない',async()=>{

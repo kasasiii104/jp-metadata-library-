@@ -97,7 +97,7 @@
         [...(catalog.references.get(uid) ?? [])].every(referrer => members.has(referrer))));
   }
   function isReadableMember(member) {
-    if (["hitomi", "3hentai", "asmhentai", "hentaifox"].includes(member.source)) return true;
+    if (["hitomi", "3hentai", "asmhentai", "hentaifox", "ehentai"].includes(member.source)) return true;
     const { reader_media_id: media, reader_exts: exts, pages } = member;
     return member.source === "nhentai" &&
       typeof media === "string" && /^[1-9][0-9]{0,11}$/.test(media) &&
