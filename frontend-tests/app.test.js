@@ -88,11 +88,14 @@ test('since: 保存値検証と自己修復',()=>{
  assert.deepEqual(logic.decideSince('invalid',String(current+1),null,current),{since:current,lastSeen:current});
 });
 class Element {
- constructor(tag='div'){this.tag=tag;this._value='';this.options=[];this.listeners={};this.dataset={};this.hidden=false;this.textContent='';this._html='';const c=new Set();this.classList={add:x=>c.add(x),remove:x=>c.delete(x),toggle:(x,on)=>on?c.add(x):c.delete(x),contains:x=>c.has(x)};}
+ constructor(tag='div'){this.tag=tag;this._value='';this.options=[];this.children=[];this.listeners={};this.dataset={};this.hidden=false;this.textContent='';this._html='';const c=new Set();this.classList={add:x=>c.add(x),remove:x=>c.delete(x),toggle:(x,on)=>on?c.add(x):c.delete(x),contains:x=>c.has(x)};}
  set value(v){this._value=this.tag==='select'&&!this.options.some(o=>o.value===v)?'':String(v);}
  get value(){return this._value;}
  set innerHTML(v){this._html=v;if(this.tag==='select'){this.options=[...v.matchAll(/<option value="([^"]*)">([^<]*)<\/option>/g)].map(m=>({value:m[1].replaceAll('&amp;','&').replaceAll('&lt;','<').replaceAll('&gt;','>'),textContent:m[2]}));this._value=this.options[0]?.value||'';}}
  get innerHTML(){return this._html;}
+ replaceChildren(...children){this.children=children;if(this.tag==='select')this.options=children;}
+ showModal(){this.open=true;}
+ close(){this.open=false;}
  appendChild(o){this.options.push(o);}
  addEventListener(k,f){this.listeners[k]=f;}
  async fire(k){return this.listeners[k]?.({});}
@@ -103,13 +106,16 @@ async function boot(query='',options={}){
  const els={};for(const m of html.matchAll(/<(\w+)[^>]*\bid="([^"]+)"[^>]*>/g)){const e=new Element(m[1]);els[m[2]]=e;if(m[1]==='select')e.innerHTML=html.slice(m.index).split('</select>')[0];}
  for(const act of ['fav','hide'])els[`sheet [data-act=${act}]`]=new Element('button');
  const sources=[...html.matchAll(/<button\b[^>]*data-source="([^"]+)"/g)].map(m=>m[1]).map(source=>{const e=new Element('button');e.dataset.source=source;return e;});
- const events={},documentEvents={},loc=new URL('https://example.org/site/'+query),writes=[];
- const history={};for(const method of ['pushState','replaceState'])history[method]=(a,b,url)=>{if(options.historyFail)throw Error('blocked');writes.push([method,url]);loc.href=new URL(url,loc).href;};
- const document={querySelector:s=>els[s.slice(1)]||null,querySelectorAll:s=>s==='[data-source]'?sources:[],createElement:t=>new Element(t),addEventListener:(k,f)=>documentEvents[k]=f};
+ const events={},documentEvents={},readerFetches=[],loc=new URL('https://example.org/site/'+query),writes=[];
+ const history={};for(const method of ['pushState','replaceState'])history[method]=(a,b,url)=>{if(options.historyFail)throw Error('blocked');writes.push([method,url]);history.state=a;loc.href=new URL(url,loc).href;};
+ const document={body:new Element(),querySelector:s=>els[s.slice(1)]||null,querySelectorAll:s=>s==='[data-source]'?sources:[],createElement:t=>new Element(t),addEventListener(k,f){const previous=documentEvents[k];documentEvents[k]=e=>{previous?.(e);f(e);};}};
  const local=options.local||storage(),session=options.session||storage();
- const context={document,window:{addEventListener:(k,f)=>events[k]=f},location:loc,history,localStorage:local,sessionStorage:session,URL,URLSearchParams,console,setTimeout,clearTimeout,fetch:async url=>{const match=url.match(/chunk-(\d+)/);return {ok:!options.fetchFail,status:500,json:async()=>match?{items:data.chunks[Number(match[1])]}:url.includes('manifest')?data.manifest:{}};}};
- vm.runInNewContext(code,context);for(let i=0;i<10;i++)await new Promise(r=>setTimeout(r,0));
- return {els,sources,loc,writes,events,documentEvents,local,session,async change(id,value){els[id].value=value;await els[id].fire('change');},async pop(query){loc.search=query;events.popstate();},titles(){return [...els.grid.innerHTML.matchAll(/class="title"[^>]*>([^<]*)/g)].map(m=>m[1]);}};
+ const context={document,window:{addEventListener:(k,f)=>events[k]=f},location:loc,history,localStorage:local,sessionStorage:session,URL,URLSearchParams,AbortController,Option:function(textContent,value){Object.assign(this,{textContent,value});},console,setTimeout,clearTimeout,fetch:async url=>{
+  if(url instanceof URL){readerFetches.push(url);return {ok:false};}
+  const match=url.match(/chunk-(\d+)/);return {ok:!options.fetchFail,status:500,json:async()=>match?{items:data.chunks[Number(match[1])]}:url.includes('manifest')?data.manifest:{}};}};
+ const app=options.reader?code.replace('const EMBED_WORKER_BASE = "https://jp-embed.kasasiii104.workers.dev";','const EMBED_WORKER_BASE = "https://reader.example/";'):code;
+ vm.runInNewContext(app,context);for(let i=0;i<10;i++)await new Promise(r=>setTimeout(r,0));
+ return {els,sources,loc,writes,events,documentEvents,local,session,history,readerFetches,async change(id,value){els[id].value=value;await els[id].fire('change');},async pop(query){loc.search=query;events.popstate();},titles(){return [...els.grid.innerHTML.matchAll(/class="title"[^>]*>([^<]*)/g)].map(m=>m[1]);}};
 }
 test('結合: 初期新着順、検索replace、離散push、同一URL省略、popstate',async()=>{
  const b=await boot();assert.match(b.els.status.textContent,/^更新 /);assert.deepEqual(b.titles(),['代表','C','D']);assert.equal(b.els.sort.value,'new');assert.equal(b.writes.length,0);
@@ -161,7 +167,7 @@ test('結合: history/storage例外でも動作、失敗時status',async()=>{
 test('HTML IDs、FALLBACK、PWA、PNGシグネチャと寸法',()=>{
  const ids=new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]));for(const m of code.matchAll(/\$\("#([\w-]+)(?:[ "\)])/g))assert.ok(ids.has(m[1]),m[1]);
  for(const region of ['CARDS','STATUS'])for(const end of ['START','END'])assert.equal(html.split(`<!-- FALLBACK_${region}_${end} -->`).length,2);
- for(const pattern of [/name="description"/,/name="theme-color"/,/rel="manifest"/,/rel="apple-touch-icon"/,/app\.js\?v=20261117-3/])assert.match(html,pattern);
+ for(const pattern of [/name="description"/,/name="theme-color"/,/rel="manifest"/,/rel="apple-touch-icon"/,/app\.js\?v=20261121-1/])assert.match(html,pattern);
  const manifest=JSON.parse(fs.readFileSync('docs/manifest.webmanifest'));assert.equal(manifest.start_url,'./');assert.equal(manifest.scope,'./');assert.equal(manifest.display,'standalone');
  for(const icon of [...manifest.icons,{src:'icons/apple-touch-icon.png',sizes:'180x180'}]){const bytes=fs.readFileSync(path.join('docs',icon.src));if(icon.src.endsWith('.png')){assert.equal(bytes.subarray(0,8).toString('hex'),'89504e470d0a1a0a');assert.equal(bytes.subarray(12,16).toString(),'IHDR');assert.equal(`${bytes.readUInt32BE(16)}x${bytes.readUInt32BE(20)}`,icon.sizes);}}
 });
@@ -228,4 +234,94 @@ test('結合: 検索キャッシュはチャンク追加のグループ再構築
  assert.deepEqual(b.titles(),[]);
  await b.els.loadAll.click();assert.deepEqual(b.titles(),['Plain']);
  await b.pop('?q='+encodeURIComponent('巨乳'));assert.deepEqual(b.titles(),['Plain','Namespaced']);
+});
+
+const readerRow=(source,id,extra={})=>({
+ uid:`${source}:${id}`,source,source_id:String(id),title:`${source}-${id}`,
+ tags:['tag'],pages:2,...extra,
+});
+const readerData={reader_media_id:'14',reader_exts:'wp'};
+const eMember=readerRow('ehentai',42,{source_url:'https://e-hentai.org/g/42/aabbcc/'});
+const hitomiMember=readerRow('hitomi',43);
+const nhMember=readerRow('nhentai',44,readerData);
+const readerGroup=(...members)=>members.map(member=>({
+ ...member,duplicate_group:'group',duplicate_count:members.length,
+ duplicate_uids:members.filter(sibling=>sibling!==member).map(sibling=>sibling.uid),
+}));
+function bootReader(members,query=''){
+ return boot(query,{reader:true,fixture:{
+  manifest:{...fixture.manifest,chunk_count:1,item_count:members.length},
+  chunks:[members.map(member=>({...member}))],
+ }});
+}
+function clickReaderControl(browser,selector,dataset){
+ browser.documentEvents.click({target:{closest:s=>s===selector?{
+  dataset,isConnected:false,
+ }:null},preventDefault(){}});
+}
+
+test('FIX11 nhentai: カードとシートの「読む」は有効な材料がある行に限る',async()=>{
+ const members=[
+  nhMember,readerRow('nhentai',45),
+  readerRow('nhentai',46,{...readerData,reader_media_id:'014'}),
+  readerRow('nhentai',47,{...readerData,reader_exts:'wjx',pages:3}),
+  readerRow('nhentai',48,{...readerData,pages:'2'}),
+  readerRow('nhentai',49,{...readerData,pages:3}),
+  readerRow('nhentai',50,{...readerData,reader_exts:'w'.repeat(2001),pages:2001}),
+ ];
+ const b=await bootReader(members);
+ assert.deepEqual([...b.els.grid.innerHTML.matchAll(/data-read="([^"]+)"/g)].map(m=>m[1]),[nhMember.uid]);
+ for(const member of members){
+  clickReaderControl(b,'[data-more]',{more:member.uid});
+  assert.match(b.els.sheet.innerHTML,/で見る/);
+  assert.equal(b.els.sheet.innerHTML.includes('で読む'),member===nhMember);
+ }
+});
+
+test('FIX11 ehentai のみでは読む操作が出ず、混在時は hitomi だけを開く',async()=>{
+ const alone=await bootReader([eMember]);
+ assert.doesNotMatch(alone.els.grid.innerHTML,/data-read=/);
+ clickReaderControl(alone,'[data-more]',{more:eMember.uid});
+ assert.match(alone.els.sheet.innerHTML,/で見る/);
+ assert.doesNotMatch(alone.els.sheet.innerHTML,/で読む/);
+
+ const b=await bootReader(readerGroup(eMember,hitomiMember),'?src=ehentai');
+ assert.match(b.els.grid.innerHTML,/data-read="group"/);
+ clickReaderControl(b,'[data-more]',{more:'group'});
+ assert.equal([...b.els.sheet.innerHTML.matchAll(/で見る/g)].length,2);
+ assert.deepEqual([...b.els.sheet.innerHTML.matchAll(/data-read-uid="([^"]+)"/g)].map(m=>m[1]),[hitomiMember.uid]);
+ clickReaderControl(b,'[data-read]',{read:'group'});
+ assert.equal(b.readerFetches[0].searchParams.get('uid'),hitomiMember.uid);
+ assert.deepEqual(b.els.readerMember.options.map(o=>o.value),[hitomiMember.uid]);
+ assert.equal(b.els.readerMember.hidden,true);
+
+ b.history.state={reader:{id:'group',uid:eMember.uid}};
+ b.events.popstate();
+ assert.equal(b.els.reader.open,false);
+ assert.equal(b.readerFetches.length,1);
+});
+
+test('FIX11 既定出典は読める絞り込み先を優先し、切替には読める出典だけを載せる',async()=>{
+ const members=readerGroup(eMember,hitomiMember,nhMember);
+ const preferred=await bootReader(members,'?src=nhentai');
+ clickReaderControl(preferred,'[data-read]',{read:'group'});
+ assert.equal(preferred.readerFetches[0].searchParams.get('uid'),nhMember.uid);
+ assert.equal(preferred.els.readerMember.value,nhMember.uid);
+ assert.equal(preferred.els.readerMember.hidden,false);
+ assert.deepEqual(preferred.els.readerMember.options.map(o=>o.value),[hitomiMember.uid,nhMember.uid]);
+ preferred.els.readerMember.value=hitomiMember.uid;
+ preferred.els.readerMember.onchange();
+ assert.equal(preferred.readerFetches[1].searchParams.get('uid'),hitomiMember.uid);
+
+ const fallback=await bootReader(members,'?src=ehentai');
+ clickReaderControl(fallback,'[data-read]',{read:'group'});
+ assert.equal(fallback.readerFetches[0].searchParams.get('uid'),hitomiMember.uid);
+});
+
+test('FIX11 除外タグ付きグループには nhentai の材料が揃っていても「読む」が出ない',async()=>{
+ const b=await bootReader(readerGroup(nhMember,{...eMember,tags:['female:loli']}));
+ assert.doesNotMatch(b.els.grid.innerHTML,/data-read=/);
+ clickReaderControl(b,'[data-more]',{more:'group'});
+ assert.doesNotMatch(b.els.sheet.innerHTML,/で読む/);
+ assert.equal([...b.els.sheet.innerHTML.matchAll(/で見る/g)].length,2);
 });
