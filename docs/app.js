@@ -315,6 +315,22 @@
     hideReader();
     if(location.hash==="#read"&&history.state?.reader){history.back();return;}
   }
+  const READER_RETRY_DELAYS_MS=[4000,10000];
+  const IMAGE_AUTO_RETRY_MS=3000;
+  function waitForReaderRetry(delay,signal){
+    return new Promise(resolve=>{
+      if(signal.aborted){resolve(false);return;}
+      const timer=setTimeout(()=>{
+        signal.removeEventListener("abort",abort);
+        resolve(true);
+      },delay);
+      function abort(){
+        clearTimeout(timer);
+        resolve(false);
+      }
+      signal.addEventListener("abort",abort,{once:true});
+    });
+  }
   async function openReader(id,uid,trigger,push=true){
     const group=state.items.find(x=>x._groupId===id);
     if(!group||!readerAvailable(group)){if(reader?.open)hideReader();return;}
@@ -352,7 +368,7 @@
       if(chunks.length)endpoint.searchParams.set("g",chunks.join(","));
       let count=null, currentPage=null;
       const seen=new Set(), visible=new Set();
-      const pageLabel=n=>count==null?String(n):`${n} / ${count}`;
+      const pageLabel=(n,total=count)=>total==null?String(n):`${n} / ${total}`;
       if(typeof IntersectionObserver!=="undefined"){
         readerObserver=new IntersectionObserver(entries=>{
           if(request.signal.aborted)return;
@@ -370,48 +386,78 @@
           endpoint.searchParams.set("last",lastImage);
           endpoint.searchParams.set("pl",listingLast);
         }
-        const response=await fetch(endpoint,{signal:request.signal});
-        if(!response.ok)throw new Error();
-        const batch=await response.json();
-        if(request.signal.aborted)return;
-        if(!Array.isArray(batch.pages)||!batch.pages.some(({n})=>!seen.has(n)))throw new Error();
-        if(member.source==="ehentai"){
-          if(batch.pages.some(({n},offset)=>!Number.isSafeInteger(n)||n!==lastImage+offset+1))throw new Error();
-          lastImage=batch.pages.at(-1).n;
+        let batch, figures, batchSeen;
+        for(let attempt=0;;attempt++){
+          try{
+            const response=await fetch(endpoint,{signal:request.signal});
+            if(request.signal.aborted)return;
+            if(!response.ok)throw new Error();
+            batch=await response.json();
+            if(request.signal.aborted)return;
+            if(!Array.isArray(batch.pages)||!batch.pages.some(({n})=>!seen.has(n)))throw new Error();
+            if(member.source==="ehentai"&&
+              batch.pages.some(({n},offset)=>!Number.isSafeInteger(n)||n!==lastImage+offset+1))throw new Error();
+            if(batch.next!=null){
+              if(!Number.isSafeInteger(batch.next)||batch.next<=from||member.source!=="ehentai"||
+                !Number.isSafeInteger(batch.listing_last)||batch.listing_last<listingLast||
+                batch.listing_last<batch.next)throw new Error();
+            }else if(member.source==="ehentai"&&batch.listing_last!=null&&
+              (!Number.isSafeInteger(batch.listing_last)||batch.listing_last<listingLast))throw new Error();
+
+            figures=[];
+            batchSeen=new Set();
+            for(const {n,url} of batch.pages){
+              if(seen.has(n)||batchSeen.has(n))continue;
+              if(typeof url!=="string"||!url.trim())throw new Error();
+              const resolved=safeUrl(new URL(url,endpoint));
+              if(!resolved)throw new Error();
+              const figure=document.createElement("figure"), caption=document.createElement("figcaption");
+              const img=document.createElement("img"), retry=document.createElement("button");
+              figure.dataset.page=n;caption.textContent=pageLabel(n,batch.count??count);
+              img.loading="lazy";img.decoding="async";img.referrerPolicy=new URL(resolved).origin===endpoint.origin?"origin":"no-referrer";img.alt=`ページ ${n}`;
+              retry.type="button";retry.textContent="再試行";retry.hidden=true;
+              const refreshImage=()=>{
+                if(!figure.isConnected||request.signal.aborted)return;
+                const refresh=new URL(resolved);
+                refresh.searchParams.set("_retry",Date.now());
+                retry.hidden=true;img.hidden=false;img.src=refresh.href;
+              };
+              let autoRetryScheduled=false;
+              img.onerror=()=>{
+                if(!figure.isConnected||request.signal.aborted)return;
+                if(!autoRetryScheduled){
+                  autoRetryScheduled=true;
+                  setTimeout(refreshImage,IMAGE_AUTO_RETRY_MS);
+                  return;
+                }
+                retry.hidden=false;img.hidden=true;
+              };
+              retry.onclick=refreshImage;
+              figure.append(caption,img,retry);
+              figures.push({figure,img,resolved});
+              batchSeen.add(n);
+            }
+            break;
+          }catch(error){
+            if(request.signal.aborted)return;
+            if(attempt===READER_RETRY_DELAYS_MS.length)throw error;
+            if(!await waitForReaderRetry(READER_RETRY_DELAYS_MS[attempt],request.signal)||
+              request.signal.aborted)return;
+          }
         }
-        if(batch.next!=null){
-          if(!Number.isSafeInteger(batch.next)||batch.next<=from||member.source!=="ehentai"||
-            !Number.isSafeInteger(batch.listing_last)||batch.listing_last<listingLast||
-            batch.listing_last<batch.next)throw new Error();
-          listingLast=batch.listing_last;
-        }else if(member.source==="ehentai"&&batch.listing_last!=null&&
-          (!Number.isSafeInteger(batch.listing_last)||batch.listing_last<listingLast))throw new Error();
+        for(const n of batchSeen)seen.add(n);
+        if(member.source==="ehentai")lastImage=batch.pages.at(-1).n;
+        if(batch.next!=null)listingLast=batch.listing_last;
         if(batch.count!=null&&batch.count!==count){
           count=batch.count;
           for(const figure of readerPages.children)figure.firstElementChild.textContent=pageLabel(figure.dataset.page);
         }
-        const figures=[];
-        for(const {n,url} of batch.pages){
-          if(seen.has(n))continue;
-          seen.add(n);
-          const figure=document.createElement("figure"), caption=document.createElement("figcaption");
-          const img=document.createElement("img"), retry=document.createElement("button");
-          const resolved=safeUrl(new URL(url,endpoint));
-          if(!resolved)throw new Error();
-          figure.dataset.page=n;caption.textContent=pageLabel(n);
-          img.loading="lazy";img.decoding="async";img.referrerPolicy=new URL(resolved).origin===endpoint.origin?"origin":"no-referrer";img.alt=`ページ ${n}`;
-          retry.type="button";retry.textContent="再試行";retry.hidden=true;
-          img.onerror=()=>{retry.hidden=false;img.hidden=true;};
-          retry.onclick=()=>{
-            const refresh=new URL(resolved);
-            refresh.searchParams.set("_retry",Date.now());
-            retry.hidden=true;img.hidden=false;img.src=refresh.href;
-          };
-          img.src=resolved;figure.append(caption,img,retry);figures.push(figure);
-        }
         if(!from)readerPages.replaceChildren();
-        readerPages.append(...figures);
-        for(const figure of figures)readerObserver?.observe(figure);
+        readerPages.append(...figures.map(({figure})=>figure));
+        for(const {figure,img,resolved} of figures){
+          img.src=resolved;
+          readerObserver?.observe(figure);
+        }
         currentPage??=batch.pages[0]?.n;
         if(currentPage!=null)counter.textContent=pageLabel(currentPage);
         if(batch.next==null)break;

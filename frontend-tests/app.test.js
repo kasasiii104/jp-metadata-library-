@@ -88,12 +88,21 @@ test('since: 保存値検証と自己修復',()=>{
  assert.deepEqual(logic.decideSince('invalid',String(current+1),null,current),{since:current,lastSeen:current});
 });
 class Element {
- constructor(tag='div'){this.tag=tag;this._value='';this.options=[];this.children=[];this.listeners={};this.dataset={};this.hidden=false;this.textContent='';this._html='';const c=new Set();this.classList={add:x=>c.add(x),remove:x=>c.delete(x),toggle:(x,on)=>on?c.add(x):c.delete(x),contains:x=>c.has(x)};}
+ constructor(tag='div'){this.tag=tag;this._value='';this.options=[];this.children=[];this.listeners={};this.dataset={};this.hidden=false;this.parent=null;this._text='';this._html='';const c=new Set();this.classList={add:x=>c.add(x),remove:x=>c.delete(x),toggle:(x,on)=>on?c.add(x):c.delete(x),contains:x=>c.has(x)};}
  set value(v){this._value=this.tag==='select'&&!this.options.some(o=>o.value===v)?'':String(v);}
  get value(){return this._value;}
  set innerHTML(v){this._html=v;if(this.tag==='select'){this.options=[...v.matchAll(/<option value="([^"]*)">([^<]*)<\/option>/g)].map(m=>({value:m[1].replaceAll('&amp;','&').replaceAll('&lt;','<').replaceAll('&gt;','>'),textContent:m[2]}));this._value=this.options[0]?.value||'';}}
  get innerHTML(){return this._html;}
- replaceChildren(...children){this.children=children;if(this.tag==='select')this.options=children;}
+ get textContent(){return this._text+this.children.map(child=>child.textContent).join('');}
+ set textContent(text){this.replaceChildren();this._text=String(text);}
+ get firstElementChild(){return this.children[0];}
+ get isConnected(){return this.connected||!!this.parent?.isConnected;}
+ append(...children){for(const child of children)child.parent=this;this.children.push(...children);}
+ replaceChildren(...children){
+  for(const child of this.children)child.parent=null;
+  this.children=[];this._text='';this.append(...children);
+  if(this.tag==='select')this.options=children;
+ }
  showModal(){this.open=true;}
  close(){this.open=false;}
  appendChild(o){this.options.push(o);}
@@ -101,6 +110,22 @@ class Element {
  async fire(k){return this.listeners[k]?.({});}
  async click(){return this.onclick?.();}
 }
+function fakeTimers(){
+ let nextId=0;
+ const pending=new Map();
+ return {
+  setTimeout(callback,delay){pending.set(++nextId,{callback,delay});return nextId;},
+  clearTimeout(id){pending.delete(id);},
+  delays(){return [...pending.values()].map(timer=>timer.delay);},
+  async runNext(){
+   const [id,timer]=pending.entries().next().value;
+   pending.delete(id);
+   timer.callback();
+   await settleReader();
+  },
+ };
+}
+const settleReader=()=>new Promise(resolve=>setImmediate(resolve));
 async function boot(query='',options={}){
  const data=options.fixture||fixture;
  const els={};for(const m of html.matchAll(/<(\w+)[^>]*\bid="([^"]+)"[^>]*>/g)){const e=new Element(m[1]);els[m[2]]=e;if(m[1]==='select')e.innerHTML=html.slice(m.index).split('</select>')[0];}
@@ -109,9 +134,11 @@ async function boot(query='',options={}){
  const events={},documentEvents={},readerFetches=[],loc=new URL('https://example.org/site/'+query),writes=[];
  const history={};for(const method of ['pushState','replaceState'])history[method]=(a,b,url)=>{if(options.historyFail)throw Error('blocked');writes.push([method,url]);history.state=a;loc.href=new URL(url,loc).href;};
  const document={body:new Element(),querySelector:s=>els[s.slice(1)]||null,querySelectorAll:s=>s==='[data-source]'?sources:options.queryControls?.(s)||[],createElement:t=>new Element(t),addEventListener(k,f){const previous=documentEvents[k];documentEvents[k]=e=>{previous?.(e);f(e);};}};
+ if(els.readerPages)els.readerPages.connected=true;
  const local=options.local||storage(),session=options.session||storage();
- const context={document,window:{addEventListener:(k,f)=>events[k]=f},location:loc,history,localStorage:local,sessionStorage:session,URL,URLSearchParams,AbortController,Option:function(textContent,value){Object.assign(this,{textContent,value});},console,setTimeout,clearTimeout,fetch:async url=>{
-  if(url instanceof URL){readerFetches.push(url);return {ok:false};}
+ const context={document,window:{addEventListener:(k,f)=>events[k]=f},location:loc,history,localStorage:local,sessionStorage:session,URL,URLSearchParams,AbortController,Option:function(textContent,value){Object.assign(this,{textContent,value});},console,
+  setTimeout:options.timers?.setTimeout||setTimeout,clearTimeout:options.timers?.clearTimeout||clearTimeout,fetch:async (url,init)=>{
+  if(url instanceof URL){readerFetches.push(new URL(url));return options.fetchPages?.(url,init)||{ok:false};}
   const match=url.match(/chunk-(\d+)/);return {ok:!options.fetchFail,status:500,json:async()=>match?{items:data.chunks[Number(match[1])]}:url.includes('manifest')?data.manifest:{}};}};
  const app=options.reader?code.replace('const EMBED_WORKER_BASE = "https://jp-embed.kasasiii104.workers.dev";',options.reader==='disabled'?'const EMBED_WORKER_BASE = "";':'const EMBED_WORKER_BASE = "https://reader.example/";'):code;
  vm.runInNewContext(app,context);for(let i=0;i<10;i++)await new Promise(r=>setTimeout(r,0));
@@ -167,7 +194,7 @@ test('結合: history/storage例外でも動作、失敗時status',async()=>{
 test('HTML IDs、FALLBACK、PWA、PNGシグネチャと寸法',()=>{
  const ids=new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]));for(const m of code.matchAll(/\$\("#([\w-]+)(?:[ "\)])/g))assert.ok(ids.has(m[1]),m[1]);
  for(const region of ['CARDS','STATUS'])for(const end of ['START','END'])assert.equal(html.split(`<!-- FALLBACK_${region}_${end} -->`).length,2);
- for(const pattern of [/name="description"/,/name="theme-color"/,/rel="manifest"/,/rel="apple-touch-icon"/,/app\.js\?v=20261121-3/])assert.match(html,pattern);
+ for(const pattern of [/name="description"/,/name="theme-color"/,/rel="manifest"/,/rel="apple-touch-icon"/,/app\.js\?v=20261122-1/])assert.match(html,pattern);
  const manifest=JSON.parse(fs.readFileSync('docs/manifest.webmanifest'));assert.equal(manifest.start_url,'./');assert.equal(manifest.scope,'./');assert.equal(manifest.display,'standalone');
  for(const icon of [...manifest.icons,{src:'icons/apple-touch-icon.png',sizes:'180x180'}]){const bytes=fs.readFileSync(path.join('docs',icon.src));if(icon.src.endsWith('.png')){assert.equal(bytes.subarray(0,8).toString('hex'),'89504e470d0a1a0a');assert.equal(bytes.subarray(12,16).toString(),'IHDR');assert.equal(`${bytes.readUInt32BE(16)}x${bytes.readUInt32BE(20)}`,icon.sizes);}}
 });
@@ -249,7 +276,7 @@ const readerGroup=(...members)=>members.map(member=>({
  duplicate_uids:members.filter(sibling=>sibling!==member).map(sibling=>sibling.uid),
 }));
 function bootReader(members,query='',options={}){
- return boot(query,{reader:true,...options,fixture:{
+ return boot(query,{reader:true,timers:fakeTimers(),...options,fixture:{
   manifest:{...fixture.manifest,chunk_count:1,item_count:members.length},
   chunks:[members.map(member=>({...member}))],
  }});
@@ -459,4 +486,127 @@ test('FIX12c Worker 無効または読める出典がないカードは従来の
   }
   assert.doesNotMatch(markup,/data-read=/);
  }
+});
+
+const readerError=/ページを読み込めませんでした/;
+const imagePage=(n,url=`/image-${n}.webp`)=>({n,url});
+const pagesResponse=batch=>({ok:true,json:async()=>batch});
+
+async function openRetryReader(...responses){
+ const timers=fakeTimers();
+ const b=await bootReader([eMember],'',{timers,fetchPages:()=>{
+  const response=responses.shift();
+  return typeof response==='function'?response():response;
+ }});
+ clickReaderControl(b,'[data-read]',{read:eMember.uid});
+ await settleReader();
+ return {...b,timers,pages:b.els.readerPages};
+}
+
+test('FIX12f: 初回取得は 4 秒、10 秒で再試行し、成功まで読み込み表示を維持する',async()=>{
+ const b=await openRetryReader(()=>{throw new Error('network');},{ok:false},
+  pagesResponse({pages:[imagePage(1)],count:1}));
+ assert.equal(b.pages.textContent,'読み込み中…');
+ assert.deepEqual(b.timers.delays(),[4000]);
+ await b.timers.runNext();
+ assert.equal(b.pages.textContent,'読み込み中…');
+ assert.deepEqual(b.timers.delays(),[10000]);
+ await b.timers.runNext();
+ assert.equal(b.pages.children[0].tag,'figure');
+ assert.equal(b.pages.children[0].firstElementChild.textContent,'1 / 1');
+ assert.equal(b.readerFetches.length,3);
+ assert.equal(new Set(b.readerFetches.map(url=>url.href)).size,1);
+ assert.deepEqual(b.timers.delays(),[]);
+});
+
+test('FIX12f: 初回取得の全試行失敗で従来のエラーを表示する',async()=>{
+ const b=await openRetryReader({ok:false},{ok:false},{ok:false});
+ await b.timers.runNext();
+ await b.timers.runNext();
+ assert.equal(b.readerFetches.length,3);
+ assert.deepEqual(b.pages.children.map(child=>child.tag),['p']);
+ assert.match(b.pages.textContent,readerError);
+ assert.deepEqual(b.timers.delays(),[]);
+});
+
+test('FIX12f: 継続取得の再試行中は既存ページを保ち、全試行失敗で末尾に注記する',async()=>{
+ const b=await openRetryReader(pagesResponse({pages:[imagePage(1)],next:2,listing_last:3,count:4}),
+  pagesResponse({pages:[imagePage(2),imagePage(3,'javascript:bad')],next:3,listing_last:4,count:9}),
+  pagesResponse({pages:[imagePage(2)],next:3,listing_last:2,count:9}),{ok:false});
+ const [first]=b.pages.children;
+ assert.equal(first.firstElementChild.textContent,'1 / 4');
+ assert.deepEqual(b.timers.delays(),[4000]);
+ await b.timers.runNext();
+ assert.equal(b.pages.children.length,1);
+ assert.equal(b.pages.children[0],first);
+ assert.equal(first.firstElementChild.textContent,'1 / 4');
+ assert.deepEqual(b.timers.delays(),[10000]);
+ await b.timers.runNext();
+ assert.equal(b.pages.children[0],first);
+ assert.equal(b.pages.children[1].tag,'p');
+ assert.match(b.pages.children[1].textContent,readerError);
+ for(const url of b.readerFetches.slice(1)){
+  assert.equal(url.href,b.readerFetches[1].href);
+  assert.deepEqual(['from','last','pl'].map(key=>url.searchParams.get(key)),['2','1','3']);
+ }
+});
+
+test('FIX12f: 不正形式と再試行の連番違反を拒否し、正しいバッチで回復する',async()=>{
+ const b=await openRetryReader(pagesResponse({pages:{}}),
+  pagesResponse({pages:[imagePage(1),imagePage(3)]}),
+  pagesResponse({pages:[imagePage(1),imagePage(2)]}));
+ await b.timers.runNext();
+ assert.equal(b.pages.textContent,'読み込み中…');
+ assert.deepEqual(b.timers.delays(),[10000]);
+ await b.timers.runNext();
+ assert.deepEqual(b.pages.children.map(figure=>figure.dataset.page),[1,2]);
+});
+
+test('FIX12f: 画像 URL が不正だった試行の連番・重複・件数を次の試行に持ち越さない',async()=>{
+ const b=await openRetryReader(
+  pagesResponse({pages:[imagePage(1),imagePage(2,'javascript:bad')],next:2,listing_last:3,count:9}),
+  pagesResponse({pages:[imagePage(1),imagePage(2)],count:2}));
+ await b.timers.runNext();
+ assert.deepEqual(b.pages.children.map(figure=>figure.firstElementChild.textContent),['1 / 2','2 / 2']);
+ assert.equal(b.els.readerCount.textContent,'1 / 2');
+});
+
+test('FIX12f: 待機中に閉じるとタイマーを解除し、以後リクエストも表示更新もしない',async()=>{
+ const b=await openRetryReader({ok:false},pagesResponse({pages:[imagePage(1)]}));
+ assert.deepEqual(b.timers.delays(),[4000]);
+ b.history.back=()=>{};
+ await b.els.readerClose.click();
+ await settleReader();
+ assert.deepEqual(b.timers.delays(),[]);
+ assert.equal(b.readerFetches.length,1);
+ assert.equal(b.pages.textContent,'');
+ assert.equal(b.els.readerCount.textContent,'');
+});
+
+test('FIX12f: 画像ごとに自動再取得し、失敗後の手動操作と破棄時の動作を維持する',async()=>{
+ const b=await openRetryReader(pagesResponse({pages:[imagePage(1),imagePage(2)]}));
+ const [[,img,retry],[,removedImg,removedRetry]]=b.pages.children.map(figure=>figure.children);
+ img.onerror();
+ removedImg.onerror();
+ assert.deepEqual(b.timers.delays(),[3000,3000]);
+ assert.equal(img.src,'https://reader.example/image-1.webp');
+ assert.equal(img.hidden,false);
+ assert.equal(retry.hidden,true);
+ await b.timers.runNext();
+ assert.ok(new URL(img.src).searchParams.has('_retry'));
+ assert.equal(retry.hidden,true);
+ assert.equal(img.hidden,false);
+ img.onerror();
+ assert.equal(retry.hidden,false);
+ assert.equal(img.hidden,true);
+ assert.deepEqual(b.timers.delays(),[3000]);
+ await retry.click();
+ assert.ok(new URL(img.src).searchParams.has('_retry'));
+ assert.equal(retry.hidden,true);
+ assert.equal(img.hidden,false);
+ b.history.back=()=>{};
+ await b.els.readerClose.click();
+ await b.timers.runNext();
+ assert.equal(removedImg.src,'https://reader.example/image-2.webp');
+ assert.equal(removedRetry.hidden,true);
 });
