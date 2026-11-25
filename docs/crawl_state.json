@@ -4,21 +4,21 @@
   },
   "hitomi": {
     "resource_base": "https://ltn.gold-usergeneratedcontent.net",
-    "backfill_offset": 40350,
+    "backfill_offset": 40410,
     "backfill_complete": false
   },
   "3hentai": {
     "browse_mode": "browse-query-page",
-    "backfill_page": 1901
+    "backfill_page": 1902
   },
   "hentaifox": {},
   "asmhentai": {
-    "detail_cursor": 64
+    "detail_cursor": 72
   },
   "nhentai": {
     "backfill_complete": false,
     "detail_failures": {},
-    "latest_id": 699507,
+    "latest_id": 699545,
     "backfill_before_id": 697812,
     "backfill_page": 14,
     "backfill_remaining": 2480
