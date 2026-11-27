@@ -1,4 +1,10 @@
 {
   "version": 1,
-  "items": {}
+  "items": {
+    "3600661": {
+      "last_attempt": "2026-11-27T15:14:24.705593+00:00",
+      "reason": "https://s9.3hentai.xyz/d600661/thumb.jpg: cannot identify image file <_io.BytesIO object at 0x7638a17847c0>",
+      "failures": 1
+    }
+  }
 }
